@@ -1,0 +1,27 @@
+#* 
+	comments: 	crea una clase para c# para la tabla  ${table}...
+	Author: Luis Molina
+*#  
+ 
+ 
+  <nameFile>${table}</nameFile>
+<extensionFile>cs</extensionFile>
+<languageGenerated>c_sharp</languageGenerated>
+<description>description</description>
+<targetDirectory></targetDirectory>
+<appliesToAllTables>true</appliesToAllTables>
+ 
+
+List<${table}> lista${table} = ${table}.getList();
+	foreach (${table} tix in lista${table})
+	{
+		
+	}
+	
+
+	
+
+
+
+
+       

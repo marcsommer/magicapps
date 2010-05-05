@@ -1,0 +1,92 @@
+
+#* 
+	comments: 
+	
+	Author: Luis Molina
+*#  
+ <nameFile>ws_generico.asmx</nameFile>
+<extensionFile>cs</extensionFile>
+<languageGenerated>c#">
+<description>description">
+<targetDirectory></targetDirectory>
+<appliesToAllTables>true</appliesToAllTables>
+
+
+using System;
+using System.Data;
+using System.Web;
+using System.Collections;
+using System.Web.Services;
+using System.Web.Services.Protocols;
+using System.ComponentModel;
+
+using System.Collections.Generic;
+
+namespace juleweb.webServices
+{
+    /// <summary>
+    /// Descripción breve de ws_generico
+    /// </summary>
+    [WebService(Namespace = "http://jule.org/")]
+    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [ToolboxItem(false)]
+    public class ws_generico : System.Web.Services.WebService
+    {
+
+	
+	#foreach( $tablita in $project.getTables()) 
+	
+        [WebMethod]
+        public ${tablita}[] ws_${tablita}GetArray()
+        {
+            int count;
+            ${tablita}[] array${tablita} = null;
+            List<${tablita}> list${tablita} = null;
+            list${tablita} = ${tablita}.getList();
+            // we return an array of ${tablita}...
+            array${tablita} = list${tablita}.ToArray();
+            return array${tablita};
+        } // ws_${tablita}GetArray
+
+        [WebMethod]
+        public bool ws_${tablita}Insert(${tablita} item)
+        {
+            if (!${tablita}.exists(item.${tablita.getKey()}))
+            {
+                return !${tablita}.Insert(item).Equals("");
+            }
+            else
+            {
+                return false;
+                // throw new SoapException("Fallo al insertar ${tablita}. porque ya existia","ws_${tablita}InsertSoapException");
+            }
+
+        } // ws_${tablita}Insert
+
+        [WebMethod]
+        public bool ws_${tablita}Exists(int index)
+        {
+            return ${tablita}.exists(index);
+
+        } // ws_${tablita}Exists
+
+
+        [WebMethod]
+        public bool ws_${tablita}Delete(int index)
+        {
+            return ${tablita}.Delete(index);
+
+        } // ws_${tablita}Insert
+
+        //[WebMethod]
+        //public bool ws_${tablita}Delete(${tablita} item)
+        //{
+        //    return ${tablita}.delete(item);
+
+        //} // ws_${tablita}Insert
+		
+	#end 
+
+
+    }
+}

@@ -1,0 +1,114 @@
+
+#* 
+	This is an example velocity template
+*#
+<nameFile>main_$table</nameFile>
+<extensionFile>aspx.cs</extensionFile>
+<languageGenerated>c_sharp</languageGenerated>
+<description>description</description>
+<targetDirectory>${table}_dir</targetDirectory>
+<appliesToAllTables>true</appliesToAllTables>
+
+#set( $this = "Velocity")
+
+#set( $condition = true)
+
+#if ($condition)
+    The condition is true!
+#else
+    The condition is false!
+#end    
+
+$table.Name
+$table.TargetName
+$table.numberOfFields
+$table.key
+$table.FieldDescription
+
+
+----------
+number of fields in table: $table.GetArrayOfFields.count
+
+
+---------------------------------
+tables in the project
+
+#foreach( $tablita in $project.getTables )
+    $tablita.Name is great!
+    
+   
+#end
+
+
+
+----------
+fields in the table:
+#foreach( $field in $table.GetArrayOfFields )
+    $field.Name is great!
+    
+    
+    #if ($field.type.toString() == "entero")
+		The condition is true!
+	#end  
+	
+#end
+
+---------------------------
+relations in the table
+
+#foreach( $relation in $table.getRelations )
+    $relation.Name is great!
+
+	
+#end
+
+$table.getListOfFields(",")
+
+## ${table.getListWithAllFields(",")}
+
+
+
+ 
+ // ejemplo de bucle... con una coma al final..
+ 
+#set ($count = 0)
+#foreach( $field in $table.GetArrayOfFields )
+#if (! $field.isKey)
+#if ($field.type.toString() == "_integer")
+	sqlt.Append( sf.mySql(obj${table}.${field}) + "#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end") ;
+#end  
+#if ($field.type.toString() == "_string")
+	sqlt.Append( sf.mySql(obj${table}.${field}) + "#if ($table.GetArrayOfFields.count()-  $count  != 1) , #end") ;
+#end  
+#if ($field.type.toString() == "_date")
+	sqlt.Append( sf.mySql(obj${table}.${field}) + "#if ($table.GetArrayOfFields.count()-  $count  != 1) , #end") ;
+#end  
+#if ($field.type.toString() == "_boolean")
+	sqlt.Append( sf.mySql(obj${table}.${field}) + "#if ($table.GetArrayOfFields.count()-  $count  != 1) , #end") ;
+#end 		
+#end 
+#set ($count = $count + 1 ) 
+#end   
+
+
+// ejemplo de bucle
+
+#foreach( $field in $table.GetArrayOfFields )
+#if (! $field.isKey)
+#if ($field.type.toString() == "_integer")
+	new${table}.${field} = sf.entero(row["${field}"]);
+#end  
+#if ($field.type.toString() == "_string")
+	 new${table}.${field} = sf.cadena(row["${field}"]);
+#end  
+#if ($field.type.toString() == "_date")
+	new${table}.${field} = sf.fecha(row["${field}"].ToString());
+#end  
+#if ($field.type.toString() == "_boolean")
+	new${table}.${field} = sf.Bool(row["${field}"]);					
+#end 		
+#end 
+#end 
+
+// nombre del primer campo clave
+${table.getKey}

@@ -1,0 +1,63 @@
+#* 
+	comments: creates a function to get all the elements in a table, util for filling a combobox with a table...
+	
+	Author: Luis Molina
+*# 
+ 
+<nameFile>main_$table</nameFile>
+<extensionFile>aspx.cs</extensionFile>
+<languageGenerated>c_sharp</languageGenerated>
+<description>description</description>
+<targetDirectory>${table}_dir</targetDirectory>
+<appliesToAllTables>true</appliesToAllTables>
+  
+// devuelve una lista de ${table}
+ 
+ 		public static List< ${table} > getList()
+		{
+		    List< ${table} > lista${table} = new List< ${table} >();
+            MySqlDataReader reg;
+            string sqlt;
+            dbClass db = new dbClass(ctes.conStringAdoGeneral);
+            try
+            {
+            sqlt = "select ${table.getListOfFields(",")} from ${table}";
+            reg = db.sql(sqlt);
+            while (reg.Read())
+                {
+                ${table} pp = new ${table}();   
+				
+				#foreach( $field in $table.GetArrayOfFields )
+				#if (! $field.isKey)
+				#if ($field.type.toString() == "_integer")
+					pp.${field} = sf.Entero(reg["${field}"].ToString());
+				#end  
+				#if ($field.type.toString() == "_string")
+					  pp.${field} = sf.Cadena(reg["${field}"].ToString());
+				#end  
+				#if ($field.type.toString() == "_date")
+					pp.${field} = sf.fecha(reg["${field}"].ToString());
+				#end  
+				#if ($field.type.toString() == "_boolean")
+					 pp.${field} = sf.Bool(reg["${field}"].ToString());			
+				#end 		
+				#end 
+				#end 
+              
+               lista${table}.Add(pp);
+			}
+            reg.Close();
+            }
+            catch (Exception ex)
+            {
+                 
+            }
+            finally
+            {
+                db.Dispose();              
+            }
+            return lista${table};
+       }		
+
+ 
+ 

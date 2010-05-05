@@ -1,0 +1,185 @@
+<%@ Master Language="C#" AutoEventWireup="true" Codebehind="masterWeb.Master.cs" Inherits="juleweb.portal.master.masterWeb" %>
+<%@ Reference Control="./menuPortal.ascx" %>
+<%@ Register TagPrefix="uc1" TagName="menuPortal" Src="./menuPortal.ascx" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<head runat="server">
+    <title>JULE</title>
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="distribution" content="global" />
+    <meta name="resource-type" content="document" />
+    <meta name="author" content="IPI-(Ingenier&iacute;a de Procesos Inform&aacute;ticos)" />
+    <link href="../index/index.aspx" type="text/asp" rel="contents" title="Indice de contenidos" />
+    <link href="../miscelanea/accesibilidad.aspx" type="text/asp" rel="help" title="Ayuda para la accesibilidad" />
+    <meta name="copyright" content="IPI-(Ingenier&iacute;a de Procesos Inform&aacute;ticos)" />
+    <meta name="keywords" content="jule" />
+    <meta name="Description" content="jule">
+
+    <script type="text/javascript" src="../../includes/portal.js"></script>
+
+
+</head>
+<body xml:lang="es" >
+    <form id="form1" runat="server">
+        <noscript>
+            <p class="noscript" id="noscript">
+                Jule. Nuestra p�gina funciona  con JavaScript desactivado, sin embargo, si lo activa, tendr� ventajas visuales.</p>
+        </noscript>
+        <!--INICIO CONTENIDO GENERAL-->
+        <div class="mensaje">
+            <a href="#bloqueCentro" accesskey="2" title="Saltar navegaci&oacute;n (Tecla de acceso 2)">
+                Ir al contenido principal</a>
+        </div>
+        <hr class="hidden" />
+        <div id="contenido">
+            <!--sombra superior-->
+            <div id="sombraSup">
+                <div id="sombraSupIzq">
+                </div>
+                <div id="sombraSupDcha">
+                </div>
+            </div>
+            <!--sombra superior-->
+            <!--contenido central-->
+            <div id="contCentral">
+                <div id="contCentral2">
+                    <div id="padding4">
+                        <!--padding4-->
+                        <!--ENCABEZADO-->
+                        <div id="encabezado">
+                            <div id="bloqueAccesib">
+                                <div id="bloquelogoSup">
+                                    <span class="mensaje"><strong>Comienza men&uacute; utilidades: </strong></span>
+                                    <ul>
+                                        <li><a class="texto" href="../manual/manual.pdf">Manual de uso</a> </li>
+                                        <li class="txtamano">
+                                            <asp:LinkButton ID="lnbNormal" runat="server" OnClick="lnbNormal_Click">A-</asp:LinkButton>
+                                            &nbsp;<asp:LinkButton ID="lnbMed" runat="server" OnClick="lnbMed_Click">A+</asp:LinkButton>
+                                            &nbsp;<asp:LinkButton ID="lnbGrande" runat="server" OnClick="lnbGrande_Click">A++</asp:LinkButton>
+                                        </li>
+                                        <li>
+                                            <asp:LinkButton ID="lnbContraste" CssClass="altoContraste" runat="server" OnClick="lnbContraste_Click">Alto contraste</asp:LinkButton>
+                                        </li>
+                                        <li>
+                                            <asp:LinkButton ID="lnbTexto" CssClass="soloTexto" runat="server" OnClick="lnbTexto_Click">Solo texto</asp:LinkButton>
+                                        </li>
+                                        <li>
+                                            <asp:HyperLink ID="hplAccesibCabecera" AccessKey="0" CssClass="accesib" title="Accesibilidad (Acceso teclado 0)"
+                                                runat="server">Accesibilidad</asp:HyperLink>
+                                        </li>
+                                        <li>
+                                            <asp:HyperLink ID="hplMapaweb" AccessKey="3" CssClass="mapa" title="Mapa web (Acceso teclado 3)"
+                                                runat="server">Mapa web</asp:HyperLink>
+                                        </li>
+                                        <li>
+                                            <asp:HyperLink ID="hplContactoCab" AccessKey="9" CssClass="contacto" title="Contacto (Acceso teclado 9)"
+                                                runat="server">Contacto</asp:HyperLink>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr class="hidden" />
+                            <div id="bloqueImg">
+                                <div id="fondoLogo">
+                                    <h1 id="bloqueLogo">
+                                        &nbsp;</h1>
+                                    <h1 class="tituloAlt">
+                                        <a href="../portada/portada.aspx"><span>Jule</span></a>
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="bloqueUtilidades">
+                            <hr class="hidden" />
+                            <div id="utilidDcha">
+                                <asp:Panel ID="Panel1" DefaultButton="btnbuscar" runat="server">
+                                    <div id="bloqueBusq">
+                                        <h3>
+                                            B�squeda</h3>
+                                        <label for="ctl00_txtbusqueda">
+                                            <asp:TextBox ID="txtbusqueda" CssClass="campogen" runat="server">&lt;Buscar&gt;</asp:TextBox>
+                                        </label>
+                                        <asp:Button ID="btnbuscar" CssClass="botonB" runat="server" Text="Buscar" OnClick="btnbuscar_Click" />
+                                    </div>
+                                </asp:Panel>
+                                &nbsp;
+                            </div>
+                        </div>
+                        <hr class="hidden" />
+                        <!--ENCABEZADO-->
+                        <div id="bloqueInterior">
+                            <!--BLOQUE INTERIOR-->
+                            <!--PARTE IZQUIERDA-->
+                            <div id="bloqueIzq">
+                                <!-- ascx con menu-->
+                                <uc1:menuPortal ID="menuPortal" runat="server"></uc1:menuPortal>
+                                <p class="mensaje">
+                                    <strong>Finaliza la navegaci&oacute;n principal</strong></p>
+                                <hr class="hidden" />
+                                <div id="Div2">
+                                    <!--
+                                    <h3>Calendario</h3>
+                                    -->
+                                    <span class="enunciado">&nbsp;</span></div>
+                                <hr class="hidden" />
+                            </div>
+                            <!--PARTE IZQUIERDA-->
+                            <!--BLOQUE CENTRO-->
+                            <div id="bloqueCentro">
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                    </asp:ContentPlaceHolder>
+                             </div>  
+                               <hr class="hidden" />
+                                <div id="bloqueDcha">
+                                    
+                                    <div class="clear">
+                                    </div>
+                                    <hr class="hidden" />
+                                    <div class="contOficiales">
+                                        &nbsp;</div>
+                                </div>
+                            </div>
+                            <!--BLOQUE CENTRO-->
+                        </div>
+                        <!--BLOQUE INTERIOR-->
+                        <hr class="hidden" />
+                        <!--PIE-->
+                        <div id="pie">
+                            <div id="izqPie">
+                                <ul id="menupie">
+                                   <li>
+                                        <asp:HyperLink ID="hplResponsable" AccessKey="8" runat="server">Responsable web</asp:HyperLink>
+                                    </li>
+                                    <li>
+                                        <asp:HyperLink ID="hplAccesibilidadPie" AccessKey="0" title="Accesibilidad (Acceso teclado 0)" runat="server">Accesibilidad</asp:HyperLink>
+                                    </li>
+                                </ul>                                
+                            </div>
+                            <div id="dchaPie">
+                                <a href="#">
+                                    <img src="../../images/css2.gif" alt="Cascading Style Sheet" title="Conforme CSS 2.0" /></a>
+                                <a href="#">
+                                    <img src="../../images/xhtml1.gif" title="Conforme XHTML 1.0" alt="Extensible Hypertext Markup Language" /></a>
+                                <a href="#">
+                                    <img src="../../images/waiAA.gif" alt="W3C - WAI AA" /></a></div>
+                        </div>
+                        <!--PIE-->
+                    </div>
+                    <!--padding4-->
+                </div>
+            </div>
+            <!--contenido central (1 y 2)-->
+            <!--sombra superior-->
+            <div id="sombraInf">
+                <div id="Div1">
+                    <div id="sombraInfIzq">
+                    </div>
+                    <div id="sombraInfDcha">
+                    </div>
+                </div>
+            </div>
+            <!--sombra superior-->
+        <!--INICIO CONTENIDO GENERAL-->
+    </form>
+</body>
+</html>

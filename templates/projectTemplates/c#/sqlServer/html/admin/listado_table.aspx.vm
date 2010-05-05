@@ -1,0 +1,122 @@
+#* 
+	comments: 
+	
+	Author: Luis Molina
+*#  
+ 
+<nameFile>listado_${table}</nameFile>
+<extensionFile>aspx</extensionFile>
+<languageGenerated>c_sharp</languageGenerated>
+<description>description</description>
+<targetDirectory>${table}_dir</targetDirectory>
+<appliesToAllTables>true</appliesToAllTables>
+
+
+<%@ Page Language="C#" MasterPageFile="~/admin/master/masterAdmin.Master" AutoEventWireup="true"  CodeBehind="listado_${table}.aspx.cs" Inherits="${project}.${table}_dir.listado_${table}" Title="Página sin título" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <!--PARTE DERECHA-->
+    <asp:Repeater ID="RepeaterBarraNavegacion" runat="server">
+        <ItemTemplate>
+            ><a href="<%#Eval("url")%>"><%#Eval("nombre")%></a>
+        </ItemTemplate>
+    </asp:Repeater> 
+ 
+				<!--contenido-->
+				<div id="contenido">
+				
+				<!--barra titulos-->
+				<div class="titulos">
+					<div class="itemTit">
+					  <h2 class="textoTit">   <asp:Label ID="Label1" runat="server" Text="Mantenimiento de ${table}"></asp:Label>
+					  </h2>
+					</div>
+				</div>
+				<!--barra titulos-->
+				
+				<div class="bloqueMenu">
+				 <asp:Panel ID="Panel1" DefaultButton="btnBuscar" runat="server">
+				<ul>
+					<li><a href="../${table}_dir/listado_${table}.aspx" class="modificarM" >Listado ${table}</a></li>
+					<li><a href="../${table}_dir/main_${table}.aspx" class="insertarM">Nuevo ${table}</a></li>
+					<li><asp:TextBox ID="txtBusqueda" runat="server"></asp:TextBox></li>
+                    <li><asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn" OnClick="btnBuscar_Click" /></li>
+
+				</ul>
+				</asp:Panel>
+				</div>
+				
+				<!--subseccion 1-->
+					<div class="subseccion">
+					<div class="titSubseccion">
+					  <h3 class="itemh3"> <asp:Label ID="Label2" runat="server" Text="Administrar ${table}"></asp:Label></h3>
+					  </div>
+					  
+		  <table cellpadding="0"   summary="Tabla de ${table}" class="data">
+    	   <thead>
+				<tr>
+			 	<th></th>
+				     #set ($count = 0)
+							#foreach( $field in $table.GetArrayOfFields )
+								#if ($field.isKey())
+								#else
+									#if ($count <=2 && $count >=1)
+										 <th align="center"><a href="#">${field.targetName()}</a></th>								
+									#end
+								#end
+								#set ($count = $count + 1 )
+							#end 	
+ 						
+	            <th></th>
+				</tr>
+			</thead>
+      		
+                    <asp:Repeater ID="r${table}" runat="server"  OnItemCreated="r${table}_ItemCreated"  OnItemCommand="r${table}_ItemCommand">
+                              <ItemTemplate >
+                 				<tr  title="${table}" >
+                 			    <td align="center">
+									<a href="./main_${table}.aspx?id= <%#Eval("${table.getKey()}")%> " class="btn">Editar</a> 
+								</td>
+								
+                                    #set ($count = 0)
+									#foreach( $field in $table.GetArrayOfFields )
+										#if ($field.isKey())
+										#else
+											#if ($count <=2 && $count >=1)
+											<td  align="center">
+													<%#Eval("${field}")%>
+											</td>
+											#end
+										#end
+										#set ($count = $count + 1 )
+									#end 
+					          
+                                <td align="center">
+                                    <asp:Button id="butBorrar" class="btn" runat=server Text="Borrar" CommandArgument='<%#Eval("${table.getKey()}")%>' CommandName="Delete"/>
+                                </td>
+                			 
+                				</tr>
+                			</ItemTemplate>
+                 
+                    
+                    </asp:Repeater>
+	          
+			</table> 
+					
+			<div class="rBloque">
+				<asp:Button ID="lnkPreviousPage" runat="server" Text="Anterior" onclick="lnkPreviousPage_Click1" BorderStyle="None" CssClass="botonPaginacion" />
+				<asp:Panel ID="PagingPanel" runat="server" Visible="true"></asp:Panel>
+				<asp:Button ID="lnkNextPage" runat="server" Text="Siguiente" onclick="lnkNextPage_Click" BorderStyle="None" CssClass="botonPaginacion" />   
+		   </div>
+					
+	
+					</div><!--subsecciones-->
+				
+ 
+		 
+
+				</div>
+				<!--contenido-->
+ 
+
+</asp:Content>

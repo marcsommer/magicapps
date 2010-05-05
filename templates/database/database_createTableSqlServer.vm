@@ -1,0 +1,62 @@
+#* 
+	comments: 
+	creates a sentence for create a table in sql server...
+ 
+	Author: Luis Molina
+*#   
+ 
+<nameFile>main_$table</nameFile>
+<extensionFile>aspx.cs</extensionFile>
+<languageGenerated>c_sharp</languageGenerated>
+<description>description</description>
+<targetDirectory>${table}_dir</targetDirectory>
+<appliesToAllTables>true</appliesToAllTables>
+
+
+ 
+
+
+ 
+ 
+#
+# Table structure for table '${table}'
+#
+
+
+CREATE TABLE "${table}" (
+ 
+	#foreach( $field in $table.GetArrayOfFields )
+	 
+		 
+		 
+			  #if ($field.type.toString() == "_integer")
+				 #if ($field.isKey())
+					   [${field}] [int] IDENTITY(1,1) NOT NULL,
+					#else
+						 [${field}] [int] NULL default (0),
+				#end
+				#end
+			  #if ($field.type.toString() == "_string")
+				#if ( $field.size() == 1)>
+					    [${field}] [char](1) COLLATE Modern_Spanish_CI_AS NULL default (''),
+					#else
+						 [${field}] [varchar](${field.getSize()}) COLLATE Modern_Spanish_CI_AS NULL,
+				#end
+			    
+			     #end
+			  #if ($field.type.toString() == "_date")
+				[${field}] [datetime] NULL,
+			     #end
+			  #if ($field.type.toString() == "_boolean")
+				[${field}] [bit] NULL DEFAULT ((0)),
+			     #end
+			  
+	#end		
+	PRIMARY KEY  (${table.getListOfKeyFields(",")}),
+	 
+);
+
+
+ 
+
+

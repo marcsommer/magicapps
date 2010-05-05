@@ -1,0 +1,190 @@
+#* 
+	comments: 
+	
+	Author: Luis Molina
+*#  
+ <nameFile>main_$table</nameFile>
+<extensionFile>aspx</extensionFile>
+<languageGenerated>c_sharp</languageGenerated>
+<description>description</description>
+<targetDirectory>${table}_dir</targetDirectory>
+<appliesToAllTables>true</appliesToAllTables>
+
+<%@ Page Language="C#" MasterPageFile="~/app/master/admin.Master" AutoEventWireup="true"  CodeBehind="main_${table}.aspx.cs" Inherits="${project}.${table}_dir.main_${table}" Title="Página sin título" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+
+	<div id="contenido">
+	    <asp:Repeater ID="RepeaterBarraNavegacion" runat="server">
+        <ItemTemplate>
+            ><a href="<%#Eval("url")%>"><%#Eval("nombre")%></a>
+        </ItemTemplate>
+    </asp:Repeater>			
+				<!--barra titulos-->
+				<div class="titulos">
+					<div class="itemTit">
+					  <h2 class="textoTit">
+                          ${table}</h2>
+					</div>
+				</div>
+				<!--barra titulos-->
+				
+				<div class="bloqueMenu">
+				<ul>
+					<li><a href="../${table}_dir/main_${table}.aspx" class="insertarM">Nuevo ${table}</a></li>
+					<li><a href="../${table}_dir/listado_${table}.aspx" class="modificarM" >Listado ${table}</a></li>
+				</ul>
+				</div>
+				
+				<!--subseccion 1-->
+					<div class="subseccion">
+					<div class="titSubseccion">
+					  <h3 class="itemh3">
+                          Rellene los datos</h3>
+					</div>
+					
+		 	
+#set ($count = 0)
+#foreach( $field in $table.GetArrayOfFields )
+  #if (!$field.isKey())
+
+   
+     
+     
+              #if ($field.type.toString() == "_integer")
+                #if ( $field.isForeignKey())
+						<div class="lineaForm">
+							<label for="${field}">		
+								<span class="etiqueta">${field.targetName()}: </span>
+								<asp:DropDownList ID="cmb${field}" runat="server">
+								</asp:DropDownList>
+								<asp:ImageButton ID="ibNew${field}" runat="server" ImageUrl="~/images_iestancia/add.png" OnClick="ibNew${field}_Click" />
+							</label>
+						</div>		
+            #else
+				<div class="lineaForm">
+                <label for="${field}">
+                        <span class="etiqueta">${field.targetName()}: </span>
+                        <asp:TextBox ID="txt${field}"   runat="server"></asp:TextBox>
+                    </label>
+					</div>		
+            #end
+
+                
+                 #end
+              #if ($field.type.toString() == "_string")
+			  	<div class="lineaForm">
+                   <label for="${field}">
+                        <span class="etiqueta">${field.targetName()}: </span>
+                        <asp:TextBox ID="txt${field}"   runat="server"></asp:TextBox>
+                    </label>
+						</div>		
+                 #end
+              #if ($field.type.toString() == "_date")
+			  	<div class="lineaForm">
+                 <label for="${field}">
+                        <span class="etiqueta">${field.targetName()}: </span>
+                        <asp:TextBox ID="txt${field}"   runat="server"></asp:TextBox>
+                    </label>
+						</div>		
+                 #end
+              #if ($field.type.toString() == "_boolean")
+			  	<div class="lineaForm">
+                  <label for="${field}">
+                        <span class="etiqueta">${field.targetName()}: </span>
+                        <asp:CheckBox ID="ck${field}"   runat="server" />
+                    </label>
+						</div>		
+                 #end
+              #if ($field.type.toString() == "_image")
+			  		<div class="lineaForm">
+						<span class="etiqueta">${field}<span class="asterisco">*</span>
+						</span>
+                            <asp:Image ID="img${field}" runat="server" Visible="False" Width="40px" />
+                            <asp:Button ID="btnborrar${field}" runat="server" CssClass="btn" OnClick="btnborrar${field}_Click"
+                                Text="Borrar ${field}" Visible="False" />
+                            <span class="zonacampo">
+                             <label for="Upload${field}"><asp:FileUpload ID="Upload${field}" runat="server" Width="328px" CssClass="textstandar" /></label>
+                            </span>
+                            <br />
+                            <br />
+                            <asp:Label ID="lblInfo${field}" CssClass="camporojo" runat="server" Text=""></asp:Label>
+					</div>
+                 #end
+              #if ($field.type.toString() == "_document")
+			  		<div class="lineaForm">
+						<span class="etiqueta">${field}<span class="asterisco">*</span>
+						</span>
+                            <asp:Image ID="img${field}" runat="server" Visible="False" Width="40px" />
+                            <asp:Button ID="btnborrar${field}" runat="server" CssClass="btn" OnClick="btnborrar${field}_Click"
+                                Text="Borrar ${field}" Visible="False" />
+                            <span class="zonacampo">
+                             <label for="Upload${field}"><asp:FileUpload ID="Upload${field}" runat="server" Width="328px" CssClass="textstandar" /></label>
+                            </span>
+                            <br />
+                            <br />
+                            <asp:Label ID="lblInfo${field}" CssClass="camporojo" runat="server" Text=""></asp:Label>
+					</div>
+                 #end
+				 #if ($field.type.toString() == "_audio")
+			  		 <div class="lineaForm">
+						<span class="etiqueta">Locución (SOLO archivos mp3)<span class="asterisco">*</span>
+						</span>
+                          <asp:Label ID="lbl${field}" CssClass="camporojo" runat="server" Text=""></asp:Label>
+                            <asp:Button ID="btnBorrar${field}" runat="server" CssClass="btn" OnClick="btnBorrar${field}_Click"
+                                Text="Borrar ${field}" Visible="False" />
+                            <span class="zonacampo">
+                             <label for="Upload${field}"><asp:FileUpload ID="Upload${field}" runat="server" Width="328px" CssClass="textstandar" /></label>
+                            </span>
+                            <br />
+                            <br />
+                     </div>	
+                 #end
+			 
+      
+    #set ($count = $count + 1 ) 
+ #end
+#end			
+			
+			
+ 
+					    <div class="lineaForm">
+            
+                            <asp:Label ID="lblinfo" Visible="false" CssClass="camporojo" runat="server" Text=""></asp:Label>
+ 
+						</div>
+					
+					</div><!--subsecciones-->
+					
+					
+					<div class="botonesSub"></div>
+					
+					
+					
+					<!--botones formulario-->
+					<div class="botonesSub">
+					       
+
+					<span>
+                         <asp:Button ID="butModificar" runat="server" CssClass="aceptar" OnClick="butModificar_Click" Text="Modificar" />
+					</span>
+					<span>
+                         <asp:Button ID="butCancelar" runat="server" CssClass="denegar" OnClick="butCancelar_Click" Text="Cancelar" />
+				    </span>
+					</div>
+					<!--botones formulario-->
+				
+				</div>
+
+
+
+
+
+
+
+
+
+ 
+ 
+</asp:Content>

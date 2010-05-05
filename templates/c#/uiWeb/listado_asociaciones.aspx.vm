@@ -1,0 +1,35 @@
+#* 
+	comments: 
+	
+	Author: Luis Molina
+*#  
+ <nameFile>listado_${table}</nameFile>
+<extensionFile>aspx</extensionFile>
+<languageGenerated>c_sharp</languageGenerated>
+<description>description</description>
+<targetDirectory>clases</targetDirectory>
+<appliesToAllTables>true</appliesToAllTables>
+
+ 
+
+<%@ Page Language="C#" MasterPageFile="~/portal/master/main.Master" AutoEventWireup="true" CodeBehind="listado_${table}es.aspx.cs" Inherits="turismoaccesible.portal.${table}es.listado_${table}es" Title="Página sin título" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+			 <div class="titulo"><h2>${table}es</h2></div>
+			<div class="general">
+ 					<p>Consultar el listado de las ${table}es distribuidas en la provincia:</p>
+					<ul class="list${table}es">
+					  <asp:Repeater ID="Repeater1" runat="server">
+                         <ItemTemplate>
+                          <li>  <a  class="asoc" href="ficha_${table}.aspx?id=<%#Eval("id${table}")%>"><%#Eval("nombre")%></a></li>
+                        </ItemTemplate>
+                        </asp:Repeater>                          
+					</ul>
+					
+
+ 
+
+		 
+			  
+			</div>
+			
+</asp:Content>

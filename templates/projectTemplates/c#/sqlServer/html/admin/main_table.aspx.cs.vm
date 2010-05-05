@@ -1,0 +1,321 @@
+#* 
+	comments: 
+	
+	Author: Luis Molina
+*#  
+ 
+  <nameFile>main_${table}</nameFile>
+<extensionFile>aspx.cs</extensionFile>
+<languageGenerated>c_sharp</languageGenerated>
+<description>description</description>
+<targetDirectory>${table}_dir</targetDirectory>
+<appliesToAllTables>true</appliesToAllTables>
+
+
+
+using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+ 
+
+namespace ${project}.${table}_dir
+{
+    public partial class main_${table} : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e) 
+        {
+
+
+			if (!Page.IsPostBack)
+            {
+             #foreach( $relation in $table.getRelations() )
+               lo.comboRellenar(cmb${relation.childField()}, "select ${relation.parentField()},${relation.getDescriptionParent()} from ${relation.parentTable()}", ctes.conStringAdoGeneral, "Seleccione");
+            #end 
+                            
+            
+            // si nos mandan para borrar...
+            if (Request["idb"] != null)
+            {
+                ${table}.Delete(sf.entero(Request["idb"]));
+                Response.Redirect("./listado_${table}.aspx");
+            }
+
+            if (Request["id"] != null)
+            {
+                ${table} res = new ${table}(sf.entero(Request["id"]));
+                //res = ${table}.get${table}(sf.entero(Request["id"]));
+               
+                #set ($count = 0)
+                #foreach( $field in $table.GetArrayOfFields )
+                     #if (!$field.isKey())
+                         
+                         
+                                  #if ($field.type.toString() == "_integer")
+									 #if (! $field.isForeignKey())
+										txt${field}.Text = sf.cadena(res.${field});
+									 #end
+									   #end 
+                                  #if ($field.type.toString() == "_string")
+									#if ( $field.size() >= 251)>
+                                       txt${field}.Text = sf.cadena(res.${field});
+                                    #else
+                                        txt${field}.Text = sf.cadena(res.${field});
+                                     #end		
+                                     
+                                     #end 
+                                  #if ($field.type.toString() == "_date")
+									${field}.SelectedDate = res.dateSale;
+                                     #end 
+                                  #if ($field.type.toString() == "_boolean")
+                                     ck${field}.Checked = sf.boolean(res.${field});
+                                     #end 
+								#if ($field.type.toString() == "_doble")
+                                     txt${field}.Text = sf.cadena(res.${field});
+                                     #end 
+								#if ($field.type.toString() == "_image")
+                                     if (res.${field} != "")
+										{
+											img${field}.ImageUrl = res.${field};
+											img${field}.Visible = true;
+											//imgNoticia.AlternateText = " " + res.titulo;
+											btnborrarimagen${field}.Visible = true;
+											FileUploadImagen${field}.Visible = false;
+										}
+                                     #end 
+                                   
+                          
+                     #end
+                    #set ($count = $count + 1 )
+                 #end 
+              
+
+                #foreach( $relation in $table.getRelations() )
+                  lo.comboSeleccionarItem(cmb${relation.childField()}, sf.cadena(res.${relation.childField()}), "Id");
+                #end 
+
+            }
+            else
+            {
+                butModificar.Text = "Insertar";
+            }
+			 }
+        }
+
+        protected void butModificar_Click(object sender, EventArgs e)
+        {
+            // modificar
+            if (Request["id"] != null)
+            {
+                ${table} res = new ${table}(sf.entero(Request["id"]));
+                //res = ${table}.get${table}(sf.entero(Request["id"]));
+                #set ($count = 0)
+                #foreach( $field in $table.GetArrayOfFields )
+                    #if (!$field.isKey())
+                        
+                         
+                                  #if ($field.type.toString() == "_integer")
+                                    #if (! $field.isForeignKey())
+                                        res.${field}=sf.entero(txt${field}.Text) ;
+                                    #else
+                                         res.${field}=sf.entero(cmb${field}.SelectedValue) ;
+                                     #end                                   
+                                     #end 
+                                  #if ($field.type.toString() == "_string")
+									#if ( $field.size() >= 251)>
+                                       res.${field}=sf.cadena(txt${field}.Text);
+                                    #else
+                                        res.${field}=sf.cadena(txt${field}.Text) ;
+                                     #end		
+									#end 
+                                  #if ($field.type.toString() == "_date")
+									res.${field}=sf.fecha(${field}.SelectedDate) ;
+                                     #end 
+                                  #if ($field.type.toString() == "_boolean")
+                                     res.${field}=sf.boolean(ck${field}.Checked) ;
+                                     #end 
+								#if ($field.type.toString() == "_doble")
+                                     res.${field}=sf.doble(txt${field}.Text) ;
+                                     #end 
+								#if ($field.type.toString() == "_image")
+                                    if (FileUploadImagen${field}.PostedFile == null) { }
+									else
+									{
+										if (FileUploadImagen${field}.FileName != "")
+										{
+											if (!System.IO.File.Exists(Server.MapPath("../../bdimages/") + sf.cadena(0) + FileUploadImagen${field}.FileName))
+											{
+												res.${field} = "../../bdimages/" + sf.cadena(0) + FileUploadImagen${field}.FileName;
+												FileUploadImagen${field}.SaveAs(Server.MapPath("../../bdimages/") + sf.cadena(0) + FileUploadImagen${field}.FileName);
+												img${field}.ImageUrl = res.${field};
+												//img${field}.AlternateText = " " + res.titulo;
+												img${field}.Visible = true;
+												btnborrarimagen${field}.Visible = true;
+												FileUploadImagen${field}.Visible = false;
+
+											}
+											else
+											{//mensaje("El archivo ya existe, elija otro nombre");
+											}
+												
+										}
+									}
+                                     #end 
+                                
+                    #end
+                    #set ($count = $count + 1 )
+                #end 
+ 
+                res.Update();
+                res = null;
+                lblinfo.Text = "Modificado con exito";
+                lblinfo.Visible = true;
+            }
+            // insertar...
+            else
+            {
+
+                ${table} res = new ${table}(); 
+                #set ($count = 0)
+                #foreach( $field in $table.GetArrayOfFields )
+                    #if (!$field.isKey())
+                        
+                         
+                                  #if ($field.type.toString() == "_integer")
+                                    #if (! $field.isForeignKey())
+                                        res.${field}=sf.entero(txt${field}.Text) ;
+                                    #else
+                                         res.${field}=sf.entero(lo.comboValorSeleccionado(ref cmb${field},ctes.eTipoCampo.id)) ;
+                                     #end
+                                   
+                                     #end 
+                                  #if ($field.type.toString() == "_string")
+									#if ( $field.size() >= 251)>
+                                       res.${field}=sf.cadena(txt${field}.Text);
+                                    #else
+                                        res.${field}=sf.cadena(txt${field}.Text) ;
+                                     #end									
+                                     #end 
+                                  #if ($field.type.toString() == "_date")
+									res.${field}=sf.fecha(${field}.SelectedDate) ;
+                                     #end 
+                                  #if ($field.type.toString() == "_boolean")
+                                     res.${field}=sf.boolean(ck${field}.Text) ;
+                                     #end 
+								#if ($field.type.toString() == "_doble")
+                                     res.${field}=sf.doble(txt${field}.Text) ;
+                                     #end 
+								 #if ($field.type.toString() == "_image")
+                                    if (FileUploadImagen${field}.PostedFile == null) { }
+									else
+									{
+										if (FileUploadImagen${field}.FileName != "")
+										{
+											if (!System.IO.File.Exists(Server.MapPath("../../bdimages/") + sf.cadena(0) + FileUploadImagen${field}.FileName))
+											{
+												res.${field} = "../../bdimages/" + sf.cadena(0) + FileUploadImagen${field}.FileName;
+												FileUploadImagen${field}.SaveAs(Server.MapPath("../../bdimages/") + sf.cadena(0) + FileUploadImagen${field}.FileName);
+												img${field}.ImageUrl = res.${field};
+												//img${field}.AlternateText = " " + res.titulo;
+												img${field}.Visible = true;
+												btnborrarimagen${field}.Visible = true;
+												FileUploadImagen${field}.Visible = false;
+
+											}
+											else
+											{//mensaje("El archivo ya existe, elija otro nombre");
+											}
+												
+										}
+									}
+                                     #end 
+                                  
+                    #end
+                    #set ($count = $count + 1 )
+                #end 
+                
+                 ${table}.Insert(res);
+                 res = null;
+                                 lblinfo.Text = "Insertado con exito";
+                lblinfo.Visible = true;
+                   
+                                
+                // si tenemos algo en el tracker tiramos para atr�s...
+                 track traki = new track();
+                 traki = (track)tracker.pop();
+                 if (traki != null)
+                 {
+                     Response.Redirect(traki.url);
+                 }
+                
+            }
+        }
+        
+         #foreach( $relation in $table.getRelations() )
+       		  protected void ibNew${relation.childField()}_Click(object sender, ImageClickEventArgs e)
+				{
+				 // lo ponemos en cola...
+				tracker.push(new track("../${table}_dir/main_${table}.aspx?id=" + Request["id"], "cmb${relation.childField()}","") );
+				Response.Redirect("../${relation.parentTable()}_dir/main_${relation.parentTable()}.aspx?url=../${table}_dir/main_${table}.aspx?id=" + Request["id"]);
+	     
+			 	}   
+         #end 
+     
+    
+         protected void butCancelar_Click(object sender, EventArgs e)
+        {
+            // si tenemos algo en el tracker tiramos para atr�s...
+            track traki=new track();
+            traki = (track)tracker.pop();
+            if ( traki != null)
+            {
+                Response.Redirect(traki.url);
+            }
+			else
+            {
+                Response.Redirect("./listado_${table}.aspx");
+            }
+        }
+		
+		
+		
+		// funciones extra para campos extra
+		#set ($count = 0)
+                #foreach( $field in $table.GetArrayOfFields )
+                    #if (!$field.isKey())
+                        
+                         
+                                  #if ($field.type.toString() == "_image")
+                                     protected void btnborrarimagen${field}_Click(object sender, EventArgs e)
+									{
+										${table} res = new ${table}(sf.entero(Request["id"]));
+										res.deleteImg${field}();
+										img${field}.Visible = false;
+										btnborrarimagen${field}.Visible = false;
+										//txtTextoAlternativo${field}.Text = "";
+							 
+										if (System.IO.File.Exists(Server.MapPath(img${field}.ImageUrl.ToString())))
+											System.IO.File.Delete(Server.MapPath(img${field}.ImageUrl.ToString()));
+										FileUploadImagen${field}.Visible = true;
+										res.${field} = "";
+										
+									}
+									 
+                                     #end 
+                                     
+                          
+                    #end
+                    #set ($count = $count + 1 )
+                #end 
+
+		
+        
+    } 
+    
+}
