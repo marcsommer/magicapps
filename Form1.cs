@@ -110,7 +110,10 @@ namespace myWay
             //ed.actualProject = actualProject;
             //ed.ShowDialog();
 
-           // revisarTemplates();
+            //// para apañar templates antiguos...
+            //myWay.classes.fixTemplate fi = new myWay.classes.fixTemplate();
+            //fi.traverseDirectory("I:\\proyectos\\desktop\\myWay\\templates\\basic");
+             
 
         }
 
