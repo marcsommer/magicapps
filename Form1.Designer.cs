@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.imageListTables = new System.Windows.Forms.ImageList(this.components);
-            this.rt1 = new System.Windows.Forms.RichTextBox();
             this.kryptonHeader1 = new ComponentFactory.Krypton.Toolkit.KryptonHeader();
             this.butEditModel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.butReload = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -51,6 +50,9 @@
             this.kbTargetDirectory = new ComponentFactory.Krypton.Toolkit.KryptonDropButton();
             this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.rt1 = new System.Windows.Forms.RichTextBox();
+            this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -67,20 +69,14 @@
             this.imageListTables.Images.SetKeyName(5, "application_key.png");
             this.imageListTables.Images.SetKeyName(6, "application_link.png");
             // 
-            // rt1
-            // 
-            this.rt1.Location = new System.Drawing.Point(550, 59);
-            this.rt1.Name = "rt1";
-            this.rt1.Size = new System.Drawing.Size(430, 391);
-            this.rt1.TabIndex = 9;
-            this.rt1.Text = "";
-            // 
             // kryptonHeader1
             // 
+            this.kryptonHeader1.HeaderStyle = ComponentFactory.Krypton.Toolkit.HeaderStyle.Secondary;
             this.kryptonHeader1.Location = new System.Drawing.Point(494, 12);
             this.kryptonHeader1.Name = "kryptonHeader1";
-            this.kryptonHeader1.Size = new System.Drawing.Size(267, 52);
+            this.kryptonHeader1.Size = new System.Drawing.Size(141, 52);
             this.kryptonHeader1.TabIndex = 12;
+            this.kryptonHeader1.Values.Description = "";
             this.kryptonHeader1.Values.Heading = "Code - template";
             this.kryptonHeader1.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonHeader1.Values.Image")));
             // 
@@ -249,11 +245,39 @@
             this.kryptonLabel4.TabIndex = 32;
             this.kryptonLabel4.Values.Text = "Target directory";
             // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(494, 63);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(581, 347);
+            this.panel1.TabIndex = 35;
+            // 
+            // rt1
+            // 
+            this.rt1.Location = new System.Drawing.Point(494, 416);
+            this.rt1.Name = "rt1";
+            this.rt1.Size = new System.Drawing.Size(581, 122);
+            this.rt1.TabIndex = 36;
+            this.rt1.Text = "";
+            // 
+            // kryptonButton2
+            // 
+            this.kryptonButton2.Location = new System.Drawing.Point(786, 39);
+            this.kryptonButton2.Name = "kryptonButton2";
+            this.kryptonButton2.Size = new System.Drawing.Size(78, 25);
+            this.kryptonButton2.TabIndex = 37;
+            this.kryptonButton2.Values.Image = global::myWay.Properties.Resources.script_go;
+            this.kryptonButton2.Values.Text = "Save";
+            this.kryptonButton2.Click += new System.EventHandler(this.kryptonButton2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(989, 462);
+            this.ClientSize = new System.Drawing.Size(1087, 559);
+            this.Controls.Add(this.kryptonButton2);
+            this.Controls.Add(this.rt1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.butNewProject2);
@@ -262,7 +286,6 @@
             this.Controls.Add(this.butReload);
             this.Controls.Add(this.butEditModel);
             this.Controls.Add(this.kryptonHeader1);
-            this.Controls.Add(this.rt1);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "myWay";
@@ -280,7 +303,6 @@
         #endregion
 
         private System.Windows.Forms.ImageList imageListTables;
-        private System.Windows.Forms.RichTextBox rt1;
         private ComponentFactory.Krypton.Toolkit.KryptonHeader kryptonHeader1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton butEditModel;
         private ComponentFactory.Krypton.Toolkit.KryptonButton butReload;
@@ -300,6 +322,9 @@
         private ComponentFactory.Krypton.Toolkit.KryptonDropButton kbTargetDirectory;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel4;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RichTextBox rt1;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
     }
 }
 

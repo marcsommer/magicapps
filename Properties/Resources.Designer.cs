@@ -109,6 +109,13 @@ namespace myWay.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap script_go {
+            get {
+                object obj = ResourceManager.GetObject("script_go", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap table_add {
             get {
                 object obj = ResourceManager.GetObject("table_add", resourceCulture);

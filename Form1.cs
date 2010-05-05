@@ -17,7 +17,18 @@ using ParseErrorException = NVelocity.Exception.ParseErrorException;
 using MethodInvocationException = NVelocity.Exception.MethodInvocationException;
 
 
+// para usar avalonEdit
+// son necesarias las siguientes dll-referencias (copiadas del framework 3.0 la mayoria)
+// ICSharpCode.AvalonEdit - PresentationCore - PresentationFramework - WindowsBase - WindowsFormsIntegration
+       
+using System.Windows.Forms.Integration;
+using ICSharpCode.AvalonEdit;
+using ICSharpCode.AvalonEdit.Highlighting;
+using ICSharpCode.AvalonEdit.CodeCompletion;
+
+
 using System.Threading;
+using System.Windows.Input;
 
 namespace myWay
 {
@@ -114,10 +125,82 @@ namespace myWay
             //myWay.classes.fixTemplate fi = new myWay.classes.fixTemplate();
             //fi.traverseDirectory("I:\\proyectos\\desktop\\myWay\\templates\\basic");
              
+            // para crear el control avalonEdit
+            // son necesarias las siguientes dll (copiadas del framework 3.0 la mayoria)
+            // ICSharpCode.AvalonEdit - PresentationCore - PresentationFramework - WindowsBase - WindowsFormsIntegration
+       
+            ElementHost host = new ElementHost();
+            host.Name = "editor";
+            host.Dock = DockStyle.Fill;
+            TextEditor uc = new TextEditor();
+            uc.Options.IndentationSize = 4;
+            uc.Background = System.Windows.Media.Brushes.White;
+            uc.ShowLineNumbers = true;
+            uc.WordWrap = true;
+
+            IHighlightingDefinition highlightDefinition = HighlightingManager.Instance.GetDefinition("C#");
+            uc.SyntaxHighlighting = highlightDefinition;
+            host.Child = uc;
+
+            // in the constructor:
+            uc.TextArea.TextEntering += textEditor_TextArea_TextEntering;
+            uc.TextArea.TextEntered += textEditor_TextArea_TextEntered;
+
+
+            panel1.Controls.Add(host);
+            //this.Controls.Add(host);
+
+
 
         }
 
        
+
+# region ["avalonEdit events"]
+        CompletionWindow completionWindow;
+
+        void textEditor_TextArea_TextEntered(object sender, TextCompositionEventArgs e)
+        {
+            if (e.Text == "$")
+            {
+
+                ElementHost pp = new ElementHost();
+                TextEditor te = new TextEditor();
+                pp = (ElementHost)panel1.Controls.Find("editor", true)[0];
+                te = (TextEditor)pp.Child;
+
+                // Open code completion after the user has pressed dot:
+                completionWindow = new CompletionWindow(te.TextArea);
+                IList<ICompletionData> data = completionWindow.CompletionList.CompletionData;
+                data.Add(new MyCompletionData("{table}"));
+                data.Add(new MyCompletionData("Item2"));
+                
+                data.Add(new MyCompletionData("Item3"));
+                completionWindow.Show();
+                completionWindow.Closed += delegate
+                {
+                    completionWindow = null;
+                };
+            }
+        }
+
+        void textEditor_TextArea_TextEntering(object sender, TextCompositionEventArgs e)
+        {
+            if (e.Text.Length > 0 && completionWindow != null)
+            {
+                if (!char.IsLetterOrDigit(e.Text[0]))
+                {
+                    // Whenever a non-letter is typed while the completion window is open,
+                    // insert the currently selected element.
+                    completionWindow.CompletionList.RequestInsertion(e);
+                }
+            }
+            // Do not set e.Handled=true.
+            // We still want to insert the character that was typed.
+        }
+#endregion
+
+
           
 
 
@@ -314,8 +397,8 @@ namespace myWay
                     finalText = finalText.Replace(tabCaracter.ToString(), " ");
 
 
-                    rt1.Text = finalText;// writer.GetStringBuilder().ToString();
-
+                   // rt1.Text = finalText; 
+                    writeText(finalText);
                    
 
                 }
@@ -415,6 +498,8 @@ namespace myWay
             {
                 rt1.Text = sho.text;
 
+                writeText(sho.text);
+
 
                 kbTemplate.Text = sho.smallTitle;
 
@@ -422,6 +507,8 @@ namespace myWay
                 templateSelected = sho.smallTitle;
             }
         }
+
+       
 
         private void kbProjectTemplate_Click(object sender, EventArgs e)
         {
@@ -742,11 +829,30 @@ namespace myWay
                 //throw;
             }
         }
-       
 
-        
 
-         
+
+
+        // used to write in avalonEdit ...
+        private void writeText(string text)
+        {
+            // get the control of editor
+            ElementHost pp = new ElementHost();
+            TextEditor te = new TextEditor();
+            pp = (ElementHost)panel1.Controls.Find("editor", true)[0];
+            te = (TextEditor)pp.Child;
+            te.Text = text;
+        }
+
+        private void kryptonButton2_Click(object sender, EventArgs e)
+        {
+            // get the control of editor
+            ElementHost pp = new ElementHost();
+            TextEditor te = new TextEditor();
+            pp = (ElementHost)panel1.Controls.Find("editor", true)[0];
+            te = (TextEditor)pp.Child;
+            te.Save(templateSelectedFullUri);
+        } // writeText 
 
         
 
