@@ -1,0 +1,29 @@
+﻿
+
+$table.Name
+$table.TargetName
+$table.numberOfFields
+$table.key
+$table.FieldDescription
+
+
+----------
+number of fields in table: $table.GetArrayOfFields.count
+
+
+----------
+fields in the table:
+#foreach( $field in $table.GetArrayOfFields )
+    $field.Name is great!
+    
+    
+    #if ($field.type.toString() == "entero")
+		The condition is true!
+	#end  
+	
+#end
+
+
+
+$table.getListOfFields(",")  // devuelve una lista separada por comas...
+$table.getListOfFieldsWithoutKeys(",")  // devuelve una lista separada por comas...

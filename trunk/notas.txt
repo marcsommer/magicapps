@@ -1,0 +1,12 @@
+﻿
+
+scintilla.net
+	lo utilizo como editor de texto avanzado, 
+	
+	para que funcione depende de SciLexer.dll que es una libreria com, hay que copiarla a windows/system32 para poder ...
+	
+	para configurarlo hay que ir a la propiedad configurationManager
+		en customLocation metemos el xml de configuracion (tambien puede ser un directorio con varios ..)
+		en language ponemos cs (esta en el xml....)
+		
+	para ver los números de linea - propiedad margin0.width por lo menos 10...

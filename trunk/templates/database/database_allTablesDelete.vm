@@ -1,0 +1,24 @@
+ 
+ <#-- 
+ 
+ muestra la estructura
+ para todas las tablas de una base de datos...
+ 
+ 
+ -->
+<nameFile>main_$table</nameFile>
+<extensionFile>aspx.cs</extensionFile>
+<languageGenerated>c_sharp</languageGenerated>
+<description>description</description>
+<targetDirectory>${table}_dir</targetDirectory>
+<appliesToAllTables>true</appliesToAllTables>
+
+string sqlt;
+#foreach( $tablita in $project.getTables())  
+        sqlt = " delete from ${table} ";
+        sqlt += " where 1!=0";  
+        db.ejecutar(sqlt);
+		
+#end
+
+

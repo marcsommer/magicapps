@@ -1,0 +1,61 @@
+#* 
+	comments: 
+	
+	Author: Luis Molina
+*#  
+<nameFile>main_$table</nameFile>
+<extensionFile>aspx.cs</extensionFile>
+<languageGenerated>c_sharp</languageGenerated>
+<description>description</description>
+<targetDirectory>${table}_dir</targetDirectory>
+<appliesToAllTables>true</appliesToAllTables>
+
+// ${table}....
+//${table}.DeleteAll();
+
+StringBuilder sqlt = new StringBuilder();
+
+sqlt.Append( " SET IDENTITY_INSERT dbo.${table} ON ");
+sqlt.Append( " \n ");
+
+
+
+List<${table}> lista${table} = ${table}.getList();
+foreach (${table} tix in lista${table})
+{
+	            
+	sqlt.Append( " IF NOT EXISTS ( SELECT TOP 1 1 FROM dbo.${table} WHERE ${table.getKey()} = " + sf.cadena(tix.${table.getKey()}) +") \n ") ;
+	sqlt.Append( " insert into ${table} ( ${table.getListOfFields(",")} )"); 
+        sqlt.Append( "  values (");
+			#set ($count = 0)	
+			#foreach( $field in $table.GetArrayOfFields ) 
+				 
+				 
+						  #if ($field.type.toString() == "_integer")
+							 sqlt.Append( sf.mySql(tix.${field}) <#if ($table.GetArrayOfFields.count -  $count  != 1)>+ " ,"#end) ;
+							 #end
+						  #if ($field.type.toString() == "_string")
+							 sqlt.Append( sf.mySql(tix.${field}) <#if ($table.GetArrayOfFields.count -  $count  != 1)>+ " ,"#end) ;
+							 #end
+						  #if ($field.type.toString() == "_date")
+							 sqlt.Append( sf.mySql(tix.${field}) <#if ($table.GetArrayOfFields.count -  $count  != 1)>+ " ,"#end)  ;
+							 #end
+						  #if ($field.type.toString() == "_boolean")
+							 sqlt.Append( sf.mySql(tix.${field})  <#if ($table.GetArrayOfFields.count -  $count  != 1)>+ " ,"#end);
+							 #end
+						 
+				#set ($count = $count + 1 ) 
+			#end	 
+			sqlt.Append(" )");
+			sqlt.Append(" \n");
+	
+	 
+}
+	
+
+	
+
+
+
+
+       

@@ -1,0 +1,185 @@
+#* 
+	comments: 
+	
+	Author: Luis Molina
+*#  
+<nameFile>listado_${table}</nameFile>
+<extensionFile>aspx.cs</extensionFile>
+<languageGenerated>c_sharp</languageGenerated>
+<description>description</description>
+<targetDirectory>${table}_dir</targetDirectory>
+<appliesToAllTables>true</appliesToAllTables>
+
+
+using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using System.Collections.Generic;
+
+
+namespace ${project}.${table}_dir
+{
+    public partial class listado_${table} : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+             
+            // in !Page.IsPostBack the page number links doesnt work
+            bindData();
+            
+            if (!Page.IsPostBack)
+            {
+                
+            }
+			 
+        }
+        
+          protected void bindData()
+        {
+            List<${table}> list${table} = new List<${table}>();
+            list${table} = ${table}.getList();
+
+            PagedDataSource dataSource = new PagedDataSource();
+            dataSource.DataSource = list${table};
+            dataSource.AllowPaging = true;
+            dataSource.PageSize = 10;
+            dataSource.CurrentPageIndex = CurrentPage ;
+
+            // now create the page numbers...
+            PagingPanel.Controls.Clear();
+            for (int i = 0; i < dataSource.PageCount; i++)
+            {
+                Button bButton = new Button();
+                bButton.CommandArgument = i.ToString();
+                bButton.CommandName = "PageNo";
+                bButton.Command += NavigationCommand;
+                bButton.ID = string.Format("CurrentPage{0}LinkButton", i);
+                bButton.CssClass = "botonPaginacion";
+              
+                if (CurrentPage == i)
+                {
+                    bButton.Enabled = false;
+                    bButton.CssClass = "SelectedPageLink";
+                }
+
+                bButton.Text = (i + 1).ToString();
+
+                PagingPanel.Controls.Add(bButton);
+                if (i < (dataSource.PageCount - 1))
+                    PagingPanel.Controls.Add(new LiteralControl("|"));
+            }
+
+			// Disable Prev or Next buttons if necessary 
+            lnkPreviousPage.Enabled = !dataSource.IsFirstPage;
+            lnkNextPage.Enabled = !dataSource.IsLastPage;
+            
+            
+            r${table}.DataSource = dataSource;
+            r${table}.DataBind();
+        } // bindData
+
+
+        public void NavigationCommand(object sender, CommandEventArgs e)
+        {
+            int page = 0;
+            page=sf.entero(e.CommandArgument);
+            CurrentPage = page;
+            bindData();
+        }
+		
+        
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+           // List<${table}> lista = new List<${table}>();
+           // lista = ${table}.getListByBusquedaGeneral(txtBusqueda.Text);
+           // r${table}.DataSource = lista;
+           // r${table}.DataBind();
+           bindData();
+        }
+		
+		protected void r${table}_ItemCreated (Object Sender, RepeaterItemEventArgs e) 
+          {
+              if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.EditItem)
+              {
+                  ${table} ta = new ${table}();
+                  ta = (${table})e.Item.DataItem;                 
+              }
+
+              Button imb = (Button)e.Item.FindControl("butBorrar");
+              imb.Attributes.Add("onclick", "javascript:if(confirm('�Estas seguro de querer borrar..?')== false) return false;");
+              imb = null;
+
+          } // end of r${table}_ItemCreated
+
+        protected void r${table}_ItemCommand(Object Sender, RepeaterCommandEventArgs e)
+        {
+           // Label2.Text = "The " + ((Button)e.CommandSource).Text + " button has just been clicked; <br />";
+           // LinkButton lnk; lnk = (LinkButton)r${table}.Items[e.Item.ItemIndex].FindControl("lnk");
+
+            string id = e.CommandArgument.ToString();
+
+            switch (e.CommandName)
+            {
+                case "Delete":
+                    ${table}.Delete(sf.entero(id));
+                    break;
+            }
+        }   // end of r${table}_ItemCommand
+		
+		  #region Control Events
+
+
+        protected void lnkNextPage_Click(object sender, EventArgs e)
+        {
+            //Set viewstate variable to the next page 
+            CurrentPage += 1;
+
+            //Reload control 
+            bindData();
+        }
+
+
+        protected void lnkPreviousPage_Click1(object sender, EventArgs e)
+        {
+            //Set viewstate variable to the previous page 
+            CurrentPage -= 1;
+            //Reload control 
+            bindData();
+        }
+
+
+        public int CurrentPage
+        {
+            get
+            {
+                //Look for current page in ViewState 
+                object o = this.ViewState["_CurrentPage"];
+                if (o == null)
+                    return 0; // default page index of 0
+                else
+                    return (int)o;
+            }
+            set
+            {
+                this.ViewState["_CurrentPage"] = value;
+            }
+        }
+
+
+        #endregion
+
+	 // estilos ...
+	 //.botonPaginacion{ background: #FFFFFF !important;border:0px solid #FFFFFF; color:#10326a; font-weight:bold; cursor:pointer;font-size:1em;}
+	 //.SelectedPageLink{ background: #FFFFFF !important;border:0px solid #FFFFFF; color:#CCCCCC; font-weight:bold; cursor:pointer;font-size:1em;}
+
+ 
+
+    }
+}
