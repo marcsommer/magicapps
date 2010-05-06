@@ -1,16 +1,15 @@
-#*
-	crea el archivo web.config   
-	Author : Luis Molina...
+#* 
+	comments: 
+	
+	Author: Luis Molina
 *#
 <nameFile>web</nameFile>
 <extensionFile>config</extensionFile>
-<languageGenerated>c#</languageGenerated>
-<description>web.config</description>
+<languageGenerated>c_sharp</languageGenerated>
+<description>description</description>
 <targetDirectory></targetDirectory>
-<appliesToAllTables>false</appliesToAllTables>
-<?xml version="1.0" encoding="utf-8"?><configuration>
-
-
+<appliesToAllTables>true</appliesToAllTables><?xml version="1.0" encoding="utf-8"?>
+<configuration>
   <appSettings>
 		<add key="mostrarErrores" value="1"/>
 		<add key="ErroresDireccionCorreoDestino" value="xxx@micasoft.com"/>
@@ -30,7 +29,7 @@
 		<add key="directorioAplicacion" value="/"/>
 		<add key="nombreAplicacion" value="xx"/>
 		<add key="sessionAplicacion" value="xx"/>
-		<add key="conStringAdoGeneral" value="Data Source=${project.host};Database={$project.database};User ID=${project.user()};Password=${project.password()};Pooling=false;"/>
+		<add key="conStringAdoGeneral" value="Data Source=${project.host};Database=${project.database};User ID=${project.user()};Password=${project.password()};Pooling=false;"/>
 
   </appSettings>
  

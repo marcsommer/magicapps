@@ -274,9 +274,7 @@
             {
             sqlt = "select ${table.getListWithAllFields()} from ${table}";
             sqlt += " where idportal=" + idportal +"  and (";              
-			<#assign countx=0>				
 			#foreach( $field in $table.GetArrayOfFields ) 
-				
 				
 					  #if ($field.type.toString() == "_integer")	
  						 #end 
@@ -304,8 +302,6 @@
                 {
                 ${table} pp = new ${table}();   
 #foreach( $field in $table.GetArrayOfFields ) 
-	 
-	 
 		  #if ($field.type.toString() == "_integer")
 		     pp.${field} = sf.entero(reg["${field}"].ToString());
 		     #end 
@@ -318,9 +314,6 @@
 		  #if ($field.type.toString() == "_boolean")
 		     pp.${field} = sf.Bool(reg["${field}"].ToString());
 		     #end 
-		  <#default>
-		     pp.${field} = sf.cadena(reg["${field}"].ToString());
-	   
 #end 
                lista${table}.Add(pp);
                }
@@ -338,7 +331,7 @@
             return lista${table};
        }		
  
- 		public static ${table} get${table}(${table.getListParameters()}#foreach( $field in $table.GetArrayOfFields )#if ($field.targetName()=="idportal"  && table.getName()!="portales")>,int idportal#end#end #set ($count = 0))
+ 		public static ${table} get${table}(${table.getListParameters()}#foreach( $field in $table.GetArrayOfFields )#if ($field.targetName()=="idportal"  && table.getName()!="portales")>,int idportal#end#end )
 		{
             ${table} ${table}x = new ${table}();
             MySqlDataReader reg;
@@ -689,54 +682,50 @@
 
        }
 		
-
-<#assign x=0>
-<#list table.getRelations() as relation>
+#set ($count = 0)	
+#foreach( $relation in $table.getRelations() )
 
   
-    <#assign x = x+1>
+    #set ($count = $count + 1 ) 
  
-  // devuelve una lista de ${table}
+		// devuelve una lista de ${table}
  
-		public static  List< ${table} > getList${table}By${relation.getParentKey()}(int ${relation.getParentKey()})
-        { 
-  
+ 		public static List< ${table} > getListBy${relation.parentField()}(int ${relation.parentField()})
+		{
 		    List< ${table} > lista${table} = new List< ${table} >();
             MySqlDataReader reg;
             string sqlt;
             dbClass db = new dbClass(ctes.conStringAdoGeneral);
             try
             {
-            sqlt = "select * from ${relation.getChildTable()}";          
-            sqlt += " where ${relation.getParentKey()}=" + sf.cadena(${relation.getParentKey()});  
-       
- 
- 
-		
-		reg = db.sql(sqlt);
+            sqlt = "select ${table.getListOfFields(",")} from ${table}";
+            sqlt += " where ${relation.parentField()}=" + sf.cadena(${relation.parentField()});  
+			reg = db.sql(sqlt);
             while (reg.Read())
                 {
-                ${table} pp = new ${table}();   
-#foreach( $field in $table.GetArrayOfFields ) 
-	 
-	 
-		  #if ($field.type.toString() == "_integer")
-		     pp.${field} = sf.entero(reg["${field}"].ToString());
-		     #end 
-		  #if ($field.type.toString() == "_string")
-		     pp.${field} = sf.cadena(reg["${field}"].ToString());
-		     #end 
-		  #if ($field.type.toString() == "_date")
-		     pp.${field} = sf.fecha(reg["${field}"].ToString());
-		     #end 
-		  #if ($field.type.toString() == "_boolean")
-		     pp.${field} = sf.Bool(reg["${field}"].ToString());
-		     #end 
-		  <#default>
-		     pp.${field} = sf.cadena(reg["${field}"].ToString());
-	   
-#end 
+                ${table} pp = new ${table}();
+				#foreach( $field in $table.GetArrayOfFields ) 
+					 
+					 
+						  #if ($field.type.toString() == "_integer")
+							 pp.${field} = sf.entero(reg["${field}"].ToString());
+							 #end 
+						  #if ($field.type.toString() == "_string")
+							 pp.${field} = sf.cadena(reg["${field}"].ToString());
+							 #end 
+						  #if ($field.type.toString() == "_date")
+							 pp.${field} = sf.fecha(reg["${field}"].ToString());
+							 #end 
+						  #if ($field.type.toString() == "_boolean")
+							 pp.${field} = sf.boolean(reg["${field}"].ToString());
+							 #end 
+						 #if ($field.type.toString() == "_doble")
+							 pp.${field} = sf.doble(reg["${field}"].ToString());
+						 #end 
+						  
+				#end 
                lista${table}.Add(pp);
+
                }
             reg.Close();
             }
@@ -750,91 +739,145 @@
               
             }
             return lista${table};
-       }	
+       }		
  
-  
+ 
+        public static ${table} get${table}By${relation.parentField()}(int ${relation.parentField()})
+        {
+            ${table} ${table}x = new ${table}();
+            MySqlDataReader reg;
+            string sqlt;
+                ${table} obj${table} = new ${table}();
+
+
+            dbClass db = new dbClass(ctes.conStringAdoGeneral);
+            try
+            {
+            sqlt = "select * from ${relation.getChildTable()}";
+          
+            sqlt += " where ${relation.parentField()}=" + sf.cadena(${relation.parentField()});  
+
+            reg = db.sql(sqlt);
+            if (reg.Read())
+            {
+          
+              #foreach( $field in $table.GetArrayOfFields )
+                                  #if ($field.type.toString() == "_integer")
+                                     obj${table}.${field} = sf.entero(reg["${field}"].ToString());
+                                     #end 
+                                  #if ($field.type.toString() == "_string")
+                                     obj${table}.${field} = sf.cadena(reg["${field}"].ToString());	  					
+                                     #end 
+                                  #if ($field.type.toString() == "_date")
+                                    obj${table}.${field} = sf.fecha(reg["${field}"].ToString());
+                                     #end 
+                                  #if ($field.type.toString() == "_boolean")
+                                     obj${table}.${field} = sf.boolean(reg["${field}"].ToString());
+                                     #end 
+                                  #if ($field.type.toString() == "_doble")
+                                     obj${table}.${field} = sf.doble(reg["${field}"].ToString());
+                                     #end 
+                #end 	
+               }
+            reg.Close();
+            }
+            catch (Exception ex)
+            {
+                // Argument is optional, no "When" keyword 
+            }
+            finally
+            {
+                db.Dispose();
+              
+            }
+            return  obj${table} ;
+       }
+    
 	
-	 public void delete${relation.getParentTable()}By${relation.getParentKey()} (int ${relation.getParentKey()}x)
+	 public static  bool delete${relation.getChildTable()}By${relation.parentField()} (int ${relation.parentField()}x)
 	 {
 		 dbClass db=new  dbClass(ctes.conStringAdoGeneral);
 		 String  sqlt;
 		 
 		try
 		{
-		  sqlt = " delete from ${table} where ${relation.getParentKey()}=" + ${relation.getParentKey()}x ;
+		  sqlt = " delete from ${table} where ${relation.parentField()}=" + sf.cadena(${relation.parentField()}x) ;
 			db.ejecutar(sqlt);
 		}
 		finally
 		{db.Dispose();}
-		  
+		return ! ${table}.exists(${relation.parentField()}x);
 
 	}  
+	
 
 #end 
+
+
+
 // funciones extra para campos extra
 		#set ($count = 0)
-                #foreach( $field in $table.GetArrayOfFields )
-                    #if (!$field.isKey())
-                        
-                         
-                                  #if ($field.type.toString() == "_image")
-                                    public string deleteImg${field}()
-									{
-										string sqlt;
-										string retorno = "";
-										dbClass db = new dbClass(ctes.conStringAdoGeneral);
-										try
-										{
-											sqlt = " update ${table} set";
-											sqlt += " ${field}='' ";
-											sqlt += " where 1!=0";
-											sqlt += " and ${table.getKey()}=" + this.${table.getKey()};
-											db.ejecutar(sqlt);
-										}
-										catch (Exception ex)
-										{
-											// Argument is optional, no "When" keyword 
-										}
-										finally
-										{
-											db.Dispose();
-										}
-										return retorno;
-									}
-									 
-                                     #end 
-                                  #if ($field.type.toString() == "_document")
-                                    public string deleteDoc${field}()
-									{
-										string sqlt;
-										string retorno = "";
-										dbClass db = new dbClass(ctes.conStringAdoGeneral);
-										try
-										{
-											sqlt = " update ${table} set";
-											sqlt += " ${field}='' ";
-											sqlt += " where 1!=0";
-											sqlt += " and ${table.getKey()}=" + this.${table.getKey()};
-											db.ejecutar(sqlt);
-										}
-										catch (Exception ex)
-										{
-											// Argument is optional, no "When" keyword 
-										}
-										finally
-										{
-											db.Dispose();
-										}
-										return retorno;
-									}
-									 
-                                     #end 									 
-                                  <#default>
-                                    
-                          
-                    #end
-                    #set ($count = $count + 1 )
-                #end 
+		#foreach( $field in $table.GetArrayOfFields )
+			#if (!$field.isKey())
+				
+				 
+						  #if ($field.type.toString() == "_image")
+							public string deleteImg${field}()
+							{
+								string sqlt;
+								string retorno = "";
+								dbClassSqlServer db = new dbClassSqlServer(ctes.conStringAdoGeneral);
+								try
+								{
+									sqlt = " update ${table} set";
+									sqlt += " ${field}='' ";
+									sqlt += " where 1!=0";
+									sqlt += " and ${table.getKey()}=" + this.${table.getKey()};
+									db.ejecutar(sqlt);
+								}
+								catch (Exception ex)
+								{
+									// Argument is optional, no "When" keyword 
+								}
+								finally
+								{
+									db.Dispose();
+								}
+								return retorno;
+							}
+							 
+							 #end 
+						  #if ($field.type.toString() == "_document")
+							public string deleteDoc${field}()
+							{
+								string sqlt;
+								string retorno = "";
+								dbClass db = new dbClass(ctes.conStringAdoGeneral);
+								try
+								{
+									sqlt = " update ${table} set";
+									sqlt += " ${field}='' ";
+									sqlt += " where 1!=0";
+									sqlt += " and ${table.getKey()}=" + this.${table.getKey()};
+									db.ejecutar(sqlt);
+								}
+								catch (Exception ex)
+								{
+									// Argument is optional, no "When" keyword 
+								}
+								finally
+								{
+									db.Dispose();
+								}
+								return retorno;
+							}
+							 
+							 #end 									 
+						  	
+				  
+			#end
+			#set ($count = $count + 1 )
+		#end 
 
 
 }

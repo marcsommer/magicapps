@@ -1,0 +1,34 @@
+#* 
+	comments: 
+	
+	Author: Luis Molina
+*#  
+ <nameFile>listadoPaginado_${table}</nameFile>
+<extensionFile>aspx</extensionFile>
+<languageGenerated>c_sharp</languageGenerated>
+<description>description</description>
+<targetDirectory>main_${table}</targetDirectory>
+<appliesToAllTables>true</appliesToAllTables>
+
+
+<%@ Page Language="C#" MasterPageFile="~/portal/master/masterWeb.Master" AutoEventWireup="true" CodeBehind="listadoPaginado_${table}.aspx.cs" Inherits="${project}.portal.main_${table}.listadoPaginado_${table}" Title="Página sin título" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+			 <div class="titulo"><h2>${table}</h2></div>
+			<div class="general">
+ 					<p>Consultar el listado de las ${table} distribuidas en la provincia:</p>
+					<ul class="list${table}">
+					  <asp:Repeater ID="Repeater1" runat="server">
+                         <ItemTemplate>
+                          <li>  <a  class="asoc" href="ficha_${table}.aspx?id=<%#Eval("${table.getKey()}")%>"><%#Eval("${table.getKey()}")%></a></li>
+                         </ItemTemplate>
+                        </asp:Repeater>                          
+					</ul>
+					
+
+ 
+
+		 
+			  
+			</div>
+			
+</asp:Content>

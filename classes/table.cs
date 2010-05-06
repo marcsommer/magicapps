@@ -110,7 +110,7 @@ public class table : IComparable
         else
         {
             retorno = string.Join(delimiter, returnArray);
-            retorno = retorno.Remove(retorno.LastIndexOf(delimiter), delimiter.Length);
+           // retorno = retorno.Remove(retorno.LastIndexOf(delimiter), delimiter.Length);
         }
 
         return retorno;
@@ -137,7 +137,7 @@ public class table : IComparable
         else
         {
             retorno = string.Join(delimiter, returnArray);
-            retorno = retorno.Remove(retorno.LastIndexOf(delimiter), delimiter.Length);
+            //retorno = retorno.Remove(retorno.LastIndexOf(delimiter), delimiter.Length);
         }
 
         return retorno;
@@ -164,7 +164,7 @@ public class table : IComparable
         else
         {
             retorno = string.Join(delimiter, returnArray);
-            retorno = retorno.Remove(retorno.LastIndexOf(delimiter), delimiter.Length);
+            //retorno = retorno.Remove(retorno.LastIndexOf(delimiter), delimiter.Length);
         }
         
         return retorno;
@@ -210,7 +210,7 @@ public class table : IComparable
         else
         {
             retorno = string.Join(delimiter, returnArray);
-            retorno = retorno.Remove(retorno.LastIndexOf(delimiter), delimiter.Length);
+            // retorno = retorno.Remove(retorno.LastIndexOf(delimiter), delimiter.Length);
         }
 
         return retorno;
@@ -256,7 +256,7 @@ public class table : IComparable
         else
         {
             retorno = string.Join(delimiter, returnArray);
-            retorno = retorno.Remove(retorno.LastIndexOf(delimiter), delimiter.Length);
+            // retorno = retorno.Remove(retorno.LastIndexOf(delimiter), delimiter.Length);
         }
 
         return retorno;

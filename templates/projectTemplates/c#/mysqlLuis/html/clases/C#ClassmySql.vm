@@ -121,7 +121,7 @@
                      sqlt += " and ${field}=" + sf.cadena(${field});
                 #end
             #end
-         #set ($count = $count + 1 )
+        #set ($count = $count + 1 )
 		#end 
            db.ejecutar(sqlt);
 
@@ -261,32 +261,25 @@
             {
             sqlt = "select ${table.getListOfFields(",")} from ${table}";
             sqlt += " where ${table.getKey()} <> -1 and (";              
-			<#assign countx=0>				
 			#foreach( $field in $table.GetArrayOfFields ) 
-				
-				
-					  #if ($field.type.toString() == "_integer")	
- 						 #end 
-					  #if ($field.type.toString() == "_string")
-						#if ($count==0)
-							sqlt += "  ${field} like '%" + cadena + "%'"; 	
-							#set ($count = $count + 1 )
-						#else
-							 sqlt += " or ${field} like '%" + cadena + "%'"; 	
-						#end				  
-						#end 
-					  #if ($field.type.toString() == "_date")					 
-						 #end 
-					  #if ($field.type.toString() == "_boolean")					 
-						 #end 
-					  		 
-				  
+				  #if ($field.type.toString() == "_integer")	
+					 #end 
+				  #if ($field.type.toString() == "_string")
+					#if ($count==0)
+						sqlt += "  ${field} like '%" + cadena + "%'"; 	
+						#set ($count = $count + 1 )
+					#else
+						 sqlt += " or ${field} like '%" + cadena + "%'"; 	
+					#end				  
+					#end 
+				  #if ($field.type.toString() == "_date")					 
+					 #end 
+				  #if ($field.type.toString() == "_boolean")					 
+					 #end 
 			#end 
 			sqlt  =  sqlt +sqlx;
 			sqlt += " )";  
-            
-		
-		reg = db.sql(sqlt);
+			reg = db.sql(sqlt);
             while (reg.Read())
                 {
                 ${table} pp = new ${table}();   

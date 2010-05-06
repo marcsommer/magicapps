@@ -41,10 +41,6 @@ namespace ${project}.${table}_dir {
 #set ($count = 0)
 #foreach( $field in $table.GetArrayOfFields )
   #if (!$field.isKey())
-
-   
-     
-     
               #if ($field.type.toString() == "_integer")
                 #if ( $field.isForeignKey())
                    /// <summary>
