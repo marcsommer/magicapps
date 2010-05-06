@@ -679,7 +679,8 @@ namespace myWay
                         // no es una plantilla...
                     {                        
                         // simplemente lo grabamos a disco
-                        util.saveTextToFile(nombreArchivoFinal, plantilla);
+                        //util.saveTextToFile(nombreArchivoFinal, plantilla);
+                        System.IO.File.Copy(archivito, nombreArchivoFinal,true);
 
                     }
 

@@ -604,10 +604,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\clases\C#ClassmySql.vm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\clases\C#_ExtraClassMysql.vm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\userControls\uc_encuestaNPregunta.ascx.cs.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -673,6 +673,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\sqlServer\html\clases\C#_Class_Sqlserver.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\portal\listadoPaginadoo_.aspx.designer.cs.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\portal\listadoPaginado_.aspx.cs.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\portal\listadoPaginado_.aspx.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="templates\projectTemplates\c#\sqlServer\html\images_contraste\Thumbs.db">
@@ -939,27 +948,61 @@
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\master\testMaster.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\admcontrastemed\admin_contraste.css" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\admcontrastexl\admin_contraste.css" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\admcontraste\admin_contraste.css" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\adminmed\admin.css" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\adminxl\admin.css" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\admin\admin.css" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\contraste1\estilos.css" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\contrastemed\altocontraste.css" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\contrastexl\altocontraste.css" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\contraste\altocontraste.css" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\normalmed\estilos.css" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\normalxl\estilos.css" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\normal\estilos.css" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\textomed\solotexto.css" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\textoxl\solotexto.css" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\texto\solotexto.css" />
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\admcontrastemed\admin_contraste.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\admcontrastexl\admin_contraste.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\admcontraste\admin_contraste.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\adminmed\admin.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\adminxl\admin.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\admin\admin.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\contraste1\estilos.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\contrastemed\altocontraste.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\contrastexl\altocontraste.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\contraste\altocontraste.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\normalmed\estilos.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\normalxl\estilos.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\normal\estilos.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\textomed\solotexto.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\textoxl\solotexto.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\texto\solotexto.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\eWorld.UI.Compatibility.dll" />
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\eWorld.UI.dll" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\FreeTextBox.dll" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\juleweb.dll" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\juleweb.pdb" />
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\FreeTextBox.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="templates\projectTemplates\c#\mysqlLuis\html\bin\juleweb.dll" />
+    <None Include="templates\projectTemplates\c#\mysqlLuis\html\bin\juleweb.pdb" />
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\MenuPilot.dll" />
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\RSSMaster.dll" />
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\default.aspx">

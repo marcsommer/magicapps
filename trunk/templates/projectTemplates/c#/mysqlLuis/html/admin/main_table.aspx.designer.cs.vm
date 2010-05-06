@@ -2,11 +2,11 @@
 	comments: 
 	
 	Author: Luis Molina
-*#  
+*#   
 <nameFile>main_${table}</nameFile>
 <extensionFile>aspx.designer.cs</extensionFile>
-<languageGenerated>c#">
-<description>c#">
+<languageGenerated>c#"></languageGenerated>
+<description>c#"></description>
 <targetDirectory>${table}_dir</targetDirectory>
 <appliesToAllTables>true</appliesToAllTables> 
 
@@ -73,12 +73,11 @@ namespace ${project}.${table}_dir {
                     /// Campo generado automáticamente.
                     /// Para modificar, mueva la declaraci�n del campo del archivo del diseñador al archivo de c�digo subyacente.
                     /// </remarks>
-                    #if ( $field.size() >= 251)>
+                    #if ( $field.size() >= 251)
 					   protected global::FreeTextBoxControls.FreeTextBox txt${field};
 					#else
 						protected global::System.Web.UI.WebControls.TextBox txt${field};
 					 #end
-					
                  #end 
               #if ($field.type.toString() == "_date")
                    /// <summary>
