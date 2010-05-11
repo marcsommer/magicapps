@@ -53,6 +53,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.rt1 = new System.Windows.Forms.RichTextBox();
             this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.butReturnToScript = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -102,7 +103,7 @@
             // 
             // butCopy
             // 
-            this.butCopy.Location = new System.Drawing.Point(879, 39);
+            this.butCopy.Location = new System.Drawing.Point(994, 39);
             this.butCopy.Name = "butCopy";
             this.butCopy.Size = new System.Drawing.Size(78, 25);
             this.butCopy.TabIndex = 18;
@@ -170,6 +171,7 @@
             this.groupBox1.TabIndex = 33;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Generation";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // kbTemplate
             // 
@@ -270,11 +272,22 @@
             this.kryptonButton2.Values.Text = "Save";
             this.kryptonButton2.Click += new System.EventHandler(this.kryptonButton2_Click);
             // 
+            // butReturnToScript
+            // 
+            this.butReturnToScript.Location = new System.Drawing.Point(702, 39);
+            this.butReturnToScript.Name = "butReturnToScript";
+            this.butReturnToScript.Size = new System.Drawing.Size(78, 25);
+            this.butReturnToScript.TabIndex = 38;
+            this.butReturnToScript.Values.Image = global::myWay.Properties.Resources.table_edit;
+            this.butReturnToScript.Values.Text = "Script";
+            this.butReturnToScript.Click += new System.EventHandler(this.butReturnToScript_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1087, 559);
+            this.Controls.Add(this.butReturnToScript);
             this.Controls.Add(this.kryptonButton2);
             this.Controls.Add(this.rt1);
             this.Controls.Add(this.panel1);
@@ -325,6 +338,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RichTextBox rt1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton butReturnToScript;
     }
 }
 

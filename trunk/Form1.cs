@@ -66,6 +66,7 @@ namespace myWay
             pr = project.loadProject(Path.Combine(util.conf_dir, "conf.xml"));
             if (pr != null)
             {
+                this.Text = "myWay " + pr.name;
                 groupBox1.Text = pr.name;
                 this.Text = "myWay " + pr.name;
                 actualProject = pr;
@@ -84,16 +85,13 @@ namespace myWay
                 kbTargetDirectory.Text =  pr.targetDirectory;
                 targetDirectory = pr.targetDirectory;
 
-                if (templateSelectedFullUri != null)
-                {
-                    //  rt1.Text = util.loadFile(templateSelectedFullUri);
-                    kbTemplate.Text = templateSelected;
-                }
+                
 
                 if (projectTemplateSelectedFullUri != null)
                 {
                     //  rt1.Text = util.loadFile(templateSelectedFullUri);
                     kbProjectTemplate.Text = projectTemplateSelected;
+                    kbTemplate.Text = templateSelected;
                 }
               
                 fillComboWithTables();
@@ -150,7 +148,12 @@ namespace myWay
             panel1.Controls.Add(host);
             //this.Controls.Add(host);
 
-
+            // if there is a template selected early we load it..
+            if (templateSelectedFullUri != null)
+            {
+                //  rt1.Text = util.loadFile(templateSelectedFullUri);
+                writeText(util.loadFile(templateSelectedFullUri));
+            }
 
         }
 
@@ -446,9 +449,14 @@ namespace myWay
                 Console.WriteLine(fil.FileName);
                 actualProject = project.loadProject(fil.FileName);
 
+
                 // lo guardamos como conf.xml
                 if (actualProject != null)
+                {
+                    this.Text = "myWay " + actualProject.name;
+                    groupBox1.Text = actualProject.name;
                     actualProject.saveProject(Path.Combine(util.projects_dir, "conf.xml"));
+                }
               
             }
         }
@@ -853,7 +861,24 @@ namespace myWay
             pp = (ElementHost)panel1.Controls.Find("editor", true)[0];
             te = (TextEditor)pp.Child;
             te.Save(templateSelectedFullUri);
-        } // writeText 
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void butReturnToScript_Click(object sender, EventArgs e)
+        {
+            // if there is a template selected early we load it..
+            if (templateSelectedFullUri != null)
+            {
+                //  rt1.Text = util.loadFile(templateSelectedFullUri);
+                writeText(util.loadFile(templateSelectedFullUri));
+            }
+        }
+
+        
 
         
 
