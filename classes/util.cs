@@ -58,11 +58,11 @@ public static class util
     {
         try
         {
-
             //if (!path.EndsWith("\\"))
             //    path += "\\";
-
-            StreamWriter streamWriter = new StreamWriter(path,false,System.Text.Encoding.Unicode);
+            
+            //StreamWriter streamWriter = new StreamWriter(path,false,System.Text.Encoding.Unicode);
+            StreamWriter streamWriter = new StreamWriter(path, false, System.Text.Encoding.GetEncoding("iso-8859-1"));
             streamWriter.Write(text);
             streamWriter.Close();
             return "";

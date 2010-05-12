@@ -1,8 +1,3 @@
-#* 
-	comments: 
-	
-	Author: Luis Molina
-*#
 <nameFile>web</nameFile>
 <extensionFile>config</extensionFile>
 <languageGenerated>c_sharp</languageGenerated>

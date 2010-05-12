@@ -223,7 +223,7 @@ namespace myWay
             }
             catch (Exception exx)
             {
-                 AsyncWriteLine("Error: " + exx.Message.ToString() + "\n");
+                //rt1.AppendText("Error: " + exx.Message.ToString() + "\n");
             }
 
         }
@@ -407,12 +407,13 @@ namespace myWay
                 }
                 catch (System.Exception exx)
                 {
+                    AsyncWriteLine(exx.Message);
                     rt1.Text = exx.Message;
                     //System.Console.Out.WriteLine("Problem merging template : " + exx);
                     System.Console.Out.WriteLine("Problem evaluating template : " + exx);
                 }
 
-                System.Console.Out.WriteLine(" template : " + writer.GetStringBuilder().ToString());
+               // System.Console.Out.WriteLine(" template : " + writer.GetStringBuilder().ToString());
 
 
                 //                
@@ -434,7 +435,12 @@ namespace myWay
 
         private void butCopy_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Clipboard.SetText(rt1.Text);
+            // get the control of editor
+            ElementHost pp = new ElementHost();
+            TextEditor te = new TextEditor();
+            pp = (ElementHost)panel1.Controls.Find("editor", true)[0];
+            te = (TextEditor)pp.Child;
+            System.Windows.Forms.Clipboard.SetText(te.Text);
         }
 
         private void butOpenProject2_Click(object sender, EventArgs e)

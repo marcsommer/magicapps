@@ -12,7 +12,7 @@ img{border:0;margin:0;padding:0;}
 h1 a, h2 a, h3 a{text-decoration:none;}
 h1, h2, h3, h4{margin:0;padding:0;font-family: Arial, Helvetica, sans-serif; color:#4f5257;}
 
-
+.textoLargo{ width:70%;}
 h3{font-size:1.2em;}
 h4{font-size:1.1em; color:#002038; background: url(../../admin/imagesadmin/itemh4.gif) no-repeat 0 2px; padding:5px 0 5px 25px;}
 
@@ -34,13 +34,16 @@ table.activ td .dia{display:block; font-size:1.7em; color:#636363; border-bottom
 table.activ td a{display:block; padding:4px 4px 4px 25px; margin:2px; text-align:left;}
 table.activ td a.modif{background:#f6f6f9 url(../../admin/imagesadmin/activ.gif) no-repeat 6px 4px;}
 table.activ td a.borrar{background:#f6f6f9 url(../../admin/imagesadmin/borrar.gif) no-repeat 6px 4px;}
-table.activ td a.a�ad{background:#f6f6f9 url(../../admin/imagesadmin/add.gif) no-repeat 6px 4px;}
+table.activ td a.añad{background:#f6f6f9 url(../../admin/imagesadmin/add.gif) no-repeat 6px 4px;}
 /*--tr--*/
 
 table.activ th{padding:3px; background: #46494d url(../../admin/imagesadmin/fondoSubtit.gif) repeat-x; color:#fff; text-align:center;}
 table.activ td{padding:5px 10px;border-bottom:1px solid #acb7c6; border-right:1px solid #acb7c6; font-weight:bold; text-align:center; background:#fff url(../../admin/imagesadmin/content.gif) repeat-x 0 -5px;}
 
 table.activ td:hover{background:#f5f6f7;}
+
+.aviso{float:left; width: 100%; padding:5px 0; margin: 5px 0; border-top: 1px dotted #FF0000;  border-bottom: 1px dotted #FF0000; background:#ffdcb9 url(../../admin/imagesadmin/borrar.gif) no-repeat 7px 4px; font-weight:bold; clear:both; display:block;}
+.aviso p{margin:0 33px !important;}
 
 acronym{border-bottom: 1px dashed #268dad;cursor:help;}
 cite{cursor:help;}
@@ -126,7 +129,7 @@ li.logospie{ background:none!important;}
 .titSubseccion{background:#46494d url(../../admin/imagesadmin/fondoSubtit.gif) repeat-x;padding:7px 0; float:left; width:100%; margin:7px 0;}
 .itemh3{background:url(../../admin/imagesadmin/itemSubtit.gif) no-repeat 6px 0; padding-left:30px; color:#fff;}
 
-/*-----Men�------*/
+/*-----Menú------*/
 #zonamenu{float:left; width:100%; background:url(../../admin/imagesadmin/FondIzq.png) repeat-y; clear:both;}
 .MenuIzq{float:left; width:100%; background:url(../../admin/imagesadmin/FondDcha.png) repeat-y 100% 0;}
 .MenuDcha{padding:1px 10px; float:left; width:95%;}
@@ -158,34 +161,11 @@ li.logospie{ background:none!important;}
 .botonesSub span{margin:7px;}
 
 .block{display:block; margin-bottom:4px;}
-
-
-.bloqueMenu{float:left; width:100%; background:#f4f4f4;}
-.bloqueMenu ul{float:left; width:100%;}
-.bloqueMenu ul li{float:left; padding:6px 4px;}
-.bloqueMenu ul li a{display:block; padding:5px 6px 5px 30px; color:#34703b; font-size:1.1em;}
-.modificarM{background:url(../../admin/imagesadmin/modificar.gif) no-repeat 2px 2px;}
-.insertarM{background:url(../../admin/imagesadmin/insertar.gif) no-repeat 2px 2px;}
-
 /*--botones--*/
 .boton{padding:3px; background: #46494d url(../../admin/imagesadmin/fondoSubtit.gif) repeat-x; color:#fff; text-align:center; border:1px solid #212b38; font:bold 1em arial; cursor:pointer;}
 
 .botonAdd{padding:3px 3px 3px 15px; background: #46494d url(../../admin/imagesadmin/add.gif) no-repeat 3px 3px; color:#fff; text-align:center; border:1px solid #212b38; font:bold 1em arial; cursor:pointer;}
 /*--botones--*/
-
-
-
-/*--botones--*/
-.examinar, .aceptar, .denegar, .anadirCat, .borrar, .modificar, .Vproductos, .editarProd{border:1px solid #c4d2c6; font:bold 0.9em Verdana, Arial, Helvetica, sans-serif; text-align:left; cursor:pointer;}
-.examinar{background:url(../../admin/imagesadmin/examinar.gif) no-repeat 2px 1px;width:8.5em;padding:2px 3px 2px 26px;}
-.aceptar{background:url(../../admin/imagesadmin/aceptar.gif) no-repeat 3px 3px; width:8.5em;padding:3px 3px 3px 24px;}
-.denegar{background:url(../../admin/imagesadmin/denegar.gif) no-repeat 3px 3px; width:8.5em;padding:3px 3px 3px 24px;}
-.anadirCat{background:url(../../admin/imagesadmin/anadirCat.gif) no-repeat 1px 1px; width:7.2em;padding:3px 3px 3px 27px;}
-.borrar{background:url(../../admin/imagesadmin/borrar.gif) no-repeat 1px 1px; width:6.5em;padding:3px 3px 3px 21px;}
-.modificar{background:url(../../admin/imagesadmin/modificar.gif) no-repeat 1px 1px; width:7.8em;padding:3px 3px 3px 21px;}
-
-/*--aviso--*/
-.aviso{text-align:left;float:left; width:80%;border:1px solid #e8e1b5; padding:5px 5px 5px 25px; background:#fdfaee url(../../admin/imagesadmin/aviso.gif) no-repeat;}
 
 /*------*/
 .documentos{background: #fafafa url(../../admin/imagesadmin/verCat.gif) no-repeat 2px 2px; width:11em;padding:3px 4px 3px 24px; font: bold 0.9em verdana; border:1px solid #ccc; cursor:pointer;}
@@ -213,6 +193,7 @@ li.logospie{ background:none!important;}
 
 
 
+
 /*--LOGIN--*/
 .floatLeft{float:left; width:100%;}
 .login{margin: 20px 20%; background:#fff url(../../admin/imagesadmin/fondoLogin.gif) repeat-x bottom; font-size:1.1em; width:60%;}
@@ -234,3 +215,9 @@ li.logospie{ background:none!important;}
 .add{ background:url(../../admin/imagesadmin/insertar.gif) no-repeat 4px 4px; padding-left:30px !important;}
 .modCat{ background:url(../../admin/imagesadmin/modCat.gif) no-repeat 4px 4px; padding-left:30px !important;}
 .addCat{ background:url(../../admin/imagesadmin/addCat.gif) no-repeat 4px 4px; padding-left:30px !important;}
+
+.camporojo{border:1px solid #e50000; font:1em Arial; padding:2px 3px; color:#e50000; margin-right:3px;}
+.rojo{ color: #e50000;}
+
+.ok{float:left; width: 100%; padding:5px 0; margin: 5px 0; border-top: 1px dotted #adbf8c;  border-bottom: 1px dotted #adbf8c; background:#f5ffe3 url(../../admin/imagesadmin/ok.gif) no-repeat 4px 2px; font-weight:bold; clear:both; display:block;}
+.ok p{margin:0 33px !important;}

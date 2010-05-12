@@ -66,13 +66,16 @@ namespace myWay
             pro.password = txtPassword.Text;
             pro.dbDataType = (project.databaseType)cmbDataType.SelectedItem;
 
+
+            
+
             t.Start(pro);
 
-           // this.DialogResult = DialogResult.Yes;
+            // use this for debugging
+            //search(pro);
 
-            //MessageBox.Show("Hand message", "Hand title", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-
-            butSave.Visible = true;
+          
+            
          
         }
 
@@ -95,8 +98,9 @@ namespace myWay
 
         private void search(object file)
         {
+            bool right = false;
 
-
+            AsyncEnableButton(false);
             try
             {
                 project pro = new project();
@@ -241,7 +245,7 @@ namespace myWay
                                 }
                             }
 
-
+                            right = true;
                             pr.host = pro.host;
                             pr.database = pro.database;
                             pr.user = pro.user;
@@ -264,11 +268,9 @@ namespace myWay
                         break;
 
                     case project.databaseType.SqlServer:
-                        String connectionStringSqlServer = null;
-
+                       
                         String messageSqlServer = null;
-
-
+ 
                         connectionString = "Data Source=" + pro.host + ";Network Library=DBMSSOCN;Initial Catalog=" + pro.database + ";User ID=" + pro.user + ";Password=" + pro.password + ";";
                         // connectionStringOleDb = "Provider=SQLNCLI;Server=" + txtHost.Text + ";Database=" + txtDatabase.Text + ";Uid=" + txtUser.Text + ";Pwd=" + txtPassword.Text + ";";
 
@@ -368,6 +370,7 @@ namespace myWay
                                 }
                             }
 
+                            right = true;
                             pr.host = pro.host;
                             pr.database = pro.database;
                             pr.user = pro.user;
@@ -392,13 +395,45 @@ namespace myWay
                 }
 
                 Cursor.Current = Cursors.Default;
-                AsyncWriteLine("All right. Now you can save the project...");
+               
+                switch (right)
+                {
+                    case true:
+                            AsyncWriteLine("All right. Now you can save the project...");
+                            AsyncEnableButton(true);
+                            break;
+
+                    case false:
+                            AsyncWriteLine("Error, review the configuration.");
+                            AsyncEnableButton(false);
+                            break;
+
+                }
+                
 
             }
             catch (Exception ex)
             {
 
                 AsyncWrite(ex.Message);
+            }
+
+        }
+
+        public void AsyncEnableButton(bool enabled)
+        {
+            try
+            {
+                butSave.BeginInvoke(new MethodInvoker(delegate
+                {
+                    butSave.Enabled = enabled;
+
+                }));
+
+            }
+            catch (Exception exx)
+            {
+                //  AsyncWriteLine("Error: " + exx.Message.ToString() + "\n");
             }
 
         }

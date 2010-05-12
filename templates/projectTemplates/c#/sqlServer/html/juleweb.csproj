@@ -1,4 +1,4 @@
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -33,9 +33,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\BIN2\eWorld.UI.dll</HintPath>
     </Reference>
-    <Reference Include="FreeTextBox, Version=3.2.4.41218, Culture=neutral, PublicKeyToken=5962a4e684a48b87, processorArchitecture=MSIL">
+    <Reference Include="FreeTextBox, Version=3.1.6.34851, Culture=neutral, PublicKeyToken=5962a4e684a48b87, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\BIN2\FreeTextBox.dll</HintPath>
+      <HintPath>..\..\BIN2\FreeTextBox.dll</HintPath>
     </Reference>
     <Reference Include="MenuPilot, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -75,6 +75,13 @@
     </Compile>
     <Compile Include="admin\master\testMaster.aspx.designer.cs">
       <DependentUpon>testMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\test_dir\main_test.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>main_test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\test_dir\main_test.aspx.designer.cs">
+      <DependentUpon>main_test.aspx</DependentUpon>
     </Compile>
     <Compile Include="clasesbase\ctes.cs" />
     <Compile Include="clasesbase\dbClassSql.cs" />
@@ -471,6 +478,7 @@
     <Content Include="admin\imagesadmin\fondoCom1.gif" />
     <Content Include="admin\imagesadmin\fondoCom2.gif" />
     <Content Include="admin\imagesadmin\fondoDirec.gif" />
+    <Content Include="admin\imagesadmin\fondoEncab.gif" />
     <Content Include="admin\imagesadmin\fondoGen.gif" />
     <Content Include="admin\imagesadmin\fondoImg.gif" />
     <Content Include="admin\imagesadmin\fondoImgCentral.gif" />
@@ -536,6 +544,7 @@
     <Content Include="admin\master\masterAdmin.Master" />
     <Content Include="admin\master\menuAdmin.ascx" />
     <Content Include="admin\master\testMaster.aspx" />
+    <Content Include="admin\test_dir\main_test.aspx" />
     <Content Include="images\anadirCat.gif" />
     <Content Include="images\aviso.gif" />
     <Content Include="portal\master\testMasterPortal.aspx" />

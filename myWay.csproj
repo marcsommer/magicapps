@@ -227,6 +227,14 @@
     <Compile Include="showTemplates.Designer.cs">
       <DependentUpon>showTemplates.cs</DependentUpon>
     </Compile>
+    <Content Include="templates\projectTemplates\c#\sqlServer\html\admin\test_dir\main_test.aspx.cs">
+      <DependentUpon>main_test.aspx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\sqlServer\html\admin\test_dir\main_test.aspx.designer.cs">
+      <DependentUpon>main_test.aspx.cs</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Compile Include="userControls\userControlEditField.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -515,6 +523,12 @@
       <DependentUpon>userControlEditTable.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Resources\script_go.png" />
+    <Content Include="templates\projectTemplates\c#\sqlServer\html\admin\master\menuAdmin.ascx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\sqlServer\html\admin\test_dir\main_test.aspx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="templates\projectTemplates\c#\sqlServer\html\Properties\licenses.licx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
