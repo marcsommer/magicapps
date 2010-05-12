@@ -61,7 +61,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(214, 20);
             this.txtName.TabIndex = 1;
-            this.txtName.Text = "cars";
+            this.txtName.Text = "svNursingAdmin";
             // 
             // txtHost
             // 
@@ -69,7 +69,7 @@
             this.txtHost.Name = "txtHost";
             this.txtHost.Size = new System.Drawing.Size(214, 20);
             this.txtHost.TabIndex = 3;
-            this.txtHost.Text = "192.168.10.135";
+            this.txtHost.Text = "192.168.10.135\\sql2005";
             // 
             // label2
             // 
@@ -87,7 +87,7 @@
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(214, 20);
             this.txtUser.TabIndex = 5;
-            this.txtUser.Text = "root";
+            this.txtUser.Text = "sa";
             this.txtUser.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // label3
@@ -170,7 +170,7 @@
             this.txtDatabase.Name = "txtDatabase";
             this.txtDatabase.Size = new System.Drawing.Size(214, 20);
             this.txtDatabase.TabIndex = 14;
-            this.txtDatabase.Text = "cars";
+            this.txtDatabase.Text = "svNursingAdmin";
             // 
             // label6
             // 
@@ -184,13 +184,13 @@
             // butSave
             // 
             this.butSave.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            this.butSave.Enabled = false;
             this.butSave.Location = new System.Drawing.Point(283, 316);
             this.butSave.Name = "butSave";
             this.butSave.Size = new System.Drawing.Size(75, 23);
             this.butSave.TabIndex = 15;
             this.butSave.Text = "Save";
             this.butSave.UseVisualStyleBackColor = true;
-            this.butSave.Visible = false;
             this.butSave.Click += new System.EventHandler(this.butSave_Click);
             // 
             // newProject

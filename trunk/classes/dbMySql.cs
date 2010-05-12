@@ -18,6 +18,7 @@ class dbMySql
 
         public string test(string cadconexion)
         {
+            MySqlConnection conexion = null;
             try
             {
                 conexion = new MySqlConnection(cadconexion);
@@ -32,11 +33,16 @@ class dbMySql
                 //  lo.tratarError(ep, "Error en dbClass.new", "");
                 return ep.Message;
             }
+            finally
+            {
+                conexion.Close();
+            }
         }   // test
 
 
         public List<table> getTables(string cadconexion, string database)
         {
+            MySqlConnection conexion = null;
             try
             {
                 List<table> lista = new List<table>();
@@ -69,12 +75,17 @@ class dbMySql
                 //  lo.tratarError(ep, "Error en dbClass.new", "");
                 return null;
             }
+            finally
+            {
+                conexion.Close();
+            }
         }   // getTables
 
 
 
         public List<field> getFields(string cadconexion, string database, string table)
         {
+            MySqlConnection conexion = null;
             try
             {
 
@@ -256,12 +267,17 @@ class dbMySql
                 //  lo.tratarError(ep, "Error en dbClass.new", "");
                 return null;
             }
+            finally
+            {
+                conexion.Close();
+            }
         }  // getFields
 
 
     // we get extra information for the fields...
         public void getKeys(string cadconexion, table table, String database)
         {
+            MySqlConnection conexion = null;
             try
             {
                 List<String> lista = new List<String>();
@@ -334,7 +350,11 @@ class dbMySql
             catch (Exception ep)
             {
                 //  lo.tratarError(ep, "Error en dbClass.new", "");
-                
+
+            }
+            finally
+            {
+                conexion.Close();
             }
         }  // getKeys
 
@@ -343,6 +363,7 @@ class dbMySql
 
         public List<relation> getRelations(string cadconexion, string database)
         {
+            MySqlConnection conexion = null;
             try
             {
 
@@ -386,6 +407,10 @@ class dbMySql
                 //  lo.tratarError(ep, "Error en dbClass.new", "");
                 return null;
             }
+            finally
+            {
+                conexion.Close();
+            }
         }   // getRelations
 
 
@@ -393,6 +418,7 @@ class dbMySql
         // get the description for a column
         public String getComments(string cadconexion, string table, string column)
         {
+            MySqlConnection conexion = null;
             try
             {
 
@@ -423,6 +449,10 @@ class dbMySql
             {
                 //  lo.tratarError(ep, "Error en dbClass.new", "");
                 return "";
+            }
+            finally
+            {
+                conexion.Close();
             }
         }  // getComments
 

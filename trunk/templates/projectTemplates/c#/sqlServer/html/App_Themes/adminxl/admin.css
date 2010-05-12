@@ -12,7 +12,7 @@ img{border:0;margin:0;padding:0;}
 h1 a, h2 a, h3 a{text-decoration:none;}
 h1, h2, h3, h4{margin:0;padding:0;font-family: Arial, Helvetica, sans-serif; color:#4f5257;}
 
-
+.textoLargo{ width:70%;}
 h3{font-size:1.2em;}
 h4{font-size:1.1em; color:#002038; background: url(../../admin/imagesadmin/itemh4.gif) no-repeat 0 2px; padding:5px 0 5px 25px;}
 
@@ -34,7 +34,7 @@ table.activ td .dia{display:block; font-size:1.7em; color:#636363; border-bottom
 table.activ td a{display:block; padding:4px 4px 4px 25px; margin:2px; text-align:left;}
 table.activ td a.modif{background:#f6f6f9 url(../../admin/imagesadmin/activ.gif) no-repeat 6px 4px;}
 table.activ td a.borrar{background:#f6f6f9 url(../../admin/imagesadmin/borrar.gif) no-repeat 6px 4px;}
-table.activ td a.a�ad{background:#f6f6f9 url(../../admin/imagesadmin/add.gif) no-repeat 6px 4px;}
+table.activ td a.añad{background:#f6f6f9 url(../../admin/imagesadmin/add.gif) no-repeat 6px 4px;}
 /*--tr--*/
 
 table.activ th{padding:3px; background: #46494d url(../../admin/imagesadmin/fondoSubtit.gif) repeat-x; color:#fff; text-align:center;}
@@ -129,7 +129,7 @@ li.logospie{ background:none!important;}
 .titSubseccion{background:#46494d url(../../admin/imagesadmin/fondoSubtit.gif) repeat-x;padding:7px 0; float:left; width:100%; margin:7px 0;}
 .itemh3{background:url(../../admin/imagesadmin/itemSubtit.gif) no-repeat 6px 0; padding-left:30px; color:#fff;}
 
-/*-----Men�------*/
+/*-----Menú------*/
 #zonamenu{float:left; width:100%; background:url(../../admin/imagesadmin/FondIzq.png) repeat-y; clear:both;}
 .MenuIzq{float:left; width:100%; background:url(../../admin/imagesadmin/FondDcha.png) repeat-y 100% 0;}
 .MenuDcha{padding:1px 10px; float:left; width:95%;}
@@ -191,21 +191,6 @@ li.logospie{ background:none!important;}
 .articulos span{margin-left:15px;}
 /*------*/
 
-/*--listas productos--*/
-.catalogo{padding:10px;clear:both;}
-.select{font-size:0.9em; color:#5f5c5a;}
-.articulos{margin:5px 2px;}
-.articulos span{margin-left:5px;}
-.nombre{color:#2a4d91;display:block; text-decoration: underline; padding-bottom:10px;}
-.cuadroProd{margin:3px; clear:both;}
-
-.imgproducto{padding:8px;float:left;}
-.producto{padding:8px 8px 8px 10px; text-align:justify;float:left;}
-.precio{clear:both; background:#eef1f5; padding:5px;}
-.precio span{color:#d70051; vertical-align:middle; font-size:1.1em;}
-.preciocompra{padding:10px 0; font-weight:bold; clear:both;}
-.preciocompra span{ color:#f2066a;}
-/*------*/
 
 
 
@@ -230,3 +215,9 @@ li.logospie{ background:none!important;}
 .add{ background:url(../../admin/imagesadmin/insertar.gif) no-repeat 4px 4px; padding-left:30px !important;}
 .modCat{ background:url(../../admin/imagesadmin/modCat.gif) no-repeat 4px 4px; padding-left:30px !important;}
 .addCat{ background:url(../../admin/imagesadmin/addCat.gif) no-repeat 4px 4px; padding-left:30px !important;}
+
+.camporojo{border:1px solid #e50000; font:1em Arial; padding:2px 3px; color:#e50000; margin-right:3px;}
+.rojo{ color: #e50000;}
+
+.ok{float:left; width: 100%; padding:5px 0; margin: 5px 0; border-top: 1px dotted #adbf8c;  border-bottom: 1px dotted #adbf8c; background:#f5ffe3 url(../../admin/imagesadmin/ok.gif) no-repeat 4px 2px; font-weight:bold; clear:both; display:block;}
+.ok p{margin:0 33px !important;}

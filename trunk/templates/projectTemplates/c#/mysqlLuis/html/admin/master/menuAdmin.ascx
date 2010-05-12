@@ -5,7 +5,7 @@
 <nameFile>menuAdmin</nameFile>
 <extensionFile>ascx</extensionFile>
 <languageGenerated>c#"</languageGenerated>
-<description></description>
+<description></description">
 <targetDirectory></targetDirectory>
 <appliesToAllTables>true</appliesToAllTables>
 

@@ -21,6 +21,7 @@ class dbSql2005
 
         public string test(string cadconexion)
         {
+            SqlConnection conexion = null;
             try
             {
 
@@ -37,11 +38,16 @@ class dbSql2005
                 //  lo.tratarError(ep, "Error en dbClass.new", "");
                 return ep.Message;
             }
+            finally
+            {
+                conexion.Close();
+            }
         }   // test
 
 
         public List<table> getTables(string cadconexion, string database)
         {
+            SqlConnection conexion = null;
             try
             {
                 List<table> lista = new List<table>();
@@ -57,10 +63,20 @@ class dbSql2005
 
                 foreach (System.Data.DataRow rowDatabase in dt.Rows)
                 {
-                    table tab=new table();
-                    tab.Name = rowDatabase["table_name"].ToString();
-                    tab.TargetName = tab.Name;
-                    lista.Add(tab);
+                    string tableName = rowDatabase["table_name"].ToString();
+                    if (tableName.Equals("dtproperties") || tableName.Equals("sysdiagrams"))
+                    {
+                        // system tables
+                    }
+                    else
+                    {
+                        table tab = new table();
+                        tab.Name = tableName;
+                        tab.TargetName = tab.Name;
+                        lista.Add(tab);
+                    }
+
+
 
                 }
 
@@ -73,19 +89,26 @@ class dbSql2005
                 //  lo.tratarError(ep, "Error en dbClass.new", "");
                 return null;
             }
+            finally
+            {
+                conexion.Close();
+            }
         }   // getTables
 
       
         
         public List<field> getFields(string cadconexion, string table)
         {
+
+            SqlConnection conexion = null;
+
             try
             {
 
-                  
+
                 List<field> lista = new List<field>();
-                
-               
+
+
                 conexion = new SqlConnection(cadconexion);
                 miComando = new SqlCommand("");
                 miComando.Connection = conexion;
@@ -189,48 +212,48 @@ class dbSql2005
                     fi.targetType = fi.type;
 
 
-                    
 
-                     
+
+
                     fi.allowNulls = sf.Bool(row["IS_NULLABLE"]);
                     fi.size = sf.entero(row["CHARACTER_MAXIMUM_LENGTH"]);
                     //     fi.comment = sf.Cadena(tbl.Rows(i)!COLUMN_COMMENT);
-                         fi.defaultValue = sf.cadena(row["COLUMN_DEFAULT"]);
+                    fi.defaultValue = sf.cadena(row["COLUMN_DEFAULT"]);
 
-                     
+
                     //fi.autoNumber = sf.Bool(row["COLUMN_KEY"]);
-                          //   fi.isKey = sf.Bool(row["COLUMN_KEY"]);
-                             fi.decimals = sf.entero(row["NUMERIC_PRECISION"]);
-                   
-                   // // Retrieve the column's default value.
-                   // fi.defaultValue = ((row["COLUMN_DEFAULT"] as DBNull)
-                   //     != null) ? "Null" : row["COLUMN_DEFAULT"].ToString();
-                   // // Retrieve the column's precision.
-                   // //column.Precision = ((row["NUMERIC_PRECISION"] as DBNull)
-                   // //    != null) ? 0 : Int32.Parse(row["NUMERIC_PRECISION"].ToString());
-                   // // Retrieve the column's scale.
-                   //// column.Scale = ((row["NUMERIC_SCALE"] as DBNull) != null) ? 0 : Int32.Parse(row["NUMERIC_SCALE"].ToString());
-                   // // Specify if the column is a primary key.
-                   // fi.isKey = primaryKeys.Contains(row["COLUMN_NAME"].ToString());
-                   // // Specify that the column is not an identity column.
-                   // //column.IsIdentity = false;
-                   // // Retrieve the column length.
-                   // fi.size = ((OleDbType)Int32.Parse(row["DATA_TYPE"].ToString()) != OleDbType.WChar) ? -1 : Int32.Parse(row["CHARACTER_MAXIMUM_LENGTH"].ToString());
-                   // // Append the column to the list.
+                    //   fi.isKey = sf.Bool(row["COLUMN_KEY"]);
+                    fi.decimals = sf.entero(row["NUMERIC_PRECISION"]);
+
+                    // // Retrieve the column's default value.
+                    // fi.defaultValue = ((row["COLUMN_DEFAULT"] as DBNull)
+                    //     != null) ? "Null" : row["COLUMN_DEFAULT"].ToString();
+                    // // Retrieve the column's precision.
+                    // //column.Precision = ((row["NUMERIC_PRECISION"] as DBNull)
+                    // //    != null) ? 0 : Int32.Parse(row["NUMERIC_PRECISION"].ToString());
+                    // // Retrieve the column's scale.
+                    //// column.Scale = ((row["NUMERIC_SCALE"] as DBNull) != null) ? 0 : Int32.Parse(row["NUMERIC_SCALE"].ToString());
+                    // // Specify if the column is a primary key.
+                    // fi.isKey = primaryKeys.Contains(row["COLUMN_NAME"].ToString());
+                    // // Specify that the column is not an identity column.
+                    // //column.IsIdentity = false;
+                    // // Retrieve the column length.
+                    // fi.size = ((OleDbType)Int32.Parse(row["DATA_TYPE"].ToString()) != OleDbType.WChar) ? -1 : Int32.Parse(row["CHARACTER_MAXIMUM_LENGTH"].ToString());
+                    // // Append the column to the list.
 
 
 
-                       //fi.size = sf.Entero(tbl.Rows(i)!CHARACTER_MAXIMUM_LENGTH)
-                       //     fi.comment = sf.Cadena(tbl.Rows(i)!COLUMN_COMMENT)
+                    //fi.size = sf.Entero(tbl.Rows(i)!CHARACTER_MAXIMUM_LENGTH)
+                    //     fi.comment = sf.Cadena(tbl.Rows(i)!COLUMN_COMMENT)
                     //fi.allowNulls = sf.Bool(row["IS_NULLABLE"]);//tbl.Rows(i)!IS_NULLABLE)
-                       //     fi.defaultValue = sf.Cadena(tbl.Rows(i)!COLUMN_DEFAULT)
-                       //     fi.autoNumber = sf.Bool(tbl.Rows(i)!COLUMN_KEY)
-                       //     fi.decimals = sf.Entero(tbl.Rows(i)!NUMERIC_PRECISION)
+                    //     fi.defaultValue = sf.Cadena(tbl.Rows(i)!COLUMN_DEFAULT)
+                    //     fi.autoNumber = sf.Bool(tbl.Rows(i)!COLUMN_KEY)
+                    //     fi.decimals = sf.Entero(tbl.Rows(i)!NUMERIC_PRECISION)
 
 
 
-                             // lets get the comment
-                             fi.comment = getComments(cadconexion, table, fi.Name);
+                    // lets get the comment
+                    fi.comment = getComments(cadconexion, table, fi.Name);
 
                     lista.Add(fi);
 
@@ -245,12 +268,18 @@ class dbSql2005
                 //  lo.tratarError(ep, "Error en dbClass.new", "");
                 return null;
             }
+
+            finally
+            {
+                conexion.Close();
+            }
         }   // getFields
 
 
 
         public void getKeys(string cadconexion,   table table)
         {
+            SqlConnection conexion = null;
             try
             {
                 List<String> lista = new List<String>();
@@ -325,12 +354,17 @@ class dbSql2005
                 //  lo.tratarError(ep, "Error en dbClass.new", "");
                 
             }
+            finally
+            {
+                conexion.Close();
+            }
         }  // getKeys
 
 
         // get all relations for project
         public List<relation> getRelations(string cadconexion )
         {
+            SqlConnection conexion = null;
             try
             {
 
@@ -405,10 +439,15 @@ class dbSql2005
                 //  lo.tratarError(ep, "Error en dbClass.new", "");
                 return null;
             }
+            finally
+            {
+                conexion.Close();
+            }
         }   // getRelations
 
         public List<relation> getRelations(string cadconexion, string table)
         {
+            SqlConnection conexion = null;
             try
             {
 
@@ -461,6 +500,10 @@ class dbSql2005
                 //  lo.tratarError(ep, "Error en dbClass.new", "");
                 return null;
             }
+            finally
+            {
+                conexion.Close();
+            }
         }   // getRelations
 
 
@@ -468,14 +511,16 @@ class dbSql2005
     // get the description for a column
         public String getComments(string cadconexion, string table, string column)
         {
+
+            SqlConnection conexion = null;
             try
             {
-              
+
                 List<String> lista = new List<String>();
                 String sql = null;
                 sql = String.Format("select value from ::fn_listextendedproperty ('MS_Description', 'user','dbo', 'table', '{0}', 'column', '{1}')", table, column);
 
-                
+
                 conexion = new SqlConnection(cadconexion);
                 miComando = new SqlCommand(sql);
                 miComando.Connection = conexion;
@@ -498,6 +543,12 @@ class dbSql2005
             {
                 //  lo.tratarError(ep, "Error en dbClass.new", "");
                 return "";
+            }
+            finally
+            {
+                miComando = null;
+                conexion.Close();
+                conexion = null;
             }
         }  // getComments
 

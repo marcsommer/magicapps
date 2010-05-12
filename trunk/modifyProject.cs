@@ -56,27 +56,16 @@ namespace myWay
 
             // search metadata...
             Thread t = new Thread(new ParameterizedThreadStart(search));
-            // we need to pass data through object
-            project pro = new project();
-            pro.name = txtName.Text;
-            pro.host = txtHost.Text;
-            pro.database = txtDatabase.Text;
-            pro.user = txtUser.Text;
-            pro.password = txtPassword.Text;
-            pro.dbDataType = (project.databaseType)cmbDataType.SelectedItem;
+            //// we need to pass data through object
+            //project pro = new project();
+            //pro.name = txtName.Text;
+            //pro.host = txtHost.Text;
+            //pro.database = txtDatabase.Text;
+            //pro.user = txtUser.Text;
+            //pro.password = txtPassword.Text;
+            //pro.dbDataType = (project.databaseType)cmbDataType.SelectedItem;
 
-            //project.databaseType tipo = new project.databaseType();
-            //tipo = (project.databaseType)cmbDataType.SelectedItem;
-
-
-            //pro.dbDataType = cmbDataType.SelectedItem;
-
-
-            t.Start(pro);
-
-         
-
-
+            t.Start(pr);
          
         }
 
@@ -104,13 +93,13 @@ namespace myWay
             // search metadata...
             Thread t = new Thread(new ParameterizedThreadStart(search));
             // we need to pass data through object
-            project pro = new project();
-            pro.name = txtName.Text;
-            pro.host = txtHost.Text;
-            pro.database = txtDatabase.Text;
-            pro.user = txtUser.Text;
-            pro.password = txtPassword.Text;
-            pro.dbDataType = (project.databaseType)cmbDataType.SelectedItem;
+            //project pro = new project();
+            pr.name = txtName.Text;
+            pr.host = txtHost.Text;
+            pr.database = txtDatabase.Text;
+            pr.user = txtUser.Text;
+            pr.password = txtPassword.Text;
+            pr.dbDataType = (project.databaseType)cmbDataType.SelectedItem;
 
             //project.databaseType tipo = new project.databaseType();
             //tipo = (project.databaseType)cmbDataType.SelectedItem;
@@ -119,7 +108,7 @@ namespace myWay
             //pro.dbDataType = cmbDataType.SelectedItem;
 
            
-            t.Start(pro);
+            t.Start(pr);
 
            // this.DialogResult = DialogResult.Yes;
 
@@ -131,15 +120,17 @@ namespace myWay
         private void search(object file)
         {
 
+            bool right = false;
 
+            AsyncEnableButton(false);
             try
             {
-                project pro = new project();
-                pro = (project)file;
+                //project pro = new project();
+                //pro = (project)file;
 
                 Cursor.Current = Cursors.WaitCursor;
 
-                switch (pro.dbDataType)
+                switch (pr.dbDataType)
                 {
                     case project.databaseType.mySql:
                         String connectionString = null;
@@ -147,7 +138,7 @@ namespace myWay
                         String message = null;
 
 
-                        connectionString = "Server=" + pro.host + ";Database=" + pro.database + ";Uid=" + pro.user + ";Pwd=" + pro.password + ";";
+                        connectionString = "Server=" + pr.host + ";Database=" + pr.database + ";Uid=" + pr.user + ";Pwd=" + pr.password + ";";
 
 
 
@@ -157,20 +148,21 @@ namespace myWay
                         {
                             AsyncWrite("");
                             AsyncWriteLine("Success connection \n");
-                            pr = new project();
-                            pr.name = pro.name;
+                            //pr = new project();
+                            //pr.name = pr.name;
 
                             // lets get the tables...
                             List<table> lista = new List<table>();
-                            lista = db.getTables(connectionString, pro.database);
+                            lista = db.getTables(connectionString, pr.database);
                             //lista.Sort();
+                            pr.tables.Clear();
                             foreach (table item in lista)
                             {
                                 AsyncWriteLine("Found table... " + item.Name + "\n");
 
                                 // now lets get the fields for each table...
                                 List<field> listaField = new List<field>();
-                                listaField = db.getFields(connectionString, pro.database, item.Name);
+                                listaField = db.getFields(connectionString, pr.database, item.Name);
                                 if (listaField != null)
                                 {
                                     foreach (field fi in listaField)
@@ -182,13 +174,12 @@ namespace myWay
                                 }
 
                                 // lets get primary keys and foreign keys for the table...
-                                db.getKeys(connectionString, item, pro.database);
+                                db.getKeys(connectionString, item, pr.database);
 
 
                                 // lets sort the fields in the table...
                                 item.fields.Sort(new compareFields(compareFields.CompareByOptions.name));
-                                // item.fields.Sort(new compareFields(compareFields.CompareByOptions.key));
-
+                                
                                 pr.tables.Add(item);
 
 
@@ -198,10 +189,12 @@ namespace myWay
 
 
                             //// now lets get the relations ...
+                            pr.relations.Clear();
                             List<relation> listarelation = new List<relation>();
-                            listarelation = db.getRelations(connectionString, pro.database);
+                            listarelation = db.getRelations(connectionString, pr.database);
                             if (listarelation != null)
                             {
+                               
                                 foreach (relation re in listarelation)
                                 {
 
@@ -277,10 +270,10 @@ namespace myWay
                             }
 
 
-                            pr.host = pro.host;
-                            pr.database = pro.database;
-                            pr.user = pro.user;
-                            pr.password = pro.password;
+                            //pr.host = pro.host;
+                            //pr.database = pro.database;
+                            //pr.user = pro.user;
+                            //pr.password = pro.password;
 
                             //pr.saveProject(Path.Combine(util.projects_dir, pro.name + ".xml"));
 
@@ -288,8 +281,8 @@ namespace myWay
                             // pr.saveProject(Path.Combine(util.projects_dir, "conf.xml"));
                           //  AsyncWriteLine("Project saved... \n");
 
-                            
 
+                            right = true;
                         }
                         else
                         {
@@ -303,7 +296,7 @@ namespace myWay
                         String messageSqlServer = null;
 
 
-                        connectionString = "Data Source=" + pro.host + ";Network Library=DBMSSOCN;Initial Catalog=" + pro.database + ";User ID=" + pro.user + ";Password=" + pro.password + ";";
+                        connectionString = "Data Source=" + pr.host + ";Network Library=DBMSSOCN;Initial Catalog=" + pr.database + ";User ID=" + pr.user + ";Password=" + pr.password + ";";
                         // connectionStringOleDb = "Provider=SQLNCLI;Server=" + txtHost.Text + ";Database=" + txtDatabase.Text + ";Uid=" + txtUser.Text + ";Pwd=" + txtPassword.Text + ";";
 
 
@@ -314,12 +307,13 @@ namespace myWay
                         {
                             AsyncWrite("");
                             AsyncWriteLine("Success connection \n");
-                            pr = new project();
-                            pr.name = pro.name;
+                            // pr = new project();
+                            pr.name = pr.name;
 
                             // lets get the tables...
+                            pr.tables.Clear();
                             List<table> lista = new List<table>();
-                            lista = dbSqlServer.getTables(connectionString, pro.database);
+                            lista = dbSqlServer.getTables(connectionString, pr.database);
                             //lista.Sort();
                             foreach (table item in lista)
                             {
@@ -350,7 +344,9 @@ namespace myWay
                             }
 
                             pr.tables.Sort();
+                           
                             // now lets get the relations ...
+                            pr.relations.Clear();
                             List<relation> listarelation = new List<relation>();
                             listarelation = dbSqlServer.getRelations(connectionString);
                             if (listarelation != null)
@@ -402,10 +398,10 @@ namespace myWay
                                 }
                             }
 
-                            pr.host = pro.host;
-                            pr.database = pro.database;
-                            pr.user = pro.user;
-                            pr.password = pro.password;
+                            //pr.host = pro.host;
+                            //pr.database = pro.database;
+                            //pr.user = pro.user;
+                            //pr.password = pro.password;
 
                             //pr.saveProject(Path.Combine(util.projects_dir, pro.name + ".xml"));
 
@@ -413,7 +409,7 @@ namespace myWay
                             // pr.saveProject(Path.Combine(util.projects_dir, "conf.xml"));
                             //AsyncWriteLine("Project saved... \n");
 
-                            
+                            right = true;
 
                         }
                         else
@@ -424,16 +420,52 @@ namespace myWay
                         break;
                 }
 
+               
+
                 Cursor.Current = Cursors.Default;
 
-                AsyncWriteLine("All right. Now you can save the project...");
+                switch (right)
+                {
+                    case true:
+                        AsyncWriteLine("All right. Now you can save the project...");
+                        AsyncEnableButton(true);
+                        break;
+
+                    case false:
+                        AsyncWriteLine("Error, review the configuration.");
+                        AsyncEnableButton(false);
+                        break;
+
+                }
+
             }
             catch (Exception ex)
             {
 
                 AsyncWrite(ex.Message);
             }
+
+
            
+        }
+
+
+        public void AsyncEnableButton(bool enabled)
+        {
+            try
+            {
+                butSave.BeginInvoke(new MethodInvoker(delegate
+                {
+                    butSaveChanges.Enabled = enabled;
+
+                }));
+
+            }
+            catch (Exception exx)
+            {
+                //  AsyncWriteLine("Error: " + exx.Message.ToString() + "\n");
+            }
+
         }
 
         public void AsyncWriteLine(String Text)
@@ -487,6 +519,12 @@ namespace myWay
 
         private void butSaveChanges_Click(object sender, EventArgs e)
         {
+            //pr.host = pro.host;
+            //pr.database = pro.database;
+            //pr.user = pro.user;
+            //pr.password = pro.password;
+
+
             pr.saveProject(Path.Combine(util.projects_dir, pr.name + ".xml"));
             AsyncWriteLine("Project saved... \n");
 

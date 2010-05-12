@@ -179,6 +179,7 @@
             // 
             // butSaveChanges
             // 
+            this.butSaveChanges.Enabled = false;
             this.butSaveChanges.Location = new System.Drawing.Point(257, 316);
             this.butSaveChanges.Name = "butSaveChanges";
             this.butSaveChanges.Size = new System.Drawing.Size(107, 23);

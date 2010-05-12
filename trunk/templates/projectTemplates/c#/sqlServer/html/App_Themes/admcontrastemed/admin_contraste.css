@@ -188,21 +188,6 @@ li.logospie{ background:none!important;}
 .articulos span{margin-left:15px;}
 /*------*/
 
-/*--listas productos--*/
-.catalogo{padding:10px;clear:both;}
-.select{font-size:0.9em; color:#5f5c5a;}
-.articulos{margin:5px 2px;}
-.articulos span{margin-left:5px;}
-.nombre{color:#2a4d91;display:block; text-decoration: underline; padding-bottom:10px;}
-.cuadroProd{margin:3px; clear:both;}
-
-.imgproducto{padding:8px;float:left;}
-.producto{padding:8px 8px 8px 10px; text-align:justify;float:left;}
-.precio{clear:both; background:#eef1f5; padding:5px;}
-.precio span{color:#d70051; vertical-align:middle; font-size:1.1em;}
-.preciocompra{padding:10px 0; font-weight:bold; clear:both;}
-.preciocompra span{ color:#f2066a;}
-/*------*/
 
 
 
