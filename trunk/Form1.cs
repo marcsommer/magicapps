@@ -16,6 +16,7 @@ using VelocityContext = NVelocity.VelocityContext;
 using ParseErrorException = NVelocity.Exception.ParseErrorException;
 using MethodInvocationException = NVelocity.Exception.MethodInvocationException;
 
+using ComponentFactory.Krypton.Toolkit;
 
 // para usar avalonEdit
 // son necesarias las siguientes dll-referencias (copiadas del framework 3.0 la mayoria)
@@ -29,6 +30,9 @@ using ICSharpCode.AvalonEdit.CodeCompletion;
 
 using System.Threading;
 using System.Windows.Input;
+
+// ComboBoxItem
+using System.Windows.Controls;
 
 namespace myWay
 {
@@ -70,34 +74,9 @@ namespace myWay
                 groupBox1.Text = pr.name;
                 this.Text = "myWay " + pr.name;
                 actualProject = pr;
-                actualTable = pr.actualTable;
 
-                //string numberoffiels = actualTable.fields.Count.ToString();
+                refreshDataWithActualProject();
 
-                templateSelected = pr.templateSelected;
-                templateSelectedFullUri = pr.templateSelectedFullUri;
-
-
-                projectTemplateSelected =  pr.projectTemplatesDirectorySmall;
-                projectTemplateSelectedFullUri =  pr.projectTemplatesDirectory;
-
-
-                kbTargetDirectory.Text =  pr.targetDirectory;
-                targetDirectory = pr.targetDirectory;
-
-                
-
-                if (projectTemplateSelectedFullUri != null)
-                {
-                    //  rt1.Text = util.loadFile(templateSelectedFullUri);
-                    kbProjectTemplate.Text = projectTemplateSelected;
-                    kbTemplate.Text = templateSelected;
-                }
-              
-                fillComboWithTables();
-
-                if (actualTable != null)
-                    cmbTablesx.SelectedText = actualTable.Name;
             }
            
             
@@ -462,10 +441,54 @@ namespace myWay
                     this.Text = "myWay " + actualProject.name;
                     groupBox1.Text = actualProject.name;
                     actualProject.saveProject(Path.Combine(util.projects_dir, "conf.xml"));
+
+                    refreshDataWithActualProject();
+                    
+                   
                 }
               
             }
         }
+
+
+        private void refreshDataWithActualProject()
+        {
+            if (actualProject != null)
+            {
+                actualTable = actualProject.actualTable;
+
+                //string numberoffiels = actualTable.fields.Count.ToString();
+
+                templateSelected = actualProject.templateSelected;
+                templateSelectedFullUri = actualProject.templateSelectedFullUri;
+
+
+                projectTemplateSelected = actualProject.projectTemplatesDirectorySmall;
+                projectTemplateSelectedFullUri = actualProject.projectTemplatesDirectory;
+
+
+                kbTargetDirectory.Text = actualProject.targetDirectory;
+                targetDirectory = actualProject.targetDirectory;
+                
+                if (projectTemplateSelectedFullUri != null)
+                {
+                    kbProjectTemplate.Text = projectTemplateSelected;
+                    kbTemplate.Text = templateSelected;
+                }
+
+                fillComboWithTables();
+
+                if (actualTable != null)
+                {
+                    int index = cmbTablesx.FindStringExact(actualTable.Name);
+                    cmbTablesx.SelectedIndex = index;      
+                }
+                    
+            }
+
+        } // refreshDataWithActualProject
+
+
 
         private void butNewProject2_Click(object sender, EventArgs e)
         {

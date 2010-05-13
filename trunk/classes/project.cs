@@ -41,6 +41,9 @@ public class project : ISerializable
     private int _idProjects;
     private string _name;
     private string _description;
+    private string _nameSpace;
+   
+    
     private databaseType _dbDataType;
     private string _database;
     private string _user;
@@ -99,6 +102,15 @@ public class project : ISerializable
         get { return _description; }
         set { _description = value; }
     }
+
+    public string nameSpace
+    {
+        get { return _nameSpace; }
+        set { _nameSpace = value; }
+    }
+  
+    
+    
     public databaseType dbDataType
     {
         get { return _dbDataType; }
