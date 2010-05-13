@@ -37,14 +37,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BIN2\FreeTextBox.dll</HintPath>
     </Reference>
-    <Reference Include="MenuPilot, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>I:\proyectos\BIN2\MenuPilot.dll</HintPath>
-    </Reference>
-    <Reference Include="RSSMaster, Version=1.0.1208.1379, Culture=neutral">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\BIN2\RSSMaster.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -109,6 +101,13 @@
     </Compile>
     <Compile Include="portal\master\masterWeb.Master.designer.cs">
       <DependentUpon>masterWeb.Master</DependentUpon>
+    </Compile>
+    <Compile Include="portal\master\menuPortal.ascx.cs">
+      <DependentUpon>menuPortal.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="portal\master\menuPortal.ascx.designer.cs">
+      <DependentUpon>menuPortal.ascx</DependentUpon>
     </Compile>
     <Compile Include="portal\master\testMasterPortal.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -547,6 +546,7 @@
     <Content Include="admin\test_dir\main_test.aspx" />
     <Content Include="images\anadirCat.gif" />
     <Content Include="images\aviso.gif" />
+    <Content Include="portal\master\menuPortal.ascx" />
     <Content Include="portal\master\testMasterPortal.aspx" />
   </ItemGroup>
   <ItemGroup>

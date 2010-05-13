@@ -20,7 +20,7 @@
 	<div id="contenido">
 	    <asp:Repeater ID="RepeaterBarraNavegacion" runat="server">
         <ItemTemplate>
-            ><a href="<%#Eval("url")%>"><%#Eval("nombre")%></a>
+            <a href="<%#Eval("url")%>"><%#Eval("nombre")%></a> 
         </ItemTemplate>
     </asp:Repeater>			
 				<!--barra titulos-->
@@ -64,7 +64,7 @@
 						<span class="etiqueta">${field.targetName()}: </span>
 						<asp:DropDownList ID="cmb${field}" runat="server">
 						</asp:DropDownList>
-						<asp:ImageButton ID="ibNew${field}" runat="server" ImageUrl="~/images/anadirCat.gif" OnClick="ibNew${field}_Click" />
+						<asp:ImageButton ID="ibNew${field}" runat="server" ImageUrl="~/admin/imagesadmin/anadirCat.gif" OnClick="ibNew${field}_Click" />
 					</label>
 					</div>		
             #else
@@ -82,7 +82,7 @@
 			  	<div class="lineaForm">
                    <label for="${field}">
                         <span class="etiqueta">${field.targetName()}: </span>
-						#if ( $field.size() >= 251)>
+						#if ( $field.size() >= 251)
 						   <FTB:FreeTextBox ID="txt${field}" runat="server" Language="es-ES">
 						   </FTB:FreeTextBox>
 						#else

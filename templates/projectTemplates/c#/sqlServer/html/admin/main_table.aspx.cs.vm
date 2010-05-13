@@ -4,7 +4,7 @@
 	Author: Luis Molina
 *#  
  
-  <nameFile>main_${table}</nameFile>
+<nameFile>main_${table}</nameFile>
 <extensionFile>aspx.cs</extensionFile>
 <languageGenerated>c_sharp</languageGenerated>
 <description>description</description>
@@ -63,7 +63,7 @@ namespace ${project}.${table}_dir
 									 #end
 									   #end 
                                   #if ($field.type.toString() == "_string")
-									#if ( $field.size() >= 251)>
+									#if ( $field.size() >= 251)
                                        txt${field}.Text = sf.cadena(res.${field});
                                     #else
                                         txt${field}.Text = sf.cadena(res.${field});
@@ -128,7 +128,7 @@ namespace ${project}.${table}_dir
                                      #end                                   
                                      #end 
                                   #if ($field.type.toString() == "_string")
-									#if ( $field.size() >= 251)>
+									#if ( $field.size() >= 251)
                                        res.${field}=sf.cadena(txt${field}.Text);
                                     #else
                                         res.${field}=sf.cadena(txt${field}.Text) ;
@@ -196,7 +196,7 @@ namespace ${project}.${table}_dir
                                    
                                      #end 
                                   #if ($field.type.toString() == "_string")
-									#if ( $field.size() >= 251)>
+									#if ( $field.size() >= 251)
                                        res.${field}=sf.cadena(txt${field}.Text);
                                     #else
                                         res.${field}=sf.cadena(txt${field}.Text) ;
@@ -315,6 +315,11 @@ namespace ${project}.${table}_dir
                 #end 
 
 		
+      protected void ibNewidManufacturer_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+     
         
     } 
     

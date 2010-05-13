@@ -262,7 +262,7 @@ public partial class ${table}Bll
             dbClass db = new dbClass(ctes.conStringAdoGeneral);
             try
             {
-            sqlt = "SELECT TOP tamPag * FROM ${table} WHERE ${table.getKey()} NOT IN (SELECT TOP sf.cadena(num*tamPag) ${table.getKey()} FROM ${table} ORDER BY ${table.getKey()}) ORDER BY ${table.getKey()}"
+            sqlt = "SELECT TOP tamPag * FROM ${table} WHERE ${table.getKey()} NOT IN (SELECT TOP sf.cadena(num*tamPag) ${table.getKey()} FROM ${table} ORDER BY ${table.getKey()}) ORDER BY ${table.getKey()}";
             reg = db.sql(sqlt);
             while (reg.Read())
                 {
