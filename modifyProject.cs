@@ -15,6 +15,7 @@ using System.Collections;
 
 using System.Threading;
 
+using System.Media;
 
 namespace myWay
 {
@@ -78,7 +79,11 @@ namespace myWay
                 txtDatabase.Text = pr.database;
                 txtUser.Text = pr.user;
                 txtPassword.Text = pr.password;
-                cmbDataType.SelectedItem = pr.dbDataType.ToString();
+
+                int index = cmbDataType.FindStringExact(pr.dbDataType.ToString());
+                cmbDataType.SelectedIndex = index;     
+
+                //cmbDataType.SelectedItem = pr.dbDataType.ToString();
             }
         }
 
@@ -88,7 +93,7 @@ namespace myWay
 
 
             //return DialogResult.OK;
-          
+
             
             // search metadata...
             Thread t = new Thread(new ParameterizedThreadStart(search));
@@ -178,8 +183,10 @@ namespace myWay
 
 
                                 // lets sort the fields in the table...
+                                // we order but put first key fields
                                 item.fields.Sort(new compareFields(compareFields.CompareByOptions.name));
-                                
+                                item.fields.Sort(new compareFields(compareFields.CompareByOptions.key));
+
                                 pr.tables.Add(item);
 
 
@@ -336,8 +343,10 @@ namespace myWay
                                 dbSqlServer.getKeys(connectionString, item);
 
                                 // lets sort the fields in the table...
+                                // we order but put first key fields
                                 item.fields.Sort(new compareFields(compareFields.CompareByOptions.name));
-                                
+                                item.fields.Sort(new compareFields(compareFields.CompareByOptions.key));
+
                                 pr.tables.Add(item);
 
 
@@ -429,11 +438,13 @@ namespace myWay
                     case true:
                         AsyncWriteLine("All right. Now you can save the project...");
                         AsyncEnableButton(true);
+                        SystemSounds.Exclamation.Play();
                         break;
 
                     case false:
                         AsyncWriteLine("Error, review the configuration.");
                         AsyncEnableButton(false);
+                        util.playSimpleSound(Path.Combine(util.sound_dir, "zasentodalaboca.wav"));
                         break;
 
                 }
@@ -441,6 +452,7 @@ namespace myWay
             }
             catch (Exception ex)
             {
+                util.playSimpleSound(Path.Combine(util.sound_dir, "zasentodalaboca.wav"));
 
                 AsyncWrite(ex.Message);
             }

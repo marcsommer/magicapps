@@ -433,16 +433,16 @@
 				 
 				 
 					  #if ($field.type.toString() == "_integer")
-							sqlt.Append(" ${field}=" + sf.cadena(obj${table}.${field})+ "'<#if ($table.GetArrayOfFields.count -  $count  != 1)>,#end ") ;
+							sqlt.Append(" ${field}=" + sf.cadena(obj${table}.${field})+ "'#if ($table.GetArrayOfFields.count -  $count  != 1),#end ") ;
 						 #end
 					  #if ($field.type.toString() == "_string")
-						sqlt.Append(" ${field}='" + sf.cadena(obj${table}.${field})+ "'<#if ($table.GetArrayOfFields.count -  $count  != 1)>,#end "); 
+						sqlt.Append(" ${field}='" + sf.cadena(obj${table}.${field})+ "'#if ($table.GetArrayOfFields.count -  $count  != 1),#end "); 
 						 #end
 					  #if ($field.type.toString() == "_date")
-						  sqlt.Append(" ${field}='" + sf.fechaIso(obj${table}.${field}) + "'<#if ($table.GetArrayOfFields.count -  $count  != 1)>,#end " );
+						  sqlt.Append(" ${field}='" + sf.fechaIso(obj${table}.${field}) + "'#if ($table.GetArrayOfFields.count -  $count  != 1),#end " );
 						 #end
 					  #if ($field.type.toString() == "_boolean")
-						 sqlt.Append(" ${field}=" + sf.boolean(obj${table}.${field}) + "'<#if ($table.GetArrayOfFields.count -  $count  != 1)>,#end ");
+						 sqlt.Append(" ${field}=" + sf.boolean(obj${table}.${field}) + "'#if ($table.GetArrayOfFields.count -  $count  != 1),#end ");
 						 #end
 					   
 			#end	
@@ -481,16 +481,16 @@
 				
 				 
 					  #if ($field.type.toString() == "_integer")
-						sqlt.Append( " ${field}=" + sf.cadena(this.${field}) + " <#if ($table.GetArrayOfFields.count -  $count  != 1)>,#end");
+						sqlt.Append( " ${field}=" + sf.cadena(this.${field}) + " #if ($table.GetArrayOfFields.count -  $count  != 1),#end");
 						 #end
 					  #if ($field.type.toString() == "_string")
-						  sqlt.Append(" ${field}='" + sf.cadena(this.${field}) + "' <#if ($table.GetArrayOfFields.count -  $count  != 1)>,#end" );
+						  sqlt.Append(" ${field}='" + sf.cadena(this.${field}) + "' #if ($table.GetArrayOfFields.count -  $count  != 1),#end" );
 						 #end
 					  #if ($field.type.toString() == "_date")
-						  sqlt.Append( " ${field}='" + sf.fechaIso(this.${field}) + "' <#if ($table.GetArrayOfFields.count -  $count  != 1)>,#end") ;
+						  sqlt.Append( " ${field}='" + sf.fechaIso(this.${field}) + "' #if ($table.GetArrayOfFields.count -  $count  != 1),#end") ;
 						 #end
 					  #if ($field.type.toString() == "_boolean")
-						sqlt.Append(" ${field}=" + sf.boolean(this.${field}) + " <#if ($table.GetArrayOfFields.count -  $count  != 1)>,#end");
+						sqlt.Append(" ${field}=" + sf.boolean(this.${field}) + " #if ($table.GetArrayOfFields.count -  $count  != 1),#end");
 						 #end
 					 
 				

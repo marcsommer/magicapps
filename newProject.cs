@@ -14,6 +14,9 @@ using System.Collections;
 
 using System.Threading;
 
+
+using System.Media;
+
 namespace myWay
 {
     public partial class newProject : Form
@@ -155,8 +158,9 @@ namespace myWay
 
 
                                 // lets sort the fields in the table...
+                                // we order but put first key fields
                                 item.fields.Sort(new compareFields(compareFields.CompareByOptions.name));
-                                // item.fields.Sort(new compareFields(compareFields.CompareByOptions.key));
+                                item.fields.Sort(new compareFields(compareFields.CompareByOptions.key));
 
                                 pr.tables.Add(item);
 
@@ -310,7 +314,9 @@ namespace myWay
                                 dbSqlServer.getKeys(connectionString, item);
 
                                 // lets sort the fields in the table...
+                                // we order but put first key fields
                                 item.fields.Sort(new compareFields(compareFields.CompareByOptions.name));
+                                item.fields.Sort(new compareFields(compareFields.CompareByOptions.key));
 
                                 pr.tables.Add(item);
 
@@ -401,11 +407,13 @@ namespace myWay
                     case true:
                             AsyncWriteLine("All right. Now you can save the project...");
                             AsyncEnableButton(true);
+                            SystemSounds.Exclamation.Play();
                             break;
 
                     case false:
                             AsyncWriteLine("Error, review the configuration.");
                             AsyncEnableButton(false);
+                            util.playSimpleSound(Path.Combine(util.sound_dir, "zasentodalaboca.wav"));
                             break;
 
                 }

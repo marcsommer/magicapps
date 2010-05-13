@@ -34,6 +34,8 @@ using System.Windows.Input;
 // ComboBoxItem
 using System.Windows.Controls;
 
+using System.Media;
+
 namespace myWay
 {
     public partial class Form1 : Form
@@ -100,7 +102,7 @@ namespace myWay
 
             //// para apañar templates antiguos...
             //myWay.classes.fixTemplate fi = new myWay.classes.fixTemplate();
-            //fi.traverseDirectory("I:\\proyectos\\desktop\\myWay\\templates\\basic");
+            //fi.traverseDirectory("I:\\proyectos\\desktop\\myWay\\templates\\vb");
              
             // para crear el control avalonEdit
             // son necesarias las siguientes dll (copiadas del framework 3.0 la mayoria)
@@ -310,6 +312,8 @@ namespace myWay
 
         private void butApplyTemplate2_Click(object sender, EventArgs e)
         {
+
+            
             char tabCaracter = '\u0009';
             try
             {
@@ -329,7 +333,14 @@ namespace myWay
                 foreach (table item in actualProject.tables)
                 {
                     if (item.Name.Equals(tableSelected))
+                    {
                         tab = item;
+                        if (tab.GetKey == null)
+                        {
+                            MessageBox.Show( "Alert, review data, table doesnt have a key" );
+                            AsyncWriteLine("Alert, review data, table doesnt have a key");
+                        }
+                    }
                 }
 
                 string numerocampos = tab.fields.Count.ToString();
@@ -386,28 +397,25 @@ namespace myWay
                 }
                 catch (System.Exception exx)
                 {
+                    util.playSimpleSound(Path.Combine(util.sound_dir, "zasentodalaboca.wav"));
+
                     AsyncWriteLine(exx.Message);
                     rt1.Text = exx.Message;
                     //System.Console.Out.WriteLine("Problem merging template : " + exx);
                     System.Console.Out.WriteLine("Problem evaluating template : " + exx);
                 }
 
-               // System.Console.Out.WriteLine(" template : " + writer.GetStringBuilder().ToString());
 
+                SystemSounds.Exclamation.Play();
 
-                //                
-
-
-
-                //StringTemplate hello = new StringTemplate(plantilla);
-                //hello.SetAttribute("table", tab);
-                //rt1.Text = hello.ToString();
+                //util.playSimpleSound(Path.Combine(util.sound_dir, "risapetergriffin.wav"));
+               
 
 
             }
             catch (Exception ex)
             {
-
+                util.playSimpleSound(Path.Combine(util.sound_dir, "zasentodalaboca.wav"));
                 rt1.Text = ex.Message;
             }
         }
