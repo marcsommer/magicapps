@@ -13,6 +13,7 @@ using System.IO;
 
 using System.Text.RegularExpressions;
 
+using System.Media;
 
 public static class util
 {
@@ -31,6 +32,7 @@ public static class util
     public static string templates_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, "templates");
     public static string projectTemplates_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, "templates\\projectTemplates");
     public static string images_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, "images");
+    public static string sound_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, "sounds");
 
 
     public static project actualProject;
@@ -219,6 +221,16 @@ public static class util
             else
                 return String.Empty;
         }
+    } // extractFileName
+
+
+    public static void playSimpleSound(string path)
+    {
+        SoundPlayer simpleSound = new SoundPlayer(path);
+        simpleSound.Play();
+
+       
+
     }
 
 

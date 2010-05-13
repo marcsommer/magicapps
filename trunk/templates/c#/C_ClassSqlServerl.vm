@@ -3,7 +3,7 @@
 	Author: Luis Molina
 *#  
   
-  <nameFile>${table}</nameFile>
+<nameFile>${table}</nameFile>
 <extensionFile>cs</extensionFile>
 <languageGenerated>c_sharp</languageGenerated>
 <description>description</description>
@@ -447,25 +447,21 @@ public partial class ${table}
 		#foreach( $field in $table.GetArrayOfFields )
 			#if ( !$field.isKey() || $field.TargetType() == "_image")
 			#else
-				 
-				 
 					  #if ($field.type.toString() == "_integer")
-							sqlt.Append(" ${field}=" + sf.cadenaSqlServer(obj${table}.${field})+ "'<#if ($table.GetArrayOfFields.count -  $count  != 1)>,#end ") ;
+							sqlt.Append(" ${field}=" + sf.cadenaSqlServer(obj${table}.${field})+ "'#if ($table.GetArrayOfFields.count -  $count  != 1),#end ") ;
 						 #end
 					  #if ($field.type.toString() == "_string")
-						sqlt.Append(" ${field}=" + sf.cadenaSqlServer(obj${table}.${field})+ " <#if ($table.GetArrayOfFields.count -  $count  != 1)>,#end "); 
+						sqlt.Append(" ${field}=" + sf.cadenaSqlServer(obj${table}.${field})+ " #if ($table.GetArrayOfFields.count -  $count  != 1),#end "); 
 						 #end
 					  #if ($field.type.toString() == "_date")
-						  sqlt.Append(" ${field}=" + sf.fechaIso(obj${table}.${field}) + " <#if ($table.GetArrayOfFields.count -  $count  != 1)>,#end " );
+						  sqlt.Append(" ${field}=" + sf.fechaIso(obj${table}.${field}) + " #if ($table.GetArrayOfFields.count -  $count  != 1),#end " );
 						 #end
 					  #if ($field.type.toString() == "_boolean")
-						 sqlt.Append(" ${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + " <#if ($table.GetArrayOfFields.count -  $count  != 1)>,#end ");
+						 sqlt.Append(" ${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + " #if ($table.GetArrayOfFields.count -  $count  != 1),#end ");
 						 #end
 					  #if ($field.type.toString() == "_doble")
-						 sqlt.Append(" ${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + "'<#if ($table.GetArrayOfFields.count -  $count  != 1)>,#end ");
+						 sqlt.Append(" ${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + "'#if ($table.GetArrayOfFields.count -  $count  != 1),#end ");
 						 #end
-					   
-				 		
 			#end	
 			#set ($count = $count + 1 ) 
 		#end
@@ -502,19 +498,19 @@ public partial class ${table}
 				
 				 
 					  #if ($field.type.toString() == "_integer")
-						sqlt.Append( " ${field}=" + sf.cadenaSqlServer(this.${field}) + " <#if ($table.GetArrayOfFields.count -  $count  != 1)>,#end");
+						sqlt.Append( " ${field}=" + sf.cadenaSqlServer(this.${field}) + " #if ($table.GetArrayOfFields.count -  $count  != 1),#end");
 						 #end
 					  #if ($field.type.toString() == "_string")
-						  sqlt.Append(" ${field}=" + sf.cadenaSqlServer(this.${field}) + " <#if ($table.GetArrayOfFields.count -  $count  != 1)>,#end" );
+						  sqlt.Append(" ${field}=" + sf.cadenaSqlServer(this.${field}) + " #if ($table.GetArrayOfFields.count -  $count  != 1),#end" );
 						 #end
 					  #if ($field.type.toString() == "_date")
-						  sqlt.Append( " ${field}=" + sf.fechaIso(this.${field}) + " <#if ($table.GetArrayOfFields.count -  $count  != 1)>,#end") ;
+						  sqlt.Append( " ${field}=" + sf.fechaIso(this.${field}) + " #if ($table.GetArrayOfFields.count -  $count  != 1),#end") ;
 						 #end
 					  #if ($field.type.toString() == "_boolean")
-						sqlt.Append(" ${field}=" + sf.cadenaSqlServer(this.${field}) + " <#if ($table.GetArrayOfFields.count -  $count  != 1)>,#end");
+						sqlt.Append(" ${field}=" + sf.cadenaSqlServer(this.${field}) + " #if ($table.GetArrayOfFields.count -  $count  != 1),#end");
 						 #end
 					  #if ($field.type.toString() == "_doble")
-						sqlt.Append(" ${field}=" + sf.cadenaSqlServer(this.${field}) + " <#if ($table.GetArrayOfFields.count -  $count  != 1)>,#end");
+						sqlt.Append(" ${field}=" + sf.cadenaSqlServer(this.${field}) + " #if ($table.GetArrayOfFields.count -  $count  != 1),#end");
 						 #end
 					  			
 				
@@ -688,70 +684,67 @@ public partial class ${table}
  
 #foreach( $relation in $table.getRelations() )
  
- ...................................................................
-${relation.parentField}
 
- 
-        public static ${table} get${table}By{$relation.parentField()} (int  ${relation.parentField} )
+    public static ${table} get${table}By{$relation.parentField()} (int  ${relation.parentField} )
+    {
+        ${table} ${table}x = new ${table}();
+        System.Data.SqlClient.SqlDataReader reg;
+        string sqlt;
+            ${table} obj${table} = new ${table}();
+
+
+        dbClass db = new dbClass(ctes.conStringAdoGeneral);
+        try
         {
-            ${table} ${table}x = new ${table}();
-            System.Data.SqlClient.SqlDataReader reg;
-            string sqlt;
-                ${table} obj${table} = new ${table}();
+        sqlt = "select * from ${relation.getChildTable()}";
+      
+        sqlt += " where ${relation.parentField()}=" + sf.cadena(${relation.parentField()});  
 
+        reg = db.sql(sqlt);
+        if (reg.Read())
+        {
+      
+          #foreach( $field in $table.GetArrayOfFields )
 
-            dbClass db = new dbClass(ctes.conStringAdoGeneral);
-            try
-            {
-            sqlt = "select * from ${relation.getChildTable()}";
-          
-            sqlt += " where ${relation.parentField()}=" + sf.cadena(${relation.parentField()});  
+                     
+                     
+                              #if ($field.type.toString() == "_integer")
+                                 obj${table}.${field} = sf.entero(reg["${field}"].ToString());
+                                 #end
+                              #if ($field.type.toString() == "_string")
+                                 obj${table}.${field} = sf.cadena(reg["${field}"].ToString());	  					
+                                 #end
+                              #if ($field.type.toString() == "_date")
+                                obj${table}.${field} = sf.fecha(reg["${field}"].ToString());
+                                 #end
+                              #if ($field.type.toString() == "_boolean")
+                                 obj${table}.${field} = sf.boolean(reg["${field}"].ToString());
+                                 #end
+                              #if ($field.type.toString() == "_doble")
+                                 obj${table}.${field} = sf.doble(reg["${field}"].ToString());
+                                 #end
+                           
 
-            reg = db.sql(sqlt);
-            if (reg.Read())
-            {
-          
-              #foreach( $field in $table.GetArrayOfFields )
-
-                         
-                         
-                                  #if ($field.type.toString() == "_integer")
-                                     obj${table}.${field} = sf.entero(reg["${field}"].ToString());
-                                     #end
-                                  #if ($field.type.toString() == "_string")
-                                     obj${table}.${field} = sf.cadena(reg["${field}"].ToString());	  					
-                                     #end
-                                  #if ($field.type.toString() == "_date")
-                                    obj${table}.${field} = sf.fecha(reg["${field}"].ToString());
-                                     #end
-                                  #if ($field.type.toString() == "_boolean")
-                                     obj${table}.${field} = sf.boolean(reg["${field}"].ToString());
-                                     #end
-                                  #if ($field.type.toString() == "_doble")
-                                     obj${table}.${field} = sf.doble(reg["${field}"].ToString());
-                                     #end
-                               
-
-                #end		 
-	  			 
-                
+            #end		 
+  			 
             
-               }
-            reg.Close(); 
-            }
-            catch (Exception ex)
-            {
-                // Argument is optional, no "When" keyword 
-            }
-            finally
-            {
-                db.Dispose();
-              
-            }
-            return  obj${table} ;
-       }
-    
-	
+        
+           }
+        reg.Close(); 
+        }
+        catch (Exception ex)
+        {
+            // Argument is optional, no "When" keyword 
+        }
+        finally
+        {
+            db.Dispose();
+          
+        }
+        return  obj${table} ;
+   }
+
+
 	 public void delete${relation.getParentTable()}By${relation.parentField()} (int ${relation.parentField()}x)
 	 {
 		 dbClass db=new  dbClass(ctes.conStringAdoGeneral);

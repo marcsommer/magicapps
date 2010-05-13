@@ -31,27 +31,43 @@ using System.Collections;
         // para poder ordenar...
         public int Compare(object obj, object obj2)
         {
-            field campo1 = (field)obj;
-            field campo2 = (field)obj2;
 
-            switch (cmp)
+            try
             {
-                case CompareByOptions.key:
-                    if (campo1.isKey)
-                        return -1;
-                    else
+                field campo1 = (field)obj;
+                field campo2 = (field)obj2;
+
+                switch (cmp)
+                {
+                    case CompareByOptions.key:
+                        if (campo1.Name.Equals(campo2.Name))
+                            return 0;
+                        if (campo1.isKey)
+                            return -1;
+                        else
+                            return 1;
+
+                        break;
+
+
+                    case CompareByOptions.name:
+                        return string.Compare(campo1.Name, campo2.Name);
+                        break;
+
+                    default:
                         return 0;
-                    break;
-                case CompareByOptions.name:
-                    return string.Compare(campo1.Name, campo2.Name);
-                    break;
-                default:
-                    return 0;
-                    break;
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+
+
             }
 
 
-             return 0;
+
+            return 0;
         }
 
 

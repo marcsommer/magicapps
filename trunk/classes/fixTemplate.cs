@@ -136,7 +136,7 @@ textoArchivo = textoArchivo.Replace("${", "{$");
                 textoArchivo = textoArchivo.Replace("<#if (count <=2 && count >=1)>", "#if ($count <=2 && $count >=1)");
 
 
-                textoArchivo = textoArchivo.Replace("<#if (table.getNumberOfFields() -  count  != 1)>,#end", "#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end");
+                textoArchivo = textoArchivo.Replace("<#if (table.getNumberOfFields() -  $count  != 1)>,#end", "#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end");
                 textoArchivo = textoArchivo.Replace("#if (table.getNumberOfFields()", "#if ($table.GetArrayOfFields.count");
                 textoArchivo = textoArchivo.Replace("<<#if ($table.GetArrayOfFields.count", "<#if ($table.GetArrayOfFields.count");
 
