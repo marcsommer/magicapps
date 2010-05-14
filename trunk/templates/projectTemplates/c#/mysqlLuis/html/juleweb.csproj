@@ -171,7 +171,6 @@
     <Content Include="App_Themes\contrastexl\altocontraste.css" />
     <Content Include="App_Themes\contraste\altocontraste.css" />
     <Content Include="App_Themes\normal\estilos.css" />
-    <Content Include="App_Themes\normal\estilos.css" />
     <Content Include="App_Themes\textomed\solotexto.css" />
     <Content Include="App_Themes\textoxl\solotexto.css" />
     <Content Include="App_Themes\texto\solotexto.css" />

@@ -27,7 +27,6 @@ img{border:0;margin:0;padding:0;}
 h1 a, h2 a, h3 a{text-decoration:none;}
 h1, h2, h3, h4, h5{margin:0;padding:0;font-family: Verdana, Arial, Helvetica, sans-serif; color:#448263;}
 
-
 h3{font-size:1.4em;}
 h4{font-size:1.2em;padding-bottom:8px;}
 h4 a{font-size:0.9em;}
@@ -172,10 +171,9 @@ ul.listasAsoc li{ background:url(../../images/puntoLi2.gif) no-repeat 0 6px; pad
 .titular{ background:#f3f8f5; color:#328456; padding:4px 10px; margin:10px 0; font-size:1.1em;}
 .titulo{clear:both;color:#185433; padding:5px 0 15px 0; background:url(../../images/fondoTit2.gif) repeat-x bottom;}
 .titulo h2, .titulo h3{padding:0 0 7px 32px; background:url(../../images/titulos.gif) no-repeat 5px 2px;font:bold 1.8em Arial, Helvetica, sans-serif;}
-h3.especial{font-size:1.5em !important;}
 .linkNotic{clear:both; float:left;}
 .linkNotic a{display:block; background:url(../../images/flecha.gif) no-repeat 100% 4px; margin: 7px 0; padding:3px 16px 3px 3px;}
-.textobloque4{padding:5px 0; text-align:center; clear:both; float:left; width:100%;}
+
 .textobloque3{padding:5px 0; text-align:justify; clear:both; float:left; width:100%;}
 .textobloque2{padding:2px 1% 15px 1%; text-align:justify; clear:both; float:left; width:98%;}
 .textobloque{padding:12px; background:#fff url(../../images/separadorH.gif) repeat-x bottom; clear:both;text-align:justify;}.textobloque h3{text-align:justify; font: bold 1.1em Verdana, Arial, Helvetica, sans-serif; padding-bottom:8px;}
@@ -241,15 +239,6 @@ h3.especial{font-size:1.5em !important;}
 .menuTit{text-transform:lowercase; padding:3px 5px 3px 38px; font-size:1.2em; background:url(../../images/titMenu.gif) no-repeat 9px 4px;}
 .menuTit span{color:#868d89;}
 
-/*-----MENU ASOCIACIONES------*/
-/*-----MENU ASOCIACIONES------*/
-#bloqueMenuAsoc{float:left; width:97%; padding:0 0 10px 5px;}
-#bloqueMenuAsoc ul{float:left; width:100%;}
-#bloqueMenuAsoc ul li{background: url(../../images/separadorH.gif) repeat-x bottom;}
-#bloqueMenuAsoc ul li a{color:#3b4d3f; font:normal 1em Verdana, Arial, Helvetica, sans-serif; text-decoration:none; display:block; padding: 5px 4px 7px 27px; background: url(../images/signoMas.gif) no-repeat 10px 8px; font-weight:bold;}
-#bloqueMenuAsoc ul li a:hover{text-decoration:none; color:#40955c;}
-
-
 /*-----PIE------*/
 #sombraPie{background: url(../../images/sombraPie.gif) repeat-x; height:10px;width:100%; float:left;clear:both;}
 #pie{color:#fff;background:#589572 url(../../images/fondoPie.gif) repeat-x bottom; float:left; width:100%; clear:both;padding:7px 0; border-bottom:1px solid #004314;}
@@ -293,3 +282,10 @@ a.mail{padding-left: 16px !important; background: url(../../images/contact.gif) 
 .calendarText p{display:block; text-align:justify; margin:0; padding: 2px 0;}
 .calendar{ background:url(../../images/calend.gif) no-repeat; padding: 1px 0 1px 22px;}
 /*----*/
+
+
+.paginacion ul{margin:5px 0 5px 10px;padding:0; }
+.paginacion li{float:left; background:none !important}
+
+.pag{ border:none; color:#0056a9; background:#FFF}
+.pag:hover{color:#000; text-decoration:underline !important; background:#FFF}

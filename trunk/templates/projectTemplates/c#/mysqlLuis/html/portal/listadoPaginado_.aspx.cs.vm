@@ -3,7 +3,7 @@
 	
 	Author: Luis Molina
 *#  
- <nameFile>listadoPaginado_${table}</nameFile>
+<nameFile>listadoPaginado_${table}</nameFile>
 <extensionFile>aspx.cs</extensionFile>
 <languageGenerated>c_sharp</languageGenerated>
 <description>description</description>
@@ -48,20 +48,44 @@ namespace ${project}.portal.main_${table}
                }
                // cargamos los primeros 5
                bind(0, tamPag);
+               
+				// lets paginate
+				List<ListItem> listaPaginacion = new List<ListItem>();
+				for (int i = 0; i < numPaginas; i++)
+				{
+					ListItem li = new ListItem(i.ToString());
+					listaPaginacion.Add(li);
+				    
+				}
+				RepeaterPag.DataSource = listaPaginacion;
+				RepeaterPag.DataBind();
+               
+               
             }             
            
-        }
+        } // page_load
 
 
         public void bind(int page, int tamPag)
         {
-
                 List<cars> listcars = new List<cars>();
                 listcars = cars.getPage(page,tamPag);
                
                 Repeater1.DataSource = listcars;
                 Repeater1.DataBind();
-        }
+        } // bind
+        
+
+        protected void RepeaterPag_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            int id = sf.entero(e.CommandArgument.ToString());
+            bind(id, tamPag);
+        } // RepeaterPag_ItemCommand
+        
+        
+        
+        
+        
     }
 }
 
