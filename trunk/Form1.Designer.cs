@@ -54,6 +54,7 @@
             this.rt1 = new System.Windows.Forms.RichTextBox();
             this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.butReturnToScript = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.cmbGoToCode = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -103,9 +104,9 @@
             // 
             // butCopy
             // 
-            this.butCopy.Location = new System.Drawing.Point(994, 39);
+            this.butCopy.Location = new System.Drawing.Point(1081, 39);
             this.butCopy.Name = "butCopy";
-            this.butCopy.Size = new System.Drawing.Size(78, 25);
+            this.butCopy.Size = new System.Drawing.Size(64, 25);
             this.butCopy.TabIndex = 18;
             this.butCopy.Values.Image = global::myWay.Properties.Resources.css;
             this.butCopy.Values.Text = "Copy";
@@ -251,7 +252,7 @@
             // 
             this.panel1.Location = new System.Drawing.Point(494, 63);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(581, 347);
+            this.panel1.Size = new System.Drawing.Size(651, 347);
             this.panel1.TabIndex = 35;
             // 
             // rt1
@@ -264,7 +265,7 @@
             // 
             // kryptonButton2
             // 
-            this.kryptonButton2.Location = new System.Drawing.Point(786, 39);
+            this.kryptonButton2.Location = new System.Drawing.Point(764, 39);
             this.kryptonButton2.Name = "kryptonButton2";
             this.kryptonButton2.Size = new System.Drawing.Size(78, 25);
             this.kryptonButton2.TabIndex = 37;
@@ -274,7 +275,7 @@
             // 
             // butReturnToScript
             // 
-            this.butReturnToScript.Location = new System.Drawing.Point(702, 39);
+            this.butReturnToScript.Location = new System.Drawing.Point(680, 39);
             this.butReturnToScript.Name = "butReturnToScript";
             this.butReturnToScript.Size = new System.Drawing.Size(78, 25);
             this.butReturnToScript.TabIndex = 38;
@@ -282,11 +283,22 @@
             this.butReturnToScript.Values.Text = "Script";
             this.butReturnToScript.Click += new System.EventHandler(this.butReturnToScript_Click);
             // 
+            // cmbGoToCode
+            // 
+            this.cmbGoToCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGoToCode.FormattingEnabled = true;
+            this.cmbGoToCode.Location = new System.Drawing.Point(880, 43);
+            this.cmbGoToCode.Name = "cmbGoToCode";
+            this.cmbGoToCode.Size = new System.Drawing.Size(195, 21);
+            this.cmbGoToCode.TabIndex = 39;
+            this.cmbGoToCode.SelectedIndexChanged += new System.EventHandler(this.cmbGoToCode_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1087, 559);
+            this.ClientSize = new System.Drawing.Size(1157, 559);
+            this.Controls.Add(this.cmbGoToCode);
             this.Controls.Add(this.butReturnToScript);
             this.Controls.Add(this.kryptonButton2);
             this.Controls.Add(this.rt1);
@@ -339,6 +351,7 @@
         private System.Windows.Forms.RichTextBox rt1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
         private ComponentFactory.Krypton.Toolkit.KryptonButton butReturnToScript;
+        private System.Windows.Forms.ComboBox cmbGoToCode;
     }
 }
 

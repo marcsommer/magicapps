@@ -523,12 +523,6 @@
       <DependentUpon>userControlEditTable.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Resources\script_go.png" />
-    <Content Include="sounds\risapetergriffin.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sounds\zasentodalaboca.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="templates\projectTemplates\c#\sqlServer\html\admin\master\menuAdmin.ascx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

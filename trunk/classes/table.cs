@@ -263,6 +263,54 @@ public class table : IComparable
     }
 
 
+    // return a string of parametes (int idCars, ..) with delimiter... fields key
+    public String getListOfParametersForPhp(string delimiter)
+    {
+        ArrayList al = new ArrayList();
+        foreach (field item in fields)
+        {
+            if (item.isKey)
+                switch (item.type)
+                {
+                    case field.fieldType._integer:
+                        al.Add("int " + item.Name);
+                        break;
+
+                    case field.fieldType._tinyInt:
+                        al.Add("bool " + item.Name);
+                        break;
+
+                    case field.fieldType._string:
+                        al.Add("string " + item.Name);
+                        break;
+
+
+                    default:
+                        al.Add("string " + item.Name);
+                        break;
+
+                }
+        }
+        string[] returnArray;
+        string retorno = "";
+
+        returnArray = (string[])al.ToArray(Type.GetType("System.String"));
+
+        if (returnArray.Length == 1)
+        {
+            retorno = returnArray[0];
+        }
+        else
+        {
+            retorno = string.Join(delimiter, returnArray);
+            // retorno = retorno.Remove(retorno.LastIndexOf(delimiter), delimiter.Length);
+        }
+
+        return retorno;
+    }
+
+
+
     // le decimos al serializer que lo ignore o nos duplica los campos...
     [System.Xml.Serialization.XmlIgnore]
     public ArrayList GetArrayOfFields

@@ -34,7 +34,11 @@ using System.Windows.Input;
 // ComboBoxItem
 using System.Windows.Controls;
 
+// sound
 using System.Media;
+
+// reg expr
+using System.Text.RegularExpressions;
 
 namespace myWay
 {
@@ -157,7 +161,7 @@ namespace myWay
                 completionWindow = new CompletionWindow(te.TextArea);
                 IList<ICompletionData> data = completionWindow.CompletionList.CompletionData;
                 data.Add(new MyCompletionData("{table}"));
-                data.Add(new MyCompletionData("Item2"));
+                data.Add(new MyCompletionData("{table.getListOfParameters(\", \")"));
                 
                 data.Add(new MyCompletionData("Item3"));
                 completionWindow.Show();
@@ -320,7 +324,8 @@ namespace myWay
 
                 String plantilla = util.loadFile(templateSelectedFullUri);
 
-             
+             // clean cmbGotocode
+                cmbGoToCode.Items.Clear();
 
                 table tab = new table();
                 String tableSelected = cmbTablesx.Text;
@@ -381,7 +386,7 @@ namespace myWay
 
                     // now we delete the variables from the template cause there are no needed...
                     string finalText = util.deleteVariablesFromTemplate(writer.GetStringBuilder().ToString());
-                    // todo...
+
 
                     // le quitamos saltos de linea extra
                     finalText = finalText.Replace("\r\n\r\n", "\r\n").Replace("\r\n\r\n\r\n", "").Replace("\r\n\r\n\r\n\r\n", "");
@@ -390,14 +395,33 @@ namespace myWay
                     finalText = finalText.Replace(tabCaracter.ToString(), " ");
 
 
-                   // rt1.Text = finalText; 
+                    // rt1.Text = finalText; 
                     writeText(finalText);
-                   
+
+
+                    // now we got all the 
+                    //Instantiating Regex Object
+                    Regex re = new Regex(@"(private|public|protected)\s\w(.)*\((.)*\)", RegexOptions.IgnoreCase);
+                    MatchCollection mc = re.Matches(finalText);
+                    foreach (Match mt in mc)
+                    {
+                        string st = "";
+                        st = mt.ToString();
+                        st = st.Replace("public", "");
+                        st = st.Replace("private", "");
+                        st = st.Replace("static", "");                    
+                        st = st.Replace("void", "");
+
+                        cmbGoToCode.Items.Add(st.Trim());
+                       // Response.Write(mt.ToString() + "<br />");
+                    }
+                  
 
                 }
                 catch (System.Exception exx)
                 {
-                    util.playSimpleSound(Path.Combine(util.sound_dir, "zasentodalaboca.wav"));
+                    //util.playSimpleSound(Path.Combine(util.sound_dir, "zasentodalaboca.wav"));
+                    SystemSounds.Asterisk.Play();
 
                     AsyncWriteLine(exx.Message);
                     rt1.Text = exx.Message;
@@ -913,7 +937,32 @@ namespace myWay
                 //  rt1.Text = util.loadFile(templateSelectedFullUri);
                 writeText(util.loadFile(templateSelectedFullUri));
             }
-        }
+        } // butReturnToScript_Click
+
+        private void cmbGoToCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            string st = "";
+            int numLinea = 0;
+            st =  cmbGoToCode.SelectedItem.ToString().Trim();
+
+            // get the control of editor
+            ElementHost pp = new ElementHost();
+            TextEditor te = new TextEditor();
+            pp = (ElementHost)panel1.Controls.Find("editor", true)[0];
+            te = (TextEditor)pp.Child;
+
+            foreach (ICSharpCode.AvalonEdit.Document.DocumentLine item in te.Document.Lines)
+            {
+                if (item.Text.IndexOf(st) != -1)
+                {
+                    numLinea = item.LineNumber;
+                }
+            }
+            te.ScrollTo(numLinea, 0);
+
+            //te.Document.re
+        } // cmbGoToCode_SelectedIndexChanged
 
         
 
