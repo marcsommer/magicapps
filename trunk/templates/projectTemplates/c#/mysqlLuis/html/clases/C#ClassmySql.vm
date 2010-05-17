@@ -12,12 +12,12 @@
 <appliesToAllTables>true</appliesToAllTables>
 
 
-	using System;
-	using System.Collections;
-    using System.Web;
-    using System.Collections.Generic;
-    using MySql.Data.MySqlClient;   
-	using System.ComponentModel; 
+using System;
+using System.Collections;
+using System.Web;
+using System.Collections.Generic;
+using MySql.Data.MySqlClient;   
+using System.ComponentModel; 
     
     
 [System.ComponentModel.DataObject]
@@ -26,22 +26,19 @@
 	#region["Variables"]
 		 
 		 
-	#foreach( $field in $table.GetArrayOfFields )	
-		 
-		 
-			  #if ($field.type.toString() == "_integer")
-			     private int _${field};
-			     #end 
-			  #if ($field.type.toString() == "_string")
-			     private string _${field};
-			     #end 
-			  #if ($field.type.toString() == "_date")
-			     private DateTime _${field};
-			     #end 
-			  #if ($field.type.toString() == "_boolean")
-			     private bool _${field};
-			     #end 
-			 
+	#foreach( $field in $table.GetArrayOfFields )			 
+		  #if ($field.type.toString() == "_integer")
+			 private int _${field};
+			 #end 
+		  #if ($field.type.toString() == "_string")
+			 private string _${field};
+			 #end 
+		  #if ($field.type.toString() == "_date")
+			 private DateTime _${field};
+			 #end 
+		  #if ($field.type.toString() == "_boolean")
+			 private bool _${field};
+		 #end 			 
 	#end 
 	
 	#endregion
@@ -54,45 +51,38 @@
 		#if ($field.isKey())
 				// for the objectDataSource
 				[DataObjectField(true,true)]
-        #end
-		 
-		 
-			  #if ($field.type.toString() == "_integer")
-			      public int ${field}
-		                {
-			                get {return _${field};}
-			                set {_${field} = value;}
-		                }
-			     #end 
-			  #if ($field.type.toString() == "_string")
-			      public string ${field}
-		                {
-			                get {return _${field};}
-			                set {_${field} = value;}			                
-		                }
-			     #end 
-			  #if ($field.type.toString() == "_date")
-			       public DateTime ${field}
-		                {
-			                get {return _${field};}
-			                set {_${field} = value;}
-		                }
-			     #end 
-			  #if ($field.type.toString() == "_boolean")
-			     public bool ${field}
-                 {
-                     get { return _${field}; }
-                     set { _${field} = value; }
-                 }
-				 #end 
-			 
+		#end
+		#if ($field.type.toString() == "_integer")
+		  public int ${field}
+				{
+					get {return _${field};}
+					set {_${field} = value;}
+				}
+		 #end 
+		#if ($field.type.toString() == "_string")
+		  public string ${field}
+				{
+					get {return _${field};}
+					set {_${field} = value;}			                
+				}
+		 #end 
+		#if ($field.type.toString() == "_date")
+		   public DateTime ${field}
+				{
+					get {return _${field};}
+					set {_${field} = value;}
+				}
+		 #end 
+		#if ($field.type.toString() == "_boolean")
+		 public bool ${field}
+		 {
+			 get { return _${field}; }
+			 set { _${field} = value; }
+		 }
+		 #end 
 		  	 
 	#end 	  
-	  				
 	  				 
-	  				  
-	  		  			
-				
     
     #endregion
 
@@ -154,22 +144,18 @@
 			#set ($count = 0)	
 			#foreach( $field in $table.GetArrayOfFields ) 
 				#if (!$field.isKey())
-					 
-					 
-							  #if ($field.type.toString() == "_integer")
-			 					 sqlt.Append(sf.entero(obj${table}.${field}) + " #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end") ;
-								 #end 
-							  #if ($field.type.toString() == "_string")
-								 sqlt.Append( sf.cadenaMySql(obj${table}.${field}) + " #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end") ;
-								 #end 
-							  #if ($field.type.toString() == "_date")
-								 sqlt.Append( sf.cadenaMySql(sf.fechaIso(obj${table}.${field})) + " #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end ")  ;
-								 #end 
-							  #if ($field.type.toString() == "_boolean")
-								 sqlt.Append( sf.entero(obj${table}.${field})  + " #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end");
-								 #end 
-							  
-					  
+					  #if ($field.type.toString() == "_integer")
+						 sqlt.Append(sf.entero(obj${table}.${field}) + " #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end") ;
+						 #end 
+					  #if ($field.type.toString() == "_string")
+						 sqlt.Append( sf.cadenaMySql(obj${table}.${field}) + " #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end") ;
+						 #end 
+					  #if ($field.type.toString() == "_date")
+						 sqlt.Append( sf.cadenaMySql(sf.fechaIso(obj${table}.${field})) + " #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end ")  ;
+						 #end 
+					  #if ($field.type.toString() == "_boolean")
+						 sqlt.Append( sf.entero(obj${table}.${field})  + " #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end");
+						 #end 
 				#end
 			 #set ($count = $count + 1 )
 			#end 	 
@@ -212,9 +198,7 @@
             while (reg.Read())
                 {
                 ${table} pp = new ${table}();
-#foreach( $field in $table.GetArrayOfFields ) 
-	 
-	 
+#foreach( $field in $table.GetArrayOfFields )  
 		  #if ($field.type.toString() == "_integer")
 		     pp.${field} = sf.entero(reg["${field}"].ToString());
 		     #end 
@@ -226,8 +210,7 @@
 		     #end 
 		  #if ($field.type.toString() == "_boolean")
 		     pp.${field} = sf.Bool(reg["${field}"].ToString());
-		     #end 
-		   
+		     #end  
 #end 
                lista${table}.Add(pp);
 
@@ -283,22 +266,19 @@
             while (reg.Read())
                 {
                 ${table} pp = new ${table}();   
-#foreach( $field in $table.GetArrayOfFields ) 
-	 
-	 
-		  #if ($field.type.toString() == "_integer")
-		     pp.${field} = sf.entero(reg["${field}"].ToString());
-		     #end 
-		  #if ($field.type.toString() == "_string")
-		     pp.${field} = sf.cadena(reg["${field}"].ToString());
-		     #end 
-		  #if ($field.type.toString() == "_date")
-		     pp.${field} = sf.fecha(reg["${field}"].ToString());
-		     #end 
-		  #if ($field.type.toString() == "_boolean")
-		     pp.${field} = sf.Bool(reg["${field}"].ToString());
-		     #end 
-		  
+#foreach( $field in $table.GetArrayOfFields )  
+	  #if ($field.type.toString() == "_integer")
+		 pp.${field} = sf.entero(reg["${field}"].ToString());
+		 #end 
+	  #if ($field.type.toString() == "_string")
+		 pp.${field} = sf.cadena(reg["${field}"].ToString());
+		 #end 
+	  #if ($field.type.toString() == "_date")
+		 pp.${field} = sf.fecha(reg["${field}"].ToString());
+		 #end 
+	  #if ($field.type.toString() == "_boolean")
+		 pp.${field} = sf.Bool(reg["${field}"].ToString());
+		 #end  
 #end 
                lista${table}.Add(pp);
                }
@@ -330,45 +310,38 @@
             sqlt = "select ${table.getListOfFields(",")} from ${table}";          
             sqlt += " where 1!=0";  
             #foreach( $field in $table.GetArrayOfFields )
-              #if ($field.isKey())   
-                     
-                     
-                              #if ($field.type.toString() == "_integer")
-                                sqlt += " and ${field}=" + sf.cadena(${field});
-                                 #end 
-                              #if ($field.type.toString() == "_string")
-                                  sqlt += " and ${field}='" + sf.cadena(${field}) + "'";
-                                 #end 
-                              #if ($field.type.toString() == "_date")
-                                 sqlt += " and ${field}='" + sf.cadena(${field}) + "'";
-                                 #end 
-                              #if ($field.type.toString() == "_boolean")
-                                 sqlt += " and ${field}=" + sf.cadena(${field});
-                                 #end 
-                             
-              #end
-			  
+              #if ($field.isKey())    
+					  #if ($field.type.toString() == "_integer")
+						sqlt += " and ${field}=" + sf.cadena(${field});
+						 #end 
+					  #if ($field.type.toString() == "_string")
+						  sqlt += " and ${field}='" + sf.cadena(${field}) + "'";
+						 #end 
+					  #if ($field.type.toString() == "_date")
+						 sqlt += " and ${field}='" + sf.cadena(${field}) + "'";
+						 #end 
+					  #if ($field.type.toString() == "_boolean")
+						 sqlt += " and ${field}=" + sf.cadena(${field});
+						 #end  
+              #end 
             #end 
 			
             reg = db.sql(sqlt);
             if (reg.Read())
             {          
-              #foreach( $field in $table.GetArrayOfFields )
-                         
-                         
-                                  #if ($field.type.toString() == "_integer")
-                                     obj${table}.${field} = sf.entero(reg["${field}"].ToString());
-                                     #end 
-                                  #if ($field.type.toString() == "_string")
-                                     obj${table}.${field} = sf.cadena(reg["${field}"].ToString());	  					
-                                     #end 
-                                  #if ($field.type.toString() == "_date")
-                                    obj${table}.${field} = sf.fecha(reg["${field}"].ToString());
-                                     #end 
-                                  #if ($field.type.toString() == "_boolean")
-                                     obj${table}.${field} = sf.Bool(reg["${field}"].ToString());
-                                     #end 
-                                   
+              #foreach( $field in $table.GetArrayOfFields ) 
+					  #if ($field.type.toString() == "_integer")
+						 obj${table}.${field} = sf.entero(reg["${field}"].ToString());
+						 #end 
+					  #if ($field.type.toString() == "_string")
+						 obj${table}.${field} = sf.cadena(reg["${field}"].ToString());	  					
+						 #end 
+					  #if ($field.type.toString() == "_date")
+						obj${table}.${field} = sf.fecha(reg["${field}"].ToString());
+						 #end 
+					  #if ($field.type.toString() == "_boolean")
+						 obj${table}.${field} = sf.Bool(reg["${field}"].ToString());
+						 #end  
                 #end 		 
            
                }
@@ -421,9 +394,7 @@
 		
            sqlt.Append(" where 1!=0");          
 		#foreach( $field in $table.GetArrayOfFields )
-			#if ($field.isKey())
-			 
-			 
+			#if ($field.isKey()) 
 				  #if ($field.type.toString() == "_integer")
 					sqlt.Append( " and ${field}=" + obj${table}.${field});
 					 #end 
@@ -435,8 +406,7 @@
 					 #end 
 				  #if ($field.type.toString() == "_boolean")
 					 sqlt.Append( " and ${field}=" + obj${table}.${field});
-					 #end 
-				  
+					 #end  
 		  #end
 		#end 		
              reg = db.sql(sqlt.ToString());
@@ -466,35 +436,29 @@
 		#set ($count = 0)		
 		#foreach( $field in $table.GetArrayOfFields )
 			#if ($field.isKey())
-			#else
-				
-				 
-					  #if ($field.type.toString() == "_integer")
-						sqlt.Append( " ${field}=" + sf.cadena(this.${field}) + "," ) ;
-						#set ($count = $count + 1 )
-						 #end 
-					  #if ($field.type.toString() == "_string")
-						  sqlt.Append(" ${field}='" + sf.cadena(this.${field}) + "'," );
-						  #set ($count = $count + 1 )
-						 #end 
-					  #if ($field.type.toString() == "_date")
-						  sqlt.Append( " ${field}='" + sf.fechaIso(this.${field}) + "',") ;
-						  #set ($count = $count + 1 )
-						 #end 
-					  #if ($field.type.toString() == "_boolean")
-						sqlt.Append(" ${field}=" + sf.cadena(this.${field})  + "," );
-						#set ($count = $count + 1 )
-						 #end 
-					  
-				
+			#else 
+				  #if ($field.type.toString() == "_integer")
+					sqlt.Append( " ${field}=" + sf.cadena(this.${field}) + "," ) ;
+					#set ($count = $count + 1 )
+					 #end 
+				  #if ($field.type.toString() == "_string")
+					  sqlt.Append(" ${field}='" + sf.cadena(this.${field}) + "'," );
+					  #set ($count = $count + 1 )
+					 #end 
+				  #if ($field.type.toString() == "_date")
+					  sqlt.Append( " ${field}='" + sf.fechaIso(this.${field}) + "',") ;
+					  #set ($count = $count + 1 )
+					 #end 
+				  #if ($field.type.toString() == "_boolean")
+					sqlt.Append(" ${field}=" + sf.cadena(this.${field})  + "," );
+					#set ($count = $count + 1 )
+					 #end  
 			#end				
 		#end  
             sqlt.Remove(sqlt.Length - 1, 1);
             sqlt.Append(" where 1!=0");          
 		#foreach( $field in $table.GetArrayOfFields )
-			#if ($field.isKey())
-			 
-			 
+			#if ($field.isKey()) 
 				  #if ($field.type.toString() == "_integer")
 					sqlt.Append( " and ${field}=" + this.${field});
 					 #end 
@@ -506,8 +470,7 @@
 					 #end 
 				  #if ($field.type.toString() == "_boolean")
 					 sqlt.Append( " and ${field}=" + this.${field});
-					 #end 
-				  
+					 #end  
 		  #end
 		#end 
               reg = db.sql(sqlt.ToString());
@@ -540,22 +503,19 @@
             sqlt = "select * from ${table}";
             sqlt += " where 1!=0";  
             #foreach( $field in $table.GetArrayOfFields )
-                #if ($field.isKey())
-                     
-                     
-                              #if ($field.type.toString() == "_integer")
-                                sqlt += " and ${field}=" + sf.cadena(${field});
-                                 #end 
-                              #if ($field.type.toString() == "_string")
-                                  sqlt += " and ${field}='" + sf.cadena(${field}) + "'";
-                                 #end 
-                              #if ($field.type.toString() == "_date")
-                                 sqlt += " and ${field}='" + sf.cadena(${field}) + "'";
-                                 #end 
-                              #if ($field.type.toString() == "_boolean")
-                                 sqlt += " and ${field}=" + sf.cadena(${field});
-                                 #end 
-                             
+                #if ($field.isKey()) 
+					  #if ($field.type.toString() == "_integer")
+						sqlt += " and ${field}=" + sf.cadena(${field});
+						 #end 
+					  #if ($field.type.toString() == "_string")
+						  sqlt += " and ${field}='" + sf.cadena(${field}) + "'";
+						 #end 
+					  #if ($field.type.toString() == "_date")
+						 sqlt += " and ${field}='" + sf.cadena(${field}) + "'";
+						 #end 
+					  #if ($field.type.toString() == "_boolean")
+						 sqlt += " and ${field}=" + sf.cadena(${field});
+						 #end  
               #end
             #end 
           
@@ -589,44 +549,37 @@
                 sqlt = "select * from ${table}";
                 sqlt += " where 1!=0"; 
                 #foreach( $field in $table.GetArrayOfFields )
-                    #if ($field.isKey())
-                         
-                         
-                                  #if ($field.type.toString() == "_integer")
-                                    sqlt += " and ${field}=" + ${field};
-                                     #end 
-                                  #if ($field.type.toString() == "_string")
-                                      sqlt += " and ${field}='" + ${field} + "'";
-                                     #end 
-                                  #if ($field.type.toString() == "_date")
-                                     sqlt += " and ${field}='" + ${field} + "'";
-                                     #end 
-                                  #if ($field.type.toString() == "_boolean")
-                                     sqlt += " and ${field}=" + ${field};
-                                     #end 
-                                   
+                    #if ($field.isKey()) 
+						  #if ($field.type.toString() == "_integer")
+							sqlt += " and ${field}=" + ${field};
+							 #end 
+						  #if ($field.type.toString() == "_string")
+							  sqlt += " and ${field}='" + ${field} + "'";
+							 #end 
+						  #if ($field.type.toString() == "_date")
+							 sqlt += " and ${field}='" + ${field} + "'";
+							 #end 
+						  #if ($field.type.toString() == "_boolean")
+							 sqlt += " and ${field}=" + ${field};
+							 #end  
                   #end
                 #end 
                 reg = db.sql(sqlt);
                 if (reg.Read())
                 {        
-                #foreach( $field in $table.GetArrayOfFields )
-					 
-					 
-							  #if ($field.type.toString() == "_integer")
-								 this.${field} = sf.entero(reg["${field}"].ToString());
-								 #end 
-							  #if ($field.type.toString() == "_string")
-								 this.${field} = sf.cadena(reg["${field}"]);
-								 #end 
-							  #if ($field.type.toString() == "_date")
-								 this.${field} = sf.fecha(reg["${field}"].ToString());
-								 #end 
-							  #if ($field.type.toString() == "_boolean")
-								 this.${field} = sf.Bool(reg["${field}"]);
-								 #end 
-							  
-					
+                #foreach( $field in $table.GetArrayOfFields )  
+					  #if ($field.type.toString() == "_integer")
+						 this.${field} = sf.entero(reg["${field}"].ToString());
+						 #end 
+					  #if ($field.type.toString() == "_string")
+						 this.${field} = sf.cadena(reg["${field}"]);
+						 #end 
+					  #if ($field.type.toString() == "_date")
+						 this.${field} = sf.fecha(reg["${field}"].ToString());
+						 #end 
+					  #if ($field.type.toString() == "_boolean")
+						 this.${field} = sf.Bool(reg["${field}"]);
+						 #end  
                 #end 
            
                }
@@ -672,23 +625,19 @@
             while (reg.Read())
                 {
                 ${table} pp = new ${table}();   
-#foreach( $field in $table.GetArrayOfFields ) 
-	 
-	 
-		  #if ($field.type.toString() == "_integer")
-		     pp.${field} = sf.entero(reg["${field}"].ToString());
-		     #end 
-		  #if ($field.type.toString() == "_string")
-		     pp.${field} = sf.cadena(reg["${field}"].ToString());
-		     #end 
-		  #if ($field.type.toString() == "_date")
-		     pp.${field} = sf.fecha(reg["${field}"].ToString());
-		     #end 
-		  #if ($field.type.toString() == "_boolean")
-		     pp.${field} = sf.Bool(reg["${field}"].ToString());
-		     #end 
-		   
-	   
+#foreach( $field in $table.GetArrayOfFields )  
+	  #if ($field.type.toString() == "_integer")
+		 pp.${field} = sf.entero(reg["${field}"].ToString());
+		 #end 
+	  #if ($field.type.toString() == "_string")
+		 pp.${field} = sf.cadena(reg["${field}"].ToString());
+		 #end 
+	  #if ($field.type.toString() == "_date")
+		 pp.${field} = sf.fecha(reg["${field}"].ToString());
+		 #end 
+	  #if ($field.type.toString() == "_boolean")
+		 pp.${field} = sf.Bool(reg["${field}"].ToString());
+		 #end   
 #end 
                lista${table}.Add(pp);
                }
@@ -728,9 +677,7 @@
 // funciones extra para campos extra
 		#set ($count = 0)
                 #foreach( $field in $table.GetArrayOfFields )
-                    #if (!$field.isKey())
-                        
-                         
+                    #if (!$field.isKey()) 
                                   #if ($field.type.toString() == "_image")
                                     public string deleteImg${field}()
 									{
