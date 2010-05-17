@@ -438,7 +438,7 @@ public partial class ${table}
             sql= @" update ${table} set 
 		#set ($count = 0)		
 		#foreach( $field in $table.GetArrayOfFields )
-			#if ( !$field.isKey() || $field.TargetType() == "_image")
+			#if ( $field.isKey() || $field.TargetType() == "_image")
 			#else
 				 
 				 
@@ -462,6 +462,24 @@ public partial class ${table}
 			#set ($count = $count + 1 )
 		#end 
 		";
+		
+		    sqlt.Append(" where 1!=0");          
+			#foreach( $field in $table.GetArrayOfFields )
+				#if ($field.isKey())
+					  #if ($field.type.toString() == "_integer")
+						sqlt.Append( " and ${field}=" + obj${table}.${field});
+						 #end 
+					  #if ($field.type.toString() == "_string")
+						  sqlt.Append( " and ${field}='" + obj${table}.${field} + "'");
+						 #end 
+					  #if ($field.type.toString() == "_date")
+						 sqlt.Append(" and ${field}='" + obj${table}.${field} + "'");
+						 #end 
+					  #if ($field.type.toString() == "_boolean")
+						 sqlt.Append( " and ${field}=" + obj${table}.${field});
+						 #end 				  
+			  #end
+			#end 		
              reg = db.sql(sql);
              return (reg!=null);
               }   
@@ -488,7 +506,7 @@ public partial class ${table}
             sql= @" update ${table} set 
 		#set ($count = 0)		
 		#foreach( $field in $table.GetArrayOfFields )
-			#if ( !$field.isKey() || $field.TargetType() == "_image")
+			#if ( $field.isKey() || $field.TargetType() == "_image")
 			#else
 				
 				 

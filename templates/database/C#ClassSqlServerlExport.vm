@@ -428,7 +428,7 @@
             sqlt.Append(" update ${table} set");
 		#set ($count = 0)		
 		#foreach( $field in $table.GetArrayOfFields )
-			#if ( !$field.isKey() || $field.TargetType() == "_image")
+			#if ( $field.isKey() || $field.TargetType() == "_image")
 			#else
 				 
 				 
@@ -476,7 +476,7 @@
 
 		#set ($count = 0)		
 		#foreach( $field in $table.GetArrayOfFields )
-			#if ( !$field.isKey() || $field.TargetType() == "_image")
+			#if ( $field.isKey() || $field.TargetType() == "_image")
 			#else
 				
 				 
