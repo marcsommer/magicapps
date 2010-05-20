@@ -40,20 +40,15 @@ using System.Media;
 // reg expr
 using System.Text.RegularExpressions;
 
+// para app.config
+using System.Configuration;
+
 namespace myWay
 {
     public partial class Form1 : Form
     {
 
-        protected project actualProject;
-        protected table actualTable;
-        protected String templateSelected;
-        protected String templateSelectedFullUri;
-
-        protected String projectTemplateSelected;
-        protected String projectTemplateSelectedFullUri;
-
-        protected String targetDirectory;
+        
         
 
 
@@ -79,7 +74,7 @@ namespace myWay
                 this.Text = "myWay " + pr.name;
                 groupBox1.Text = pr.name;
                 this.Text = "myWay " + pr.name;
-                actualProject = pr;
+                general.actualProject = pr;
 
                 refreshDataWithActualProject();
 
@@ -134,10 +129,10 @@ namespace myWay
             //this.Controls.Add(host);
 
             // if there is a template selected early we load it..
-            if (templateSelectedFullUri != null)
+            if (general.templateSelectedFullUri != null)
             {
                 //  rt1.Text = util.loadFile(templateSelectedFullUri);
-                writeText(util.loadFile(templateSelectedFullUri));
+                writeText(util.loadFile(general.templateSelectedFullUri));
             }
 
         }
@@ -219,7 +214,7 @@ namespace myWay
             try
             {
                 cmbTablesx.Items.Clear();
-                foreach (table item in actualProject.tables)
+                foreach (table item in general.actualProject.tables)
                 {
                     cmbTablesx.Items.Add(item.Name);
                 }
@@ -243,12 +238,12 @@ namespace myWay
             try
             {
                 project pr = new project();
-                pr = actualProject;
-                pr.templateSelectedFullUri = templateSelectedFullUri;
+                pr = general.actualProject;
+                pr.templateSelectedFullUri = general.templateSelectedFullUri;
 
 
                 String tableSelected = cmbTablesx.Text;
-                foreach (table item in actualProject.tables)
+                foreach (table item in general.actualProject.tables)
                 {
                     string numberoffields = item.fields.Count.ToString();
                     if (item.Name.Equals(tableSelected))
@@ -256,17 +251,17 @@ namespace myWay
                 }
                 //confi.actualTable = actualTable;
 
-                pr.templateSelected = templateSelected;
-                pr.templateSelectedFullUri = templateSelectedFullUri;
+                pr.templateSelected = general.templateSelected;
+                pr.templateSelectedFullUri = general.templateSelectedFullUri;
 
 
-                 pr.targetDirectory = targetDirectory;
-                pr.projectTemplatesDirectory = projectTemplateSelectedFullUri;
-                pr.projectTemplatesDirectorySmall = projectTemplateSelected;
+                pr.targetDirectory = general.targetDirectory;
+                pr.projectTemplatesDirectory = general.projectTemplateSelectedFullUri;
+                pr.projectTemplatesDirectorySmall = general.projectTemplateSelected;
 
 
                 pr.saveProject(Path.Combine(util.conf_dir, "conf.xml"));
-                pr.saveProject(Path.Combine(util.projects_dir, actualProject.name) + ".xml");
+                pr.saveProject(Path.Combine(util.projects_dir, general.actualProject.name) + ".xml");
 
 
             }
@@ -283,11 +278,11 @@ namespace myWay
         private void butEditModel_Click(object sender, EventArgs e)
         {
             model ed = new model();
-            ed.actualProject = actualProject;
+            ed.actualProject = general.actualProject;
             ed.ShowDialog();
 
             // actualizamos los datos...
-            actualProject = ed.actualProject;
+            general.actualProject = ed.actualProject;
             fillComboWithTables();
 
         }
@@ -295,7 +290,7 @@ namespace myWay
         private void butReload_Click(object sender, EventArgs e)
         {
             modifyProject np = new modifyProject();
-            np.pr = actualProject;
+            np.pr = general.actualProject;
             np.ShowDialog();
 
             if (np.DialogResult == DialogResult.Cancel)
@@ -306,7 +301,7 @@ namespace myWay
             {
                 if (np.DialogResult == DialogResult.Yes)
                 {
-                    actualProject = np.pr;
+                    general.actualProject = np.pr;
                     fillComboWithTables();
                 }
 
@@ -322,7 +317,7 @@ namespace myWay
             try
             {
 
-                String plantilla = util.loadFile(templateSelectedFullUri);
+                String plantilla = util.loadFile(general.templateSelectedFullUri);
 
              // clean cmbGotocode
                 cmbGoToCode.Items.Clear();
@@ -335,7 +330,7 @@ namespace myWay
                     rt1.Text = "Please, select a table";
                 }
 
-                foreach (table item in actualProject.tables)
+                foreach (table item in general.actualProject.tables)
                 {
                     if (item.Name.Equals(tableSelected))
                     {
@@ -369,7 +364,7 @@ namespace myWay
 
                 // lets make a Context and put data into it
                 VelocityContext context = new VelocityContext();
-                context.Put("project", actualProject);
+                context.Put("project", general.actualProject);
                 context.Put("table", tab);
 
                 // lets render a template
@@ -399,8 +394,32 @@ namespace myWay
                     writeText(finalText);
 
 
-                    // now we got all the 
-                    //Instantiating Regex Object
+                    // number of lines written with generator
+                    try
+                    {
+                        long numberOfLinesWrittenBefore = 0;
+                        long numberOfLinesWritten = 0;
+
+                        numberOfLinesWrittenBefore = sf.toLong(System.Configuration.ConfigurationManager.AppSettings["numberOfLinesWritten"]);
+                        numberOfLinesWritten = numberOfLinesWrittenBefore + util.CountLinesInString(finalText);
+
+                        labNumberOfLinesWritten.Values.Text = sf.cadena(numberOfLinesWritten) + " lines written with myWay";
+                        // save data...
+                        System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                        config.AppSettings.Settings["numberOfLinesWritten"].Value = sf.cadena(numberOfLinesWritten);
+                        config.Save(ConfigurationSaveMode.Modified);
+                        ConfigurationManager.RefreshSection("appSettings");
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                   
+
+                    // now we got all the functions contained in the code
+                    // and populate a combo with this...
+                    // Instantiating Regex Object
                     Regex re = new Regex(@"(private|public|protected)\s\w(.)*\((.)*\)", RegexOptions.IgnoreCase);
                     MatchCollection mc = re.Matches(finalText);
                     foreach (Match mt in mc)
@@ -429,6 +448,7 @@ namespace myWay
                     System.Console.Out.WriteLine("Problem evaluating template : " + exx);
                 }
 
+                 
 
                 SystemSounds.Exclamation.Play();
 
@@ -464,15 +484,15 @@ namespace myWay
             if (fil.ShowDialog() == DialogResult.OK)
             {
                 Console.WriteLine(fil.FileName);
-                actualProject = project.loadProject(fil.FileName);
+                general.actualProject = project.loadProject(fil.FileName);
 
 
                 // lo guardamos como conf.xml
-                if (actualProject != null)
+                if (general.actualProject != null)
                 {
-                    this.Text = "myWay " + actualProject.name;
-                    groupBox1.Text = actualProject.name;
-                    actualProject.saveProject(Path.Combine(util.projects_dir, "conf.xml"));
+                    this.Text = "myWay " + general.actualProject.name;
+                    groupBox1.Text = general.actualProject.name;
+                    general.actualProject.saveProject(Path.Combine(util.projects_dir, "conf.xml"));
 
                     refreshDataWithActualProject();
                     
@@ -485,34 +505,37 @@ namespace myWay
 
         private void refreshDataWithActualProject()
         {
-            if (actualProject != null)
+            if (general.actualProject != null)
             {
-                actualTable = actualProject.actualTable;
+                general.actualTable = general.actualProject.actualTable;
+               
+                if (general.actualProject.nameSpace != null)
+                    txtNameSpace.Text = general.actualProject.nameSpace;
 
                 //string numberoffiels = actualTable.fields.Count.ToString();
 
-                templateSelected = actualProject.templateSelected;
-                templateSelectedFullUri = actualProject.templateSelectedFullUri;
+                general.templateSelected = general.actualProject.templateSelected;
+                general.templateSelectedFullUri = general.actualProject.templateSelectedFullUri;
 
 
-                projectTemplateSelected = actualProject.projectTemplatesDirectorySmall;
-                projectTemplateSelectedFullUri = actualProject.projectTemplatesDirectory;
+                general.projectTemplateSelected = general.actualProject.projectTemplatesDirectorySmall;
+                general.projectTemplateSelectedFullUri = general.actualProject.projectTemplatesDirectory;
 
 
-                kbTargetDirectory.Text = actualProject.targetDirectory;
-                targetDirectory = actualProject.targetDirectory;
-                
-                if (projectTemplateSelectedFullUri != null)
+                kbTargetDirectory.Text = general.actualProject.targetDirectory;
+                general.targetDirectory = general.actualProject.targetDirectory;
+
+                if (general.projectTemplateSelectedFullUri != null)
                 {
-                    kbProjectTemplate.Text = projectTemplateSelected;
-                    kbTemplate.Text = templateSelected;
+                    kbProjectTemplate.Text = general.projectTemplateSelected;
+                    kbTemplate.Text = general.templateSelected;
                 }
 
                 fillComboWithTables();
 
-                if (actualTable != null)
+                if (general.actualTable != null)
                 {
-                    int index = cmbTablesx.FindStringExact(actualTable.Name);
+                    int index = cmbTablesx.FindStringExact(general.actualTable.Name);
                     cmbTablesx.SelectedIndex = index;      
                 }
                     
@@ -535,17 +558,13 @@ namespace myWay
             {
                 if (np.DialogResult == DialogResult.Yes)
                 {
-                    actualProject = np.pr;
-
-                    //actualProject.saveProject(Path.Combine(util.projects_dir, "conf.xml"));
-                                        
-                    fillComboWithTables();
+                    general.actualProject = np.pr;
+                    refreshDataWithActualProject();                    
                 }
-
 
             }
 
-        }
+        } // butNewProject2_Click
 
         private void textBox1_Click_1(object sender, EventArgs e)
         {
@@ -565,15 +584,15 @@ namespace myWay
 
             if (sho.templateSelected != null)
             {
-                rt1.Text = sho.text;
+                //rt1.Text = sho.text;
 
                 writeText(sho.text);
 
 
                 kbTemplate.Text = sho.smallTitle;
 
-                templateSelectedFullUri = sho.templateSelected;
-                templateSelected = sho.smallTitle;
+                general.templateSelectedFullUri = sho.templateSelected;
+                general.templateSelected = sho.smallTitle;
             }
         }
 
@@ -586,8 +605,8 @@ namespace myWay
 
             if (sho.templateSelected != null)
             {
-                projectTemplateSelected = sho.smallTitle;
-                projectTemplateSelectedFullUri = sho.templateSelected;
+                general.projectTemplateSelected = sho.smallTitle;
+                general.projectTemplateSelectedFullUri = sho.templateSelected;
 
                 kbProjectTemplate.Text = sho.smallTitle;
 
@@ -595,10 +614,10 @@ namespace myWay
                 //templateSelected = sho.smallTitle;
 
                 // update project
-                actualProject.projectTemplatesDirectory = sho.templateSelected;
+                general.actualProject.projectTemplatesDirectory = sho.templateSelected;
 
-                actualProject.projectTemplatesDirectorySmall = sho.smallTitle;
-                actualProject.saveProject(Path.Combine(util.projects_dir, actualProject.name) + ".xml");
+                general.actualProject.projectTemplatesDirectorySmall = sho.smallTitle;
+                general.actualProject.saveProject(Path.Combine(util.projects_dir, general.actualProject.name) + ".xml");
 
             }
         }
@@ -615,12 +634,12 @@ namespace myWay
             {
                 targetDirectoryx = folderBrowserDialog1.SelectedPath;
 
-                targetDirectory = targetDirectoryx;
-                kbTargetDirectory.Text = targetDirectory;
+                general.targetDirectory = targetDirectoryx;
+                kbTargetDirectory.Text = general.targetDirectory;
 
                 // update project
-                actualProject.targetDirectory = targetDirectoryx;
-                actualProject.saveProject(Path.Combine(util.projects_dir, actualProject.name) + ".xml");
+                general.actualProject.targetDirectory = targetDirectoryx;
+                general.actualProject.saveProject(Path.Combine(util.projects_dir, general.actualProject.name) + ".xml");
 
             }
 
@@ -635,14 +654,34 @@ namespace myWay
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            if (actualProject.targetDirectory != null && actualProject.projectTemplatesDirectory != null)
+            if (general.actualProject.targetDirectory != null && general.actualProject.projectTemplatesDirectory != null)
             {
                 rt1.Text = "";
                 rt1.Focus();
                 // tratarARchivo
                 Thread t = new Thread(new ParameterizedThreadStart(traverseDirectory));
-                t.Start(new DirectoryInfo(actualProject.projectTemplatesDirectory).FullName);
+                t.Start(new DirectoryInfo(general.actualProject.projectTemplatesDirectory).FullName);
                 //traverseDirectory(new DirectoryInfo(actualProject.projectTemplatesDirectory).FullName);
+
+                // number of applications written with generator
+                try
+                {
+                    long numberOfApplications = 0;
+
+                    numberOfApplications = 1 + sf.toLong(System.Configuration.ConfigurationManager.AppSettings["numberOfApplications"]);
+
+                    labNumberOfApps.Values.Text = sf.cadena(numberOfApplications) + " apps written with myWay";
+                    // save data...
+                    System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                    config.AppSettings.Settings["numberOfApplications"].Value = sf.cadena(numberOfApplications);
+                    config.Save(ConfigurationSaveMode.Modified);
+                    ConfigurationManager.RefreshSection("appSettings");
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
         }
 
@@ -720,14 +759,14 @@ namespace myWay
 
                     // sacamos de la ruta el directorio del archivo ...
                     nombreDirectorioAgrabar = archivito;
-                    nombreDirectorioAgrabar = nombreDirectorioAgrabar.Replace(projectTemplateSelectedFullUri, "");
+                    nombreDirectorioAgrabar = nombreDirectorioAgrabar.Replace(general.projectTemplateSelectedFullUri, "");
                     nombreDirectorioAgrabar = nombreDirectorioAgrabar.Replace(nombreArchivo, "");
 
 
                     if (nombreDirectorioAgrabar.StartsWith("\\"))
                         nombreDirectorioAgrabar = nombreDirectorioAgrabar.Substring(1, nombreDirectorioAgrabar.Length - 2);
 
-                    rutaArchivoFinal = Path.Combine(targetDirectory, nombreDirectorioAgrabar);
+                    rutaArchivoFinal = Path.Combine(general.targetDirectory, nombreDirectorioAgrabar);
 
                     if (var.namefile != null)
                     {
@@ -737,10 +776,10 @@ namespace myWay
                     {
                         nombreArchivoFinal = Path.Combine(rutaArchivoFinal, nombreArchivo);
                     }
-                    
 
-                    if (!Directory.Exists(Path.Combine(targetDirectory, nombreDirectorioAgrabar)))
-                        Directory.CreateDirectory(Path.Combine(targetDirectory, nombreDirectorioAgrabar));
+
+                    if (!Directory.Exists(Path.Combine(general.targetDirectory, nombreDirectorioAgrabar)))
+                        Directory.CreateDirectory(Path.Combine(general.targetDirectory, nombreDirectorioAgrabar));
 
 
                     // si no tiene variables de configuracion es que no es un template...
@@ -776,13 +815,13 @@ namespace myWay
 
                         if (var.appliesToAllTables.Equals("true"))
                         {
-                            foreach (table item in actualProject.tables)
+                            foreach (table item in general.actualProject.tables)
                             {
                                 // tenemos que aplicar esta plantilla una vez por cada tabla...
                                 // es un template que no utiliza las tablas...
                                 // lets make a Context and put data into it
                                 VelocityContext context = new VelocityContext();
-                                context.Put("project", actualProject);
+                                context.Put("project", general.actualProject);
                                 context.Put("table", item);
 
                                 // lets render a template
@@ -835,7 +874,7 @@ namespace myWay
                             // es un template que no utiliza las tablas...
                             // lets make a Context and put data into it
                             VelocityContext context = new VelocityContext();
-                            context.Put("project", actualProject);
+                            context.Put("project", general.actualProject);
                             //context.Put("table", tab);
 
                             // lets render a template
@@ -921,7 +960,7 @@ namespace myWay
             TextEditor te = new TextEditor();
             pp = (ElementHost)panel1.Controls.Find("editor", true)[0];
             te = (TextEditor)pp.Child;
-            te.Save(templateSelectedFullUri);
+            te.Save(general.templateSelectedFullUri);
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -932,10 +971,10 @@ namespace myWay
         private void butReturnToScript_Click(object sender, EventArgs e)
         {
             // if there is a template selected early we load it..
-            if (templateSelectedFullUri != null)
+            if (general.templateSelectedFullUri != null)
             {
                 //  rt1.Text = util.loadFile(templateSelectedFullUri);
-                writeText(util.loadFile(templateSelectedFullUri));
+                writeText(util.loadFile(general.templateSelectedFullUri));
             }
         } // butReturnToScript_Click
 
@@ -961,8 +1000,20 @@ namespace myWay
             }
             te.ScrollTo(numLinea, 0);
 
-            //te.Document.re
+
         } // cmbGoToCode_SelectedIndexChanged
+
+        private void txtNameSpace_TextChanged(object sender, EventArgs e)
+        {
+            project pr = new project();
+            pr = general.actualProject;
+
+            pr.nameSpace = txtNameSpace.Text;
+            pr.saveProject(Path.Combine(util.conf_dir, "conf.xml"));
+            pr.saveProject(Path.Combine(util.projects_dir, general.actualProject.name) + ".xml");
+
+
+        } // txtNameSpace_TextChanged
 
         
 

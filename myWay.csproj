@@ -94,6 +94,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -126,6 +127,7 @@
     <Compile Include="classes\compareFields.cs" />
     <Compile Include="classes\fieldNode.cs" />
     <Compile Include="classes\fixTemplate.cs" />
+    <Compile Include="classes\general.cs" />
     <Compile Include="classes\kriptonNodeTable.cs" />
     <Compile Include="classes\myCompletionData.cs" />
     <Compile Include="classes\relation.cs" />
@@ -522,6 +524,7 @@
     <EmbeddedResource Include="userControls\userControlEditTable.resx">
       <DependentUpon>userControlEditTable.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="Resources\script_go.png" />
     <Content Include="templates\projectTemplates\c#\sqlServer\html\admin\master\menuAdmin.ascx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -587,6 +590,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\basic\vb_repeater.vm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\basic\c#_listadoPaginado_.aspx.cs.vm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\basic\c#_mySqlPagination.vm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\basic\c#_webService.vm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\Thumbs.db" />

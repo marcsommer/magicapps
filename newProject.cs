@@ -43,9 +43,6 @@ namespace myWay
                 cmbDataType.SelectedItem = pr.dbDataType.ToString();
 
                 
-
-                
-
             }
 
         }
@@ -57,40 +54,41 @@ namespace myWay
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            Cursor.Current = Cursors.WaitCursor;
              // search metadata...
             Thread t = new Thread(new ParameterizedThreadStart(search));
             // we need to pass data through object
-            project pro = new project();
-            pro.name = txtName.Text;
-            pro.host = txtHost.Text;
-            pro.database = txtDatabase.Text;
-            pro.user = txtUser.Text;
-            pro.password = txtPassword.Text;
-            pro.dbDataType = (project.databaseType)cmbDataType.SelectedItem;
+            //project pro = new project();
+            pr.name = txtName.Text;
+            pr.nameSpace = txtName.Text;
+            pr.host = txtHost.Text;
+            pr.database = txtDatabase.Text;
+            pr.user = txtUser.Text;
+            pr.password = txtPassword.Text;
+            pr.dbDataType = (project.databaseType)cmbDataType.SelectedItem;
 
 
-            
-
-            t.Start(pro);
+            t.Start(pr);
 
             // use this for debugging
             //search(pro);
-
-          
             
          
         }
 
-        private void newProject_Load(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void butSave_Click(object sender, EventArgs e)
         {
             if (pr != null)
             {
+                // lets select some data from 
+                if (pr.tables.Count > 0)
+                {
+                    pr.tableSelected = pr.tables[0].ToString();
+                    pr.actualTable = (table) pr.tables[0];
+                }
+
                 pr.saveProject(Path.Combine(util.projects_dir, pr.name + ".xml"));
                 AsyncWriteLine("Project saved... \n");
 
@@ -129,8 +127,8 @@ namespace myWay
                         {
                             AsyncWrite("");
                             AsyncWriteLine("Success connection \n");
-                            pr = new project();
-                            pr.name = pro.name;
+                            //pr = new project();
+                            //pr.name = pro.name;
 
                             // lets get the tables...
                             List<table> lista = new List<table>();
@@ -286,8 +284,8 @@ namespace myWay
                         {
                             AsyncWrite("");
                             AsyncWriteLine("Success connection \n");
-                            pr = new project();
-                            pr.name = pro.name;
+                            //pr = new project();
+                            //pr.name = pro.name;
 
                             // lets get the tables...
                             List<table> lista = new List<table>();
@@ -417,7 +415,9 @@ namespace myWay
                             break;
 
                 }
-                
+
+                // we have finished with new project
+                Cursor.Current = Cursors.Default;
 
             }
             catch (Exception ex)
@@ -493,6 +493,11 @@ namespace myWay
                 rt1.ScrollToCaret();
             }
             ResumeLayout(true);
+        }
+
+        private void newProject_Load(object sender, EventArgs e)
+        {
+            pr = new project();
         }
     }
 }
