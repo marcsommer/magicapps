@@ -55,6 +55,10 @@
             this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.butReturnToScript = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.cmbGoToCode = new System.Windows.Forms.ComboBox();
+            this.kLabNameSpace = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.txtNameSpace = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.labNumberOfLinesWritten = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.labNumberOfApps = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -74,7 +78,7 @@
             // kryptonHeader1
             // 
             this.kryptonHeader1.HeaderStyle = ComponentFactory.Krypton.Toolkit.HeaderStyle.Secondary;
-            this.kryptonHeader1.Location = new System.Drawing.Point(494, 12);
+            this.kryptonHeader1.Location = new System.Drawing.Point(417, 13);
             this.kryptonHeader1.Name = "kryptonHeader1";
             this.kryptonHeader1.Size = new System.Drawing.Size(141, 52);
             this.kryptonHeader1.TabIndex = 12;
@@ -84,7 +88,7 @@
             // 
             // butEditModel
             // 
-            this.butEditModel.Location = new System.Drawing.Point(270, 328);
+            this.butEditModel.Location = new System.Drawing.Point(227, 416);
             this.butEditModel.Name = "butEditModel";
             this.butEditModel.Size = new System.Drawing.Size(167, 58);
             this.butEditModel.TabIndex = 13;
@@ -94,7 +98,7 @@
             // 
             // butReload
             // 
-            this.butReload.Location = new System.Drawing.Point(270, 392);
+            this.butReload.Location = new System.Drawing.Point(227, 480);
             this.butReload.Name = "butReload";
             this.butReload.Size = new System.Drawing.Size(167, 58);
             this.butReload.TabIndex = 14;
@@ -104,9 +108,9 @@
             // 
             // butCopy
             // 
-            this.butCopy.Location = new System.Drawing.Point(1081, 39);
+            this.butCopy.Location = new System.Drawing.Point(934, 39);
             this.butCopy.Name = "butCopy";
-            this.butCopy.Size = new System.Drawing.Size(64, 25);
+            this.butCopy.Size = new System.Drawing.Size(68, 26);
             this.butCopy.TabIndex = 18;
             this.butCopy.Values.Image = global::myWay.Properties.Resources.css;
             this.butCopy.Values.Text = "Copy";
@@ -114,7 +118,7 @@
             // 
             // butOpenProject2
             // 
-            this.butOpenProject2.Location = new System.Drawing.Point(72, 328);
+            this.butOpenProject2.Location = new System.Drawing.Point(29, 416);
             this.butOpenProject2.Name = "butOpenProject2";
             this.butOpenProject2.Size = new System.Drawing.Size(167, 58);
             this.butOpenProject2.TabIndex = 21;
@@ -124,7 +128,7 @@
             // 
             // butNewProject2
             // 
-            this.butNewProject2.Location = new System.Drawing.Point(72, 392);
+            this.butNewProject2.Location = new System.Drawing.Point(29, 480);
             this.butNewProject2.Name = "butNewProject2";
             this.butNewProject2.Size = new System.Drawing.Size(167, 58);
             this.butNewProject2.TabIndex = 22;
@@ -136,7 +140,7 @@
             // 
             this.kryptonButton1.Location = new System.Drawing.Point(258, 89);
             this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.Size = new System.Drawing.Size(192, 25);
+            this.kryptonButton1.Size = new System.Drawing.Size(124, 25);
             this.kryptonButton1.TabIndex = 30;
             this.kryptonButton1.Values.Image = global::myWay.Properties.Resources.application_lightning;
             this.kryptonButton1.Values.Text = "Apply project template";
@@ -146,7 +150,7 @@
             // 
             this.kbProjectTemplate.Location = new System.Drawing.Point(114, 19);
             this.kbProjectTemplate.Name = "kbProjectTemplate";
-            this.kbProjectTemplate.Size = new System.Drawing.Size(336, 25);
+            this.kbProjectTemplate.Size = new System.Drawing.Size(268, 25);
             this.kbProjectTemplate.TabIndex = 31;
             this.kbProjectTemplate.Values.Text = "Select a project template";
             this.kbProjectTemplate.Click += new System.EventHandler(this.kbProjectTemplate_Click);
@@ -161,6 +165,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.labNumberOfLinesWritten);
+            this.groupBox1.Controls.Add(this.txtNameSpace);
+            this.groupBox1.Controls.Add(this.kLabNameSpace);
             this.groupBox1.Controls.Add(this.kbTemplate);
             this.groupBox1.Controls.Add(this.kryptonLabel2);
             this.groupBox1.Controls.Add(this.kryptonLabel1);
@@ -168,7 +175,7 @@
             this.groupBox1.Controls.Add(this.cmbTablesx);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(476, 130);
+            this.groupBox1.Size = new System.Drawing.Size(393, 184);
             this.groupBox1.TabIndex = 33;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Generation";
@@ -176,16 +183,16 @@
             // 
             // kbTemplate
             // 
-            this.kbTemplate.Location = new System.Drawing.Point(130, 51);
+            this.kbTemplate.Location = new System.Drawing.Point(114, 78);
             this.kbTemplate.Name = "kbTemplate";
-            this.kbTemplate.Size = new System.Drawing.Size(320, 25);
+            this.kbTemplate.Size = new System.Drawing.Size(268, 25);
             this.kbTemplate.TabIndex = 37;
             this.kbTemplate.Values.Text = "Select a template";
             this.kbTemplate.Click += new System.EventHandler(this.kbTemplate_Click);
             // 
             // kryptonLabel2
             // 
-            this.kryptonLabel2.Location = new System.Drawing.Point(26, 51);
+            this.kryptonLabel2.Location = new System.Drawing.Point(10, 78);
             this.kryptonLabel2.Name = "kryptonLabel2";
             this.kryptonLabel2.Size = new System.Drawing.Size(57, 19);
             this.kryptonLabel2.TabIndex = 36;
@@ -193,7 +200,7 @@
             // 
             // kryptonLabel1
             // 
-            this.kryptonLabel1.Location = new System.Drawing.Point(29, 23);
+            this.kryptonLabel1.Location = new System.Drawing.Point(13, 50);
             this.kryptonLabel1.Name = "kryptonLabel1";
             this.kryptonLabel1.Size = new System.Drawing.Size(37, 19);
             this.kryptonLabel1.TabIndex = 35;
@@ -201,9 +208,9 @@
             // 
             // butApplyTemplate2
             // 
-            this.butApplyTemplate2.Location = new System.Drawing.Point(258, 82);
+            this.butApplyTemplate2.Location = new System.Drawing.Point(242, 109);
             this.butApplyTemplate2.Name = "butApplyTemplate2";
-            this.butApplyTemplate2.Size = new System.Drawing.Size(192, 25);
+            this.butApplyTemplate2.Size = new System.Drawing.Size(140, 25);
             this.butApplyTemplate2.TabIndex = 34;
             this.butApplyTemplate2.Values.Image = global::myWay.Properties.Resources.application_lightning;
             this.butApplyTemplate2.Values.Text = "Apply template";
@@ -212,21 +219,22 @@
             // cmbTablesx
             // 
             this.cmbTablesx.FormattingEnabled = true;
-            this.cmbTablesx.Location = new System.Drawing.Point(130, 23);
+            this.cmbTablesx.Location = new System.Drawing.Point(114, 50);
             this.cmbTablesx.Name = "cmbTablesx";
-            this.cmbTablesx.Size = new System.Drawing.Size(320, 21);
+            this.cmbTablesx.Size = new System.Drawing.Size(268, 21);
             this.cmbTablesx.TabIndex = 33;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.labNumberOfApps);
             this.groupBox2.Controls.Add(this.kbTargetDirectory);
             this.groupBox2.Controls.Add(this.kryptonLabel4);
             this.groupBox2.Controls.Add(this.kbProjectTemplate);
             this.groupBox2.Controls.Add(this.kryptonButton1);
             this.groupBox2.Controls.Add(this.kryptonLabel3);
-            this.groupBox2.Location = new System.Drawing.Point(12, 158);
+            this.groupBox2.Location = new System.Drawing.Point(12, 242);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(476, 121);
+            this.groupBox2.Size = new System.Drawing.Size(393, 168);
             this.groupBox2.TabIndex = 34;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Project generation";
@@ -235,7 +243,7 @@
             // 
             this.kbTargetDirectory.Location = new System.Drawing.Point(114, 52);
             this.kbTargetDirectory.Name = "kbTargetDirectory";
-            this.kbTargetDirectory.Size = new System.Drawing.Size(336, 25);
+            this.kbTargetDirectory.Size = new System.Drawing.Size(268, 25);
             this.kbTargetDirectory.TabIndex = 33;
             this.kbTargetDirectory.Values.Text = "Select a target directory";
             this.kbTargetDirectory.Click += new System.EventHandler(this.kbTargetDirectory_Click);
@@ -250,22 +258,23 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(494, 63);
+            this.panel1.Location = new System.Drawing.Point(414, 63);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(651, 347);
+            this.panel1.Size = new System.Drawing.Size(588, 347);
             this.panel1.TabIndex = 35;
             // 
             // rt1
             // 
-            this.rt1.Location = new System.Drawing.Point(494, 416);
+            this.rt1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.rt1.Location = new System.Drawing.Point(414, 416);
             this.rt1.Name = "rt1";
-            this.rt1.Size = new System.Drawing.Size(581, 122);
+            this.rt1.Size = new System.Drawing.Size(588, 122);
             this.rt1.TabIndex = 36;
             this.rt1.Text = "";
             // 
             // kryptonButton2
             // 
-            this.kryptonButton2.Location = new System.Drawing.Point(764, 39);
+            this.kryptonButton2.Location = new System.Drawing.Point(649, 39);
             this.kryptonButton2.Name = "kryptonButton2";
             this.kryptonButton2.Size = new System.Drawing.Size(78, 25);
             this.kryptonButton2.TabIndex = 37;
@@ -275,7 +284,7 @@
             // 
             // butReturnToScript
             // 
-            this.butReturnToScript.Location = new System.Drawing.Point(680, 39);
+            this.butReturnToScript.Location = new System.Drawing.Point(565, 39);
             this.butReturnToScript.Name = "butReturnToScript";
             this.butReturnToScript.Size = new System.Drawing.Size(78, 25);
             this.butReturnToScript.TabIndex = 38;
@@ -287,17 +296,51 @@
             // 
             this.cmbGoToCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGoToCode.FormattingEnabled = true;
-            this.cmbGoToCode.Location = new System.Drawing.Point(880, 43);
+            this.cmbGoToCode.Location = new System.Drawing.Point(733, 43);
             this.cmbGoToCode.Name = "cmbGoToCode";
             this.cmbGoToCode.Size = new System.Drawing.Size(195, 21);
             this.cmbGoToCode.TabIndex = 39;
             this.cmbGoToCode.SelectedIndexChanged += new System.EventHandler(this.cmbGoToCode_SelectedIndexChanged);
             // 
+            // kLabNameSpace
+            // 
+            this.kLabNameSpace.Location = new System.Drawing.Point(13, 25);
+            this.kLabNameSpace.Name = "kLabNameSpace";
+            this.kLabNameSpace.Size = new System.Drawing.Size(70, 19);
+            this.kLabNameSpace.TabIndex = 38;
+            this.kLabNameSpace.Values.Text = "NameSpace";
+            // 
+            // txtNameSpace
+            // 
+            this.txtNameSpace.Location = new System.Drawing.Point(114, 19);
+            this.txtNameSpace.Name = "txtNameSpace";
+            this.txtNameSpace.Size = new System.Drawing.Size(268, 22);
+            this.txtNameSpace.TabIndex = 39;
+            this.txtNameSpace.TextChanged += new System.EventHandler(this.txtNameSpace_TextChanged);
+            // 
+            // labNumberOfLinesWritten
+            // 
+            this.labNumberOfLinesWritten.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.SuperTip;
+            this.labNumberOfLinesWritten.Location = new System.Drawing.Point(114, 158);
+            this.labNumberOfLinesWritten.Name = "labNumberOfLinesWritten";
+            this.labNumberOfLinesWritten.Size = new System.Drawing.Size(21, 25);
+            this.labNumberOfLinesWritten.TabIndex = 40;
+            this.labNumberOfLinesWritten.Values.Text = "--";
+            // 
+            // labNumberOfApps
+            // 
+            this.labNumberOfApps.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.SuperTip;
+            this.labNumberOfApps.Location = new System.Drawing.Point(114, 128);
+            this.labNumberOfApps.Name = "labNumberOfApps";
+            this.labNumberOfApps.Size = new System.Drawing.Size(21, 25);
+            this.labNumberOfApps.TabIndex = 41;
+            this.labNumberOfApps.Values.Text = "--";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1157, 559);
+            this.ClientSize = new System.Drawing.Size(1016, 559);
             this.Controls.Add(this.cmbGoToCode);
             this.Controls.Add(this.butReturnToScript);
             this.Controls.Add(this.kryptonButton2);
@@ -352,6 +395,10 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
         private ComponentFactory.Krypton.Toolkit.KryptonButton butReturnToScript;
         private System.Windows.Forms.ComboBox cmbGoToCode;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtNameSpace;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kLabNameSpace;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel labNumberOfLinesWritten;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel labNumberOfApps;
     }
 }
 

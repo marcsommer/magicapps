@@ -231,7 +231,19 @@ public static class util
 
        
 
-    }
+    } // playSimpleSound
+
+    public static long CountLinesInString(string s)
+    {
+        long count = 1;
+        int start = 0;
+        while ((start = s.IndexOf('\n', start)) != -1)
+        {
+            count++;
+            start++;
+        }
+        return count;
+    } // CountLinesInString
 
 
 

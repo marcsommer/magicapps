@@ -232,6 +232,14 @@ public class sf
         return System.Convert.ToDouble(valor);
     }
 
+
+    public static long toLong(string valor)
+    {
+        long salida;
+        long.TryParse(valor, out  salida);
+        return salida;
+    }
+
     #endregion
 
 
