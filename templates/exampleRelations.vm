@@ -47,7 +47,7 @@ name of relation ${relation.name}
 			#if ($field.type.toString() == "_boolean")
 			 obj${table}.${field} = sf.boolean(reg["${field}"].ToString());
 			 #end
-			#if ($field.type.toString() == "_doble")
+			#if ($field.type.toString() == "_double")
 			 obj${table}.${field} = sf.doble(reg["${field}"].ToString());
 			 #end                             
 

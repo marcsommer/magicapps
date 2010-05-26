@@ -26,7 +26,7 @@ public class field : IComparable
         _tinyInt,
         _long,
         _decimalx,
-        _doble,
+        _double,
         _date,
         _datetime,
         _boolean,
@@ -75,6 +75,11 @@ public class field : IComparable
     private Boolean _nameChanged;
     private Boolean _createdNew;
     private Boolean _deleted;
+
+    // random values
+    private int _randomMinValue=0;
+    private int _randomMaxValue = 100;
+
 
 
     // This attribute enables the ArrayList to be serialized:
@@ -232,6 +237,19 @@ public class field : IComparable
     {
         get { return validationRules; }
         set { validationRules = value; }
+    }
+
+
+    // variables used to test and to fill the database with random data
+    public int randomMinValue
+    { 
+        get { return _randomMinValue; }
+        set { _randomMinValue = value; }
+    }
+    public int randomMaxValue
+    {
+        get { return _randomMaxValue; }
+        set { _randomMaxValue = value; }
     }
 
 

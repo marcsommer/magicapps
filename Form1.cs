@@ -48,7 +48,7 @@ namespace myWay
     public partial class Form1 : Form
     {
 
-        
+        protected List<string> errores = new List<string>();
         
 
 
@@ -182,10 +182,7 @@ namespace myWay
             // We still want to insert the character that was typed.
         }
 #endregion
-
-
-          
-
+         
 
 
 
@@ -207,8 +204,47 @@ namespace myWay
             }
 
         }
-     
-       
+
+        public void AsyncCleanRt1(String Text)
+        {
+            try
+            {
+                rt1.BeginInvoke(new MethodInvoker(delegate
+                {
+                    rt1.Clear();
+                }));
+
+            }
+            catch (Exception exx)
+            {
+                //rt1.AppendText("Error: " + exx.Message.ToString() + "\n");
+            }
+
+        }
+
+        //// adds a button that loads a template when clicked...
+        //public void AsyncAddControl(String Text)
+        //{
+        //    try
+        //    {
+        //        rt1.BeginInvoke(new MethodInvoker(delegate
+        //        {
+        //            System.Windows.Forms.Button bt = new System.Windows.Forms.Button();
+        //            bt.Text = "click me";
+        //            bt.Click += new System.EventHandler(this.buttonGeneric_Click);
+        //            rt1.Controls.Add(bt);
+
+        //        }));
+
+        //    }
+        //    catch (Exception exx)
+        //    {
+        //        //rt1.AppendText("Error: " + exx.Message.ToString() + "\n");
+        //    }
+
+        //} // AsyncAddControl
+
+
         private void fillComboWithTables()
         {
             try
@@ -654,12 +690,15 @@ namespace myWay
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
+            // clean errores
+            errores.Clear();
+
             if (general.actualProject.targetDirectory != null && general.actualProject.projectTemplatesDirectory != null)
             {
                 rt1.Text = "";
                 rt1.Focus();
                 // tratarARchivo
-                Thread t = new Thread(new ParameterizedThreadStart(traverseDirectory));
+                Thread t = new Thread(new ParameterizedThreadStart(initTraverse));
                 t.Start(new DirectoryInfo(general.actualProject.projectTemplatesDirectory).FullName);
                 //traverseDirectory(new DirectoryInfo(actualProject.projectTemplatesDirectory).FullName);
 
@@ -683,10 +722,24 @@ namespace myWay
                     throw;
                 }
             }
+
+         
         }
 
-              
-         
+        public void initTraverse(object Folder)
+        {
+            traverseDirectory(Folder);
+
+            // ended traverse .. lets put errors at last
+            Thread.Sleep(500);
+            SystemSounds.Asterisk.Play();
+            AsyncWriteLine("finish");
+            foreach (string item in errores)
+            {
+                AsyncWriteLine("Error en template: \n ");
+                AsyncWriteLine("file://" + item);
+            }
+        }
 
 
         public void traverseDirectory(object Folder)
@@ -722,11 +775,16 @@ namespace myWay
             {
                 Console.WriteLine(ex.Message);
             }
+
+           
         }
 
 
         private void tratarFile(object file)
         {
+
+           
+
             // ahora tratamos cada archivo en una nueva tarea...
             try
             {
@@ -862,7 +920,17 @@ namespace myWay
                                 }
                                 catch (System.Exception exx)
                                 {
-                                    rt1.Text = exx.Message;
+                                    // file
+                                    AsyncCleanRt1("");
+                                    AsyncWriteLine("Problem with the template : " + file.ToString());
+                                    AsyncWriteLine("Error : " + exx.Message);
+                                    AsyncWriteLine("file://" + file.ToString());
+
+                                    errores.Add(file.ToString());
+
+                                    //AsyncAddControl(file.ToString());
+                                    
+                                    //rt1.Text = exx.Message;
                                     //System.Console.Out.WriteLine("Problem merging template : " + exx);
                                     System.Console.Out.WriteLine("Problem evaluating template : " + exx);
                                 }
@@ -909,6 +977,8 @@ namespace myWay
                         
                     }
 
+                   
+                   
                    
 
                      
@@ -1013,7 +1083,32 @@ namespace myWay
             pr.saveProject(Path.Combine(util.projects_dir, general.actualProject.name) + ".xml");
 
 
-        } // txtNameSpace_TextChanged
+        }
+        
+
+        // someone clicks on a error in a template
+        private void rt1_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            if (!e.LinkText.Equals(""))
+            {
+                string url=null;
+                string text = null;
+                string smallTitle = null;
+
+                // le quitamos el file://
+                url=e.LinkText.Replace("file://","") ;
+
+                text = util.loadFile(url);
+                smallTitle = url.Substring(url.LastIndexOf("\\") + 1, url.Length - url.LastIndexOf("\\") - 1);
+
+                writeText(text);
+                kbTemplate.Text = smallTitle;
+
+                general.templateSelectedFullUri = url;
+                general.templateSelected = smallTitle;
+            }
+
+        } // buttonGeneric_Click
 
         
 

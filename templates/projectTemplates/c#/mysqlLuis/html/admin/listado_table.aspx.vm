@@ -10,20 +10,6 @@
 <description>description">
 <targetDirectory>${table}_dir</targetDirectory>
 <appliesToAllTables>true</appliesToAllTables>
- 
-
-
-<#-- 
- 
- we need the keyfield...
- -->
-#foreach( $field in $table.GetArrayOfFields )
- #if ($field.isKey())
-    <#assign keyField=field>
- #end
-#end 
-
-
 <%@ Page Language="C#" MasterPageFile="~/admin/master/masterAdmin.Master" AutoEventWireup="true"  CodeBehind="listado_${table}.aspx.cs" Inherits="${project}.${table}_dir.listado_${table}" Title="Página sin título" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

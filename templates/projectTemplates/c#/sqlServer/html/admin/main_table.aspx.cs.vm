@@ -76,7 +76,7 @@ namespace ${project}.${table}_dir
                                   #if ($field.type.toString() == "_boolean")
                                      ck${field}.Checked = sf.boolean(res.${field});
                                      #end 
-								#if ($field.type.toString() == "_doble")
+								#if ($field.type.toString() == "_double")
                                      txt${field}.Text = sf.cadena(res.${field});
                                      #end 
 								#if ($field.type.toString() == "_image")
@@ -140,7 +140,7 @@ namespace ${project}.${table}_dir
                                   #if ($field.type.toString() == "_boolean")
                                      res.${field}=sf.boolean(ck${field}.Checked) ;
                                      #end 
-								#if ($field.type.toString() == "_doble")
+								#if ($field.type.toString() == "_double")
                                      res.${field}=sf.doble(txt${field}.Text) ;
                                      #end 
 								#if ($field.type.toString() == "_image")
@@ -208,7 +208,7 @@ namespace ${project}.${table}_dir
                                   #if ($field.type.toString() == "_boolean")
                                      res.${field}=sf.boolean(ck${field}.Text) ;
                                      #end 
-								#if ($field.type.toString() == "_doble")
+								#if ($field.type.toString() == "_double")
                                      res.${field}=sf.doble(txt${field}.Text) ;
                                      #end 
 								 #if ($field.type.toString() == "_image")

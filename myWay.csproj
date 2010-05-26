@@ -139,6 +139,7 @@
     <Compile Include="classes\sf.cs" />
     <Compile Include="classes\table.cs" />
     <Compile Include="classes\tableNode.cs" />
+    <Compile Include="classes\tableRandom.cs" />
     <Compile Include="classes\util.cs" />
     <Compile Include="classes\validationRule.cs" />
     <Compile Include="classes\variablesTemplate.cs" />
@@ -599,6 +600,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\basic\c#_webService.vm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\database\randomData\tsql_InsertRandomData.vm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\database\randomData\mysql_InsertRandomData.vm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\Thumbs.db" />

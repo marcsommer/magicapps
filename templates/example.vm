@@ -35,8 +35,6 @@ tables in the project
 
 #foreach( $tablita in $project.getTables )
     $tablita.Name is great!
-    
-   
 #end
 
 
@@ -112,3 +110,107 @@ $table.getListOfFields(",")
 
 // nombre del primer campo clave
 ${table.getKey}
+
+
+
+project:
+----------------------------------------------------
+	${project}
+	${project.Name()}
+	${project.description()}
+	${project.nameSpace()}
+
+
+	${project.dbDataType()}
+	${project.database()}
+	${project.user()}
+	${project.instance()}
+	${project.password()}
+	${project.host()}
+	${project.port()}
+
+	// variables used for storing conf..
+	${project.targetDirectory()}
+	${project.projectTemplatesDirectory()}
+	${project.projectTemplatesDirectorySmall()}
+	${project.targetLanguage()}
+
+	${project.templateSelected()}
+	${project.templateSelectedFullUri()}
+
+	${project.actualTable()}
+	${project.tableSelected()}
+
+	${project.getTables()}
+
+
+#foreach( $table in $project.getTables )
+	table:
+	-----------------------------------------------------
+	${table}
+	${table.Name()}
+	${table.targetName()}
+	${table.numberOfFields()}
+	${table.getKey()}
+	${table.fieldDescription()}
+
+	${table.getListOfFields(",")}
+	${table.getListOfFieldsWithoutKeys(",")}
+	${table.getListOfKeyFields(",")}
+	${table.getListOfParameters("")}
+	${table.getListOfParametersForVb(",")}
+	${table.getListOfParametersForPhp(",")}
+
+	${table.GetArrayOfFields()} // obsolete
+	${table.GetFields()}
+	${table.getRelations()}
+	
+	#foreach( $field in $table.getFields() )
+		
+		field:
+		-------------------------------------------------------
+
+		${field}
+		${field.Name()}
+
+		${field.type()}
+		${field.type.toString()}
+		${field.targetType()}
+		${field.targetType.toString()}
+		${field.targetName()}
+		${field.selected()}
+
+		${field.isKey()}
+		${field.isForeignKey()}
+
+		${field.allowNulls()}
+
+		${field.isAutoIncrement()}
+		${field.defaultValue()}
+		${field.size()}
+		${field.comment()}
+		${field.getQuoted()}
+
+		${field.changed()}
+
+		${field.autoNumber()}
+
+		${field.buttonInDataGrid()}
+		${field.decimals()}
+
+		${field.imageInDataGrid()}
+
+
+		${field.nameChanged()}
+		${field.createdNew()}
+		${field.deleted()}
+
+		// random values
+		${field.randomMinValue()}
+	
+	#end
+	
+	
+#end	
+	
+
