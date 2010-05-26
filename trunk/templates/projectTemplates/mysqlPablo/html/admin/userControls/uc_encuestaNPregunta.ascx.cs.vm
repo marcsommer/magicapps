@@ -1,0 +1,58 @@
+#*
+	crea el archivo ...
+	Author : Luis Molina...
+*# 
+
+
+
+<nameFile>uc_${table}</nameFile>
+<extensionFile>ascx.cs</extensionFile>
+<languageGenerated>c#">
+<description>description">
+<targetDirectory>${table}_dir</targetDirectory>
+<appliesToAllTables>true</appliesToAllTables>
+
+
+using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using System.Collections.Generic;
+
+namespace ${project}.${table}_dir {
+{
+     
+    public partial class uc_${table} : System.Web.UI.UserControl
+    {
+        private ${table} _pregunta;
+
+        public  ${table} pregunta
+        {
+            get { return _pregunta; }
+            set { _pregunta = value; }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+          cargar(); 
+        }
+
+        public  void cargar()
+        {
+            if ( _pregunta != null)
+            {
+                Label1.Text = _pregunta.titulo;
+                 
+
+            }
+        }
+
+
+    }
+}

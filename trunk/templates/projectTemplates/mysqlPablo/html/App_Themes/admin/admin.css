@@ -1,0 +1,238 @@
+body{margin:0 3%;padding:0;font:normal 65% Arial, Helvetica, sans-serif;color:#10151f; background:#dcdcdc url(../../admin/imagesadmin/fondoGen.gif) repeat-x;}
+
+fieldset{padding:0;border:none; float:none;}
+legend{padding:10px; background:#fff url(../../admin/imagesadmin/f_tit2.gif) repeat-x bottom; text-align:center; font-weight:bold; border-top:1px solid #eae8e5; margin:0 0 20px 0;width:100%;width:auto !important;float:none; color:#65635e; float:none;}
+
+a{font-weight:bold; color:#27272e;text-decoration:underline;}
+a:hover{ text-decoration:none;}
+input{ margin-right:4px;}
+
+img{border:0;margin:0;padding:0;}
+
+h1 a, h2 a, h3 a{text-decoration:none;}
+h1, h2, h3, h4{margin:0;padding:0;font-family: Arial, Helvetica, sans-serif; color:#4f5257;}
+
+.textoLargo{ width:70%;}
+h3{font-size:1.2em;}
+h4{font-size:1.1em; color:#002038; background: url(../../admin/imagesadmin/itemh4.gif) no-repeat 0 2px; padding:5px 0 5px 25px;}
+
+h5{color:#000; font-size:1em; margin:4px 15px 0 15px;padding:2px 0; border-bottom:1px dotted #7f8183; background:#f7f9fa;}
+
+ol{margin:0 0 15px 35px;padding:0;}
+ol li{list-style-type:decimal;padding:3px 0;}
+ul{margin:0;padding:0;}
+ul li{margin:0;padding:0;list-style-type:none;}
+dl{margin-left:10px;padding:0;}
+dt{margin:0;padding:4px 15px; font-weight:bold; background:url(../../admin/imagesadmin/naranjaLi.gif) no-repeat 5px}
+dd{margin:0;padding:0 15px;}
+
+.tabla{float:left; width:100%; padding:7px 0;}
+.tabla table{font-size:1em; text-align:left; float:left; border-left: 1px solid #acb7c6; width:99%; }
+caption{padding:5px 25px; font:bold 1em verdana; text-transform:uppercase; color:#212b38; background:#f4f6fa url(../../admin/imagesadmin/cat.gif) no-repeat 6px 1px; border-top:1px dotted #656d7f;  border-left:1px dotted #656d7f;  border-right:1px dotted #656d7f; text-align:left;}
+
+table.activ td .dia{display:block; font-size:1.7em; color:#636363; border-bottom:1px dotted #ccc;}
+table.activ td a{display:block; padding:4px 4px 4px 25px; margin:2px; text-align:left;}
+table.activ td a.modif{background:#f6f6f9 url(../../admin/imagesadmin/activ.gif) no-repeat 6px 4px;}
+table.activ td a.borrar{background:#f6f6f9 url(../../admin/imagesadmin/borrar.gif) no-repeat 6px 4px;}
+table.activ td a.añad{background:#f6f6f9 url(../../admin/imagesadmin/add.gif) no-repeat 6px 4px;}
+/*--tr--*/
+
+table.activ th{padding:3px; background: #46494d url(../../admin/imagesadmin/fondoSubtit.gif) repeat-x; color:#fff; text-align:center;}
+table.activ td{padding:5px 10px;border-bottom:1px solid #acb7c6; border-right:1px solid #acb7c6; font-weight:bold; text-align:center; background:#fff url(../../admin/imagesadmin/content.gif) repeat-x 0 -5px;}
+
+table.activ td:hover{background:#f5f6f7;}
+
+.aviso{float:left; width: 100%; padding:5px 0; margin: 5px 0; border-top: 1px dotted #FF0000;  border-bottom: 1px dotted #FF0000; background:#ffdcb9 url(../../admin/imagesadmin/borrar.gif) no-repeat 7px 4px; font-weight:bold; clear:both; display:block;}
+.aviso p{margin:0 33px !important;}
+
+acronym{border-bottom: 1px dashed #268dad;cursor:help;}
+cite{cursor:help;}
+blockquote{cursor:help;margin:0;}
+
+address{font-style:normal;float:left;}
+kbd{font:normal .8em "Lucida console", Courier, monospace;border-top:.15em solid #ccc;border-right:.25em solid #aaa;border-bottom:.3em solid #888;border-left:.2em solid #bbb;padding:.06em .3em;margin:0 1.5px;background:#eee;vertical-align: text-bottom;cursor:help;}
+em{font-style:italic;color:#837c62;}
+
+p{margin:15px 8px 5px 33px; text-align:justify;}
+.cursorAdjunto{cursor:pointer;}
+.teclaacceso{border-bottom: 1px solid #000;padding:0;margin:0;}
+.hidden, .mensaje{position:absolute;top:0;left:0;z-index:-100;visibility:hidden}
+.puntosH, .clear{clear:both; padding:5px 0; font-size:0;}
+.both{clear:both; padding:1px 0 0 0;}
+
+.separador{background:url(../../admin/imagesadmin/fondSeparador.gif) repeat-x; clear:both; margin:15px 18px 13px 27px; padding:2px 0;}
+.elim{ background:url(../../admin/imagesadmin/borrar.gif) no-repeat 0 5px; padding: 5px 0 5px 20px; }
+.edit{ background:url(../../admin/imagesadmin/editarProd.gif) no-repeat 0 3px; padding:5px 0 5px 25px;}
+
+/*---FONDOS LATERALES-----*/
+#fondoIzquierda{background:url(../../admin/imagesadmin/FondIzq.png) repeat-y; float:left; width:100%;}
+#fondoDerecha{background:url(../../admin/imagesadmin/FondDcha.png) repeat-y right; float:left; width:100%;}
+#fondocentral{margin:0 10px; padding-bottom:20px;float:left; float:none !important; background:#fff url(../../admin/imagesadmin/fondoC.gif) repeat-x bottom;}
+/*-------*/
+
+/*---fondos inf-----*/
+#fondInf{background: url(../../admin/imagesadmin/fondInf.gif) repeat-x;margin:0;}
+#fondInfIzq{background: url(../../admin/imagesadmin/esqPie1.jpg) no-repeat 0 100%;}
+#fondInfDcha{background:url(../../admin/imagesadmin/esqPie2.jpg) no-repeat 100% 100%; height:24px;}
+
+/*-----PIE------*/
+#fondopie{clear:both;}
+#pie{background: #e8f0f1 url(../../admin/imagesadmin/fondoPie.gif) repeat-x; margin:0 10px;}
+#pie a{color:#005482;}
+
+li.logospie{ background:none!important;}
+#seccion1{padding:1.2em 2% 1.7em 2%;}
+#seccion1 li{ padding:1px 7px 1px 10px; float:left; margin:0 10px; background:url(../../admin/imagesadmin/flecha.gif) no-repeat 0 4px;}
+
+/*-----*/
+
+/*---cabecera parte superior-----*/
+
+/*---titulo pag--*/
+.titulocabecera{font-size:1.8em; color:#fff;}
+.titulocabecera span{font-size:0.8em; color:#f3f3f3; display:block; padding-top:3px;}
+#logotipo{float:left; width:auto; padding:15px 0 10px 130px;}
+
+#cabecera{float:left; width:100%; background: url(../../admin/imagesadmin/fondoImgCentral.gif) repeat-x top;}
+#esqCabIzq{float:left; width:100%; background:url(../../admin/imagesadmin/logo.jpg) no-repeat 0 0;}
+#esqCabDcha{float:left; width:100%; background: url(../../admin/imagesadmin/esqCabDcha.jpg) no-repeat 100% 0;}
+/*---titulo pag--*/
+
+
+#derechaPest{float:right; width:15%; background: url(../../admin/imagesadmin/fondPest.gif) repeat-x; margin-right:20px !important; margin-right:10px;}
+
+.pestana{background:url(../../admin/imagesadmin/fondPestanas.gif) no-repeat; padding:0; height:45px;}
+.termSesion{background:transparent;border:none; padding: 17px 4px 6px 37px; color:#fff; font:bold 1em verdana; text-align:left; margin-left:0; cursor:pointer;}
+
+
+
+/*---accesibilidad---*/
+#dchAccesibilidad{float:right; margin:5px 0 0 0;}
+.bloqueAccesib{float:left; background:url(../../admin/imagesadmin/separadorIcos.gif) no-repeat 100% 50%; margin-top:10px; padding:0 6px;}
+
+.T2{background:#747474 url(../../admin/imagesadmin/fondoT2.gif) repeat-x bottom; color:#fff!important; border:1px solid #1b1d23; padding: 0 3px;}
+.AmpTex{background:#fff url(../../admin/imagesadmin/fondoAccesibilidad.gif) repeat-x bottom;font-size:1em; border:1px solid #b5b5b5;}
+.icoaccesib{border:none; background:url(../../admin/imagesadmin/icoAcesib.gif) no-repeat 0 50%;padding:2px 2px 2px 15px;margin:0; width:9.5em; color:#fff;}
+.T2, .AmpTex, .icoaccesib{ font:bold 1em Verdana, Arial, Helvetica, sans-serif; cursor:pointer;}
+/*---accesibilidad--*/
+
+#contenido, #contenidoCab{float:left; width:100%;}
+#contenido{ background:url(../../admin/imagesadmin/content.gif) repeat-x; padding-top:10px; border-top:1px solid #ecf7fa; font-size:1.1em;}
+.left{float:left;}
+/*----barra titulos---*/
+.titulos{background:url(../../admin/imagesadmin/fondoTitulos.gif) repeat-x 0 20px; clear:both; margin: 10px 0 0 10px;}
+.itemTit{background:url(../../admin/imagesadmin/itemTit.gif) no-repeat 0 0; padding-bottom: 25px; margin-bottom: 10px;}
+.textoTit{ font-size:1.5em; padding-left:45px;}
+
+/*---subseccion---*/
+.subseccion{margin:12px 2% 0 3.5%;clear:both; border:1px solid #bec9e5; float:left!important; width:95%!important; float:none; width:auto;}
+.titSubseccion{background:#46494d url(../../admin/imagesadmin/fondoSubtit.gif) repeat-x;padding:7px 0; float:left; width:100%; margin:7px 0;}
+.itemh3{background:url(../../admin/imagesadmin/itemSubtit.gif) no-repeat 6px 0; padding-left:30px; color:#fff;}
+
+/*-----Menú------*/
+#zonamenu{float:left; width:100%; background:url(../../admin/imagesadmin/FondIzq.png) repeat-y; clear:both;}
+.MenuIzq{float:left; width:100%; background:url(../../admin/imagesadmin/FondDcha.png) repeat-y 100% 0;}
+.MenuDcha{padding:1px 10px; float:left; width:95%;}
+
+#menu{float:right; margin:0 0 0 110px;  padding:0;}
+#menu li{float:left;  background:#383d4a url(../../admin/imagesadmin/fondomenu.gif) repeat-x 0 100%;}
+#menu li a{color:#fff; font:bold 1.1em verdana;text-decoration:none; float:left; display:block; padding:6px 9px; background: url(../../admin/imagesadmin/esqIzq_menu.gif) no-repeat 0 100%; border-right:1px solid #9ca0ab; border-top:1px solid #9ca0ab;}
+#menu li a:hover{ background: url(../../admin/imagesadmin/esqIzq_menuH.gif) no-repeat 0 100%; border-right:1px solid #9ca0ab; border-top:1px solid #9ca0ab;}
+
+
+
+/*--formularios--*/
+.areaTexto{width:95%; font:normal 1.1em arial; color:#000;}
+.bloqueLeft{float:left; width:100%; background:#fff url(../../admin/imagesadmin/content.gif) repeat-x; padding:5px 0; clear:both; margin-bottom:5px;}
+
+.lineaForm{padding:0 25px; font:normal 1em arial;  width:100%;}
+
+.lineaForm label{clear:both; padding:5px 0; display:block;}
+.etiqueta{float:left; width:12em;padding:3px 5px;}
+.etiqueta2{padding:3px 5px;}
+.zonacampo{float:left;width:50%;}
+.campo{color:#707889; width:15em;  font-family:arial;font-size:1em;}
+.textarea{color:#707889;   font-family:arial;font-size:1em; height:100px; width:40%;}
+.campo2{color:#707889; width:7.5em; font-family:arial;font-size:1em;}
+.campo3{color:#707889; font-family:arial;font-size:1em; margin:0 4px;}
+.asterisco{font-size:1.2em; color:#4479cf;padding:0 3px;}
+
+.botonesSub{margin:6px 0;clear:both; float:left; width:100%; padding:10px 0; background:#f0f4f6 url(../../admin/imagesadmin/fondSeparador.gif) repeat-x;}
+.botonesSub span{margin:7px;}
+
+.block{display:block; margin-bottom:4px;}
+/*--botones--*/
+.boton{padding:3px; background: #46494d url(../../admin/imagesadmin/fondoSubtit.gif) repeat-x; color:#fff; text-align:center; border:1px solid #212b38; font:bold 1em arial; cursor:pointer;}
+
+.botonAdd{padding:3px 3px 3px 15px; background: #46494d url(../../admin/imagesadmin/add.gif) no-repeat 3px 3px; color:#fff; text-align:center; border:1px solid #212b38; font:bold 1em arial; cursor:pointer;}
+/*--botones--*/
+
+/*------*/
+.documentos{background: #fafafa url(../../admin/imagesadmin/verCat.gif) no-repeat 2px 2px; width:11em;padding:3px 4px 3px 24px; font: bold 0.9em verdana; border:1px solid #ccc; cursor:pointer;}
+.editarProd{background: #fff url(../../admin/imagesadmin/editarProd.gif) no-repeat 3px 1px; width:11.8em;padding:3px 3px 3px 26px;}
+/*------*/
+
+/*--accesibilidad---*/
+.conjunto{margin:15px 0 15px 30px;width: 95%; clear:both;}
+.c22{float: left; width: 22%;  padding-bottom: 15px}
+.listagenerica li{margin-left:45px; background: url(../../admin/imagesadmin/flecha.gif) no-repeat 5px 7px; padding:3px 3px 3px 20px;}
+.contenido{margin-bottom:20px;}
+.tipoh3{margin:8px 8px 8px 20px; padding: 3px 3px 3px 5px;border-bottom:1px solid #c9daee;clear:both; color:#4d5f7f;}
+/*------*/
+
+/*--categoria--*/
+.elegirCategoria{background:#fff url(../../admin/imagesadmin/content.gif) repeat-x; margin:5px 0; padding-bottom:5px; border-left:1px solid #c8d1d4; border-right:1px solid #c8d1d4; border-bottom:1px solid #c8d1d4; float:left; width:98.9%;}
+
+.elegirCategoria ul{float:left; padding:5px 0 5px 5px; width:96%; margin:5px 1.5%; background:#edf1f4;}
+.elegirCategoria li{float:left; padding: 5px 10px 5px 20px; margin:0 0 2px 2px; background:#fff url(../../admin/imagesadmin/cat.gif) no-repeat 1px 3px;}
+
+.select{font-size:0.9em; color:#5f5c5a;}
+.articulos{padding:0 10px;}
+.articulos span{margin-left:15px;}
+/*------*/
+
+/*--listas productos--*/
+.catalogo{padding:10px;clear:both;}
+.select{font-size:0.9em; color:#5f5c5a;}
+.articulos{margin:5px 2px;}
+.articulos span{margin-left:5px;}
+.nombre{color:#2a4d91;display:block; text-decoration: underline; padding-bottom:10px;}
+.cuadroProd{margin:3px; clear:both;}
+
+.imgproducto{padding:8px;float:left;}
+.producto{padding:8px 8px 8px 10px; text-align:justify;float:left;}
+.precio{clear:both; background:#eef1f5; padding:5px;}
+.precio span{color:#d70051; vertical-align:middle; font-size:1.1em;}
+.preciocompra{padding:10px 0; font-weight:bold; clear:both;}
+.preciocompra span{ color:#f2066a;}
+/*------*/
+
+
+
+/*--LOGIN--*/
+.floatLeft{float:left; width:100%;}
+.login{margin: 20px 20%; background:#fff url(../../admin/imagesadmin/fondoLogin.gif) repeat-x bottom; font-size:1.1em; width:60%;}
+.floatLogin{float:none !important; padding:0 30px 0 138px;background: url(../../admin/imagesadmin/fedeLogin.jpg) no-repeat 0 100%;border:1px solid #707070;}
+.campoLog{padding:0 0 9px 10%;}
+.campoLog span{width: 30%; display:block;}
+.h1login{ background:url(../../admin/imagesadmin/icoAdmin.gif) no-repeat 25px 8px; font:bold 2em arial; padding:15px 0 10px 65px; margin:0;}
+.btLogin{background:url(../../admin/imagesadmin/fondoBt.gif) no-repeat; color:#fff; border:none; font: bold 1em verdana; padding:4px 0; cursor:pointer; width: 5.5em;}
+/*--LOGIN--*/
+
+
+/*--categorias--*/
+.addCategorias{float:left; width:100%; border-bottom:1px solid #999; background: #e4eaed; margin:5px 0;}
+.pestCat{float:left; margin:0;  padding:0; background:#d7dcdd url(../../admin/imagesadmin/fondoPest.gif) repeat-x;}
+.pestCat li{float:left; background: url(../../admin/imagesadmin/izqPest.gif) no-repeat; border-right:3px solid #fff;}
+.pestCat li a{font:bold 1em arial;text-decoration:none; float:left; display:block; padding:6px;border-right:1px solid #9ca0ab; }
+
+.mod{ background:url(../../admin/imagesadmin/modificar.gif) no-repeat 4px 4px; padding-left:30px !important;}
+.add{ background:url(../../admin/imagesadmin/insertar.gif) no-repeat 4px 4px; padding-left:30px !important;}
+.modCat{ background:url(../../admin/imagesadmin/modCat.gif) no-repeat 4px 4px; padding-left:30px !important;}
+.addCat{ background:url(../../admin/imagesadmin/addCat.gif) no-repeat 4px 4px; padding-left:30px !important;}
+
+.camporojo{border:1px solid #e50000; font:1em Arial; padding:2px 3px; color:#e50000; margin-right:3px;}
+.rojo{ color: #e50000;}
+
+.ok{float:left; width: 100%; padding:5px 0; margin: 5px 0; border-top: 1px dotted #adbf8c;  border-bottom: 1px dotted #adbf8c; background:#f5ffe3 url(../../admin/imagesadmin/ok.gif) no-repeat 4px 2px; font-weight:bold; clear:both; display:block;}
+.ok p{margin:0 33px !important;}
