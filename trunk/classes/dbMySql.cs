@@ -170,11 +170,15 @@ class dbMySql
                             break;
 
                         case "bigint":
-                            fi.type = field.fieldType._doble;
+                            fi.type = field.fieldType._double;
+                            break;
+
+                        case "double":
+                            fi.type = field.fieldType._double;
                             break;
 
                         case "float":
-                            fi.type = field.fieldType._doble;
+                            fi.type = field.fieldType._double;
                             break;
 
                         case "smalldatetime":

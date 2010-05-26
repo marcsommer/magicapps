@@ -402,17 +402,23 @@ public class sf
     {
         if (esFecha(dte))
         {
-
             return (dte.Year + "-" + dte.Month + "-" + dte.Day);
         }
         else
             return null;
-
-
-
-
-
     }
+
+
+    public static string fechaMysql(System.DateTime dte)
+    {
+        if (esFecha(dte))
+        {
+            return (dte.Year + "-" + dte.Month + "-" + dte.Day);
+        }
+        else
+            return null;
+    }
+
     public static string fechaIso(System.DateTime dte)
     {
         ////
@@ -831,6 +837,16 @@ public class sf
         return reto;
 
     }
+
+    public static string BoolToString(bool valor)
+    {
+        if (valor)
+            return "1";
+        else
+            return "0";
+
+    }
+
 
     public static bool Bool(int valor)
     {

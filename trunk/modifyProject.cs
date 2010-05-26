@@ -168,6 +168,9 @@ namespace myWay
                                 // now lets get the fields for each table...
                                 List<field> listaField = new List<field>();
                                 listaField = db.getFields(connectionString, pr.database, item.Name);
+                                
+                                
+                                 
                                 if (listaField != null)
                                 {
                                     foreach (field fi in listaField)
@@ -176,6 +179,17 @@ namespace myWay
                                         AsyncWriteLine("Found field... " + fi.Name + "\n");
                                     }
 
+
+                                    // the descriptionField its the first string field of table...
+                                    foreach (field campito in listaField)
+                                    {
+                                        if (campito.type.ToString().Equals("_string"))
+                                        {
+                                            item.fieldDescription = campito.Name;
+                                            break;
+                                        }
+
+                                    }
                                 }
 
                                 // lets get primary keys and foreign keys for the table...
@@ -184,8 +198,11 @@ namespace myWay
 
                                 // lets sort the fields in the table...
                                 // we order but put first key fields
-                                item.fields.Sort(new compareFields(compareFields.CompareByOptions.name));
-                                item.fields.Sort(new compareFields(compareFields.CompareByOptions.key));
+                                if (general.orderFields)
+                                {
+                                    item.fields.Sort(new compareFields(compareFields.CompareByOptions.name));
+                                    item.fields.Sort(new compareFields(compareFields.CompareByOptions.key));
+                                }
 
                                 pr.tables.Add(item);
 
@@ -337,17 +354,32 @@ namespace myWay
                                         AsyncWriteLine("Found field... " + fi.Name + "\n");
                                     }
 
+                                    // the descriptionField its the first string field of table...
+                                    foreach (field campito in listaField)
+                                    {
+                                        if (campito.type.ToString().Equals("_string"))
+                                        {
+                                            item.fieldDescription = campito.Name;
+                                            break;
+                                        }
+
+                                    }
+
                                 }
+
+                              
 
                                 // lets get primary keys and foreign keys for the table...
                                 dbSqlServer.getKeys(connectionString, item);
 
                                 // lets sort the fields in the table...
                                 // we order but put first key fields
-                                item.fields.Sort(new compareFields(compareFields.CompareByOptions.name));
-                                item.fields.Sort(new compareFields(compareFields.CompareByOptions.key));
-
-                                pr.tables.Add(item);
+                                if (general.orderFields)
+                                {
+                                    item.fields.Sort(new compareFields(compareFields.CompareByOptions.name));
+                                }
+                                     item.fields.Sort(new compareFields(compareFields.CompareByOptions.key));
+                               pr.tables.Add(item);
 
 
                             }
@@ -444,7 +476,7 @@ namespace myWay
                     case false:
                         AsyncWriteLine("Error, review the configuration.");
                         AsyncEnableButton(false);
-                        util.playSimpleSound(Path.Combine(util.sound_dir, "zasentodalaboca.wav"));
+                        SystemSounds.Asterisk.Play();
                         break;
 
                 }
@@ -452,13 +484,10 @@ namespace myWay
             }
             catch (Exception ex)
             {
-                util.playSimpleSound(Path.Combine(util.sound_dir, "zasentodalaboca.wav"));
-
-                AsyncWrite(ex.Message);
-            }
-
-
-           
+                SystemSounds.Asterisk.Play();
+                AsyncWrite(ex.Message);            
+                
+            }           
         }
 
 
@@ -478,7 +507,8 @@ namespace myWay
                 //  AsyncWriteLine("Error: " + exx.Message.ToString() + "\n");
             }
 
-        }
+        }        
+
 
         public void AsyncWriteLine(String Text)
         {
@@ -486,7 +516,6 @@ namespace myWay
             {
                 rt1.BeginInvoke(new MethodInvoker(delegate
                 {
-
                     rt1.AppendText(Text + "\n");
 
                 }));

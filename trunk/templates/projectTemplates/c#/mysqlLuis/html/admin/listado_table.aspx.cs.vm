@@ -9,10 +9,6 @@
 <description>description</description>
 <targetDirectory>${table}_dir</targetDirectory>
 <appliesToAllTables>true</appliesToAllTables>
-
-
-
-
 using System;
 using System.Data;
 using System.Configuration;

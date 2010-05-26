@@ -36,7 +36,7 @@ public partial class ${table}
 	  #if ($field.type.toString() == "_boolean")
 	     private bool _${field};
 	     #end
-	 #if ($field.type.toString() == "_doble")
+	 #if ($field.type.toString() == "_double")
 	     private double _${field};
 	     #end
 	#end
@@ -80,7 +80,7 @@ public partial class ${table}
 							set {_${field} = value;}			                
 						}
 			     #end
-			  #if ($field.type.toString() == "_doble")
+			  #if ($field.type.toString() == "_double")
 				  public double ${field}
 						{
 							get {return _${field};}
@@ -177,7 +177,7 @@ public partial class ${table}
 					  #if ($field.type.toString() == "_boolean")
 						 sqlt.Append( sf.cadenaSqlServer(obj${table}.${field})  <#if ($table.GetArrayOfFields.count -  $count  != 1)>+ " ,"#end);
 						 #end
-					  #if ($field.type.toString() == "_doble")
+					  #if ($field.type.toString() == "_double")
 						 sqlt.Append( sf.cadenaSqlServer(obj${table}.${field})  <#if ($table.GetArrayOfFields.count -  $count  != 1)>+ " ,"#end);
 						 #end
 				#end
@@ -238,7 +238,7 @@ public partial class ${table}
 	  #if ($field.type.toString() == "_boolean")
 	     pp.${field} = sf.boolean(reg["${field}"].ToString());
 	     #end
-	 #if ($field.type.toString() == "_doble")
+	 #if ($field.type.toString() == "_double")
 	     pp.${field} = sf.doble(reg["${field}"].ToString());
 	     #end
 #end
@@ -312,7 +312,7 @@ public partial class ${table}
 		  #if ($field.type.toString() == "_boolean")
 		     pp.${field} = sf.boolean(reg["${field}"].ToString());
 		     #end
-		  #if ($field.type.toString() == "_doble")
+		  #if ($field.type.toString() == "_double")
 		     pp.${field} = sf.doble(reg["${field}"].ToString());
 		     #end
 #end
@@ -362,7 +362,7 @@ public partial class ${table}
                   #if ($field.type.toString() == "_boolean")
                      sqlt += " and ${field}=" + sf.cadenaSqlServer(${field});
                      #end
-                  #if ($field.type.toString() == "_doble")
+                  #if ($field.type.toString() == "_double")
                      sqlt += " and ${field}=" + sf.cadenaSqlServer(${field});
                      #end
               #end
@@ -385,7 +385,7 @@ public partial class ${table}
                       #if ($field.type.toString() == "_boolean")
                          obj${table}.${field} = sf.boolean(reg["${field}"].ToString());
                          #end
-                      #if ($field.type.toString() == "_doble")
+                      #if ($field.type.toString() == "_double")
                          obj${table}.${field} = sf.doble(reg["${field}"].ToString());
                          #end                             
                 #end		 
@@ -431,7 +431,7 @@ public partial class ${table}
 					  #if ($field.type.toString() == "_boolean")
 						 sqlt.Append(" ${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + " #if ($table.GetArrayOfFields.count -  $count  != 1),#end ");
 						 #end
-					  #if ($field.type.toString() == "_doble")
+					  #if ($field.type.toString() == "_double")
 						 sqlt.Append(" ${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + "'#if ($table.GetArrayOfFields.count -  $count  != 1),#end ");
 						 #end
 			#end	
@@ -496,7 +496,7 @@ public partial class ${table}
 			  #if ($field.type.toString() == "_boolean")
 				sqlt.Append(" ${field}=" + sf.cadenaSqlServer(this.${field}) + " #if ($table.GetArrayOfFields.count -  $count  != 1),#end");
 				 #end
-			  #if ($field.type.toString() == "_doble")
+			  #if ($field.type.toString() == "_double")
 				sqlt.Append(" ${field}=" + sf.cadenaSqlServer(this.${field}) + " #if ($table.GetArrayOfFields.count -  $count  != 1),#end");
 				 #end				
 			#end				
@@ -631,7 +631,7 @@ public partial class ${table}
 			  #if ($field.type.toString() == "_boolean")
 				 this.${field} = sf.boolean(reg["${field}"].ToString());
 				 #end
-			  #if ($field.type.toString() == "_doble")
+			  #if ($field.type.toString() == "_double")
 				 this.${field} = sf.doble(reg["${field}"].ToString());
 				 #end							 
         #end
@@ -688,7 +688,7 @@ public partial class ${table}
                   #if ($field.type.toString() == "_boolean")
                      obj${table}.${field} = sf.boolean(reg["${field}"].ToString());
                      #end
-                  #if ($field.type.toString() == "_doble")
+                  #if ($field.type.toString() == "_double")
                      obj${table}.${field} = sf.doble(reg["${field}"].ToString());
                      #end
             #end		 

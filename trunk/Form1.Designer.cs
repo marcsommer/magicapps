@@ -41,12 +41,16 @@
             this.kbProjectTemplate = new ComponentFactory.Krypton.Toolkit.KryptonDropButton();
             this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labNumberOfLinesWritten = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.txtNameSpace = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.kLabNameSpace = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kbTemplate = new ComponentFactory.Krypton.Toolkit.KryptonDropButton();
             this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.butApplyTemplate2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.cmbTablesx = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.labNumberOfApps = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kbTargetDirectory = new ComponentFactory.Krypton.Toolkit.KryptonDropButton();
             this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
@@ -55,10 +59,6 @@
             this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.butReturnToScript = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.cmbGoToCode = new System.Windows.Forms.ComboBox();
-            this.kLabNameSpace = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.txtNameSpace = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.labNumberOfLinesWritten = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.labNumberOfApps = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -138,9 +138,9 @@
             // 
             // kryptonButton1
             // 
-            this.kryptonButton1.Location = new System.Drawing.Point(258, 89);
+            this.kryptonButton1.Location = new System.Drawing.Point(215, 89);
             this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.Size = new System.Drawing.Size(124, 25);
+            this.kryptonButton1.Size = new System.Drawing.Size(167, 25);
             this.kryptonButton1.TabIndex = 30;
             this.kryptonButton1.Values.Image = global::myWay.Properties.Resources.application_lightning;
             this.kryptonButton1.Values.Text = "Apply project template";
@@ -180,6 +180,31 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Generation";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // labNumberOfLinesWritten
+            // 
+            this.labNumberOfLinesWritten.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.SuperTip;
+            this.labNumberOfLinesWritten.Location = new System.Drawing.Point(114, 158);
+            this.labNumberOfLinesWritten.Name = "labNumberOfLinesWritten";
+            this.labNumberOfLinesWritten.Size = new System.Drawing.Size(21, 25);
+            this.labNumberOfLinesWritten.TabIndex = 40;
+            this.labNumberOfLinesWritten.Values.Text = "--";
+            // 
+            // txtNameSpace
+            // 
+            this.txtNameSpace.Location = new System.Drawing.Point(114, 19);
+            this.txtNameSpace.Name = "txtNameSpace";
+            this.txtNameSpace.Size = new System.Drawing.Size(268, 22);
+            this.txtNameSpace.TabIndex = 39;
+            this.txtNameSpace.TextChanged += new System.EventHandler(this.txtNameSpace_TextChanged);
+            // 
+            // kLabNameSpace
+            // 
+            this.kLabNameSpace.Location = new System.Drawing.Point(13, 25);
+            this.kLabNameSpace.Name = "kLabNameSpace";
+            this.kLabNameSpace.Size = new System.Drawing.Size(70, 19);
+            this.kLabNameSpace.TabIndex = 38;
+            this.kLabNameSpace.Values.Text = "NameSpace";
             // 
             // kbTemplate
             // 
@@ -239,6 +264,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Project generation";
             // 
+            // labNumberOfApps
+            // 
+            this.labNumberOfApps.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.SuperTip;
+            this.labNumberOfApps.Location = new System.Drawing.Point(114, 128);
+            this.labNumberOfApps.Name = "labNumberOfApps";
+            this.labNumberOfApps.Size = new System.Drawing.Size(21, 25);
+            this.labNumberOfApps.TabIndex = 41;
+            this.labNumberOfApps.Values.Text = "--";
+            // 
             // kbTargetDirectory
             // 
             this.kbTargetDirectory.Location = new System.Drawing.Point(114, 52);
@@ -271,6 +305,7 @@
             this.rt1.Size = new System.Drawing.Size(588, 122);
             this.rt1.TabIndex = 36;
             this.rt1.Text = "";
+            this.rt1.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rt1_LinkClicked);
             // 
             // kryptonButton2
             // 
@@ -301,40 +336,6 @@
             this.cmbGoToCode.Size = new System.Drawing.Size(195, 21);
             this.cmbGoToCode.TabIndex = 39;
             this.cmbGoToCode.SelectedIndexChanged += new System.EventHandler(this.cmbGoToCode_SelectedIndexChanged);
-            // 
-            // kLabNameSpace
-            // 
-            this.kLabNameSpace.Location = new System.Drawing.Point(13, 25);
-            this.kLabNameSpace.Name = "kLabNameSpace";
-            this.kLabNameSpace.Size = new System.Drawing.Size(70, 19);
-            this.kLabNameSpace.TabIndex = 38;
-            this.kLabNameSpace.Values.Text = "NameSpace";
-            // 
-            // txtNameSpace
-            // 
-            this.txtNameSpace.Location = new System.Drawing.Point(114, 19);
-            this.txtNameSpace.Name = "txtNameSpace";
-            this.txtNameSpace.Size = new System.Drawing.Size(268, 22);
-            this.txtNameSpace.TabIndex = 39;
-            this.txtNameSpace.TextChanged += new System.EventHandler(this.txtNameSpace_TextChanged);
-            // 
-            // labNumberOfLinesWritten
-            // 
-            this.labNumberOfLinesWritten.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.SuperTip;
-            this.labNumberOfLinesWritten.Location = new System.Drawing.Point(114, 158);
-            this.labNumberOfLinesWritten.Name = "labNumberOfLinesWritten";
-            this.labNumberOfLinesWritten.Size = new System.Drawing.Size(21, 25);
-            this.labNumberOfLinesWritten.TabIndex = 40;
-            this.labNumberOfLinesWritten.Values.Text = "--";
-            // 
-            // labNumberOfApps
-            // 
-            this.labNumberOfApps.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.SuperTip;
-            this.labNumberOfApps.Location = new System.Drawing.Point(114, 128);
-            this.labNumberOfApps.Name = "labNumberOfApps";
-            this.labNumberOfApps.Size = new System.Drawing.Size(21, 25);
-            this.labNumberOfApps.TabIndex = 41;
-            this.labNumberOfApps.Values.Text = "--";
             // 
             // Form1
             // 

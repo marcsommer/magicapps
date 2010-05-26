@@ -18,7 +18,7 @@ using System.ComponentModel;
 
 
 [DefaultPropertyAttribute("name")]
-public class table : IComparable
+public partial class table : IComparable
 {
 
 
@@ -30,7 +30,7 @@ public class table : IComparable
     private string targetName;
     private int numberOfFields;
     private string getKey;
-    private string getFieldDescription;
+    private string _fieldDescription;
 
     private Boolean _nameChanged;
     private Boolean _createdNew;
@@ -84,10 +84,10 @@ public class table : IComparable
         set { getKey = value; }
     }
     
-    public String FieldDescription
+    public String fieldDescription
     {
-        get { return getFieldDescription; }
-        set { getFieldDescription = value; }
+        get { return _fieldDescription; }
+        set { _fieldDescription = value; }
     }
 
     // return a string with delimiter...
