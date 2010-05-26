@@ -1,0 +1,133 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" Codebehind="masterAdmin.Master.cs"
+    Inherits="admin.masterAdmin.masterAdmin" %>
+<%@ Reference Control="./menuAdmin.ascx" %>
+<%@ Register TagPrefix="uc1" TagName="menuAdmin" Src="./menuAdmin.ascx" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<head runat="server">
+    <title></title>
+
+    <script type="text/javascript" src="../../includes/portal.js"></script>
+
+    <!-- para el calendario -->
+
+    <script type="text/javascript" src="../../includes/calendar/script.js"></script>
+
+</head>
+<body xml:lang="es">
+    <form id="form1" runat="server">
+        <!--CABECERA-->
+        <div id="cabecera">
+            <div id="esqCabIzq">
+                <div id="esqCabDcha">
+                    <!---titulo principal--->
+                    <div id="logotipo">
+                        <h1 class="titulocabecera">
+                            <asp:Label ID="lblAdminEmpresa" runat="server" Text="Administración"></asp:Label>
+                        </h1>
+                        <hr class="hidden" />
+                        <h1 class="titulocabecera">
+                            <span> 
+                                <asp:Label ID="lblportal" runat="server" Text=""></asp:Label> </span>
+                        </h1>
+                    </div>
+                    <!---titulo principal--->
+                    <!---las dos pestañas de la derecha--->
+                    <div id="derechaPest">
+                        <div class="pestana">
+                            <asp:Button ID="btnCerrar" runat="server" Text="Cerrar sesi&oacute;n" CssClass="termSesion"
+                                OnClick="btnCerrar_Click" />
+                        </div>
+                    </div>
+                    <!---accesibilidad-->
+                    <div id="dchAccesibilidad">
+                        <div class="bloqueAccesib">
+                            <asp:Button ID="btnContraste" runat="server" Text="T" CssClass="T2" OnClick="btnContraste_Click" />
+                            <asp:Button ID="btnTexto" runat="server" Visible="false" Text="T" CssClass="T1" OnClick="btnTexto_Click" />
+                        </div>
+                        <div class="bloqueAccesib">
+                            <asp:Button ID="btnNormal" runat="server" Text="-A" CssClass="AmpTex" OnClick="btnNormal_Click" />
+                            <asp:Button ID="btnMediano" runat="server" Visible="false" Text="+A" CssClass="AmpTex" OnClick="btnMediano_Click" />
+                            <asp:Button ID="btnGrande" runat="server" Text="+A" CssClass="AmpTex" OnClick="btnGrande_Click" />
+                        </div>
+                        <div class="bloqueAccesib">
+                            <asp:Button ID="btnAccesibilidad" runat="server" Text="Accesibilidad" ToolTip="Accesibilidad (Tecla de acceso 0 )"
+                                CssClass="icoaccesib" OnClick="btnAccesibilidad_Click" />
+                        </div>
+                    </div>
+                    <!---accesibilidad--->
+                    <!--MENU-->
+                    <div id="zonamenu">
+                        <div class="MenuIzq">
+                            <div class="MenuDcha">
+                                <uc1:menuAdmin ID="menuAdmin" runat="server"></uc1:menuAdmin>
+                            </div>
+                        </div>
+                    </div>
+                    <!--MENU-->
+                </div>
+                <!--contenido cabecera-->
+            </div>
+        </div>
+      
+        <!--CABECERA-->
+        <div id="fondoIzquierda">
+            <!---fondo izqda-->
+            <div id="fondoDerecha">
+                <!---fondo dcha-->
+                <div id="fondocentral">
+                    <!--fondo central-->
+                    <hr class="mensaje" />
+                    <div class="both">
+                    </div>
+                    <hr class="hidden" />
+                    <!--contenido-->
+                    <div id="contenido">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                     
+<div class="both"><img src="../imagesadmin/planAvAdmin.gif" alt="Mityc, Plan Avanza, Fondo Social Europeo" /></div>
+ 
+                    <!--contenido-->
+                    <div class="both">
+                    </div>
+                </div>
+                <!--fondo central-->
+                <hr class="hidden" />
+                <!--PIE-->
+                <div id="fondopie">
+                    <div id="pie">
+                        <ul id="seccion1">
+                            <li>Conforme <acronym title="World Wide Web Consortium" xml:lang="en">W3C</acronym>
+                                | <a href="http://validator.w3.org/check/referer"><acronym title="Extensible Hypertext Markup Language"
+                                    xml:lang="en">XHTML</acronym> 1.0 Stict </a>| <a href="http://jigsaw.w3.org/css-validator/">
+                                        <acronym title="Cascading Style Sheet" xml:lang="en">CSS 2.0</acronym></a></li>
+                            <li><a href="" accesskey="8" title="Aviso legal (Tecla acceso 8)">Aviso legal</a></li>
+                            <li><a href="accesibilidad.html" accesskey="0" title="Accesibilidad (Tecla de acceso 0 )">
+                                Accesibilidad</a></li>
+                            <li><a href="http://www.micasoft.com" title="Dise&ntilde;ado por IPI">Dise&ntilde;ado
+                                por IPI</a></li>
+                            <li class="logospie"><a href="http://www.w3.org/WAI/WCAG1AA-Conformance">
+                                <img src="../imagesadmin/w3c_aa.gif" alt="Level Double-A Conformance to Web Content Accessibility"
+                                    width="74" height="15" /></a></li>
+                        </ul>
+                    </div>
+                    <!--PIE-->
+                    <!---borde inferior-->
+                    <div id="fondInf">
+                        <div id="fondInfIzq">
+                            <div id="fondInfDcha">
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                </div>
+                <!--fondo pie-->
+            </div>
+            <!---fondo izq-->
+        </div>
+        <!---fondo dcha-->
+    </form>
+</body>
+</html>
