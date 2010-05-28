@@ -337,6 +337,10 @@ class dbMySql
                     {
                         if (fi.Name.Equals(campo))
                         {
+                            if (!comentario.Equals(""))
+                                fi.targetName = comentario;
+
+
                             fi.comment = comentario;
                             fi.defaultValue = defecto;
                             fi.allowNulls = isNullable;

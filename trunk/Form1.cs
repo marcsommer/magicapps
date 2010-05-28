@@ -43,6 +43,9 @@ using System.Text.RegularExpressions;
 // para app.config
 using System.Configuration;
 
+
+
+
 namespace myWay
 {
     public partial class Form1 : Form
@@ -135,6 +138,14 @@ namespace myWay
                 writeText(util.loadFile(general.templateSelectedFullUri));
             }
 
+
+            string numberOfLinesWrittenBefore = sf.toLong(System.Configuration.ConfigurationManager.AppSettings["numberOfLinesWritten"]).ToString();
+            labNumberOfLinesWritten.Values.Text = sf.cadena(numberOfLinesWrittenBefore) + " lines written with myWay";
+
+            string labNumberOfAppsBefore = sf.toLong(System.Configuration.ConfigurationManager.AppSettings["labNumberOfAppsWritten"]).ToString();
+            labNumberOfApps.Values.Text = sf.cadena(labNumberOfAppsBefore) + " apps written with myWay";
+              
+           
         }
 
        
@@ -1108,15 +1119,26 @@ namespace myWay
                 general.templateSelected = smallTitle;
             }
 
+        }
+
+        # region ["busqueda de plantillas"]
+
+        private void txtBus_TextChanged(object sender, EventArgs e)
+        {
+           
+
         } // buttonGeneric_Click
 
-        
 
-        
+    
 
-        
+        #endregion
 
-       
+
+
+
+
+
 
 
     }
