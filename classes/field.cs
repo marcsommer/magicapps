@@ -36,8 +36,8 @@ public class field : IComparable
         _money,
         _image,
         _document,
-        _audio
-
+        _audio,
+        _video
     }
 
     #region["Variables"]

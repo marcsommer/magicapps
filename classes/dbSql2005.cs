@@ -317,6 +317,7 @@ class dbSql2005
                 {
                     String tipo = sf.cadena(dr["CONSTRAINT_TYPE"]);
                     String campo = sf.cadena(dr["COLUMN_NAME"]);
+                    String comentario = getComments(cadconexion, table.Name, campo);
 
                     switch (tipo)
                     {
@@ -329,7 +330,7 @@ class dbSql2005
                                     if (table.GetKey == null)
                                         table.GetKey = campo;
                                 }
-                                    
+
                             }
                             break;
                         case "FOREIGN_KEY":
@@ -343,11 +344,42 @@ class dbSql2005
                             break;
                     }
 
+                    foreach (field fi in table.fields)
+                    {
+
+                        if (fi.Name.Equals(campo))
+                        {
+
+
+                            fi.comment = comentario;
+                            if (comentario.Contains("#img#"))
+                            {
+                                comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#img#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                                fi.targetType = field.fieldType._image;
+                            }
+                            if (comentario.Contains("#audio#"))
+                            {
+                                comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#audio#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                                fi.targetType = field.fieldType._audio;
+                            }
+                            if (comentario.Contains("#money#"))
+                            {
+                                comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#money#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                                fi.targetType = field.fieldType._money;
+                            }
+                            if (comentario.Contains("#video#"))
+                            {
+                                comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#video#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                                fi.targetType = field.fieldType._video;
+                            }
+                            if (comentario.Contains("#doc#"))
+                            {
+                                comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#doc#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                                fi.targetType = field.fieldType._document;
+                            }
+                        }
+                    }
                 }
-
-               
-
-
             }
             catch (Exception ep)
             {
