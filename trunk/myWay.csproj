@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{66DE3AD8-61FA-4FF4-9C5A-4B0551FB9F57}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -187,15 +187,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="diagram.resx">
       <DependentUpon>diagram.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="model.resx">
       <DependentUpon>model.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="newProject.resx">
       <DependentUpon>newProject.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -204,6 +208,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="showTemplates.resx">
       <DependentUpon>showTemplates.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -511,9 +516,11 @@
     <Content Include="classes\cakePhpValidation.txt" />
     <EmbeddedResource Include="modifyProject.resx">
       <DependentUpon>modifyProject.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="showProjectTemplates.resx">
       <DependentUpon>showProjectTemplates.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="img\database_48.png" />
     <EmbeddedResource Include="img\database_warning_48.png" />
@@ -525,9 +532,11 @@
     <EmbeddedResource Include="img\thumbs_up_48.png" />
     <EmbeddedResource Include="userControls\userControlEditField.resx">
       <DependentUpon>userControlEditField.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="userControls\userControlEditTable.resx">
       <DependentUpon>userControlEditTable.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="App.config">
     </None>
@@ -552,10 +561,6 @@
     <Content Include="img\table_edit.png" />
     <None Include="img\tabs_48.png" />
     <Content Include="notas.txt" />
-    <None Include="Resources\paper_content_chart_48.png" />
-    <None Include="Resources\folder_48.png" />
-    <None Include="Resources\css.png" />
-    <None Include="Resources\application_lightning.png" />
     <Content Include="templates\exampleRelations.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

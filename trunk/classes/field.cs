@@ -47,7 +47,7 @@ public class field : IComparable
     private fieldType _type;
     private fieldType _targetType;
     private string _targetName;
-
+    private string _comment;
     private bool _selected;
 
     private bool _isKey;
@@ -59,7 +59,7 @@ public class field : IComparable
     private bool _isAutoIncrement;
     private string _defaultValue;
     private int _size;
-    private string _comment;
+ 
     private string _getQuoted;
 
     private bool _changed;
@@ -121,6 +121,7 @@ public class field : IComparable
         get { return _targetName; }
         set { _targetName = value; }
     }
+ 
 
     public bool selected
     {
@@ -162,6 +163,8 @@ public class field : IComparable
         get { return _size; }
         set { _size = value; }
     }
+    [CategoryAttribute("Descripcion"), DescriptionAttribute("Name that appears at form")]
+
     public string comment
     {
         get { return _comment; }

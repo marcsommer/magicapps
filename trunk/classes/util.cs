@@ -29,8 +29,8 @@ public static class util
 
     public static string conf_dir = System.Environment.CurrentDirectory;
     public static string projects_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, "projects");
-    public static string templates_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, "templates");
-    public static string projectTemplates_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, "templates\\projectTemplates");
+    public static string templates_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, System.Configuration.ConfigurationManager.AppSettings["templatesPath"].ToString());
+    public static string projectTemplates_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, System.Configuration.ConfigurationManager.AppSettings["templatesPath"].ToString());
     public static string images_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, "images");
     public static string sound_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, "sounds");
 
