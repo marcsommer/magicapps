@@ -13,12 +13,9 @@ namespace myWay
 {
     public partial class showTemplates : Form
     {
-
-
         public String templateSelected;
         public String text;
         public String smallTitle;
-
 
         public showTemplates()
         {
@@ -42,9 +39,6 @@ namespace myWay
             if (tn.Count() != 0)
                 tn[0].Collapse();
         }
-
-
-
 
         private void loadTreeTemplates(String dir, TreeNode parentNode)
         {
@@ -164,7 +158,6 @@ namespace myWay
             }
 
         }
-
 
     }
 }

@@ -13,12 +13,9 @@ namespace myWay
 {
     public partial class showProjectTemplates : Form
     {
-
-
         public String templateSelected;
         public String text;
         public String smallTitle;
-
 
         public showProjectTemplates()
         {
@@ -33,9 +30,6 @@ namespace myWay
             loadTreeTemplates(util.projectTemplates_dir, null);
             //trTemplates.ExpandAll();
         }
-
-
-
 
         private void loadTreeTemplates(String dir, TreeNode parentNode)
         {
@@ -92,21 +86,33 @@ namespace myWay
 
             //}
         }
+ 
+        private void trTemplates_DoubleClick(object sender, EventArgs e)
+        {
+
+            this.Close();
+        }
+
+        private void showTemplates_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             string targetDirectoryx = "";
 
             // Display the openFile dialog.
-            DialogResult result = folderBrowserDialog1.ShowDialog();
+            DialogResult result = folderBrowserDialog2.ShowDialog();
 
             // OK button was pressed.
             if (result == DialogResult.OK)
             {
-                util.templates_dir = folderBrowserDialog1.SelectedPath;
+                util.projectTemplates_dir = folderBrowserDialog2.SelectedPath;
 
-
+                util.projectTemplates_dir = sf.cadena(folderBrowserDialog2.SelectedPath.ToString());
                 System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                config.AppSettings.Settings["templatesPath"].Value = sf.cadena(folderBrowserDialog1.SelectedPath.ToString());
+                config.AppSettings.Settings["templatesPath"].Value = sf.cadena(folderBrowserDialog2.SelectedPath.ToString());
                 config.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection("appSettings");
 
@@ -120,20 +126,8 @@ namespace myWay
             {
                 return;
             }
-
         }
 
-        private void trTemplates_DoubleClick(object sender, EventArgs e)
-        {
-
-            this.Close();
-        }
-
-        private void showTemplates_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
+ 
     }
 }
