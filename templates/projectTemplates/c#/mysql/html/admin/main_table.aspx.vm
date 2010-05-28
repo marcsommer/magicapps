@@ -11,15 +11,15 @@
 				<div class="titulos">
 					<div class="itemTit">
 					  <h2 class="textoTit">
-                          ${table}</h2>
+                      ${table.targetName()}</h2>
 					</div>
 				</div>
 				<!--barra titulos-->
 				
 			 <div class="bloqueMenu">
 				<ul  class="pestCat">
-					<li><a href="../${table}_dir/listado_${table}.aspx" class="modificarM" >Listado ${table}</a></li>
-					<li><a href="../${table}_dir/main_${table}.aspx" class="insertarM">Nuevo ${table}</a></li>
+					<li><a href="../${table}_dir/listado_${table}.aspx" class="modificarM" >Listado ${table.targetName()}</a></li>
+					<li><a href="../${table}_dir/main_${table}.aspx" class="insertarM">Nuevo ${table.targetName()}</a></li>
 				</ul>
 			</div>
 				
@@ -37,7 +37,7 @@
 					<div class="lineaForm">
 						<label for="${field}">				
 							<span class="etiqueta">${field.targetName()}: </span>
-							<asp:DropDownList ID="cmb${field}" runat="server">
+							<asp:DropDownList ID="cmb${field}" CssClass="textoLargo" runat="server">
 							</asp:DropDownList>
 						</label>
 					</div>		
@@ -46,7 +46,7 @@
 				<div class="lineaForm">
                 <label for="${field}">
                         <span class="etiqueta">${field.targetName()}: </span>
-                        <asp:TextBox ID="txt${field}"   runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txt${field}" CssClass="textoLargo" runat="server"></asp:TextBox>
                     </label>
 				</div>		
 				#end	
@@ -56,7 +56,7 @@
 			  	<div class="lineaForm">
                    <label for="${field}">
                         <span class="etiqueta">${field.targetName()}: </span>
-							<asp:TextBox ID="txt${field}"   runat="server"></asp:TextBox>
+							<asp:TextBox ID="txt${field}" CssClass="textoLargo" runat="server"></asp:TextBox>
 						                     
                     </label>
 						</div>		
@@ -141,10 +141,10 @@
 					<!--botones formulario-->
 					<div class="botonesSub">
 						<span>
-							 <asp:Button ID="butModificar" runat="server" CssClass="aceptar" OnClick="butModificar_Click" Text="Modificar" />
+							 <asp:Button ID="butModificar" runat="server" CssClass="boton" OnClick="butModificar_Click" Text="Modificar" />
 						</span>
 						<span>
-							 <asp:Button ID="butCancelar" runat="server" CssClass="denegar" OnClick="butCancelar_Click" Text="Cancelar" />
+							 <asp:Button ID="butCancelar" runat="server" CssClass="boton" OnClick="butCancelar_Click" Text="Cancelar" />
 						</span>
 					</div>
 					<!--botones formulario-->

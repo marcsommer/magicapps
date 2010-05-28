@@ -1,0 +1,388 @@
+<nameFile>main_${table}</nameFile>
+<extensionFile>aspx.cs</extensionFile>
+<targetDirectory>${table}_dir</targetDirectory>
+<appliesToAllTables>true</appliesToAllTables>
+using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+
+namespace ${project}.${table}_dir
+{
+public partial class main_${table} : System.Web.UI.Page
+{
+	protected void Page_Load(object sender, EventArgs e) 
+	{
+		PanelAviso.Visible = false;
+		if (!Page.IsPostBack)
+		{
+		 #foreach( $relation in $table.getRelations() )
+		  #if ($field != "idportal")	
+		   lo.comboRellenar(cmb${relation.childField()}, "select ${relation.childField()},${relation.descriptionChild()} from ${relation.parentTable()} ", ctes.conStringAdoGeneral, "Seleccione");
+		  #end           
+	  #end 
+		// si nos mandan para borrar...
+		if (Request["idb"] != null)
+		{
+			${table}.Delete(sf.entero(Request["idb"]));
+			Response.Redirect("./listado_${table}.aspx");
+		}
+		if (Request["id"] != null)
+		{
+			${table} res = new ${table}(sf.entero(Request["id"]));
+			
+			//res = ${table}.get${table}(sf.entero(Request["id"]));
+#set ($count = 0)
+#foreach( $field in $table.GetArrayOfFields )
+#if (!$field.isKey())
+#if ($field.toString()!= "idportal")	
+#if ($field.type.toString() == "_integer")
+#if (! $field.isForeignKey())
+//txt${field}.Text = sf.cadena(res.${field});
+#end
+#end 
+#if ($field.type.toString() == "_string")
+#if ( $field.size() >= 251)
+txt${field}.Text = res.${field};
+
+#else
+txt${field}.Text = res.${field};
+
+
+#end		
+
+#end 
+#if ($field.type.toString() == "_date")
+${field}.SelectedDate = res.${field};
+
+
+//txt${field}.Text = res.${field};
+#end 
+#if ($field.type.toString() == "_boolean")
+ck${field}.Checked = sf.Bool(res.${field});
+
+
+#end 
+#if ($field.type.toString() == "_image")
+
+if (sf.cadena(res.${field}) != "")
+{
+	img${field}.ImageUrl = res.${field};
+	img${field}.Visible = true;
+	//imgNoticia.AlternateText = " " + res.titulo;
+	btnborrarimagen${field}.Visible = true;
+	FileUploadImagen${field}.Visible = false;
+}
+#end 
+#if ($field.type.toString() == "_document")
+if (sf.cadena(res.${field}) != "")
+{
+	lbl${field}.Text = sf.Right(res.${field},res.${field}.Length-19);
+	lbl${field}.Visible = true;
+	 
+	btnborrar${field}.Visible = true;
+	FileUpload${field}.Visible = false;
+}
+#end 									 
+
+
+#end	
+
+#end
+#set ($count = $count + 1 )
+#end 
+
+
+#foreach( $relation in $table.getRelations() )
+#if ($field != "idportal")	
+lo.comboSeleccionarItem(cmb${relation.childField()}, sf.cadena(res.${relation.childField()}), "Id");
+#end	               
+#end 
+
+		}
+		else
+		{
+			butModificar.Text = "Insertar";
+		}
+		 }
+	}
+
+	protected void butModificar_Click(object sender, EventArgs e)
+	{
+		// modificar
+		if (Request["id"] != null)
+		{
+			${table} res = new ${table}(sf.entero(Request["id"])#foreach( $field in $table.GetArrayOfFields )#if ($field.targetName()=="idportales"  && ${table}!="portales")>,sf.entero(Request["idportal"])#end#end );
+			//res = ${table}.get${table}(sf.entero(Request["id"]));
+			#set ($count = 0)
+			#foreach( $field in $table.GetArrayOfFields )
+				#if (!$field.isKey())
+#if ($field == "idportal")
+res.idportal= sf.entero(HttpContext.Current.Session["admin"]);
+#end					
+				#if ($field != "idportal")
+					
+					 
+							  #if ($field.type.toString() == "_integer")
+								#if (! $field.isForeignKey())
+									res.${field}=sf.entero(txt${field}.Text) ;
+								#else
+									 res.${field}=sf.entero(cmb${field}.SelectedValue) ;
+								 #end                                   
+								 #end 
+							  #if ($field.type.toString() == "_string")
+								#if ( $field.size() >= 251)>
+								   res.${field}=sf.cadena(txt${field}.Text);
+								#else
+									res.${field}=sf.cadena(txt${field}.Text) ;
+								 #end		
+								#end 
+							  #if ($field.type.toString() == "_date")
+								res.${field}=sf.fecha(${field}.SelectedDate) ;
+								 #end 
+							  #if ($field.type.toString() == "_boolean")
+								 res.${field}=sf.Bool(ck${field}.Checked) ;
+								 #end 
+							#if ($field.type.toString() == "_image")
+								if (FileUploadImagen${field}.PostedFile == null) { }
+								else
+								{
+									if (FileUploadImagen${field}.FileName != "")
+									{
+										if (!System.IO.File.Exists(Server.MapPath("../../bdimages/") + sf.cadena(HttpContext.Current.Session["admin"]) + FileUploadImagen${field}.FileName))
+										{
+											res.${field} = "../../bdimages/" + sf.cadena(HttpContext.Current.Session["admin"]) + FileUploadImagen${field}.FileName;
+											FileUploadImagen${field}.SaveAs(Server.MapPath("../../bdimages/") + sf.cadena(HttpContext.Current.Session["admin"]) + FileUploadImagen${field}.FileName);
+											img${field}.ImageUrl = res.${field};
+											//img${field}.AlternateText = " " + res.titulo;
+											img${field}.Visible = true;
+											btnborrarimagen${field}.Visible = true;
+											FileUploadImagen${field}.Visible = false;
+
+										}
+										else
+										{//mensaje("El archivo ya existe, elija otro nombre");
+										}
+											
+									}
+								}
+								 #end 
+							#if ($field.type.toString() == "_document")
+								if (FileUpload${field}.PostedFile == null) { }
+								else
+								{
+									if (FileUpload${field}.FileName != "")
+									{
+										if (!System.IO.File.Exists(Server.MapPath("../../bddocumentos/") + sf.cadena(HttpContext.Current.Session["admin"]) + FileUpload${field}.FileName))
+										{
+											res.${field} = "../../bddocumentos/" + sf.cadena(HttpContext.Current.Session["admin"]) + FileUpload${field}.FileName;
+											FileUpload${field}.SaveAs(Server.MapPath("../../bddocumentos/") + sf.cadena(HttpContext.Current.Session["admin"]) + FileUpload${field}.FileName);
+											lbl${field}.Text = res.${field};
+											//img${field}.AlternateText = " " + res.titulo;
+											lbl${field}.Visible = true;
+											btnborrar${field}.Visible = true;
+											FileUpload${field}.Visible = false;
+
+										}
+										else
+										{//mensaje("El archivo ya existe, elija otro nombre");
+										}
+											
+									}
+								}
+								 #end 									 
+							   
+					  
+				#end
+				#end
+				#set ($count = $count + 1 )
+			#end 
+
+			res.Update();
+			res = null;
+			mensaje("Modificado con exito");
+	
+		}
+		// insertar...
+		else
+		{
+
+			${table} res = new ${table}(); 
+			#set ($count = 0)
+			#foreach( $field in $table.GetArrayOfFields )
+#if ($field == "idportal")
+res.idportal= sf.entero(HttpContext.Current.Session["admin"]);
+#end				
+			 #if ($field != "idportal")	
+				#if (!$field.isKey())
+					
+					 
+							  #if ($field.type.toString() == "_integer")
+								#if (! $field.isForeignKey())
+									res.${field}=sf.entero(txt${field}.Text) ;
+								#else
+									 res.${field}=sf.entero(lo.comboValorSeleccionado(ref cmb${field},ctes.eTipoCampo.id)) ;
+								 #end
+							   
+								 #end 
+							  #if ($field.type.toString() == "_string")
+								#if ( $field.size() >= 251)>
+								   res.${field}=sf.cadena(txt${field}.Text);
+								#else
+									res.${field}=sf.cadena(txt${field}.Text) ;
+								 #end									
+								 #end 
+							  #if ($field.type.toString() == "_date")
+								res.${field}=sf.fecha(${field}.SelectedDate) ;
+								 #end 
+							  #if ($field.type.toString() == "_boolean")
+								 res.${field}=sf.Bool(ck${field}.Checked) ;
+								 #end 
+							 #if ($field.type.toString() == "_image")
+								if (FileUploadImagen${field}.PostedFile == null) { }
+								else
+								{
+									if (FileUploadImagen${field}.FileName != "")
+									{
+										if (!System.IO.File.Exists(Server.MapPath("../../bdimages/") + sf.cadena(HttpContext.Current.Session["admin"]) + FileUploadImagen${field}.FileName))
+										{
+											res.${field} = "../../bdimages/" + sf.cadena(HttpContext.Current.Session["admin"]) + FileUploadImagen${field}.FileName;
+											FileUploadImagen${field}.SaveAs(Server.MapPath("../../bdimages/") + sf.cadena(HttpContext.Current.Session["admin"]) + FileUploadImagen${field}.FileName);
+											img${field}.ImageUrl = res.${field};
+											//img${field}.AlternateText = " " + res.titulo;
+											img${field}.Visible = true;
+											btnborrarimagen${field}.Visible = true;
+											FileUploadImagen${field}.Visible = false;
+
+										}
+										else
+										{//mensaje("El archivo ya existe, elija otro nombre");
+										}
+											
+									}
+								}
+								 #end 
+							#if ($field.type.toString() == "_document")
+								if (FileUpload${field}.PostedFile == null) { }
+								else
+								{
+									if (FileUpload${field}.FileName != "")
+									{
+										if (!System.IO.File.Exists(Server.MapPath("../../bddocumentos/") + sf.cadena(HttpContext.Current.Session["admin"]) + FileUpload${field}.FileName))
+										{
+											res.${field} = "../../bddocumentos/" + sf.cadena(HttpContext.Current.Session["admin"]) + FileUpload${field}.FileName;
+											FileUpload${field}.SaveAs(Server.MapPath("../../bddocumentos/") + sf.cadena(HttpContext.Current.Session["admin"]) + FileUpload${field}.FileName);
+											lbl${field}.Text = res.${field};
+											//img${field}.AlternateText = " " + res.titulo;
+											lbl${field}.Visible = true;
+											btnborrar${field}.Visible = true;
+											FileUpload${field}.Visible = false;
+
+										}
+										else
+										{//mensaje("El archivo ya existe, elija otro nombre");
+										}
+											
+									}
+								}
+								 #end 										 
+							 
+				#end
+				#end
+				#set ($count = $count + 1 )
+				
+			#end 
+			
+			 ${table}.Insert(res);
+			 res = null;
+			mensaje("Insertado con exito");
+
+							
+
+			
+		}
+	}
+	
+	 #foreach( $relation in $table.getRelations() )
+		  protected void ibNew${relation.childField()}_Click(object sender, ImageClickEventArgs e)
+			{
+
+			}   
+	 #end 
+ 
+	private void mensaje(string p)
+	{
+		lblinfo.Text = p;
+		lblinfo.Visible = true;
+		PanelAviso.Visible = true;
+	}
+	 protected void butCancelar_Click(object sender, EventArgs e)
+	{
+
+	}
+	
+	
+   
+	
+	// funciones extra para campos extra
+	#set ($count = 0)
+			#foreach( $field in $table.GetArrayOfFields )
+				#if (!$field.isKey())
+					
+					 
+							  #if ($field.type.toString() == "_image")
+								 protected void btnborrarimagen${field}_Click(object sender, EventArgs e)
+								{
+									${table} res = new ${table}(sf.entero(Request["id"])#foreach( $field in $table.GetArrayOfFields )#if ($field.targetName()=="idportales"  && ${table}!="portales")>,sf.entero(Request["idportal"])#end#end );
+									res.deleteImg${field}();
+									img${field}.Visible = false;
+									btnborrarimagen${field}.Visible = false;
+									//txtTextoAlternativo${field}.Text = "";
+						 
+									if (System.IO.File.Exists(Server.MapPath(img${field}.ImageUrl.ToString())))
+										System.IO.File.Delete(Server.MapPath(img${field}.ImageUrl.ToString()));
+									FileUploadImagen${field}.Visible = true;
+									res.${field} = "";
+									
+								}
+								 
+								 #end 
+							  #if ($field.type.toString() == "_document")
+								 protected void btnborrar${field}_Click(object sender, EventArgs e)
+								{
+									${table} res = new ${table}(sf.entero(Request["id"])#foreach( $field in $table.GetArrayOfFields )#if ($field.targetName()=="idportales"  && ${table}!="portales")>,sf.entero(Request["idportal"])#end#end );
+									res.deleteDoc${field}();
+									lbl${field}.Visible = false;
+									btnborrar${field}.Visible = false;
+									//txtTextoAlternativo${field}.Text = "";
+						 
+									if (System.IO.File.Exists(Server.MapPath(lbl${field}.Text.ToString())))
+										System.IO.File.Delete(Server.MapPath(lbl${field}.Text.ToString()));
+									FileUpload${field}.Visible = true;
+									res.${field} = "";
+									
+								}
+								 
+								 #end 									 
+								 
+					  
+				#end
+				#set ($count = $count + 1 )
+			#end 
+
+
+
+
+
+
+	
+	
+} 
+
+}

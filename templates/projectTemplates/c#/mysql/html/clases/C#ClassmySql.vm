@@ -1,9 +1,3 @@
-#* 
-	comments: 
-	
-	Author: Luis Molina
-*#  
-
 <nameFile>${table}</nameFile>
 <extensionFile>cs</extensionFile>
 <languageGenerated>c_sharp</languageGenerated>
