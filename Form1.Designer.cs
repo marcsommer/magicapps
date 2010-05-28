@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.imageListTables = new System.Windows.Forms.ImageList(this.components);
-            this.kryptonHeader1 = new ComponentFactory.Krypton.Toolkit.KryptonHeader();
             this.butEditModel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.butReload = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.butCopy = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -59,6 +58,7 @@
             this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.butReturnToScript = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.cmbGoToCode = new System.Windows.Forms.ComboBox();
+            this.txtBus = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -74,17 +74,6 @@
             this.imageListTables.Images.SetKeyName(4, "application_osx.png");
             this.imageListTables.Images.SetKeyName(5, "application_key.png");
             this.imageListTables.Images.SetKeyName(6, "application_link.png");
-            // 
-            // kryptonHeader1
-            // 
-            this.kryptonHeader1.HeaderStyle = ComponentFactory.Krypton.Toolkit.HeaderStyle.Secondary;
-            this.kryptonHeader1.Location = new System.Drawing.Point(417, 13);
-            this.kryptonHeader1.Name = "kryptonHeader1";
-            this.kryptonHeader1.Size = new System.Drawing.Size(141, 52);
-            this.kryptonHeader1.TabIndex = 12;
-            this.kryptonHeader1.Values.Description = "";
-            this.kryptonHeader1.Values.Heading = "Code - template";
-            this.kryptonHeader1.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonHeader1.Values.Image")));
             // 
             // butEditModel
             // 
@@ -108,7 +97,7 @@
             // 
             // butCopy
             // 
-            this.butCopy.Location = new System.Drawing.Point(934, 39);
+            this.butCopy.Location = new System.Drawing.Point(934, 12);
             this.butCopy.Name = "butCopy";
             this.butCopy.Size = new System.Drawing.Size(68, 26);
             this.butCopy.TabIndex = 18;
@@ -292,9 +281,9 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(414, 63);
+            this.panel1.Location = new System.Drawing.Point(414, 44);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(588, 347);
+            this.panel1.Size = new System.Drawing.Size(588, 366);
             this.panel1.TabIndex = 35;
             // 
             // rt1
@@ -309,7 +298,7 @@
             // 
             // kryptonButton2
             // 
-            this.kryptonButton2.Location = new System.Drawing.Point(649, 39);
+            this.kryptonButton2.Location = new System.Drawing.Point(649, 12);
             this.kryptonButton2.Name = "kryptonButton2";
             this.kryptonButton2.Size = new System.Drawing.Size(78, 25);
             this.kryptonButton2.TabIndex = 37;
@@ -319,7 +308,7 @@
             // 
             // butReturnToScript
             // 
-            this.butReturnToScript.Location = new System.Drawing.Point(565, 39);
+            this.butReturnToScript.Location = new System.Drawing.Point(565, 12);
             this.butReturnToScript.Name = "butReturnToScript";
             this.butReturnToScript.Size = new System.Drawing.Size(78, 25);
             this.butReturnToScript.TabIndex = 38;
@@ -331,17 +320,26 @@
             // 
             this.cmbGoToCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGoToCode.FormattingEnabled = true;
-            this.cmbGoToCode.Location = new System.Drawing.Point(733, 43);
+            this.cmbGoToCode.Location = new System.Drawing.Point(733, 16);
             this.cmbGoToCode.Name = "cmbGoToCode";
             this.cmbGoToCode.Size = new System.Drawing.Size(195, 21);
             this.cmbGoToCode.TabIndex = 39;
             this.cmbGoToCode.SelectedIndexChanged += new System.EventHandler(this.cmbGoToCode_SelectedIndexChanged);
+            // 
+            // txtBus
+            // 
+            this.txtBus.Location = new System.Drawing.Point(414, 18);
+            this.txtBus.Name = "txtBus";
+            this.txtBus.Size = new System.Drawing.Size(145, 20);
+            this.txtBus.TabIndex = 0;
+            this.txtBus.TextChanged += new System.EventHandler(this.txtBus_TextChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1016, 559);
+            this.Controls.Add(this.txtBus);
             this.Controls.Add(this.cmbGoToCode);
             this.Controls.Add(this.butReturnToScript);
             this.Controls.Add(this.kryptonButton2);
@@ -354,7 +352,6 @@
             this.Controls.Add(this.butCopy);
             this.Controls.Add(this.butReload);
             this.Controls.Add(this.butEditModel);
-            this.Controls.Add(this.kryptonHeader1);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "myWay";
@@ -372,7 +369,6 @@
         #endregion
 
         private System.Windows.Forms.ImageList imageListTables;
-        private ComponentFactory.Krypton.Toolkit.KryptonHeader kryptonHeader1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton butEditModel;
         private ComponentFactory.Krypton.Toolkit.KryptonButton butReload;
         private ComponentFactory.Krypton.Toolkit.KryptonButton butCopy;
@@ -400,6 +396,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kLabNameSpace;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel labNumberOfLinesWritten;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel labNumberOfApps;
+        private System.Windows.Forms.TextBox txtBus;
     }
 }
 

@@ -107,7 +107,7 @@
                               <ItemTemplate >
                  				<tr  title="${table}" >
                  			    <td align="center">
-									<a href="./main_${table}.aspx?id=<%#Eval("${keyField}")%> " class="btn">Editar</a> 
+									<a href="./main_${table}.aspx?id=<%#Eval("${table.getKey()}")%> " class="btn">Editar</a> 
 								</td>
 								
                                     #set ($count = 0)
@@ -125,7 +125,7 @@
  
 					          
                                     <td align="center">
-                                      <a href="./main_${table}.aspx?idb=<%#Eval("${keyField}")%> " class="btn">Borrar</a> 
+                                      <a href="./main_${table}.aspx?idb=<%#Eval("${table.getKey()}")%> " class="btn">Borrar</a> 
  
                                 </td>
                 			 
