@@ -183,7 +183,7 @@
             // 
             this.txtNameSpace.Location = new System.Drawing.Point(114, 19);
             this.txtNameSpace.Name = "txtNameSpace";
-            this.txtNameSpace.Size = new System.Drawing.Size(268, 22);
+            this.txtNameSpace.Size = new System.Drawing.Size(268, 20);
             this.txtNameSpace.TabIndex = 39;
             this.txtNameSpace.TextChanged += new System.EventHandler(this.txtNameSpace_TextChanged);
             // 
@@ -352,6 +352,7 @@
             this.Controls.Add(this.butCopy);
             this.Controls.Add(this.butReload);
             this.Controls.Add(this.butEditModel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "myWay";

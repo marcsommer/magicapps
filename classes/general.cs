@@ -19,7 +19,4 @@ using System.Text;
 
         // if we order fields when scanning metadata
         public static bool orderFields=false;
-
-        // we have indexed files ?
-        public static bool filesIndexed = false;
     }

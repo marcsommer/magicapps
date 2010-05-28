@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using System.Configuration;
 using System.IO;
 
 namespace myWay
@@ -23,19 +23,24 @@ namespace myWay
         public showTemplates()
         {
             InitializeComponent();
+            cargar();
+
+        }
+
+        private void cargar()
+        {
 
             trTemplates.Nodes.Clear();
             loadTreeTemplates(util.templates_dir, null);
             trTemplates.ExpandAll();
 
 
-           // we want projectTemplates node collapsed
+            // we want projectTemplates node collapsed
 
             TreeNode[] tn;
             tn = trTemplates.Nodes.Find("projectTemplates", true);
             if (tn.Count() != 0)
                 tn[0].Collapse();
-
         }
 
 
@@ -126,6 +131,37 @@ namespace myWay
 
         private void showTemplates_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string targetDirectoryx = "";
+
+            // Display the openFile dialog.
+            DialogResult result = folderBrowserDialog1.ShowDialog();
+
+            // OK button was pressed.
+            if (result == DialogResult.OK)
+            {
+                util.templates_dir = folderBrowserDialog1.SelectedPath;
+
+
+                System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config.AppSettings.Settings["templatesPath"].Value = sf.cadena(folderBrowserDialog1.SelectedPath.ToString());
+                config.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("appSettings");
+
+
+
+                cargar();
+            }
+
+            // Cancel button was pressed.
+            else if (result == DialogResult.Cancel)
+            {
+                return;
+            }
 
         }
 

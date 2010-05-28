@@ -100,6 +100,7 @@ namespace myWay
                                 ComponentFactory.Krypton.Toolkit.KryptonListItem kl = new ComponentFactory.Krypton.Toolkit.KryptonListItem();
                                 kl.LongText = campito.type.ToString();
                                 kl.ShortText = campito.Name;
+                                
                                 //  kl.ShortText=item.TargetName;
                                 lbFields.Items.Add(kl);
                             }
