@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using System.Configuration;
 using System.IO;
 
 namespace myWay
@@ -23,7 +23,12 @@ namespace myWay
         public showProjectTemplates()
         {
             InitializeComponent();
+            cargar();
 
+        }
+
+        private void cargar()
+        {
             trTemplates.Nodes.Clear();
             loadTreeTemplates(util.projectTemplates_dir, null);
             //trTemplates.ExpandAll();
@@ -86,6 +91,36 @@ namespace myWay
             //    smallTitle = seleccionado.Substring(seleccionado.LastIndexOf("\\") + 1, seleccionado.Length - seleccionado.LastIndexOf("\\") - 1);
 
             //}
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string targetDirectoryx = "";
+
+            // Display the openFile dialog.
+            DialogResult result = folderBrowserDialog1.ShowDialog();
+
+            // OK button was pressed.
+            if (result == DialogResult.OK)
+            {
+                util.templates_dir = folderBrowserDialog1.SelectedPath;
+
+
+                System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config.AppSettings.Settings["templatesPath"].Value = sf.cadena(folderBrowserDialog1.SelectedPath.ToString());
+                config.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("appSettings");
+
+
+
+                cargar();
+            }
+
+            // Cancel button was pressed.
+            else if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
         }
 
         private void trTemplates_DoubleClick(object sender, EventArgs e)

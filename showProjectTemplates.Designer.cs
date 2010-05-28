@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(showTemplates));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(showProjectTemplates));
             this.imageListFiles = new System.Windows.Forms.ImageList(this.components);
             this.trTemplates = new System.Windows.Forms.TreeView();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // imageListFiles
@@ -53,14 +55,24 @@
             this.trTemplates.DoubleClick += new System.EventHandler(this.trTemplates_DoubleClick);
             this.trTemplates.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trTemplates_AfterSelect);
             // 
-            // showTemplates
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(595, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 44);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Change Path";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // showProjectTemplates
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(691, 387);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.trTemplates);
-            this.Name = "showTemplates";
-            this.Text = "showTemplates";
+            this.Name = "showProjectTemplates";
+            this.Text = "showProjectsTemplates";
             this.Load += new System.EventHandler(this.showTemplates_Load);
             this.ResumeLayout(false);
 
@@ -70,5 +82,7 @@
 
         private System.Windows.Forms.ImageList imageListFiles;
         private System.Windows.Forms.TreeView trTemplates;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Button button1;
     }
 }
