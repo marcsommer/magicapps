@@ -1,0 +1,302 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{162742F0-60DD-4736-9FD7-25408891BD6A}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>base1</RootNamespace>
+    <AssemblyName>base1</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Artem.GoogleMap, Version=4.0.1.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="eWorld.UI, Version=2.0.1.2222, Culture=neutral, PublicKeyToken=24d65337282035f2, processorArchitecture=MSIL" />
+    <Reference Include="FreeTextBox, Version=3.1.6.34851, Culture=neutral, PublicKeyToken=5962a4e684a48b87, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data, Version=5.0.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="RSSMaster, Version=1.0.1208.1379, Culture=neutral" />
+    <Reference Include="RssToolkit, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Web.Extensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\admcontrastexl\admin_contraste.css" />
+    <Content Include="App_Themes\admcontraste\admin_contraste.css" />
+    <Content Include="App_Themes\adminxl\admin.css" />
+    <Content Include="App_Themes\admin\admin.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="admin\admins_dir\listado_admins.aspx" />
+    <Content Include="admin\admins_dir\main_admins.aspx" />
+    <Content Include="admin\master\menuAdmin.ascx" />
+    <Content Include="App_code\themeHttpModule.cs" />
+    <Compile Include="admin\admins_dir\listado_admins.aspx.cs">
+      <DependentUpon>listado_admins.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\admins_dir\listado_admins.aspx.designer.cs">
+      <DependentUpon>listado_admins.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\admins_dir\main_admins.aspx.cs">
+      <DependentUpon>main_admins.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\admins_dir\main_admins.aspx.designer.cs">
+      <DependentUpon>main_admins.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\master\masterAdmin.Master.cs">
+      <DependentUpon>masterAdmin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\master\masterAdmin.Master.designer.cs">
+      <DependentUpon>masterAdmin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="admin\master\menuAdmin.ascx.cs">
+      <DependentUpon>menuAdmin.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\master\menuAdmin.ascx.designer.cs">
+      <DependentUpon>menuAdmin.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="clasesbase\ctes.cs" />
+    <Compile Include="clasesbase\dbClass.cs" />
+    <Compile Include="clasesbase\lo.cs" />
+    <Compile Include="clasesbase\redimensionarImagen.cs" />
+    <Compile Include="clasesbase\sf.cs" />
+    <Compile Include="clasesbase\templateGoogleMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="clases\admins.cs" />
+    <Compile Include="clases\admins_extra.cs" />
+    <Compile Include="clases\articulos.cs" />
+    <Compile Include="clases\articulos_extra.cs" />
+    <Compile Include="clases\banners.cs" />
+    <Compile Include="clases\banners_extra.cs" />
+    <Compile Include="clases\banners_wide.cs" />
+    <Compile Include="clases\banners_wide_extra.cs" />
+    <Compile Include="clases\categoriasdocumentos.cs" />
+    <Compile Include="clases\categoriasdocumentos_extra.cs" />
+    <Compile Include="clases\categoriasenlaces.cs" />
+    <Compile Include="clases\categoriasenlaces_extra.cs" />
+    <Compile Include="clases\categoriasimagenes.cs" />
+    <Compile Include="clases\categoriasimagenes_extra.cs" />
+    <Compile Include="clases\categoriasmultimedia.cs" />
+    <Compile Include="clases\categoriasmultimedia_extra.cs" />
+    <Compile Include="clases\corporativas.cs" />
+    <Compile Include="clases\corporativas_extra.cs" />
+    <Compile Include="clases\documentos.cs" />
+    <Compile Include="clases\documentos_extra.cs" />
+    <Compile Include="clases\enlaces.cs" />
+    <Compile Include="clases\enlaces_extra.cs" />
+    <Compile Include="clases\eventos.cs" />
+    <Compile Include="clases\eventos_extra.cs" />
+    <Compile Include="clases\imagenes.cs" />
+    <Compile Include="clases\imagenes_extra.cs" />
+    <Compile Include="clases\multimedias.cs" />
+    <Compile Include="clases\multimedias_extra.cs" />
+    <Compile Include="clases\noticias.cs" />
+    <Compile Include="clases\noticias_extra.cs" />
+    <Compile Include="clases\portales.cs" />
+    <Compile Include="clases\portales_extra.cs" />
+    <Compile Include="clases\programas.cs" />
+    <Compile Include="clases\programas_extra.cs" />
+    <Compile Include="clases\provincias.cs" />
+    <Compile Include="clases\provincias_extra.cs" />
+    <Compile Include="clases\usuarios.cs" />
+    <Compile Include="clases\usuarios_extra.cs" />
+    <Compile Include="Default.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="admin\imagesadmin\accesib.gif" />
+    <Content Include="admin\imagesadmin\aceptar.gif" />
+    <Content Include="admin\imagesadmin\activ.gif" />
+    <Content Include="admin\imagesadmin\add.gif" />
+    <Content Include="admin\imagesadmin\addCat.gif" />
+    <Content Include="admin\imagesadmin\altocontraste.gif" />
+    <Content Include="admin\imagesadmin\anadirCat.gif" />
+    <Content Include="admin\imagesadmin\barraDirec.gif" />
+    <Content Include="admin\imagesadmin\bordeDcha.gif" />
+    <Content Include="admin\imagesadmin\bordeInf.gif" />
+    <Content Include="admin\imagesadmin\bordeIzq.gif" />
+    <Content Include="admin\imagesadmin\bordeSup.gif" />
+    <Content Include="admin\imagesadmin\borrar.gif" />
+    <Content Include="admin\imagesadmin\boton.gif" />
+    <Content Include="admin\imagesadmin\btNoticias.gif" />
+    <Content Include="admin\imagesadmin\cat.gif" />
+    <Content Include="admin\imagesadmin\contact.gif" />
+    <Content Include="admin\imagesadmin\contacto.gif" />
+    <Content Include="admin\imagesadmin\content.gif" />
+    <Content Include="admin\imagesadmin\css.gif" />
+    <Content Include="admin\imagesadmin\css2.gif" />
+    <Content Include="admin\imagesadmin\denegar.gif" />
+    <Content Include="admin\imagesadmin\editarProd.gif" />
+    <Content Include="admin\imagesadmin\encuesta.jpg" />
+    <Content Include="admin\imagesadmin\esqCabDcha.gif" />
+    <Content Include="admin\imagesadmin\esqCabDcha.jpg" />
+    <Content Include="admin\imagesadmin\esqCabIzq.gif" />
+    <Content Include="admin\imagesadmin\esqDcha_menu.gif" />
+    <Content Include="admin\imagesadmin\esqInfDcha.gif" />
+    <Content Include="admin\imagesadmin\esqInfIzq.gif" />
+    <Content Include="admin\imagesadmin\esqIzq_menu.gif" />
+    <Content Include="admin\imagesadmin\esqIzq_menuH.gif" />
+    <Content Include="admin\imagesadmin\esqmenuDcha.gif" />
+    <Content Include="admin\imagesadmin\esqmenuIzq.gif" />
+    <Content Include="admin\imagesadmin\esqPest.gif" />
+    <Content Include="admin\imagesadmin\esqPie1.jpg" />
+    <Content Include="admin\imagesadmin\esqPie2.jpg" />
+    <Content Include="admin\imagesadmin\esqSupDcha.gif" />
+    <Content Include="admin\imagesadmin\esqSupIzq.gif" />
+    <Content Include="admin\imagesadmin\esq_dcha.gif" />
+    <Content Include="admin\imagesadmin\esq_izq.gif" />
+    <Content Include="admin\imagesadmin\examinar.gif" />
+    <Content Include="admin\imagesadmin\fecha.gif" />
+    <Content Include="admin\imagesadmin\fedeLogin.jpg" />
+    <Content Include="admin\imagesadmin\flecha.gif" />
+    <Content Include="admin\imagesadmin\flechaMenu.gif" />
+    <Content Include="admin\imagesadmin\flechaPie.gif" />
+    <Content Include="admin\imagesadmin\flechaVolver.gif" />
+    <Content Include="admin\imagesadmin\FondDcha.gif" />
+    <Content Include="admin\imagesadmin\FondDcha.png" />
+    <Content Include="admin\imagesadmin\FondInf.gif" />
+    <Content Include="admin\imagesadmin\FondIzq.gif" />
+    <Content Include="admin\imagesadmin\FondIzq.png" />
+    <Content Include="admin\imagesadmin\fondoAccesib.gif" />
+    <Content Include="admin\imagesadmin\fondoAccesibilidad.gif" />
+    <Content Include="admin\imagesadmin\fondoBt.gif" />
+    <Content Include="admin\imagesadmin\fondoBusq.gif" />
+    <Content Include="admin\imagesadmin\fondoC.gif" />
+    <Content Include="admin\imagesadmin\fondoClip.gif" />
+    <Content Include="admin\imagesadmin\fondoCom1.gif" />
+    <Content Include="admin\imagesadmin\fondoCom2.gif" />
+    <Content Include="admin\imagesadmin\fondoDestacados.gif" />
+    <Content Include="admin\imagesadmin\fondoDirec.gif" />
+    <Content Include="admin\imagesadmin\fondoEncab.gif" />
+    <Content Include="admin\imagesadmin\fondoGen.gif" />
+    <Content Include="admin\imagesadmin\fondoImg.gif" />
+    <Content Include="admin\imagesadmin\fondoImgCentral.gif" />
+    <Content Include="admin\imagesadmin\fondoLogin.gif" />
+    <Content Include="admin\imagesadmin\fondomenu.gif" />
+    <Content Include="admin\imagesadmin\fondoMenuH.gif" />
+    <Content Include="admin\imagesadmin\fondoPest.gif" />
+    <Content Include="admin\imagesadmin\fondoPie.gif" />
+    <Content Include="admin\imagesadmin\fondoRaya.gif" />
+    <Content Include="admin\imagesadmin\fondoSubtit.gif" />
+    <Content Include="admin\imagesadmin\fondoT2.gif" />
+    <Content Include="admin\imagesadmin\fondoTit.gif" />
+    <Content Include="admin\imagesadmin\fondoTit2.gif" />
+    <Content Include="admin\imagesadmin\fondoTitulos.gif" />
+    <Content Include="admin\imagesadmin\fondPest.gif" />
+    <Content Include="admin\imagesadmin\fondPestanas.gif" />
+    <Content Include="admin\imagesadmin\fondSeparador.gif" />
+    <Content Include="admin\imagesadmin\icoAcesib.gif" />
+    <Content Include="admin\imagesadmin\icoAdmin.gif" />
+    <Content Include="admin\imagesadmin\imgAsoc.jpg" />
+    <Content Include="admin\imagesadmin\imgProg.jpg" />
+    <Content Include="admin\imagesadmin\imgRaton.jpg" />
+    <Content Include="admin\imagesadmin\insertar.gif" />
+    <Content Include="admin\imagesadmin\irCatalogo.gif" />
+    <Content Include="admin\imagesadmin\itemh4.gif" />
+    <Content Include="admin\imagesadmin\itemMenu.gif" />
+    <Content Include="admin\imagesadmin\itemMenuHover.gif" />
+    <Content Include="admin\imagesadmin\itemSubtit.gif" />
+    <Content Include="admin\imagesadmin\itemTit.gif" />
+    <Content Include="admin\imagesadmin\izqPest.gif" />
+    <Content Include="admin\imagesadmin\logo.jpg" />
+    <Content Include="admin\imagesadmin\logoAvanza.gif" />
+    <Content Include="admin\imagesadmin\logotipoUDP.jpg" />
+    <Content Include="admin\imagesadmin\logoUDPSup.gif" />
+    <Content Include="admin\imagesadmin\mapa.gif" />
+    <Content Include="admin\imagesadmin\modCat.gif" />
+    <Content Include="admin\imagesadmin\modificar.gif" />
+    <Content Include="admin\imagesadmin\ok.gif" />
+    <Content Include="admin\imagesadmin\pestana.gif" />
+    <Content Include="admin\imagesadmin\planAvAdmin.gif" />
+    <Content Include="admin\imagesadmin\puntoLi.gif" />
+    <Content Include="admin\imagesadmin\puntoLi2.gif" />
+    <Content Include="admin\imagesadmin\separadorH.gif" />
+    <Content Include="admin\imagesadmin\separadorIcos.gif" />
+    <Content Include="admin\imagesadmin\separadorP.gif" />
+    <Content Include="admin\imagesadmin\separadorV.gif" />
+    <Content Include="admin\imagesadmin\signoMas.gif" />
+    <Content Include="admin\imagesadmin\solotexto.gif" />
+    <Content Include="admin\imagesadmin\sombraPie.gif" />
+    <Content Include="admin\imagesadmin\taw.png" />
+    <Content Include="admin\imagesadmin\tel.gif" />
+    <Content Include="admin\imagesadmin\terminarSesion.gif" />
+    <Content Include="admin\imagesadmin\textoTam.gif" />
+    <Content Include="admin\imagesadmin\titBanner.gif" />
+    <Content Include="admin\imagesadmin\titMenu.gif" />
+    <Content Include="admin\imagesadmin\titulos.gif" />
+    <Content Include="admin\imagesadmin\verCat.gif" />
+    <Content Include="admin\imagesadmin\verProductos.gif" />
+    <Content Include="admin\imagesadmin\w3c_aa.gif" />
+    <Content Include="admin\imagesadmin\w3c_aaa.gif" />
+    <Content Include="admin\imagesadmin\wai-aa.gif" />
+    <Content Include="admin\imagesadmin\waiAA.gif" />
+    <Content Include="admin\imagesadmin\wai_aa.gif" />
+    <Content Include="admin\imagesadmin\xhtml.gif" />
+    <Content Include="admin\imagesadmin\xhtml1.gif" />
+    <Content Include="admin\imagesadmin\zonamenu.gif" />
+    <Content Include="admin\master\masterAdmin.Master" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v8.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49573</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

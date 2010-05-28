@@ -90,24 +90,33 @@ public class themeHttpModule : IHttpModule
         }
         if ((page.Session["tamanio"] != null))
         {
-            page.Theme = "normal" + page.Session["tamanio"];
+            if ((pagina.Contains("admin")))
+            {
+                page.Theme = "admin" + page.Session["tamanio"];
+            }
+            else
+            {
+                page.Theme = "normal" + page.Session["tamanio"];
+            }
+
         }
-        if (page.Session["version"] != null)
+        if (page.Session["versionadmin"] != null)
         {
-            if (sf.cadena(page.Session["version"]) == "texto")
+
+            if (sf.cadena(page.Session["versionadmin"]) == "texto")
             {
                 if (page.Session["tamanio"] == null)
-                    page.Theme = page.Session["version"].ToString();
+                    page.Theme = page.Session["versionadmin"].ToString();
                 else
-                    page.Theme = page.Session["version"].ToString() + page.Session["tamanio"].ToString();
+                    page.Theme = page.Session["versionadmin"].ToString() + page.Session["tamanio"].ToString();
 
             }
             else
             {
                 if (page.Session["tamanio"] == null)
-                    page.Theme = page.Session["version"].ToString();
+                    page.Theme = page.Session["versionadmin"].ToString();
                 else
-                    page.Theme = page.Session["version"].ToString() + page.Session["tamanio"].ToString();
+                    page.Theme = page.Session["versionadmin"].ToString() + page.Session["tamanio"].ToString();
             }
         }
 

@@ -81,6 +81,13 @@ namespace myWay.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap folder_48 {
+            get {
+                object obj = ResourceManager.GetObject("folder_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap paper_48 {
             get {
                 object obj = ResourceManager.GetObject("paper_48", resourceCulture);
