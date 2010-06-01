@@ -111,7 +111,7 @@
             this.butOpenProject2.Name = "butOpenProject2";
             this.butOpenProject2.Size = new System.Drawing.Size(167, 58);
             this.butOpenProject2.TabIndex = 21;
-            this.butOpenProject2.Values.Image = global::myWay.Properties.Resources.folder_48;
+            //this.butOpenProject2.Values.Image = global::myWay.Properties.Resources.folder_48;
             this.butOpenProject2.Values.Text = "Open project";
             this.butOpenProject2.Click += new System.EventHandler(this.butOpenProject2_Click);
             // 

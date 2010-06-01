@@ -87,6 +87,8 @@
             this.lbTables.Size = new System.Drawing.Size(240, 218);
             this.lbTables.TabIndex = 7;
             this.lbTables.SelectedIndexChanged += new System.EventHandler(this.kryptonListBox1_SelectedIndexChanged);
+            this.lbTables.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lbTables_MouseDown);
+            this.lbTables.Click += new System.EventHandler(this.lbTables_Click);
             // 
             // kryptonHeader1
             // 
