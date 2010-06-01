@@ -197,71 +197,13 @@ namespace myWay
 
         private void kryptonListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                //txtTable.Text = lbTables.SelectedItem.ToString();
-
-                lbFields.Items.Clear();
-
-                foreach (table item in actualProject.tables)
-                {
-                    if (!item.deleted && item.Name.Equals(lbTables.SelectedItem.ToString()))
-                    {
-
-                        propertyGrid1.SelectedObject = item;
-
-                        cargarCampos();
-                        //lbFields.Items.Clear();
-                        //foreach (field itemx in item.fields)
-                        //{
-                        //    //lbFields.Items.Add(item);
-                        //    ComponentFactory.Krypton.Toolkit.KryptonListItem kl = new ComponentFactory.Krypton.Toolkit.KryptonListItem();
-                        //    kl.ShortText = itemx.Name;
-                        //    kl.LongText = itemx.type.ToString();
-                        //    //  kl.ShortText=item.TargetName;
-                        //    lbFields.Items.Add(kl);
-                        //}
-
-                        klRelations.Items.Clear();
-                        foreach (relation rel in item.relations)
-                        {
-                             
-                            ComponentFactory.Krypton.Toolkit.KryptonListItem kl = new ComponentFactory.Krypton.Toolkit.KryptonListItem();
-                             kl.ShortText = rel.name;
-                           //kl.LongText = rel.name.ToString();
-                            //  kl.ShortText=item.TargetName;
-                            klRelations.Items.Add(kl);
-                        }
-                    }
-
-                }
-
-                // create a user control to edit the table
-                myWay.userControls.userControlEditTable uc = new myWay.userControls.userControlEditTable();
-                uc.txtTable.Text = lbTables.SelectedItem.ToString();
-                uc.oldName = lbTables.SelectedItem.ToString();
-                formFunctionPointer += new functioncall(alterTable);
-                uc.userFunctionPointer = formFunctionPointer; 
-                kp1.Controls.Clear();
-                kp1.Controls.Add(uc);
-                uc.txtTable.Focus();
-
-               
-            }
-            catch (Exception)
-            {
-
-
-            }
+            selectedTables();
 
         }
 
      
 
-        private void propertyGrid1_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
          
 
@@ -552,7 +494,7 @@ namespace myWay
             field cp = new field();
             cp = (field)campito;
 
-            // if oldName its empty its a new table...
+            // if oldName its empty its a new field..
             if (oldNameField.Equals(""))
             {
                 foreach (table item in actualProject.tables)
@@ -584,9 +526,10 @@ namespace myWay
                 }
             }
 
+            kp1.Controls.Clear();
             actualProject.saveProject(Path.Combine(util.projects_dir, actualProject.name) + ".xml");
             cargarCampos();
-            kp1.Controls.Clear();
+            
         }
 
         private void butDeleteField_Click(object sender, EventArgs e)
@@ -604,17 +547,91 @@ namespace myWay
                         }
                     }
                     
-                    // extra clean...
-                    kp1.Controls.Clear();
+                   
                 }
             }
-
+ 
+            // extra clean...
+            kp1.Controls.Clear();
             actualProject.saveProject(Path.Combine(util.projects_dir, actualProject.name) + ".xml");
             cargarCampos();
-        }     // butDeleteField_Click
-    
+        }
+
+        private void lbTables_Click(object sender, EventArgs e)
+        {
+              selectedTables();
+        }     // lbTables_Click
 
 
+        private void selectedTables()
+        {
+            try
+            {
+                //txtTable.Text = lbTables.SelectedItem.ToString();
+
+                lbFields.Items.Clear();
+
+                foreach (table item in actualProject.tables)
+                {
+                    if (!item.deleted && item.Name.Equals(lbTables.SelectedItem.ToString()))
+                    {
+
+                        propertyGrid1.SelectedObject = item;
+
+                        cargarCampos();
+                        //lbFields.Items.Clear();
+                        //foreach (field itemx in item.fields)
+                        //{
+                        //    //lbFields.Items.Add(item);
+                        //    ComponentFactory.Krypton.Toolkit.KryptonListItem kl = new ComponentFactory.Krypton.Toolkit.KryptonListItem();
+                        //    kl.ShortText = itemx.Name;
+                        //    kl.LongText = itemx.type.ToString();
+                        //    //  kl.ShortText=item.TargetName;
+                        //    lbFields.Items.Add(kl);
+                        //}
+
+                        klRelations.Items.Clear();
+                        foreach (relation rel in item.relations)
+                        {
+
+                            ComponentFactory.Krypton.Toolkit.KryptonListItem kl = new ComponentFactory.Krypton.Toolkit.KryptonListItem();
+                            kl.ShortText = rel.name;
+                            //kl.LongText = rel.name.ToString();
+                            //  kl.ShortText=item.TargetName;
+                            klRelations.Items.Add(kl);
+                        }
+                    }
+
+                }
+
+                // create a user control to edit the table
+                myWay.userControls.userControlEditTable uc = new myWay.userControls.userControlEditTable();
+                uc.txtTable.Text = lbTables.SelectedItem.ToString();
+                uc.oldName = lbTables.SelectedItem.ToString();
+                formFunctionPointer += new functioncall(alterTable);
+                uc.userFunctionPointer = formFunctionPointer;
+                kp1.Controls.Clear();
+                kp1.Controls.Add(uc);
+                uc.txtTable.Focus();
+
+
+            }
+            catch (Exception)
+            {
+
+
+            }
+        }
+
+        private void propertyGrid1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbTables_MouseDown(object sender, MouseEventArgs e)
+        {
+            selectedTables();
+        }
 
 
 

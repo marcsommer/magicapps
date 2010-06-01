@@ -34,6 +34,7 @@
             this.trTemplates = new System.Windows.Forms.TreeView();
             this.button1 = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.butRestorePath = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // imageListFiles
@@ -47,10 +48,10 @@
             // 
             this.trTemplates.ImageIndex = 0;
             this.trTemplates.ImageList = this.imageListFiles;
-            this.trTemplates.Location = new System.Drawing.Point(67, 12);
+            this.trTemplates.Location = new System.Drawing.Point(25, 12);
             this.trTemplates.Name = "trTemplates";
             this.trTemplates.SelectedImageIndex = 0;
-            this.trTemplates.Size = new System.Drawing.Size(522, 326);
+            this.trTemplates.Size = new System.Drawing.Size(564, 326);
             this.trTemplates.TabIndex = 5;
             this.trTemplates.DoubleClick += new System.EventHandler(this.trTemplates_DoubleClick);
             this.trTemplates.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trTemplates_AfterSelect);
@@ -65,11 +66,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // butRestorePath
+            // 
+            this.butRestorePath.Location = new System.Drawing.Point(596, 83);
+            this.butRestorePath.Name = "butRestorePath";
+            this.butRestorePath.Size = new System.Drawing.Size(75, 44);
+            this.butRestorePath.TabIndex = 7;
+            this.butRestorePath.Text = "Restore original Path";
+            this.butRestorePath.UseVisualStyleBackColor = true;
+            this.butRestorePath.Click += new System.EventHandler(this.butRestorePath_Click);
+            // 
             // showTemplates
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(691, 387);
+            this.Controls.Add(this.butRestorePath);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.trTemplates);
             this.Name = "showTemplates";
@@ -85,5 +97,6 @@
         private System.Windows.Forms.TreeView trTemplates;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Button butRestorePath;
     }
 }
