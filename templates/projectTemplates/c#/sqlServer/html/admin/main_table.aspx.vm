@@ -3,13 +3,12 @@
 	
 	Author: Luis Molina
 *#  
- <nameFile>main_${table}</nameFile>
+<nameFile>main_${table}</nameFile>
 <extensionFile>aspx</extensionFile>
 <languageGenerated>c_sharp</languageGenerated>
 <description>description</description>
 <targetDirectory>${table}_dir</targetDirectory>
 <appliesToAllTables>true</appliesToAllTables>
-
 <%@ Page Language="C#" MasterPageFile="~/admin/master/masterAdmin.Master" AutoEventWireup="true"  CodeBehind="main_${table}.aspx.cs" Inherits="${project}.${table}_dir.main_${table}" Title="Página sin título" %>
 <%@ Register Assembly="eWorld.UI" Namespace="eWorld.UI" TagPrefix="ew" %>
 <%@ Register Assembly="FreeTextBox" Namespace="FreeTextBoxControls" TagPrefix="FTB" %>
@@ -51,11 +50,8 @@
 					
 		 	
 #set ($count = 0)
-#foreach( $field in $table.GetArrayOfFields )
+#foreach( $field in $table.getFields() )
   #if (!$field.isKey())
-
-   
-     
      
               #if ($field.type.toString() == "_integer")
                 #if ( $field.isForeignKey())				
@@ -77,7 +73,18 @@
             #end
 
                 
-                 #end 
+         #end 
+				 
+			#if ($field.type.toString() == "_double")
+				<div class="lineaForm">
+				<label for="${field}">
+				<span class="etiqueta">${field.targetName()}: </span>
+					<asp:TextBox ID="txt${field}"   runat="server"></asp:TextBox>						                     
+				</label>
+				</div>	
+			#end
+				 
+				 
               #if ($field.type.toString() == "_string")
 			  	<div class="lineaForm">
                    <label for="${field}">

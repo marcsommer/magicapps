@@ -30,7 +30,10 @@ using System.ComponentModel;
 		  #if ($field.type.toString() == "_integer")
 			 private int _${field};
 			 #end 
-		  #if ($field.type.toString() == "_string")
+		  #if ($field.type.toString() == "_double")
+			 private double _${field};
+			 #end 
+		#if ($field.type.toString() == "_string")
 			 private string _${field};
 			 #end 
 		  #if ($field.type.toString() == "_date")
@@ -54,6 +57,13 @@ using System.ComponentModel;
 		#end
 		#if ($field.type.toString() == "_integer")
 		  public int ${field}
+				{
+					get {return _${field};}
+					set {_${field} = value;}
+				}
+		 #end 
+		#if ($field.type.toString() == "_double")
+		  public double ${field}
 				{
 					get {return _${field};}
 					set {_${field} = value;}
@@ -139,13 +149,16 @@ using System.ComponentModel;
         MySqlDataReader reg;
         try
         {
-        sqlt.Append( " insert into ${table} ( ${table.getListOfFieldsWithoutKeys("")} )"); 
+        sqlt.Append( " insert into ${table} ( ${table.getListOfFieldsWithoutKeys(",")} )"); 
         sqlt.Append( " values (");
 			#set ($count = 0)	
 			#foreach( $field in $table.GetArrayOfFields ) 
 				#if (!$field.isKey())
 					  #if ($field.type.toString() == "_integer")
 						 sqlt.Append(sf.entero(obj${table}.${field}) + " #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end") ;
+						 #end 
+					  #if ($field.type.toString() == "_double")
+						 sqlt.Append( sf.cadenaMySql(obj${table}.${field}) + " #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end") ;
 						 #end 
 					  #if ($field.type.toString() == "_string")
 						 sqlt.Append( sf.cadenaMySql(obj${table}.${field}) + " #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end") ;
@@ -176,8 +189,7 @@ using System.ComponentModel;
             }
             finally
             {
-                db.Dispose();
-              
+                db.Dispose();              
             }
             return retorno;
        }
@@ -201,6 +213,9 @@ using System.ComponentModel;
 #foreach( $field in $table.GetArrayOfFields )  
 		  #if ($field.type.toString() == "_integer")
 		     pp.${field} = sf.entero(reg["${field}"].ToString());
+		     #end 
+		   #if ($field.type.toString() == "_double")
+		     pp.${field} = sf.doble(reg["${field}"].ToString());
 		     #end 
 		  #if ($field.type.toString() == "_string")
 		     pp.${field} = sf.cadena(reg["${field}"].ToString());
@@ -246,6 +261,8 @@ using System.ComponentModel;
             sqlt += " where ${table.getKey()} <> -1 and (";              
 			#foreach( $field in $table.GetArrayOfFields ) 
 				  #if ($field.type.toString() == "_integer")	
+					 #end 
+				   #if ($field.type.toString() == "_double")	
 					 #end 
 				  #if ($field.type.toString() == "_string")
 					#if ($count==0)
@@ -314,6 +331,9 @@ using System.ComponentModel;
 					  #if ($field.type.toString() == "_integer")
 						sqlt += " and ${field}=" + sf.cadena(${field});
 						 #end 
+					  #if ($field.type.toString() == "_double")
+						 sqlt += " and ${field}='" + sf.cadena(${field}) + "'";
+						 #end 
 					  #if ($field.type.toString() == "_string")
 						  sqlt += " and ${field}='" + sf.cadena(${field}) + "'";
 						 #end 
@@ -333,7 +353,10 @@ using System.ComponentModel;
 					  #if ($field.type.toString() == "_integer")
 						 obj${table}.${field} = sf.entero(reg["${field}"].ToString());
 						 #end 
-					  #if ($field.type.toString() == "_string")
+					    #if ($field.type.toString() == "_double")
+						 obj${table}.${field} = sf.doble(reg["${field}"].ToString());
+						 #end 
+					#if ($field.type.toString() == "_string")
 						 obj${table}.${field} = sf.cadena(reg["${field}"].ToString());	  					
 						 #end 
 					  #if ($field.type.toString() == "_date")
@@ -377,6 +400,10 @@ using System.ComponentModel;
 					sqlt.Append(" ${field}=" + sf.cadena(obj${table}.${field})+ ", ") ;
 					#set ($count = $count + 1 )		
 					#end 
+				#if ($field.type.toString() == "_double")
+					sqlt.Append(" ${field}=" + sf.cadenaMySql(obj${table}.${field})+ ", ");
+					#set ($count = $count + 1 )		
+				#end 
 				  #if ($field.type.toString() == "_string")
 					sqlt.Append(" ${field}='" + sf.cadena(obj${table}.${field})+ "', "); 
 					 #set ($count = $count + 1 )		
@@ -386,7 +413,7 @@ using System.ComponentModel;
 					 #set ($count = $count + 1 )		
 					 #end 
 				  #if ($field.type.toString() == "_boolean")
-					 sqlt.Append(" ${field}=" + sf.Bool(obj${table}.${field}) + "', ");
+					 sqlt.Append(" ${field}=" + sf.cadenaMySql(obj${table}.${field}) + ", ");
 					 #set ($count = $count + 1 )		
 					 #end
 			 #end				
@@ -398,7 +425,10 @@ using System.ComponentModel;
 				  #if ($field.type.toString() == "_integer")
 					sqlt.Append( " and ${field}=" + obj${table}.${field});
 					 #end 
-				  #if ($field.type.toString() == "_string")
+				  #if ($field.type.toString() == "_double")
+					  sqlt.Append( " and ${field}='" + sf.cadena(obj${table}.${field}) + "'");
+					 #end 
+				    #if ($field.type.toString() == "_string")
 					  sqlt.Append( " and ${field}='" + obj${table}.${field} + "'");
 					 #end 
 				  #if ($field.type.toString() == "_date")
@@ -441,7 +471,11 @@ using System.ComponentModel;
 					sqlt.Append( " ${field}=" + sf.cadena(this.${field}) + "," ) ;
 					#set ($count = $count + 1 )
 					 #end 
-				  #if ($field.type.toString() == "_string")
+				  #if ($field.type.toString() == "_double")
+					  sqlt.Append(" ${field}=" + sf.cadenaMySql(this.${field}) + "," );
+					  #set ($count = $count + 1 )
+					 #end 
+				 #if ($field.type.toString() == "_string")
 					  sqlt.Append(" ${field}='" + sf.cadena(this.${field}) + "'," );
 					  #set ($count = $count + 1 )
 					 #end 
@@ -450,7 +484,7 @@ using System.ComponentModel;
 					  #set ($count = $count + 1 )
 					 #end 
 				  #if ($field.type.toString() == "_boolean")
-					sqlt.Append(" ${field}=" + sf.cadena(this.${field})  + "," );
+					sqlt.Append(" ${field}=" + sf.cadenaMySql(this.${field})  + "," );
 					#set ($count = $count + 1 )
 					 #end  
 			#end				
@@ -461,6 +495,9 @@ using System.ComponentModel;
 			#if ($field.isKey()) 
 				  #if ($field.type.toString() == "_integer")
 					sqlt.Append( " and ${field}=" + this.${field});
+					 #end 
+				   #if ($field.type.toString() == "_double")
+					  sqlt.Append( " and ${field}='" + this.${field} + "'");
 					 #end 
 				  #if ($field.type.toString() == "_string")
 					  sqlt.Append( " and ${field}='" + this.${field} + "'");
@@ -506,6 +543,9 @@ using System.ComponentModel;
                 #if ($field.isKey()) 
 					  #if ($field.type.toString() == "_integer")
 						sqlt += " and ${field}=" + sf.cadena(${field});
+						 #end 
+					   #if ($field.type.toString() == "_double")
+						  sqlt += " and ${field}='" + sf.cadena(${field}) + "'";
 						 #end 
 					  #if ($field.type.toString() == "_string")
 						  sqlt += " and ${field}='" + sf.cadena(${field}) + "'";
@@ -553,7 +593,10 @@ using System.ComponentModel;
 						  #if ($field.type.toString() == "_integer")
 							sqlt += " and ${field}=" + ${field};
 							 #end 
-						  #if ($field.type.toString() == "_string")
+						   #if ($field.type.toString() == "_double")
+							  sqlt += " and ${field}='" + ${field} + "'";
+							 #end 
+						 #if ($field.type.toString() == "_string")
 							  sqlt += " and ${field}='" + ${field} + "'";
 							 #end 
 						  #if ($field.type.toString() == "_date")
@@ -571,7 +614,10 @@ using System.ComponentModel;
 					  #if ($field.type.toString() == "_integer")
 						 this.${field} = sf.entero(reg["${field}"].ToString());
 						 #end 
-					  #if ($field.type.toString() == "_string")
+					   #if ($field.type.toString() == "_double")
+						 this.${field} = sf.doble(reg["${field}"]);
+						 #end 
+					 #if ($field.type.toString() == "_string")
 						 this.${field} = sf.cadena(reg["${field}"]);
 						 #end 
 					  #if ($field.type.toString() == "_date")
@@ -628,6 +674,9 @@ using System.ComponentModel;
 #foreach( $field in $table.GetArrayOfFields )  
 	  #if ($field.type.toString() == "_integer")
 		 pp.${field} = sf.entero(reg["${field}"].ToString());
+		 #end 
+	  #if ($field.type.toString() == "_double")
+		 pp.${field} = sf.doble(reg["${field}"].ToString());
 		 #end 
 	  #if ($field.type.toString() == "_string")
 		 pp.${field} = sf.cadena(reg["${field}"].ToString());

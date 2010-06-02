@@ -46,7 +46,7 @@ public partial class ${table}Bll
             {
                 ${table} new${table}= new ${table}();
                 #set ($count = 0)		
-				#foreach( $field in $table.GetArrayOfFields ) 
+				#foreach( $field in $table.getFields ) 
 				 
 						  #if ($field.type.toString() == "_integer")
 							 new${table}.${field} = sf.entero(row["${field}"]);
@@ -92,21 +92,21 @@ public partial class ${table}Bll
         sqlt.Append( " insert into ${table} (${table.getListOfFields(",")}) "); 
         sqlt.Append( "  values (");
 			#set ($count = 0)	
-			#foreach( $field in $table.GetArrayOfFields ) 
+			#foreach( $field in $table.getFields ) 
 				#if (!$field.isKey())
 					 
 					 
 							  #if ($field.type.toString() == "_integer")
-			 					 sqlt.Append( sf.cadenaSqlServer(obj${table}.${field}) + " #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end") ;
+			 					 sqlt.Append( sf.cadenaSqlServer(obj${table}.${field}) + " #if ($table.getFields.count() -  $count  != 1) , #end") ;
 								 #end 
 							  #if ($field.type.toString() == "_string")
-								 sqlt.Append( sf.cadenaSqlServer(obj${table}.${field}) + " #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end") ;
+								 sqlt.Append( sf.cadenaSqlServer(obj${table}.${field}) + " #if ($table.getFields.count() -  $count  != 1) , #end") ;
 								 #end 
 							  #if ($field.type.toString() == "_date")
-								 sqlt.Append( sf.cadenaSqlServer(obj${table}.${field}) + " #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end")  ;
+								 sqlt.Append( sf.cadenaSqlServer(obj${table}.${field}) + " #if ($table.getFields.count() -  $count  != 1) , #end")  ;
 								 #end 
 							  #if ($field.type.toString() == "_boolean")
-								 sqlt.Append( sf.cadenaSqlServer(obj${table}.${field})  + " #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end");
+								 sqlt.Append( sf.cadenaSqlServer(obj${table}.${field})  + " #if ($table.getFields.count() -  $count  != 1) , #end");
 								 #end 
 							   
 					  
@@ -146,7 +146,7 @@ public partial class ${table}Bll
         sqlt += " where 1!=0";  
         
         #set ($count = 0)	
-        #foreach( $field in $table.GetArrayOfFields )
+        #foreach( $field in $table.getFields )
             #if ($field.isKey())
                 #if ($field.type.toString() == "_string")
                     sqlt += " and ${field}='" + sf.cadena(obj${table}.${field})';
@@ -181,20 +181,20 @@ public partial class ${table}Bll
             {
             sqlt.Append(" update ${table} set");
 		#set ($count = 0)		
-		#foreach( $field in $table.GetArrayOfFields )
+		#foreach( $field in $table.getFields )
 		 	 
 			 
 				  #if ($field.type.toString() == "_integer")
-						sqlt.Append(" ${field}=" + sf.cadena(obj${table}.${field})+ "#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end ") ;
+						sqlt.Append(" ${field}=" + sf.cadena(obj${table}.${field})+ "#if ($table.getFields.count() -  $count  != 1) , #end ") ;
 					 #end 
 				  #if ($field.type.toString() == "_string")
-					sqlt.Append(" ${field}='" + sf.cadena(obj${table}.${field})+ "'#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end "); 
+					sqlt.Append(" ${field}='" + sf.cadena(obj${table}.${field})+ "'#if ($table.getFields.count() -  $count  != 1) , #end "); 
 					 #end 
 				  #if ($field.type.toString() == "_date")
-					  sqlt.Append(" ${field}='" + sf.fechaIso(obj${table}.${field}) + "'#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end " );
+					  sqlt.Append(" ${field}='" + sf.fechaIso(obj${table}.${field}) + "'#if ($table.getFields.count() -  $count  != 1) , #end " );
 					 #end 
 				  #if ($field.type.toString() == "_boolean")
-					 sqlt.Append(" ${field}=" + sf.boolean(obj${table}.${field}) + "#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end ");
+					 sqlt.Append(" ${field}=" + sf.boolean(obj${table}.${field}) + "#if ($table.getFields.count() -  $count  != 1) , #end ");
 					 #end 
 				   
 		 #set ($count = $count + 1 )
@@ -267,7 +267,7 @@ public partial class ${table}Bll
             while (reg.Read())
                 {
                 ${table} pp = new ${table}();
-#foreach( $field in $table.GetArrayOfFields ) 	 
+#foreach( $field in $table.getFields ) 	 
 		  #if ($field.type.toString() == "_integer")
 		     pp.${field} = sf.entero(reg["${field}"].ToString());
 		     #end 
@@ -278,7 +278,7 @@ public partial class ${table}Bll
 		     pp.${field} = sf.fecha(reg["${field}"].ToString());
 		     #end 
 		  #if ($field.type.toString() == "_boolean")
-		     pp.${field} = sf.Bool(reg["${field}"].ToString());
+		     pp.${field} = sf.boolean(reg["${field}"].ToString());
 		     #end 
 #end 
                lista${table}.Add(pp);

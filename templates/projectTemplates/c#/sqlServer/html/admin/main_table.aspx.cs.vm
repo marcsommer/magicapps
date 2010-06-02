@@ -53,7 +53,7 @@ namespace ${project}.${table}_dir
                 //res = ${table}.get${table}(sf.entero(Request["id"]));
                
                 #set ($count = 0)
-                #foreach( $field in $table.GetArrayOfFields )
+                #foreach( $field in $table.GetFields )
                      #if (!$field.isKey())
                          
                          
@@ -71,7 +71,7 @@ namespace ${project}.${table}_dir
                                      
                                      #end 
                                   #if ($field.type.toString() == "_date")
-									${field}.SelectedDate = res.dateSale;
+									${field}.SelectedDate = res.${field};
                                      #end 
                                   #if ($field.type.toString() == "_boolean")
                                      ck${field}.Checked = sf.boolean(res.${field});
@@ -116,7 +116,7 @@ namespace ${project}.${table}_dir
                 ${table} res = new ${table}(sf.entero(Request["id"]));
                 //res = ${table}.get${table}(sf.entero(Request["id"]));
                 #set ($count = 0)
-                #foreach( $field in $table.GetArrayOfFields )
+                #foreach( $field in $table.getFields )
                     #if (!$field.isKey())
                         
                          
@@ -183,7 +183,7 @@ namespace ${project}.${table}_dir
 
                 ${table} res = new ${table}(); 
                 #set ($count = 0)
-                #foreach( $field in $table.GetArrayOfFields )
+                #foreach( $field in $table.getFields )
                     #if (!$field.isKey())
                         
                          
@@ -287,7 +287,7 @@ namespace ${project}.${table}_dir
 		
 		// funciones extra para campos extra
 		#set ($count = 0)
-                #foreach( $field in $table.GetArrayOfFields )
+                #foreach( $field in $table.getFields )
                     #if (!$field.isKey())
                         
                          

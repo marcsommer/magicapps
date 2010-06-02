@@ -9,8 +9,6 @@
 <description>description</description>
 <targetDirectory>main_${table}</targetDirectory>
 <appliesToAllTables>true</appliesToAllTables>
-
-
 using System;
 using System.Data;
 using System.Configuration;
@@ -52,7 +50,7 @@ namespace ${project}.portal.main_${table}
 			${table}x = ${table}.get${table}(sf.entero(Request["id"]));
 		   
 			#set ($count = 0)
-			#foreach( $field in $table.GetArrayOfFields )
+			#foreach( $field in $table.getFields )
 				 #if (!$field.isKey())
 					 
 					 
@@ -61,7 +59,10 @@ namespace ${project}.portal.main_${table}
 									lab${field}.Text = sf.cadena(${table}x.${field});
 								 #else												
 								 #end
-								   #end 
+							  #end 
+							  #if ($field.type.toString() == "_double")
+								 lab${field}.Text = sf.cadena(${table}x.${field});
+								 #end 
 							  #if ($field.type.toString() == "_string")
 								 lab${field}.Text = ${table}x.${field};
 								 #end 

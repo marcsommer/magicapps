@@ -25,7 +25,7 @@ public partial class ${table}
 	#region["Variables"]
 		 
 		 
-	#foreach( $field in $table.GetArrayOfFields )
+	#foreach( $field in $table.getFields )
 		
 		 
 		 
@@ -53,7 +53,7 @@ public partial class ${table}
 	#region["Propiedades"]
 	
 	
-	#foreach( $field in $table.GetArrayOfFields )
+	#foreach( $field in $table.getFields )
 		#if ($field.isKey())
 				// for the objectDataSource
 				[DataObjectField(true,true)]
@@ -114,7 +114,7 @@ public partial class ${table}
         try { 
         sql= @" delete from ${table} where 1!=0  "    ;  
         #set ($count = 0)	
-        #foreach( $field in $table.GetArrayOfFields )
+        #foreach( $field in $table.getFields )
             #if ($field.isKey())
                 #if ($field.type.toString() == "_string")
                      sql += " and ${field}='" + sf.cadenaSqlServer(${field}) +"' ";
@@ -172,24 +172,24 @@ public partial class ${table}
         sql= @" insert into ${table} ( ${table.getListOfFieldsWithoutKeys("")} )  
                  values (
 			#set ($count = 0)	
-			#foreach( $field in $table.GetArrayOfFields ) 
+			#foreach( $field in $table.getFields ) 
 				#if (!$field.isKey())
 					 
 					 
 							  #if ($field.type.toString() == "_integer")
-			 					  " + sf.cadenaSqlServer(obj${table}.${field}) + @" <#if ($table.GetArrayOfFields.count -  $count  != 1)>, #end   
+			 					  " + sf.cadenaSqlServer(obj${table}.${field}) + @" <#if ($table.getFields.count -  $count  != 1)>, #end   
 								 #end 
 							  #if ($field.type.toString() == "_string")
-								   " + sf.cadenaSqlServer(obj${table}.${field}) + @" <#if ($table.GetArrayOfFields.count -  $count  != 1)>, #end   
+								   " + sf.cadenaSqlServer(obj${table}.${field}) + @" <#if ($table.getFields.count -  $count  != 1)>, #end   
 								 #end 
 							  #if ($field.type.toString() == "_date")
-								   " + sf.cadenaSqlServer(obj${table}.${field}) + @" <#if ($table.GetArrayOfFields.count -  $count  != 1)>, #end    
+								   " + sf.cadenaSqlServer(obj${table}.${field}) + @" <#if ($table.getFields.count -  $count  != 1)>, #end    
 								 #end 
 							  #if ($field.type.toString() == "_boolean")
-								  " + sf.cadenaSqlServer(obj${table}.${field})  + @" <#if ($table.GetArrayOfFields.count -  $count  != 1)>, #end  
+								  " + sf.cadenaSqlServer(obj${table}.${field})  + @" <#if ($table.getFields.count -  $count  != 1)>, #end  
 								 #end 
 							  #if ($field.type.toString() == "_double")
-								   " + sf.cadenaSqlServer(obj${table}.${field})  + @" <#if ($table.GetArrayOfFields.count -  $count  != 1)>, #end  
+								   " + sf.cadenaSqlServer(obj${table}.${field})  + @" <#if ($table.getFields.count -  $count  != 1)>, #end  
 								 #end 
 							  
 				#end
@@ -234,7 +234,7 @@ public partial class ${table}
             while (reg.Read())
                 {
                 ${table} pp = new ${table}();
-				#foreach( $field in $table.GetArrayOfFields ) 
+				#foreach( $field in $table.getFields ) 
 					 
 					 
 						  #if ($field.type.toString() == "_integer")
@@ -285,7 +285,7 @@ public partial class ${table}
             {
            sqlt = @"select ${table.getListOfFields(",")} from ${table} where 1!=0  and (              
 			<#assign countx=0>				
-			#foreach( $field in $table.GetArrayOfFields ) 
+			#foreach( $field in $table.getFields ) 
 				
 				
 					  #if ($field.type.toString() == "_integer")					  
@@ -313,7 +313,7 @@ public partial class ${table}
                 ${table} pp = new ${table}();
        
 
-#foreach( $field in $table.GetArrayOfFields ) 
+#foreach( $field in $table.getFields ) 
 	 
 	 
 		  #if ($field.type.toString() == "_integer")
@@ -363,7 +363,7 @@ public partial class ${table}
             try
             {
             sqlt = @"    select ${table.getListOfFields(",")} from ${table} where 1!=0 
-            #foreach( $field in $table.GetArrayOfFields )
+            #foreach( $field in $table.getFields )
               #if ($field.isKey())   
                      
                      
@@ -390,7 +390,7 @@ public partial class ${table}
             if (reg.Read())
             {
           
-              #foreach( $field in $table.GetArrayOfFields )
+              #foreach( $field in $table.getFields )
                          
                          
                                   #if ($field.type.toString() == "_integer")
@@ -437,23 +437,23 @@ public partial class ${table}
             {
             sql= @" update ${table} set 
 		#set ($count = 0)		
-		#foreach( $field in $table.GetArrayOfFields )
+		#foreach( $field in $table.getFields )
 			#if ( $field.isKey() || $field.TargetType() == "_image")
 			#else
 			#if ($field.type.toString() == "_integer")
-			${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + @"#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end
+			${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + @"#if ($table.getFields.count() -  $count  != 1) , #end
 			#end 
 			#if ($field.type.toString() == "_string")
-			${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + @"#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end 
+			${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + @"#if ($table.getFields.count() -  $count  != 1) , #end 
 			#end 
 			#if ($field.type.toString() == "_date")
-			${field}=" + sf.fechaIso(obj${table}.${field}) + @"#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end
+			${field}=" + sf.fechaIso(obj${table}.${field}) + @"#if ($table.getFields.count() -  $count  != 1) , #end
 			#end 
 			#if ($field.type.toString() == "_boolean")
-			${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + @"#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end  
+			${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + @"#if ($table.getFields.count() -  $count  != 1) , #end  
 			#end 
 			#if ($field.type.toString() == "_double")
-			${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + @"#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end 
+			${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + @"#if ($table.getFields.count() -  $count  != 1) , #end 
 			#end
 			#end	
 			#set ($count = $count + 1 )
@@ -462,7 +462,7 @@ public partial class ${table}
 		";
 		
 		    sql += " where 1!=0" ;          
-			#foreach( $field in $table.GetArrayOfFields )
+			#foreach( $field in $table.getFields )
 			#if ($field.isKey())
 			#if ($field.type.toString() == "_integer")
 			sql +=  " and ${field}=" + obj${table}.${field} ;
@@ -503,29 +503,29 @@ public partial class ${table}
             {
             sql= @" update ${table} set 
 		#set ($count = 0)		
-		#foreach( $field in $table.GetArrayOfFields )
+		#foreach( $field in $table.getFields )
 			#if ( $field.isKey() || $field.TargetType() == "_image")
 			#else
 			#if ($field.type.toString() == "_integer")
-			${field}=" + sf.cadenaSqlServer(this.${field}) + @" #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end  
+			${field}=" + sf.cadenaSqlServer(this.${field}) + @" #if ($table.getFields.count() -  $count  != 1) , #end  
 			 #end 
 			#if ($field.type.toString() == "_string")
-			${field}=" + sf.cadenaSqlServer(this.${field}) + @" #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end 
+			${field}=" + sf.cadenaSqlServer(this.${field}) + @" #if ($table.getFields.count() -  $count  != 1) , #end 
 			 #end 
 			#if ($field.type.toString() == "_date")
-			${field}=" + sf.fechaIso(this.${field}) + @" #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end
+			${field}=" + sf.fechaIso(this.${field}) + @" #if ($table.getFields.count() -  $count  != 1) , #end
 			 #end 
 			#if ($field.type.toString() == "_boolean")
-			${field}=" + sf.cadenaSqlServer(this.${field}) + @" #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end
+			${field}=" + sf.cadenaSqlServer(this.${field}) + @" #if ($table.getFields.count() -  $count  != 1) , #end
 			 #end 
 			#if ($field.type.toString() == "_double")
-			${field}=" + sf.cadenaSqlServer(this.${field}) + @" #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end
+			${field}=" + sf.cadenaSqlServer(this.${field}) + @" #if ($table.getFields.count() -  $count  != 1) , #end
 			 #end
 			 #end				
 	    #set ($count = $count + 1 )
 	    #end  
 				where 1!=0        
-		#foreach( $field in $table.GetArrayOfFields )
+		#foreach( $field in $table.getFields )
 			#if ($field.isKey())
 				  #if ($field.type.toString() == "_integer")
 						and ${field}=" + this.${field} +@"
@@ -570,7 +570,7 @@ public partial class ${table}
             try
             {
             sqlt = @"select * from ${table} where 1!=0  
-            #foreach( $field in $table.GetArrayOfFields )
+            #foreach( $field in $table.getFields )
                 #if ($field.isKey())
                      
                      
@@ -620,7 +620,7 @@ public partial class ${table}
                 try
                 {
                 sqlt = @"select * from ${table} where 1!=0
-                #foreach( $field in $table.GetArrayOfFields )
+                #foreach( $field in $table.getFields )
                     #if ($field.isKey())
                          
                          
@@ -644,7 +644,7 @@ public partial class ${table}
                 if (reg.Read())
                 {
         
-                #foreach( $field in $table.GetArrayOfFields )
+                #foreach( $field in $table.getFields )
 					 
 					 
 							  #if ($field.type.toString() == "_integer")
@@ -703,7 +703,7 @@ public partial class ${table}
             while (reg.Read())
                 {
                 ${table} pp = new ${table}();
-				#foreach( $field in $table.GetArrayOfFields ) 
+				#foreach( $field in $table.getFields ) 
 					 
 					 
 						  #if ($field.type.toString() == "_integer")
@@ -760,7 +760,7 @@ public partial class ${table}
             if (reg.Read())
             {
           
-              #foreach( $field in $table.GetArrayOfFields )
+              #foreach( $field in $table.getFields )
 
                          
                          
@@ -824,7 +824,7 @@ public partial class ${table}
 
 // funciones extra para campos extra
 		#set ($count = 0)
-		#foreach( $field in $table.GetArrayOfFields )
+		#foreach( $field in $table.getFields )
 			#if (!$field.isKey())
 				
 				 

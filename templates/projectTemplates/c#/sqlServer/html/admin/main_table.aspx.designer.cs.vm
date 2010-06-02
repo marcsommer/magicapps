@@ -35,7 +35,7 @@ namespace ${project}.${table}_dir {
         
 
 #set ($count = 0)
-#foreach( $field in $table.GetArrayOfFields )
+#foreach( $field in $table.getFields )
   #if (!$field.isKey())
 
    
@@ -79,6 +79,16 @@ namespace ${project}.${table}_dir {
 					 #end
 					
                  #end 
+			 #if ($field.type.toString() == "_double")
+                   /// <summary>
+                    /// Control txt${field}.
+                    /// </summary>
+                    /// <remarks>
+                    /// Campo generado automáticamente.
+                    /// Para modificar, mueva la declaraci�n del campo del archivo del diseñador al archivo de c�digo subyacente.
+                    /// </remarks>
+					protected global::System.Web.UI.WebControls.TextBox txt${field};
+              #end 
               #if ($field.type.toString() == "_date")
                    /// <summary>
 					/// Control ${field}.
