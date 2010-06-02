@@ -221,7 +221,7 @@ public class sf
 
     public static double doble(object valor)
     {
-        return System.Convert.ToDouble(valor);
+       return Math.Round(System.Convert.ToDouble(valor),2);
     }
 
     #endregion
@@ -926,7 +926,19 @@ public class sf
         }
         catch (Exception ex)
         {
-            return "0";
+            return "''";
+        }
+    }
+	
+	 public static String cadenaMySql(double valor)
+    {
+      try
+        {
+            return "'" + sf.cadena(valor).Replace(",",".") + "'";
+        }
+        catch (Exception ex)
+        {
+            return "'0'";
         }
     }
 

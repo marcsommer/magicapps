@@ -50,107 +50,106 @@
 					
 		 	
 #set ($count = 0)
-#foreach( $field in $table.GetArrayOfFields )
+#foreach( $field in $table.GetFields() )
+
   #if (!$field.isKey())
-     
-     
-              #if ($field.type.toString() == "_integer")
-                #if ($field.isForeignKey() )				
-					<div class="lineaForm">
-						<label for="${field}">				
-						<span class="etiqueta">${field.targetName()}: </span>
-						<asp:DropDownList ID="cmb${field}" runat="server">
-						</asp:DropDownList>
-					
-					</label>
-					</div>		
-				#else
-					#if ($field != "idportal")	
-					<div class="lineaForm">
-					<label for="${field}">
-							<span class="etiqueta">${field.targetName()}: </span>
-							<asp:TextBox ID="txt${field}"   runat="server"></asp:TextBox>
-						</label>
-						</div>		
-					#end	
-				#end
-			#end
+	  #if ($field.type.toString() == "_integer")
+		#if ($field.isForeignKey() )				
+			<div class="lineaForm">
+				<label for="${field}">				
+				<span class="etiqueta">${field.targetName()}: </span>
+				<asp:DropDownList ID="cmb${field}" runat="server">
+				</asp:DropDownList>
 			
-			#if ($field.type.toString() == "_double")
-				<div class="lineaForm">
-				<label for="${field}">
-				<span class="etiqueta">${field.targetName()}: </span>
-					<asp:TextBox ID="txt${field}"   runat="server"></asp:TextBox>						                     
-				</label>
-				</div>	
-			#end
-              
-              #if ($field.type.toString() == "_string")
-				<div class="lineaForm">
-				<label for="${field}">
-				<span class="etiqueta">${field.targetName()}: </span>
-					<asp:TextBox ID="txt${field}"   runat="server"></asp:TextBox>									 
+			</label>
+			</div>		
+		#else
+			#if ($field != "idportal")	
+			<div class="lineaForm">
+			<label for="${field}">
+					<span class="etiqueta">${field.targetName()}: </span>
+					<asp:TextBox ID="txt${field}"   runat="server"></asp:TextBox>
 				</label>
 				</div>		
-              #end 
-			#if ($field.type.toString() == "_bigString")
-			  	<div class="lineaForm">
-                   <label for="${field}">
-                        <span class="etiqueta">${field.targetName()}: </span>
-						   <FTB:FreeTextBox ID="txt${field}" runat="server" Language="es-ES">
-						   </FTB:FreeTextBox>						                       
-                    </label>
-						</div>		
-                 #end 
-              #if ($field.type.toString() == "_date")
-			  	<div class="lineaForm">
-                 <label for="${field}">
-                        <span class="etiqueta">${field.targetName()}: </span>
-                         <ew:CalendarPopup ID="${field}" runat="server" >
-                         </ew:CalendarPopup>
-                    </label>
-						</div>		
-                 #end 
-              #if ($field.type.toString() == "_boolean")
-			  	<div class="lineaForm">
-                  <label for="${field}">
-                        <span class="etiqueta">${field.targetName()}: </span>
-                        <asp:CheckBox ID="ck${field}"   runat="server" />
-                    </label>
-						</div>		
-                 #end 
-				#if ($field.type.toString() == "_image")
-					<div class="lineaForm">
-						<span class="etiqueta">${field.targetName()}
-						</span>
-                            <asp:Image ID="img${field}" runat="server" Visible="False" Width="40px" />
-                            <asp:Button ID="btnborrarimagen${field}" runat="server" CssClass="boton" OnClick="btnborrarimagen${field}_Click"
-                                Text="Borrar imagen" Visible="False" />
-                            <span class="zonacampo">
-                             <label for="FileUploadImagen${field}"><asp:FileUpload ID="FileUploadImagen${field}" runat="server" Width="328px" CssClass="textstandar" /></label>
-                            </span>
-                            <br />
-                            <br />
-                            <asp:Label ID="lblinfo${field}" CssClass="camporojo" runat="server" Text=""></asp:Label>
-                    </div>
-				#end 
-				#if ($field.type.toString() == "_document")
-					<div class="lineaForm">
-						<span class="etiqueta">${field.targetName()}
-						</span>
-                            <asp:Label ID="lbl${field}" runat="server" Visible="False" />
-                            <asp:Button ID="btnborrar${field}" runat="server" CssClass="boton" OnClick="btnborrar${field}_Click"
-                                Text="Borrar documento" Visible="False" />
-                            <span class="zonacampo">
-                             <label for="FileUpload${field}">
-								<asp:FileUpload ID="FileUpload${field}" runat="server" Width="328px" CssClass="textstandar" />
-						     </label>
-                            </span>
-                            <br />
-                            <br />
-                            <asp:Label ID="lblinfo${field}" CssClass="camporojo" runat="server" Text=""></asp:Label>
-                    </div>
-				#end 				
+			#end	
+		#end
+	#end
+	
+	#if ($field.type.toString() == "_double")
+		<div class="lineaForm">
+		<label for="${field}">
+		<span class="etiqueta">${field.targetName()}: </span>
+			<asp:TextBox ID="txt${field}"   runat="server"></asp:TextBox>						                     
+		</label>
+		</div>	
+	#end
+	  
+	  #if ($field.type.toString() == "_string")
+		<div class="lineaForm">
+		<label for="${field}">
+		<span class="etiqueta">${field.targetName()}: </span>
+			<asp:TextBox ID="txt${field}"   runat="server"></asp:TextBox>									 
+		</label>
+		</div>		
+	  #end 
+	#if ($field.type.toString() == "_bigString")
+		<div class="lineaForm">
+		   <label for="${field}">
+				<span class="etiqueta">${field.targetName()}: </span>
+				   <FTB:FreeTextBox ID="txt${field}" runat="server" Language="es-ES">
+				   </FTB:FreeTextBox>						                       
+			</label>
+				</div>		
+		 #end 
+	  #if ($field.type.toString() == "_date")
+		<div class="lineaForm">
+		 <label for="${field}">
+				<span class="etiqueta">${field.targetName()}: </span>
+				 <ew:CalendarPopup ID="${field}" runat="server" >
+				 </ew:CalendarPopup>
+			</label>
+				</div>		
+		 #end 
+	  #if ($field.type.toString() == "_boolean")
+		<div class="lineaForm">
+		  <label for="${field}">
+				<span class="etiqueta">${field.targetName()}: </span>
+				<asp:CheckBox ID="ck${field}"   runat="server" />
+			</label>
+				</div>		
+		 #end 
+		#if ($field.type.toString() == "_image")
+			<div class="lineaForm">
+				<span class="etiqueta">${field.targetName()}
+				</span>
+					<asp:Image ID="img${field}" runat="server" Visible="False" Width="40px" />
+					<asp:Button ID="btnborrarimagen${field}" runat="server" CssClass="boton" OnClick="btnborrarimagen${field}_Click"
+						Text="Borrar imagen" Visible="False" />
+					<span class="zonacampo">
+					 <label for="FileUploadImagen${field}"><asp:FileUpload ID="FileUploadImagen${field}" runat="server" Width="328px" CssClass="textstandar" /></label>
+					</span>
+					<br />
+					<br />
+					<asp:Label ID="lblinfo${field}" CssClass="camporojo" runat="server" Text=""></asp:Label>
+			</div>
+		#end 
+		#if ($field.type.toString() == "_document")
+			<div class="lineaForm">
+				<span class="etiqueta">${field.targetName()}
+				</span>
+					<asp:Label ID="lbl${field}" runat="server" Visible="False" />
+					<asp:Button ID="btnborrar${field}" runat="server" CssClass="boton" OnClick="btnborrar${field}_Click"
+						Text="Borrar documento" Visible="False" />
+					<span class="zonacampo">
+					 <label for="FileUpload${field}">
+						<asp:FileUpload ID="FileUpload${field}" runat="server" Width="328px" CssClass="textstandar" />
+					 </label>
+					</span>
+					<br />
+					<br />
+					<asp:Label ID="lblinfo${field}" CssClass="camporojo" runat="server" Text=""></asp:Label>
+			</div>
+		#end 				
              
       
     #set ($count = $count + 1 )

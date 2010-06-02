@@ -34,11 +34,8 @@ namespace ${project}.portal.main_${table} {
     public partial class ficha_${table} {
         
 		#set ($count = 0)
-#foreach( $field in $table.GetArrayOfFields )
-  #if (!$field.isKey())
-
-   
-     
+#foreach( $field in $table.getFields )
+  #if (!$field.isKey())    
      
               #if ($field.type.toString() == "_integer")
                 
@@ -51,6 +48,16 @@ namespace ${project}.portal.main_${table} {
 				/// </remarks>
 				protected global::System.Web.UI.WebControls.Label lab${field};       
                 
+              #end 
+               #if ($field.type.toString() == "_double")
+                   /// <summary>
+                    /// Control lab${field}.
+                    /// </summary>
+                    /// <remarks>
+                    /// Campo generado automaticamente.
+                    /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+                    /// </remarks>
+                    protected global::System.Web.UI.WebControls.Label lab${field};
                  #end 
               #if ($field.type.toString() == "_string")
                    /// <summary>

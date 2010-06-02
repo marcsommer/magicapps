@@ -28,12 +28,8 @@
 					 
 		 	
 #set ($count = 0)
-#foreach( $field in $table.GetArrayOfFields )
+#foreach( $field in $table.getFields )
   #if (!$field.isKey())
-
-   
-     
-     
               #if ($field.type.toString() == "_integer")
                 #if ( $field.isForeignKey())
 						<div class="lineaForm">
@@ -50,10 +46,16 @@
 						</label>
 					</div>		
 				#end
-
-                
+			#end 
+              #if ($field.type.toString() == "_double")
+			  	<div class="lineaForm">
+                   <label for="${field}">
+                        <span class="etiqueta">${field.targetName()}: </span>
+                        <asp:Label ID="lab${field}"  text=""    runat="server"></asp:Label>
+                    </label>
+				</div>		
                  #end 
-              #if ($field.type.toString() == "_string")
+                #if ($field.type.toString() == "_string")
 			  	<div class="lineaForm">
                    <label for="${field}">
                         <span class="etiqueta">${field.targetName()}: </span>
