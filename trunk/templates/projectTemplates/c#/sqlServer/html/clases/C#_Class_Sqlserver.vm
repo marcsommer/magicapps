@@ -440,48 +440,46 @@ public partial class ${table}
 		#foreach( $field in $table.GetArrayOfFields )
 			#if ( $field.isKey() || $field.TargetType() == "_image")
 			#else
-				 
-				 
-					  #if ($field.type.toString() == "_integer")
-							  ${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + @"#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end
-						 #end 
-					  #if ($field.type.toString() == "_string")
-						${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + @"#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end 
-						 #end 
-					  #if ($field.type.toString() == "_date")
-						  ${field}=" + sf.fechaIso(obj${table}.${field}) + @"#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end " );
-						 #end 
-					  #if ($field.type.toString() == "_boolean")
-						 ${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + @"#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end  
-						 #end 
-					  #if ($field.type.toString() == "_double")
-						 ${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + @"#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end 
-						 #end 
-					 	
+			#if ($field.type.toString() == "_integer")
+			${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + @"#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end
+			#end 
+			#if ($field.type.toString() == "_string")
+			${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + @"#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end 
+			#end 
+			#if ($field.type.toString() == "_date")
+			${field}=" + sf.fechaIso(obj${table}.${field}) + @"#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end
+			#end 
+			#if ($field.type.toString() == "_boolean")
+			${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + @"#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end  
+			#end 
+			#if ($field.type.toString() == "_double")
+			${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + @"#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end 
+			#end
 			#end	
 			#set ($count = $count + 1 )
+			
 		#end 
 		";
 		
-		    sqlt.Append(" where 1!=0");          
+		    sql += " where 1!=0" ;          
 			#foreach( $field in $table.GetArrayOfFields )
-				#if ($field.isKey())
-					  #if ($field.type.toString() == "_integer")
-						sqlt.Append( " and ${field}=" + obj${table}.${field});
-						 #end 
-					  #if ($field.type.toString() == "_string")
-						  sqlt.Append( " and ${field}='" + obj${table}.${field} + "'");
-						 #end 
-					  #if ($field.type.toString() == "_date")
-						 sqlt.Append(" and ${field}='" + obj${table}.${field} + "'");
-						 #end 
-					  #if ($field.type.toString() == "_boolean")
-						 sqlt.Append( " and ${field}=" + obj${table}.${field});
-						 #end 				  
-			  #end
+			#if ($field.isKey())
+			#if ($field.type.toString() == "_integer")
+			sql +=  " and ${field}=" + obj${table}.${field} ;
+			#end 
+			#if ($field.type.toString() == "_string")
+			sql +=  " and ${field}='" + obj${table}.${field} + "'" ;
+			#end 
+			#if ($field.type.toString() == "_date")
+			sql += " and ${field}='" + obj${table}.${field} + "'" ;
+			#end 
+			#if ($field.type.toString() == "_boolean")
+			sql +=  " and ${field}=" + obj${table}.${field} ;
+			#end 				  
+			#end
 			#end 		
-             reg = db.sql(sql);
-             return (reg!=null);
+            reg = db.sql(sql);
+            return (reg!=null);
               }   
             catch (Exception ex)
             {
@@ -508,32 +506,27 @@ public partial class ${table}
 		#foreach( $field in $table.GetArrayOfFields )
 			#if ( $field.isKey() || $field.TargetType() == "_image")
 			#else
-				
-				 
-					  #if ($field.type.toString() == "_integer")
-						${field}=" + sf.cadenaSqlServer(this.${field}) + @" #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end  
-						 #end 
-					  #if ($field.type.toString() == "_string")
-						${field}=" + sf.cadenaSqlServer(this.${field}) + @" #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end 
-						 #end 
-					  #if ($field.type.toString() == "_date")
-						${field}=" + sf.fechaIso(this.${field}) + @" #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end
-						 #end 
-					  #if ($field.type.toString() == "_boolean")
-						${field}=" + sf.cadenaSqlServer(this.${field}) + @" #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end
-						 #end 
-					  #if ($field.type.toString() == "_double")
-						${field}=" + sf.cadenaSqlServer(this.${field}) + @" #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end
-						 #end 				
-				
-			#end				
+			#if ($field.type.toString() == "_integer")
+			${field}=" + sf.cadenaSqlServer(this.${field}) + @" #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end  
+			 #end 
+			#if ($field.type.toString() == "_string")
+			${field}=" + sf.cadenaSqlServer(this.${field}) + @" #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end 
+			 #end 
+			#if ($field.type.toString() == "_date")
+			${field}=" + sf.fechaIso(this.${field}) + @" #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end
+			 #end 
+			#if ($field.type.toString() == "_boolean")
+			${field}=" + sf.cadenaSqlServer(this.${field}) + @" #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end
+			 #end 
+			#if ($field.type.toString() == "_double")
+			${field}=" + sf.cadenaSqlServer(this.${field}) + @" #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end
+			 #end
+			 #end				
 	    #set ($count = $count + 1 )
 	    #end  
 				where 1!=0        
 		#foreach( $field in $table.GetArrayOfFields )
 			#if ($field.isKey())
-			 
-			 
 				  #if ($field.type.toString() == "_integer")
 						and ${field}=" + this.${field} +@"
 					 #end 
@@ -545,9 +538,8 @@ public partial class ${table}
 					 #end 
 				  #if ($field.type.toString() == "_boolean")
 						and ${field}=" + this.${field} +@"
-					 #end 
-				  
-		  #end
+					 #end
+			#end
 		#end 
 					";
               reg = db.sql(sql);

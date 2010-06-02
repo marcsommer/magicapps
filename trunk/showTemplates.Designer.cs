@@ -48,7 +48,7 @@
             // 
             this.trTemplates.ImageIndex = 0;
             this.trTemplates.ImageList = this.imageListFiles;
-            this.trTemplates.Location = new System.Drawing.Point(25, 12);
+            this.trTemplates.Location = new System.Drawing.Point(2, 2);
             this.trTemplates.Name = "trTemplates";
             this.trTemplates.SelectedImageIndex = 0;
             this.trTemplates.Size = new System.Drawing.Size(564, 326);
@@ -58,7 +58,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(596, 13);
+            this.button1.Location = new System.Drawing.Point(572, 225);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 44);
             this.button1.TabIndex = 6;
@@ -68,7 +68,7 @@
             // 
             // butRestorePath
             // 
-            this.butRestorePath.Location = new System.Drawing.Point(596, 83);
+            this.butRestorePath.Location = new System.Drawing.Point(572, 284);
             this.butRestorePath.Name = "butRestorePath";
             this.butRestorePath.Size = new System.Drawing.Size(75, 44);
             this.butRestorePath.TabIndex = 7;
@@ -80,7 +80,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(691, 387);
+            this.ClientSize = new System.Drawing.Size(657, 338);
             this.Controls.Add(this.butRestorePath);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.trTemplates);

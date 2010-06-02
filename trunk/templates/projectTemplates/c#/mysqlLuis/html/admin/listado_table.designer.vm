@@ -6,7 +6,7 @@
 <nameFile>listado_${table}</nameFile>
 <extensionFile>aspx.designer.cs</extensionFile>
 <languageGenerated>c#"></languageGenerated>
-<description>c#"></description>
+<description>c_sharp"></description>
 <targetDirectory>${table}_dir</targetDirectory>
 <appliesToAllTables>true</appliesToAllTables>
 //------------------------------------------------------------------------------

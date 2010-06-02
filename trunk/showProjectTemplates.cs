@@ -33,38 +33,61 @@ namespace myWay
 
         private void loadTreeTemplates(String dir, TreeNode parentNode)
         {
-            TreeNode nodo = new TreeNode();
-            nodo.Text = new DirectoryInfo(dir).Name;
-            nodo.ImageIndex = 0;
-            nodo.SelectedImageIndex = 0;
-            nodo.Tag = new DirectoryInfo(dir).FullName;
-
-            foreach (DirectoryInfo item in new DirectoryInfo(dir).GetDirectories())
+            try
             {
-                loadTreeTemplates(item.FullName, nodo);
-            }
+                TreeNode nodo = new TreeNode();
+                nodo.Text = new DirectoryInfo(dir).Name;
+                nodo.ImageIndex = 0;
+                nodo.SelectedImageIndex = 0;
+                nodo.Tag = new DirectoryInfo(dir).FullName;
 
+                foreach (DirectoryInfo item in new DirectoryInfo(dir).GetDirectories())
+                {
+                    loadTreeTemplates(item.FullName, nodo);
+                }
+
+
+                //foreach (FileInfo fil in new DirectoryInfo(dir).GetFiles())
+                //{
+                //    TreeNode tf = new TreeNode();
+                //    tf.Text = fil.Name;
+                //    tf.ImageIndex = 1;
+                //    tf.SelectedImageIndex = 1;
+                //    tf.Tag = fil.FullName;
+                //    nodo.Nodes.Add(tf);
+                //}
+
+
+                if (parentNode != null)
+                {
+                    parentNode.Nodes.Add(nodo);
+                }
+                else
+                {
+                    trTemplates.Nodes.Add(nodo);
+                }
+
+            }
+            catch (System.IO.DirectoryNotFoundException dfn)
+            {
+                // si no encuentra el directorio cargamos el predeterminado
+                util.projectTemplates_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, "templates\\projectTemplates");
+                System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config.AppSettings.Settings["projectTemplatesPath"].Value = util.projectTemplates_dir;
+                config.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("appSettings");
+                cargar();
+            }
+            catch (Exception ex)
+            {
+
+
+                // throw;
+            }
+           
            
 
-            //foreach (FileInfo fil in new DirectoryInfo(dir).GetFiles())
-            //{
-            //    TreeNode tf = new TreeNode();
-            //    tf.Text = fil.Name;
-            //    tf.ImageIndex = 1;
-            //    tf.SelectedImageIndex = 1;
-            //    tf.Tag = fil.FullName;
-            //    nodo.Nodes.Add(tf);
-            //}
-
-
-            if (parentNode != null)
-            {
-                parentNode.Nodes.Add(nodo);
-            }
-            else
-            {
-                trTemplates.Nodes.Add(nodo);
-            }
+          
 
 
 
@@ -126,6 +149,17 @@ namespace myWay
             {
                 return;
             }
+        }
+
+        private void butRestorePath_Click(object sender, EventArgs e)
+        {
+
+            util.projectTemplates_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, "templates\\projectTemplates");
+            System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings["projectTemplatesPath"].Value = util.projectTemplates_dir;
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+            cargar();
         }
 
  

@@ -1,17 +1,13 @@
 #*
 	crea el archivo web.config   
 	Author : Luis Molina...
-*# 
- 
+*#  
 <nameFile>main_${table}</nameFile>
 <extensionFile>aspx.cs</extensionFile>
-<languageGenerated>c#">
-<description>description">
+<languageGenerated>c_sharp"></languageGenerated>
+<description>description"></description>
 <targetDirectory>${table}_dir</targetDirectory>
 <appliesToAllTables>true</appliesToAllTables>
- 
-
-
 using System;
 using System.Data;
 using System.Configuration;
@@ -124,7 +120,7 @@ namespace ${project}.${table}_dir
             // modificar
             if (Request["id"] != null)
             {
-                ${table} res = new ${table}(sf.entero(Request["id"])#foreach( $field in $table.GetArrayOfFields )#if ($field.targetName()=="idportales"  && table.getName()!="portales")>,sf.entero(Request["idportal"])#end#end );
+                ${table} res = new ${table}(sf.entero(Request["id"])#foreach( $field in $table.GetArrayOfFields )#if ($field.targetName()=="idportales"  && ${table}!="portales")>,sf.entero(Request["idportal"])#end#end );
                 //res = ${table}.get${table}(sf.entero(Request["id"]));
                 #set ($count = 0)
                 #foreach( $field in $table.GetArrayOfFields )
@@ -360,7 +356,7 @@ res.idportal= sf.entero(HttpContext.Current.Session["admin"]);
                                   #if ($field.type.toString() == "_image")
                                      protected void btnborrarimagen${field}_Click(object sender, EventArgs e)
 									{
-										${table} res = new ${table}(sf.entero(Request["id"])#foreach( $field in $table.GetArrayOfFields )#if ($field.targetName()=="idportales"  && table.getName()!="portales")>,sf.entero(Request["idportal"])#end#end );
+										${table} res = new ${table}(sf.entero(Request["id"])#foreach( $field in $table.GetArrayOfFields )#if ($field.targetName()=="idportales"  && ${table}!="portales")>,sf.entero(Request["idportal"])#end#end );
 										res.deleteImg${field}();
 										img${field}.Visible = false;
 										btnborrarimagen${field}.Visible = false;
@@ -377,7 +373,7 @@ res.idportal= sf.entero(HttpContext.Current.Session["admin"]);
                                   #if ($field.type.toString() == "_document")
                                      protected void btnborrar${field}_Click(object sender, EventArgs e)
 									{
-										${table} res = new ${table}(sf.entero(Request["id"])#foreach( $field in $table.GetArrayOfFields )#if ($field.targetName()=="idportales"  && table.getName()!="portales")>,sf.entero(Request["idportal"])#end#end );
+										${table} res = new ${table}(sf.entero(Request["id"])#foreach( $field in $table.GetArrayOfFields )#if ($field.targetName()=="idportales"  && ${table}!="portales")>,sf.entero(Request["idportal"])#end#end );
 										res.deleteDoc${field}();
 										lbl${field}.Visible = false;
 										btnborrar${field}.Visible = false;
