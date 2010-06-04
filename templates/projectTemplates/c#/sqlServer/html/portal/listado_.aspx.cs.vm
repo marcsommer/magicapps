@@ -3,7 +3,6 @@
 	
 	Author: Luis Molina
 *#  
- 
  <nameFile>listado_${table}</nameFile>
 <extensionFile>aspx.cs</extensionFile>
 <languageGenerated>c_sharp</languageGenerated>
@@ -32,11 +31,9 @@ namespace ${project}.portal.main_${table}
         protected void Page_Load(object sender, EventArgs e)
         {
 
-       
                 List<${table}> list${table} = new List<${table}>();
-                list${table} = ${table}.getList();               
-
-
+                list${table} = ${table}.getList();
+               
                 Repeater1.DataSource = list${table};
                 Repeater1.DataBind();
                 //hplInicio.NavigateUrl = "../portada/portada.aspx?idportal=" ;

@@ -1699,6 +1699,15 @@
     <Content Include="templates\projectTemplates\c#\sqlServer\html\portal\master\menuPortal.ascx.vm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="templates\projectTemplates\c#\sqlServer\html\portal\listadoPaginadoo_.aspx.designer.cs.vm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\sqlServer\html\portal\listadoPaginado_.aspx.cs.vm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\sqlServer\html\portal\listadoPaginado_.aspx.vm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="templates\Web.config.vm" />
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\portal\ficha.aspx.designer.cs.vm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

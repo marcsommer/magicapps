@@ -1,5 +1,9 @@
-
-<nameFile>listado_${table}</nameFile>
+#* 
+	comments: 
+	
+	Author: Luis Molina
+*#  
+ <nameFile>listado_${table}</nameFile>
 <extensionFile>aspx.designer.cs</extensionFile>
 <languageGenerated>c_sharp</languageGenerated>
 <description>description</description>

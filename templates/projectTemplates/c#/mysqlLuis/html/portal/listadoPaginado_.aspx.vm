@@ -15,11 +15,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 			 <div class="titulo"><h2>${table}</h2></div>
 			<div class="general">
- 					<p>Consultar el listado de las ${table} distribuidas en la provincia:</p>
+ 					<p>Consultar el listado de ${table}:</p>
 					<ul class="list${table}">
 					  <asp:Repeater ID="Repeater1" runat="server">
                          <ItemTemplate>
-                          <li>  <a  class="asoc" href="ficha_${table}.aspx?id=<%#Eval("${table.getKey()}")%>"><%#Eval("${table.getKey()}")%></a></li>
+                          <li>  <a  class="asoc" href="ficha_${table}.aspx?id=<%#Eval("${table.getKey()}")%>"><%#Eval("${table.fieldDescription()}")%></a></li>
                           #set ($count = 0)
 						#foreach( $field in $table.GetArrayOfFields )
 						  #if (!$field.isKey())     
@@ -31,7 +31,10 @@
 									  #if ($field.type.toString() == "_string")
 			  								   <li>  <%#Eval("${field.Name}")%></li>
                         			 #end 
-									  #if ($field.type.toString() == "_date")
+									  #if ($field.type.toString() == "_double")
+			  								   <li>  <%#Eval("${field.Name}")%></li>
+                        			 #end 
+                        			  #if ($field.type.toString() == "_date")
 			  									   <li>  <%#Eval("${field.Name}")%></li>
                         				 #end 
 									  #if ($field.type.toString() == "_boolean")

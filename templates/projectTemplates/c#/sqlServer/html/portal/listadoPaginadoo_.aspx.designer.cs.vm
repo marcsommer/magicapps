@@ -38,5 +38,14 @@ namespace ${project}.portal.main_${table} {
         /// Para modificar, mueva la declaraci�n del campo del archivo del dise�ador al archivo de c�digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater Repeater1;
+        
+          /// <summary>
+        /// Control RepeaterPag.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado autom�ticamente.
+        /// Para modificar, mueva la declaraci�n del campo del archivo del dise�ador al archivo de c�digo subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater RepeaterPag;
     }
 }

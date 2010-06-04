@@ -57,21 +57,18 @@
 		#if ($field.isForeignKey() )				
 			<div class="lineaForm">
 				<label for="${field}">				
-				<span class="etiqueta">${field.targetName()}: </span>
-				<asp:DropDownList ID="cmb${field}" runat="server">
-				</asp:DropDownList>
-			
-			</label>
+					<span class="etiqueta">${field.targetName()}: </span>
+					<asp:DropDownList ID="cmb${field}" runat="server">
+					</asp:DropDownList>
+				</label>
 			</div>		
 		#else
-			#if ($field != "idportal")	
 			<div class="lineaForm">
 			<label for="${field}">
-					<span class="etiqueta">${field.targetName()}: </span>
-					<asp:TextBox ID="txt${field}"   runat="server"></asp:TextBox>
-				</label>
-				</div>		
-			#end	
+				<span class="etiqueta">${field.targetName()}: </span>
+				<asp:TextBox ID="txt${field}"   runat="server"></asp:TextBox>
+			</label>
+			</div>		
 		#end
 	#end
 	

@@ -9,8 +9,6 @@
 <description>description</description>
 <targetDirectory>main_${table}</targetDirectory>
 <appliesToAllTables>true</appliesToAllTables>
- 
-
 using System;
 using System.Data;
 using System.Configuration;
@@ -40,7 +38,7 @@ namespace ${project}.portal.main_${table}
            if (!Page.IsPostBack)
             {
                int numRegistros = 0;
-               numRegistros = cars.getCount();
+               numRegistros = ${table}.getCount();
 
                if (numRegistros != 0)
                {
@@ -51,7 +49,7 @@ namespace ${project}.portal.main_${table}
                
 				// lets paginate
 				List<ListItem> listaPaginacion = new List<ListItem>();
-				for (int i = 0; i < numPaginas; i++)
+				for (int i = 1; i < numPaginas; i++)
 				{
 					ListItem li = new ListItem(i.ToString());
 					listaPaginacion.Add(li);
@@ -68,10 +66,10 @@ namespace ${project}.portal.main_${table}
 
         public void bind(int page, int tamPag)
         {
-                List<cars> listcars = new List<cars>();
-                listcars = cars.getPage(page,tamPag);
+                List<${table}> list${table} = new List<${table}>();
+                list${table} = ${table}.getPage(page,tamPag);
                
-                Repeater1.DataSource = listcars;
+                Repeater1.DataSource = list${table};
                 Repeater1.DataBind();
         } // bind
         
