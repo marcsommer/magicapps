@@ -51,54 +51,52 @@ namespace ${project}.portal.main_${table}
 		   
 			#set ($count = 0)
 			#foreach( $field in $table.getFields )
-				 #if (!$field.isKey())
-					 
-					 
-							  #if ($field.type.toString() == "_integer")
-								 #if (! $field.isForeignKey())
-									lab${field}.Text = sf.cadena(${table}x.${field});
-								 #else												
-								 #end
-							  #end 
-							  #if ($field.type.toString() == "_double")
-								 lab${field}.Text = sf.cadena(${table}x.${field});
-								 #end 
-							  #if ($field.type.toString() == "_string")
-								 lab${field}.Text = ${table}x.${field};
-								 #end 
-							  #if ($field.type.toString() == "_bigString")
-								 ftb${field}.Text = ${table}x.${field};
-								 #end 
-							  #if ($field.type.toString() == "_date")
-								 lab${field}.Text = sf.cadena(${table}x.${field});
-								 #end 
-							  #if ($field.type.toString() == "_boolean")
-								 ck${field}.Checked = sf.boolean(${table}x.${field});
-								 #end 
-							  #if ($field.type.toString() == "_image")
-								if (${table}x.${field} != "")
-								{
-									img${field}.ImageUrl = ${table}x.${field};
-									img${field}.Visible = true;
-									//img${field}.AlternateText = " " + noticiax.titulo;									
-								}
-								 #end 
-							  #if ($field.type.toString() == "_audio")
-								if (${table}x.${field} != "")
-								{
-									lab${field}.Text = ${table}x.${field};
-									lab${field}.Visible = true;
-									//img${field}.AlternateText = " " + noticiax.titulo;									
-								}
-								 #end 
-							  #if ($field.type.toString() == "_document")
-								if (${table}x.${field} != "")
-								{
-									img${field}.ImageUrl = ${table}x.${field};
-									img${field}.Visible = true;
-									//img${field}.AlternateText = " " + noticiax.titulo;									
-								}
-								 #end 
+				 #if (!$field.isKey())					 
+					  #if ($field.type.toString() == "_integer")
+						 #if (! $field.isForeignKey())
+							lab${field}.Text = sf.cadena(${table}x.${field});
+						 #else												
+						 #end
+					  #end 
+					  #if ($field.type.toString() == "_double")
+						 lab${field}.Text = sf.cadena(${table}x.${field});
+						 #end 
+					  #if ($field.type.toString() == "_string")
+						 lab${field}.Text = ${table}x.${field};
+						 #end 
+					  #if ($field.type.toString() == "_bigString")
+						 ftb${field}.Text = ${table}x.${field};
+						 #end 
+					  #if ($field.type.toString() == "_date")
+						 lab${field}.Text = sf.cadena(${table}x.${field});
+						 #end 
+					  #if ($field.type.toString() == "_boolean")
+						 ck${field}.Checked = sf.boolean(${table}x.${field});
+						 #end 
+					  #if ($field.type.toString() == "_image")
+						if (${table}x.${field} != "")
+						{
+							img${field}.ImageUrl = ${table}x.${field};
+							img${field}.Visible = true;
+							//img${field}.AlternateText = " " + noticiax.titulo;									
+						}
+						 #end 
+					  #if ($field.type.toString() == "_audio")
+						if (${table}x.${field} != "")
+						{
+							lab${field}.Text = ${table}x.${field};
+							lab${field}.Visible = true;
+							//img${field}.AlternateText = " " + noticiax.titulo;									
+						}
+						 #end 
+					  #if ($field.type.toString() == "_document")
+						if (${table}x.${field} != "")
+						{
+							img${field}.ImageUrl = ${table}x.${field};
+							img${field}.Visible = true;
+							//img${field}.AlternateText = " " + noticiax.titulo;									
+						}
+						 #end 
 							 
 				 #end
 				#set ($count = $count + 1 )
