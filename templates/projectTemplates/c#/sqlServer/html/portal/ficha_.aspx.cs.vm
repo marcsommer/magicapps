@@ -52,28 +52,28 @@ namespace ${project}.portal.main_${table}
 			#set ($count = 0)
 			#foreach( $field in $table.getFields )
 				 #if (!$field.isKey())					 
-					  #if ($field.type.toString() == "_integer")
+					  #if ($field.targetType.toString() == "_integer")
 						 #if (! $field.isForeignKey())
 							lab${field}.Text = sf.cadena(${table}x.${field});
 						 #else												
 						 #end
 					  #end 
-					  #if ($field.type.toString() == "_double")
+					  #if ($field.targetType.toString() == "_double")
 						 lab${field}.Text = sf.cadena(${table}x.${field});
 						 #end 
-					  #if ($field.type.toString() == "_string")
+					  #if ($field.targetType.toString() == "_string")
 						 lab${field}.Text = ${table}x.${field};
 						 #end 
-					  #if ($field.type.toString() == "_bigString")
+					  #if ($field.targetType.toString() == "_bigString")
 						 ftb${field}.Text = ${table}x.${field};
 						 #end 
-					  #if ($field.type.toString() == "_date")
+					  #if ($field.targetType.toString() == "_date")
 						 lab${field}.Text = sf.cadena(${table}x.${field});
 						 #end 
-					  #if ($field.type.toString() == "_boolean")
+					  #if ($field.targetType.toString() == "_boolean")
 						 ck${field}.Checked = sf.boolean(${table}x.${field});
 						 #end 
-					  #if ($field.type.toString() == "_image")
+					  #if ($field.targetType.toString() == "_image")
 						if (${table}x.${field} != "")
 						{
 							img${field}.ImageUrl = ${table}x.${field};
@@ -81,7 +81,7 @@ namespace ${project}.portal.main_${table}
 							//img${field}.AlternateText = " " + noticiax.titulo;									
 						}
 						 #end 
-					  #if ($field.type.toString() == "_audio")
+					  #if ($field.targetType.toString() == "_audio")
 						if (${table}x.${field} != "")
 						{
 							lab${field}.Text = ${table}x.${field};
@@ -89,7 +89,7 @@ namespace ${project}.portal.main_${table}
 							//img${field}.AlternateText = " " + noticiax.titulo;									
 						}
 						 #end 
-					  #if ($field.type.toString() == "_document")
+					  #if ($field.targetType.toString() == "_document")
 						if (${table}x.${field} != "")
 						{
 							img${field}.ImageUrl = ${table}x.${field};

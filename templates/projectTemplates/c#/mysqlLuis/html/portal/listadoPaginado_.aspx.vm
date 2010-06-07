@@ -23,30 +23,30 @@
                           #set ($count = 0)
 						#foreach( $field in $table.GetArrayOfFields )
 						  #if (!$field.isKey())     
-									  #if ($field.type.toString() == "_integer")
+									  #if ($field.targetType.toString() == "_integer")
 										#if ( $field.isForeignKey())
 											   <li>  <a  class="asoc" href="ficha_${table}.aspx?id=<%#Eval("${table.getKey()}")%>"><%#Eval("${table.getKey()}")%></a></li>
                         			#end            
 									  #end 
-									  #if ($field.type.toString() == "_string")
+									  #if ($field.targetType.toString() == "_string")
 			  								   <li>  <%#Eval("${field.Name}")%></li>
                         			 #end 
-									  #if ($field.type.toString() == "_double")
+									  #if ($field.targetType.toString() == "_double")
 			  								   <li>  <%#Eval("${field.Name}")%></li>
                         			 #end 
-                        			  #if ($field.type.toString() == "_date")
+                        			  #if ($field.targetType.toString() == "_date")
 			  									   <li>  <%#Eval("${field.Name}")%></li>
                         				 #end 
-									  #if ($field.type.toString() == "_boolean")
+									  #if ($field.targetType.toString() == "_boolean")
 			  									   <li>  <%#Eval("${field.Name}")%></li>
                         			 #end 
-									  #if ($field.type.toString() == "_image")
+									  #if ($field.targetType.toString() == "_image")
 			  									  <li>  <%#Eval("${field.Name}")%></li>
                         			 #end 
-									  #if ($field.type.toString() == "_document")
+									  #if ($field.targetType.toString() == "_document")
 			  									   <li>  <%#Eval("${field.Name}")%></li>
                         				 #end 
-										 #if ($field.type.toString() == "_audio")
+										 #if ($field.targetType.toString() == "_audio")
 			  								   <li>  <%#Eval("${field.Name}")%></li>
                         				 #end 
 							#set ($count = $count + 1 )

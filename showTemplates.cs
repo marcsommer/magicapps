@@ -169,6 +169,14 @@ namespace myWay
             ConfigurationManager.RefreshSection("appSettings");
             cargar();
  
+
+
+
+
+
+
+
+
  
         }
 
