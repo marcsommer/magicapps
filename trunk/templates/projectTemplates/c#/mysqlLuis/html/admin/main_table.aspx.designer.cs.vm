@@ -36,7 +36,7 @@ namespace ${project}.${table}_dir {
 #foreach( $field in $table.GetArrayOfFields )
   #if (!$field.isKey())
      
-              #if ($field.type.toString() == "_integer")
+              #if ($field.targetType.toString() == "_integer")
                 #if ( $field.isForeignKey())
                    /// <summary>
                     /// Control cmb${field}.
@@ -59,7 +59,7 @@ namespace ${project}.${table}_dir {
 
                 
                  #end 
-              #if ($field.type.toString() == "_string")
+              #if ($field.targetType.toString() == "_string")
                    /// <summary>
                     /// Control txt${field}.
                     /// </summary>
@@ -73,7 +73,7 @@ namespace ${project}.${table}_dir {
 						protected global::System.Web.UI.WebControls.TextBox txt${field};
 					 #end
 			 #end 
-			 #if ($field.type.toString() == "_double")
+			 #if ($field.targetType.toString() == "_double")
 			   /// <summary>
 				/// Control txt${field}.
 				/// </summary>
@@ -83,7 +83,7 @@ namespace ${project}.${table}_dir {
 				/// </remarks>
 				protected global::System.Web.UI.WebControls.TextBox txt${field};
 			 #end 
-              #if ($field.type.toString() == "_date")
+              #if ($field.targetType.toString() == "_date")
                    /// <summary>
 					/// Control ${field}.
 					/// </summary>
@@ -95,7 +95,7 @@ namespace ${project}.${table}_dir {
 		
 		
                  #end 
-              #if ($field.type.toString() == "_bigString")
+              #if ($field.targetType.toString() == "_bigString")
                    /// <summary>
 					/// Control ${field}.
 					/// </summary>
@@ -107,7 +107,7 @@ namespace ${project}.${table}_dir {
 		
 		
                  #end 				 
-              #if ($field.type.toString() == "_boolean")
+              #if ($field.targetType.toString() == "_boolean")
                    /// <summary>
                     /// Control ck{field}.
                     /// </summary>
@@ -117,7 +117,7 @@ namespace ${project}.${table}_dir {
                     /// </remarks>
                     protected global::System.Web.UI.WebControls.CheckBox ck${field};
                  #end 
-               #if ($field.type.toString() == "_image")
+               #if ($field.targetType.toString() == "_image")
                    //// <summary>
 					/// Control img${field}.
 					/// </summary>
@@ -154,7 +154,7 @@ namespace ${project}.${table}_dir {
 					/// </remarks>
 					protected global::System.Web.UI.WebControls.Label lblinfo${field};
                  #end 
-               #if ($field.type.toString() == "_document")
+               #if ($field.targetType.toString() == "_document")
                    //// <summary>
 					/// Control lbl${field}.
 					/// </summary>

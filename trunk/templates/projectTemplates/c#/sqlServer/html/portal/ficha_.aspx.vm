@@ -30,7 +30,7 @@
 #set ($count = 0)
 #foreach( $field in $table.getFields )
   #if (!$field.isKey())
-              #if ($field.type.toString() == "_integer")
+              #if ($field.targetType.toString() == "_integer")
                 #if ( $field.isForeignKey())
 						<div class="lineaForm">
 							<label for="${field}">		
@@ -47,7 +47,7 @@
 					</div>		
 				#end
 			#end 
-              #if ($field.type.toString() == "_double")
+              #if ($field.targetType.toString() == "_double")
 			  	<div class="lineaForm">
                    <label for="${field}">
                         <span class="etiqueta">${field.targetName()}: </span>
@@ -55,7 +55,7 @@
                     </label>
 				</div>		
                  #end 
-                #if ($field.type.toString() == "_string")
+                #if ($field.targetType.toString() == "_string")
 			  	<div class="lineaForm">
                    <label for="${field}">
                         <span class="etiqueta">${field.targetName()}: </span>
@@ -63,7 +63,7 @@
                     </label>
 				</div>		
                  #end 
-              #if ($field.type.toString() == "_date")
+              #if ($field.targetType.toString() == "_date")
 			  	<div class="lineaForm">
                  <label for="${field}">
                         <span class="etiqueta">${field.targetName()}: </span>
@@ -71,7 +71,7 @@
                     </label>
 				</div>		
                  #end 
-              #if ($field.type.toString() == "_boolean")
+              #if ($field.targetType.toString() == "_boolean")
 			  	<div class="lineaForm">
                   <label for="${field}">
                         <span class="etiqueta">${field.targetName()}: </span>
@@ -79,21 +79,21 @@
                     </label>
 						</div>		
                  #end 
-              #if ($field.type.toString() == "_image")
+              #if ($field.targetType.toString() == "_image")
 			  		<div class="lineaForm">
 						    <asp:Image ID="img${field}" runat="server" Visible="False" Width="40px" />
                             <br />
                             <asp:Label ID="lblInfo${field}" CssClass="camporojo" runat="server" Text=""></asp:Label>
 					</div>
                  #end 
-              #if ($field.type.toString() == "_document")
+              #if ($field.targetType.toString() == "_document")
 			  		<div class="lineaForm">
 						      <asp:Image ID="img${field}" runat="server" Visible="False" Width="40px" />
                             <br />
                             <asp:Label ID="lblInfo${field}" CssClass="camporojo" runat="server" Text=""></asp:Label>
 					</div>
                  #end 
-				 #if ($field.type.toString() == "_audio")
+				 #if ($field.targetType.toString() == "_audio")
 			  		 <div class="lineaForm">
 						   <asp:Label ID="lbl${field}" CssClass="camporojo" runat="server" Text=""></asp:Label>
                             <br />

@@ -39,7 +39,7 @@ namespace ${project}.portal.main_${table} {
    
      
      
-              #if ($field.type.toString() == "_integer")
+              #if ($field.targetType.toString() == "_integer")
                 
 				/// <summary>
 				/// Control lab${field}.
@@ -51,7 +51,7 @@ namespace ${project}.portal.main_${table} {
 				protected global::System.Web.UI.WebControls.Label lab${field};       
                 
                  #end 
-              #if ($field.type.toString() == "_string")
+              #if ($field.targetType.toString() == "_string")
                    /// <summary>
                     /// Control lab${field}.
                     /// </summary>
@@ -61,7 +61,7 @@ namespace ${project}.portal.main_${table} {
                     /// </remarks>
                     protected global::System.Web.UI.WebControls.Label lab${field};
                  #end 
-              #if ($field.type.toString() == "_date")
+              #if ($field.targetType.toString() == "_date")
                    /// <summary>
                     /// Control lab${field}.
                     /// </summary>
@@ -71,7 +71,7 @@ namespace ${project}.portal.main_${table} {
                     /// </remarks>
                     protected global::System.Web.UI.WebControls.Label lab${field};
                  #end 
-              #if ($field.type.toString() == "_boolean")
+              #if ($field.targetType.toString() == "_boolean")
                    /// <summary>
                     /// Control ck${field}.
                     /// </summary>
@@ -81,7 +81,7 @@ namespace ${project}.portal.main_${table} {
                     /// </remarks>
                     protected global::System.Web.UI.WebControls.CheckBox ck${field};
                  #end 
-              #if ($field.type.toString() == "_image")
+              #if ($field.targetType.toString() == "_image")
                    /// <summary>
                     /// Control img${field}.
                     /// </summary>
