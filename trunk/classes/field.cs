@@ -43,7 +43,7 @@ public class field : IComparable
     #region["Variables"]
 
 
-     private string name;
+    private string name;
     private fieldType _type;
     private fieldType _targetType;
     private string _targetName;
@@ -70,6 +70,8 @@ public class field : IComparable
     private int _decimals;
 
     private bool _imageInDataGrid;
+    private bool _visibleInGrid;
+    private bool _visible; // if its visible in pages...
 
 
     private Boolean _nameChanged;
@@ -190,11 +192,7 @@ public class field : IComparable
         set { _autoNumber = value; }
     }
 
-    public bool buttonInDataGrid
-    {
-        get { return _buttonInDataGrid; }
-        set { _buttonInDataGrid = value; }
-    }
+  
 
     public int decimals
     {
@@ -202,12 +200,29 @@ public class field : IComparable
         set { _decimals = value; }
     }
 
+     public bool buttonInDataGrid
+    {
+        get { return _buttonInDataGrid; }
+        set { _buttonInDataGrid = value; }
+    } 
+    
     public bool imageInDataGrid
     {
         get { return _imageInDataGrid; }
         set { _imageInDataGrid = value; }
     }
 
+    public bool visible
+    {
+        get { return _visible; }
+        set { _visible = value; }
+    }
+
+    public bool visibleInGrid
+    {
+        get { return _visibleInGrid; }
+        set { _visibleInGrid = value; }
+    }
 
 
     // if we change the name of the field...
