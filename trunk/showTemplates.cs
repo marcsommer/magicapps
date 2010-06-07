@@ -96,7 +96,7 @@ namespace myWay
             catch (Exception)
             {
                 
-                throw;
+                //throw;
             }
           
 
@@ -158,6 +158,30 @@ namespace myWay
             }
 
         }
+
+<<<<<<< .mine
+        private void butRestorePath_Click(object sender, EventArgs e)
+        {
+            util.templates_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, "templates");
+            System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings["templatesPath"].Value = util.templates_dir;
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+            cargar();
+
+=======
+
+
+
+
+
+
+
+
+
+>>>>>>> .theirs
+        }
+
 
     }
 }
