@@ -159,7 +159,7 @@ namespace myWay
 
         }
 
-<<<<<<< .mine
+ 
         private void butRestorePath_Click(object sender, EventArgs e)
         {
             util.templates_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, "templates");
@@ -168,18 +168,8 @@ namespace myWay
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("appSettings");
             cargar();
-
-=======
-
-
-
-
-
-
-
-
-
->>>>>>> .theirs
+ 
+ 
         }
 
 

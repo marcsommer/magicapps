@@ -641,9 +641,6 @@
     <EmbeddedResource Include="img\spanner_48.png" />
     <EmbeddedResource Include="img\thumbs_down_48.png" />
     <EmbeddedResource Include="img\thumbs_up_48.png" />
-    <None Include="templates\projectTemplates\c#\mysqlLuis\html\juleweb.csproj.vm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <Content Include="templates\projectTemplates\c#\mysql\html\Properties\licenses.licx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1402,9 +1399,6 @@
     <Content Include="templates\projectTemplates\c#\sqlServer\html\admin\test_dir\main_test.aspx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="templates\projectTemplates\c#\sqlServer\html\juleweb.csproj.vm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <Content Include="templates\projectTemplates\c#\sqlServer\html\Properties\licenses.licx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
