@@ -215,10 +215,10 @@ public class field : IComparable
         set { _imageInDataGrid = value; }
     }
 
-    public bool visible
+    public bool invisible
     {
-        get { return _visible; }
-        set { _visible = value; }
+        get { return _invisible; }
+        set { _invisible = value; }
     }
 
     public bool visibleInGrid
