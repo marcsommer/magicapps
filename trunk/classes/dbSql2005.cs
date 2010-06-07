@@ -377,6 +377,7 @@ class dbSql2005
                                 comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#doc#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
                                 fi.targetType = field.fieldType._document;
                             }
+
                         }
                     }
                 }
