@@ -74,9 +74,11 @@ public class field : IComparable
     private bool _visible; // if its visible in pages...
 
 
-    private Boolean _nameChanged;
-    private Boolean _createdNew;
-    private Boolean _deleted;
+    private bool _isSearchable; // if its searchable in pages...
+
+    private bool _nameChanged;
+    private bool _createdNew;
+    private bool _deleted;
 
     // random values
     private int _randomMinValue=0;
@@ -224,6 +226,12 @@ public class field : IComparable
         set { _visibleInGrid = value; }
     }
 
+
+    public bool isSearchable
+    {
+        get { return _isSearchable; }
+        set { _isSearchable = value; }
+    }
 
     // if we change the name of the field...
     public Boolean nameChanged
