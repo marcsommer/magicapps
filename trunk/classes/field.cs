@@ -23,6 +23,7 @@ public class field : IComparable
         _text,
         _string,
         _integer,
+        _hidden,
         _tinyInt,
         _long,
         _decimalx,
