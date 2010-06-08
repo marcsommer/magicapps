@@ -348,8 +348,13 @@ namespace myWay
             {
                 if (np.DialogResult == DialogResult.Yes)
                 {
-                    general.actualProject = np.pr;
-                    fillComboWithTables();
+                    // if we found tables...
+                    if (np.pr.tables.Count >= 1)
+                    {
+                        general.actualProject = np.pr;
+                        fillComboWithTables();
+                    }
+
                 }
 
 
