@@ -112,7 +112,11 @@ namespace myWay
             
             //pro.dbDataType = cmbDataType.SelectedItem;
 
-           
+
+            // clear data 
+            pr.tables.Clear();
+            pr.relations.Clear();
+            
             t.Start(pr);
 
            // this.DialogResult = DialogResult.Yes;
@@ -564,7 +568,6 @@ namespace myWay
             //pr.database = pro.database;
             //pr.user = pro.user;
             //pr.password = pro.password;
-
 
             pr.saveProject(Path.Combine(util.projects_dir, pr.name + ".xml"));
             AsyncWriteLine("Project saved... \n");
