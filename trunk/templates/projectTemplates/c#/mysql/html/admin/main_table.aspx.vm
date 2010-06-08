@@ -29,18 +29,20 @@
 					<h3 class="itemh3">
                         Rellene los datos</h3>
 				</div>
-			#set ($count = 0)
-			#foreach( $field in $table.GetArrayOfFields )
-			#if (!$field.isKddddey())
-                #if ($field.type.toString() == "_integer")
-                #if ($field.isForeignKey() )				
-					<div class="lineaForm">
+ 
+
+        #set ($count = 0)
+        #foreach( $field in $table.GetArrayOfFields )
+        #if (!$field.isKey())
+        #if ($field.targetType.toString() == "_integer")
+        #if ($field.isForeignKey() )
+        <div class="lineaForm">
 						<label for="${field}">				
 							<span class="etiqueta">${field.targetName()}: </span>
 							<asp:DropDownList ID="cmb${field}" CssClass="textoLargo" runat="server">
 							</asp:DropDownList>
 						</label>
-					</div>		
+				</div>		
 				#else
 			    #if ($field != "idportal")	
 				<div class="lineaForm">
@@ -48,21 +50,22 @@
                         <span class="etiqueta">${field.targetName()}: </span>
                         <asp:TextBox ID="txt${field}" CssClass="textoLargo" runat="server"></asp:TextBox>
                     </label>
-				</div>		
-				#end	
-            #end
-            #end 
-              #if ($field.type.toString() == "_string")
-			  	<div class="lineaForm">
+				</div>
+        #end
+        #end
+        #end
+
+        #if ($field.targetType.toString() == "_string")
+        <div class="lineaForm">
                    <label for="${field}">
                         <span class="etiqueta">${field.targetName()}: </span>
 							<asp:TextBox ID="txt${field}" CssClass="textoLargo" runat="server"></asp:TextBox>
 						                     
                     </label>
-						</div>		
-                 #end 
-			#if ($field.type.toString() == "_bigString")
-			  	<div class="lineaForm">
+						</div>
+        #end
+        #if ($field.targetType.toString() == "_text")
+        <div class="lineaForm">
                    <label for="${field}">
                         <span class="etiqueta">${field.targetName()}: </span>
 						   <FTB:FreeTextBox ID="txt${field}" runat="server" Language="es-ES">
@@ -70,7 +73,7 @@
                     </label>
 						</div>		
                  #end 
-              #if ($field.type.toString() == "_date")
+              #if ($field.targetType.toString() == "_date")
 			  	<div class="lineaForm">
                  <label for="${field}">
                         <span class="etiqueta">${field.targetName()}: </span>
@@ -79,16 +82,16 @@
                     </label>
 						</div>		
                  #end 
-              #if ($field.type.toString() == "_boolean")
+              #if ($field.targetType.toString() == "_boolean")
 			  	<div class="lineaForm">
                   <label for="${field}">
                         <span class="etiqueta">${field.targetName()}: </span>
                         <asp:CheckBox ID="ck${field}"   runat="server" />
                     </label>
-						</div>		
-                 #end 
-				#if ($field.type.toString() == "_image")
-					<div class="lineaForm">
+						</div>
+        #end
+        #if ($field.targetType.toString() == "_image")
+        <div class="lineaForm">
 						<span class="etiqueta">${field.targetName()}
 						</span>
                             <asp:Image ID="img${field}" runat="server" Visible="False" Width="40px" />
@@ -102,7 +105,7 @@
                             <asp:Label ID="lblinfo${field}" CssClass="camporojo" runat="server" Text=""></asp:Label>
                     </div>
 				#end 
-				#if ($field.type.toString() == "_document")
+				#if ($field.targetType.toString() == "_document")
 					<div class="lineaForm">
 						<span class="etiqueta">${field.targetName()}
 						</span>

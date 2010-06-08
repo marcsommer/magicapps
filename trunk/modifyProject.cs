@@ -263,6 +263,7 @@ namespace myWay
                                                         // check if relation exists..
                                                         if (!pr.existsRelation(tab.Name, tab2.Name))
                                                         {
+                                                            campo2.isForeignKey = true;
                                                             relation rel = new relation();
                                                             rel.name = tab.Name + "_" + tab2.Name;
                                                             if (!pr.relations.Contains(rel.name))

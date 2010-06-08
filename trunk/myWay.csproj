@@ -1615,12 +1615,6 @@
     <Content Include="templates\projectTemplates\c#\mysql\html\admin\userControls\uc_encuestaNPregunta.ascx.vm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\c#\mysql\html\base1.csproj.vm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="templates\projectTemplates\c#\mysql\html\base1.suo">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\clases\C#ClassmySql.vm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
