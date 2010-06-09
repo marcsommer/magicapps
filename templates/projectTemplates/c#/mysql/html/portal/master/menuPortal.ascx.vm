@@ -20,9 +20,9 @@
     </div>
     <ul id="menubar">
 	#set ($count = 0)
-		#foreach( $name in $project.getTables )
+		#foreach( $table in $project.getTables )
 			<li>
-				<asp:HyperLink ID="hpl${name}" runat="server"  NavigateUrl="~/portal/main_{$name}/listado_${name}.aspx">${name}</asp:HyperLink>
+				<asp:HyperLink ID="hpl${table}" runat="server"  NavigateUrl="~/portal/main_${table}/listado_${table}.aspx">${table}</asp:HyperLink>
 			</li>
 		 #end 
     </ul>
