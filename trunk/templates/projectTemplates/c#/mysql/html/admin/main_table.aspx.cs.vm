@@ -42,12 +42,12 @@ public partial class main_${table} : System.Web.UI.Page
 #foreach( $field in $table.GetArrayOfFields )
 #if (!$field.isKey())
 #if ($field.toString()!= "idportal")	
-#if ($field.type.toString() == "_integer")
+#if ($field.targetType.toString() == "_integer")
 #if (! $field.isForeignKey())
 //txt${field}.Text = sf.cadena(res.${field});
 #end
 #end 
-#if ($field.type.toString() == "_string")
+#if ($field.targetType.toString() == "_string")
 #if ( $field.size() >= 251)
 txt${field}.Text = res.${field};
 
@@ -58,18 +58,18 @@ txt${field}.Text = res.${field};
 #end		
 
 #end 
-#if ($field.type.toString() == "_date")
+#if ($field.targetType.toString() == "_date")
 ${field}.SelectedDate = res.${field};
 
 
 //txt${field}.Text = res.${field};
 #end 
-#if ($field.type.toString() == "_boolean")
+#if ($field.targetType.toString() == "_boolean")
 ck${field}.Checked = sf.Bool(res.${field});
 
 
 #end 
-#if ($field.type.toString() == "_image")
+#if ($field.targetType.toString() == "_image")
 
 if (sf.cadena(res.${field}) != "")
 {
@@ -80,7 +80,7 @@ if (sf.cadena(res.${field}) != "")
 	FileUploadImagen${field}.Visible = false;
 }
 #end 
-#if ($field.type.toString() == "_document")
+#if ($field.targetType.toString() == "_document")
 if (sf.cadena(res.${field}) != "")
 {
 	lbl${field}.Text = sf.Right(res.${field},res.${field}.Length-19);
@@ -129,27 +129,27 @@ res.idportal= sf.entero(HttpContext.Current.Session["admin"]);
 				#if ($field != "idportal")
 					
 					 
-							  #if ($field.type.toString() == "_integer")
+							  #if ($field.targetType.toString() == "_integer")
 								#if (! $field.isForeignKey())
 									res.${field}=sf.entero(txt${field}.Text) ;
 								#else
 									 res.${field}=sf.entero(cmb${field}.SelectedValue) ;
 								 #end                                   
 								 #end 
-							  #if ($field.type.toString() == "_string")
+							  #if ($field.targetType.toString() == "_string")
 								#if ( $field.size() >= 251)>
 								   res.${field}=sf.cadena(txt${field}.Text);
 								#else
 									res.${field}=sf.cadena(txt${field}.Text) ;
 								 #end		
 								#end 
-							  #if ($field.type.toString() == "_date")
+							  #if ($field.targetType.toString() == "_date")
 								res.${field}=sf.fecha(${field}.SelectedDate) ;
 								 #end 
-							  #if ($field.type.toString() == "_boolean")
+							  #if ($field.targetType.toString() == "_boolean")
 								 res.${field}=sf.Bool(ck${field}.Checked) ;
 								 #end 
-							#if ($field.type.toString() == "_image")
+							#if ($field.targetType.toString() == "_image")
 								if (FileUploadImagen${field}.PostedFile == null) { }
 								else
 								{
@@ -173,7 +173,7 @@ res.idportal= sf.entero(HttpContext.Current.Session["admin"]);
 									}
 								}
 								 #end 
-							#if ($field.type.toString() == "_document")
+							#if ($field.targetType.toString() == "_document")
 								if (FileUpload${field}.PostedFile == null) { }
 								else
 								{
@@ -223,7 +223,7 @@ res.idportal= sf.entero(HttpContext.Current.Session["admin"]);
 				#if (!$field.isKey())
 					
 					 
-							  #if ($field.type.toString() == "_integer")
+							  #if ($field.targetType.toString() == "_integer")
 								#if (! $field.isForeignKey())
 									res.${field}=sf.entero(txt${field}.Text) ;
 								#else
@@ -231,20 +231,20 @@ res.idportal= sf.entero(HttpContext.Current.Session["admin"]);
 								 #end
 							   
 								 #end 
-							  #if ($field.type.toString() == "_string")
+							  #if ($field.targetType.toString() == "_string")
 								#if ( $field.size() >= 251)>
 								   res.${field}=sf.cadena(txt${field}.Text);
 								#else
 									res.${field}=sf.cadena(txt${field}.Text) ;
 								 #end									
 								 #end 
-							  #if ($field.type.toString() == "_date")
+							  #if ($field.targetType.toString() == "_date")
 								res.${field}=sf.fecha(${field}.SelectedDate) ;
 								 #end 
-							  #if ($field.type.toString() == "_boolean")
+							  #if ($field.targetType.toString() == "_boolean")
 								 res.${field}=sf.Bool(ck${field}.Checked) ;
 								 #end 
-							 #if ($field.type.toString() == "_image")
+							 #if ($field.targetType.toString() == "_image")
 								if (FileUploadImagen${field}.PostedFile == null) { }
 								else
 								{
@@ -268,7 +268,7 @@ res.idportal= sf.entero(HttpContext.Current.Session["admin"]);
 									}
 								}
 								 #end 
-							#if ($field.type.toString() == "_document")
+							#if ($field.targetType.toString() == "_document")
 								if (FileUpload${field}.PostedFile == null) { }
 								else
 								{
@@ -336,11 +336,12 @@ res.idportal= sf.entero(HttpContext.Current.Session["admin"]);
 				#if (!$field.isKey())
 					
 					 
-							  #if ($field.type.toString() == "_image")
+							  #if ($field.targetType.toString() == "_image")
 								 protected void btnborrarimagen${field}_Click(object sender, EventArgs e)
 								{
 									${table} res = new ${table}(sf.entero(Request["id"])#foreach( $field in $table.GetArrayOfFields )#if ($field.targetName()=="idportales"  && ${table}!="portales")>,sf.entero(Request["idportal"])#end#end );
-									res.deleteImg${field}();
+									res.${field}();
+									res.Update();
 									img${field}.Visible = false;
 									btnborrarimagen${field}.Visible = false;
 									//txtTextoAlternativo${field}.Text = "";
@@ -348,16 +349,17 @@ res.idportal= sf.entero(HttpContext.Current.Session["admin"]);
 									if (System.IO.File.Exists(Server.MapPath(img${field}.ImageUrl.ToString())))
 										System.IO.File.Delete(Server.MapPath(img${field}.ImageUrl.ToString()));
 									FileUploadImagen${field}.Visible = true;
-									res.${field} = "";
+									 
 									
 								}
 								 
 								 #end 
-							  #if ($field.type.toString() == "_document")
+							  #if ($field.targetType.toString() == "_document")
 								 protected void btnborrar${field}_Click(object sender, EventArgs e)
 								{
 									${table} res = new ${table}(sf.entero(Request["id"])#foreach( $field in $table.GetArrayOfFields )#if ($field.targetName()=="idportales"  && ${table}!="portales")>,sf.entero(Request["idportal"])#end#end );
-									res.deleteDoc${field}();
+									res.${field}="";
+									res.Update();
 									lbl${field}.Visible = false;
 									btnborrar${field}.Visible = false;
 									//txtTextoAlternativo${field}.Text = "";
@@ -365,7 +367,7 @@ res.idportal= sf.entero(HttpContext.Current.Session["admin"]);
 									if (System.IO.File.Exists(Server.MapPath(lbl${field}.Text.ToString())))
 										System.IO.File.Delete(Server.MapPath(lbl${field}.Text.ToString()));
 									FileUpload${field}.Visible = true;
-									res.${field} = "";
+									 
 									
 								}
 								 
