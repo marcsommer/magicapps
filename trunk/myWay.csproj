@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{66DE3AD8-61FA-4FF4-9C5A-4B0551FB9F57}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -290,27 +290,27 @@
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\portal\master\masterWeb.Master.cs">
       <DependentUpon>masterWeb.Master</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\portal\master\masterWeb.Master.designer.cs">
       <DependentUpon>masterWeb.Master.cs</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\portal\master\menuPortal.ascx.cs">
       <DependentUpon>menuPortal.ascx</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\portal\master\menuPortal.ascx.designer.cs">
       <DependentUpon>menuPortal.ascx.cs</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\portal\master\testMasterPortal.aspx.cs">
       <DependentUpon>testMasterPortal.aspx</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\portal\master\testMasterPortal.aspx.designer.cs">
       <DependentUpon>testMasterPortal.aspx.cs</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\portal\miscelanea\accesibilidad.aspx.cs">
       <DependentUpon>accesibilidad.aspx</DependentUpon>
@@ -641,6 +641,36 @@
     <EmbeddedResource Include="img\spanner_48.png" />
     <EmbeddedResource Include="img\thumbs_down_48.png" />
     <EmbeddedResource Include="img\thumbs_up_48.png" />
+    <Content Include="templates\projectTemplates\c#\mysql\html\App_Themes\contraste1\estilos.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysql\html\App_Themes\contrastemed\altocontraste.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysql\html\App_Themes\contrastexl\altocontraste.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysql\html\App_Themes\contraste\altocontraste.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysql\html\App_Themes\normalmed\estilos.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysql\html\App_Themes\normalxl\estilos.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysql\html\App_Themes\normal\estilos.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysql\html\App_Themes\textomed\solotexto.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysql\html\App_Themes\textoxl\solotexto.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysql\html\App_Themes\texto\solotexto.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\Properties\licenses.licx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1373,10 +1403,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\portal\master\menuPortal.ascx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\portal\master\testMasterPortal.aspx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\portal\miscelanea\accesibilidad.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1627,22 +1658,44 @@
     <Content Include="templates\projectTemplates\c#\mysql\html\im\Thumbs.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\c#\mysql\html\portal\ficha.aspx.designer.cs.vm" />
-    <Content Include="templates\projectTemplates\c#\mysql\html\portal\ficha_.aspx.cs.vm" />
-    <Content Include="templates\projectTemplates\c#\mysql\html\portal\ficha_.aspx.vm" />
-    <Content Include="templates\projectTemplates\c#\mysql\html\portal\listadoPaginadoo_.aspx.designer.cs.vm" />
-    <Content Include="templates\projectTemplates\c#\mysql\html\portal\listadoPaginado_.aspx.cs.vm" />
-    <Content Include="templates\projectTemplates\c#\mysql\html\portal\listadoPaginado_.aspx.vm" />
-    <Content Include="templates\projectTemplates\c#\mysql\html\portal\listado_.aspx.cs.vm" />
-    <Content Include="templates\projectTemplates\c#\mysql\html\portal\listado_.aspx.designer.cs.vm" />
-    <Content Include="templates\projectTemplates\c#\mysql\html\portal\listado_.aspx.vm" />
+    <Content Include="templates\projectTemplates\c#\mysql\html\portal\ficha.aspx.designer.cs.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysql\html\portal\ficha_.aspx.cs.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysql\html\portal\ficha_.aspx.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysql\html\portal\listadoPaginadoo_.aspx.designer.cs.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysql\html\portal\listadoPaginado_.aspx.cs.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysql\html\portal\listadoPaginado_.aspx.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysql\html\portal\listado_.aspx.cs.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysql\html\portal\listado_.aspx.designer.cs.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysql\html\portal\listado_.aspx.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\portal\master\masterWeb.Master">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\portal\master\menuPortal.ascx.vm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\Web.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysql\html\Web.config.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="templates\projectTemplates\c#\sqlServer\html\images_contraste\Thumbs.db">

@@ -84,6 +84,36 @@
 #end
   
   
+  #foreach( $tablita in $project.getTables )
+<Content Include="portal\\main_${tablita.Name()}\listado_${tablita.Name()}.aspx" />
+<Compile Include="portal\\main_${tablita.Name()}\listado_${tablita.Name()}.aspx.cs">
+  <DependentUpon>listado_${tablita.Name()}.aspx</DependentUpon>
+  <SubType>ASPXCodeBehind</SubType>
+</Compile>
+<Compile Include="portal\\main_${tablita.Name()}\listado_${tablita.Name()}.aspx.designer.cs">
+  <DependentUpon>listado_${tablita.Name()}.aspx</DependentUpon>
+</Compile>	
+
+
+<Content Include="portal\\main_${tablita.Name()}\listadoPaginado_${tablita.Name()}.aspx" />
+<Compile Include="portal\\main_${tablita.Name()}\listadoPaginado_${tablita.Name()}.aspx.cs">
+  <DependentUpon>listadoPaginado_${tablita.Name()}.aspx</DependentUpon>
+  <SubType>ASPXCodeBehind</SubType>
+</Compile>
+<Compile Include="portal\\main_${tablita.Name()}\listadoPaginado_${tablita.Name()}.aspx.designer.cs">
+  <DependentUpon>listadoPaginado_${tablita.Name()}.aspx</DependentUpon>
+</Compile>	
+
+<Content Include="portal\\main_${tablita.Name()}\ficha_${tablita.Name()}.aspx" />
+<Compile Include="portal\\main_${tablita.Name()}\ficha_${tablita.Name()}.aspx.cs">
+  <DependentUpon>ficha_${tablita.Name()}.aspx</DependentUpon>
+  <SubType>ASPXCodeBehind</SubType>
+</Compile>
+<Compile Include="portal\\main_${tablita.Name()}\ficha_${tablita.Name()}.aspx.designer.cs">
+  <DependentUpon>ficha_${tablita.Name()}.aspx</DependentUpon>
+</Compile>	
+#end
+  
     <Content Include="admin\master\menuAdmin.ascx" />
     <Content Include="App_code\themeHttpModule.cs" />
 
