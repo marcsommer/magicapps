@@ -1132,6 +1132,24 @@ namespace myWay
         {
            
 
+        }
+
+        private void kryptonButton3_Click(object sender, EventArgs e)
+        {
+            this.Cursor  = System.Windows.Forms.Cursors.WaitCursor;
+            string url = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string dir = url.Substring(0,url.IndexOf("\\bin"));
+           
+            string dirProjectTemplatesOriginal = Path.Combine(dir, "templates\\projectTemplates");
+
+            string dirFinal = url.Substring(0, url.IndexOf("\\myWay.exe"));
+            dirFinal = Path.Combine(dirFinal, "templates\\projectTemplates");
+            
+
+            util.copyDirectory(dirProjectTemplatesOriginal, dirFinal);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
+
+
         } // buttonGeneric_Click
 
 

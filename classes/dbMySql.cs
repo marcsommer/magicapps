@@ -205,9 +205,6 @@ class dbMySql
                     fi.targetType = fi.type;
 
 
-
-
-
                     fi.allowNulls = sf.Bool(row["IS_NULLABLE"]);
                     fi.size = sf.entero(row["CHARACTER_MAXIMUM_LENGTH"]);
                     //     fi.comment = sf.Cadena(tbl.Rows(i)!COLUMN_COMMENT);
