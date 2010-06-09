@@ -21,6 +21,8 @@ public static class util
     public static string HomeDirectory
     {
         get { return System.IO.Path.Combine(System.Environment.GetEnvironmentVariable("HOME"), System.String.Empty); }
+
+        
     }
 
     //$XDG_CONFIG_HOME/f-spot or $HOME/.config/f-spot
@@ -34,6 +36,7 @@ public static class util
     public static string images_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, "images");
     public static string sound_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, "sounds");
 
+    
 
     public static project actualProject;
 
@@ -42,6 +45,9 @@ public static class util
     {
         try
         {
+
+          //  string apppath = (new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().CodeBase)).DirectoryName;
+
             StreamReader streamReader = new StreamReader(path);
             string text = streamReader.ReadToEnd();
             streamReader.Close();
@@ -246,7 +252,35 @@ public static class util
     } // CountLinesInString
 
 
+    public static void copyDirectory(string Src, string Dst)
+    {
+        String[] Files;
 
+        if (Dst[Dst.Length - 1] != Path.DirectorySeparatorChar)
+            Dst += Path.DirectorySeparatorChar;
+        if (!Directory.Exists(Dst)) Directory.CreateDirectory(Dst);
+        Files = Directory.GetFileSystemEntries(Src);
+        foreach (string Element in Files)
+        {
+            if (Element.IndexOf("svn") <= 0)
+            {
+                // Sub directories
+
+                if (Directory.Exists(Element))
+                    copyDirectory(Element, Dst + Path.GetFileName(Element));
+                // Files in directory
+
+                else
+                {
+                    File.Copy(Element, Dst + Path.GetFileName(Element), true);
+                }
+            }
+
+
+        }
+
+
+    }// copyDirectory
 
 }
  
