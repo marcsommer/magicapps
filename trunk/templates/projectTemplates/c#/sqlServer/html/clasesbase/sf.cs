@@ -1088,3 +1088,33 @@ public class sf
 
 
 
+public class message
+{
+    public string text
+    {
+        get { return text; }
+        set { text = value; }
+    }
+
+
+    public enum typeOfMessage
+    {
+        info = 1,
+        error = 2,
+        success = 3
+    }
+
+    public typeOfMessage type
+    {
+        get { return type; }
+        set { type = value; }
+    }
+
+
+    public message(string textx, typeOfMessage typex)
+    {
+        this.text = textx;
+        this.type = typex;
+    }
+
+}

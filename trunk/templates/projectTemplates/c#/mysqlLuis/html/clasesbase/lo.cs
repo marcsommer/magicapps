@@ -1185,5 +1185,55 @@ public class lo
         return string.Join(delim, (string[])ar.ToArray(typeof(string)));
     }
 
+
+    public static void javascript(string java)
+    {
+        System.Web.UI.Page pagex = HttpContext.Current.Handler as System.Web.UI.Page;
+
+        if (pagex != null)
+        {
+            // Use page instance.
+            if (!pagex.ClientScript.IsClientScriptBlockRegistered("exampleScript"))
+            {
+                StringBuilder sb = new StringBuilder();
+
+                sb.Append("\r\n<script language='JavaScript'>\r\n");
+                sb.Append("<!--\r\n");
+                sb.Append(java + "\r\n");
+                sb.Append("// -->\r\n");
+                sb.Append("</script>");
+
+                // pagex.ClientScript.RegisterStartupScript(typeof(lo), "exampleScript", sb.ToString());
+                pagex.ClientScript.RegisterStartupScript(typeof(lo), "exampleScript", sb.ToString());
+            }
+        }
+    }
+
+    public static void javascriptMessage(string message)
+    {
+        System.Web.UI.Page pagex = HttpContext.Current.Handler as System.Web.UI.Page;
+
+        if (pagex != null)
+        {
+            // Use page instance.
+            if (!pagex.ClientScript.IsClientScriptBlockRegistered("exampleScript"))
+            {
+                StringBuilder sb = new StringBuilder();
+
+                sb.Append("\r\n<script language='JavaScript'>\r\n");
+                sb.Append("<!--\r\n");
+                sb.Append("$.jGrowl('" + message + "');");
+                sb.Append("// -->\r\n");
+                sb.Append("</script>");
+
+                // pagex.ClientScript.RegisterStartupScript(typeof(lo), "exampleScript", sb.ToString());
+                pagex.ClientScript.RegisterStartupScript(typeof(lo), "exampleScript", sb.ToString());
+            }
+        }
+    }
+
+
 }
+
+
 

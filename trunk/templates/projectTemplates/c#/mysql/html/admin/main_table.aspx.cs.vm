@@ -47,16 +47,12 @@ public partial class main_${table} : System.Web.UI.Page
 //txt${field}.Text = sf.cadena(res.${field});
 #end
 #end 
+
+ 	#if (!$field.isKey())
 #if ($field.targetType.toString() == "_string")
-#if ( $field.size() >= 251)
+ 
 txt${field}.Text = res.${field};
-
-#else
-txt${field}.Text = res.${field};
-
-
-#end		
-
+ 
 #end 
 #if ($field.targetType.toString() == "_date")
 ${field}.SelectedDate = res.${field};
@@ -91,7 +87,7 @@ if (sf.cadena(res.${field}) != "")
 }
 #end 									 
 
-
+#end	
 #end	
 
 #end
@@ -118,37 +114,32 @@ lo.comboSeleccionarItem(cmb${relation.childField()}, sf.cadena(res.${relation.ch
 		// modificar
 		if (Request["id"] != null)
 		{
-			${table} res = new ${table}(sf.entero(Request["id"])#foreach( $field in $table.GetArrayOfFields )#if ($field.targetName()=="idportales"  && ${table}!="portales")>,sf.entero(Request["idportal"])#end#end );
-			//res = ${table}.get${table}(sf.entero(Request["id"]));
+			${table} res = new ${table}(sf.entero(Request["id"]));
+ 
 			#set ($count = 0)
 			#foreach( $field in $table.GetArrayOfFields )
-				#if (!$field.isKey())
-#if ($field == "idportal")
-res.idportal= sf.entero(HttpContext.Current.Session["admin"]);
-#end					
-				#if ($field != "idportal")
-					
-					 
+
+			 
+			 #if ($field == "idportal")	
+			 #else
+			 	#if (!$field.isKey())
+				 
 							  #if ($field.targetType.toString() == "_integer")
 								#if (! $field.isForeignKey())
 									res.${field}=sf.entero(txt${field}.Text) ;
 								#else
 									 res.${field}=sf.entero(cmb${field}.SelectedValue) ;
 								 #end                                   
-								 #end 
+							 #end 
 							  #if ($field.targetType.toString() == "_string")
-								#if ( $field.size() >= 251)>
-								   res.${field}=sf.cadena(txt${field}.Text);
-								#else
-									res.${field}=sf.cadena(txt${field}.Text) ;
-								 #end		
-								#end 
+								res.${field}=sf.cadena(txt${field}.Text);			
+							 #end 
 							  #if ($field.targetType.toString() == "_date")
 								res.${field}=sf.fecha(${field}.SelectedDate) ;
-								 #end 
+							  #end 
 							  #if ($field.targetType.toString() == "_boolean")
 								 res.${field}=sf.Bool(ck${field}.Checked) ;
-								 #end 
+							  #end 
 							#if ($field.targetType.toString() == "_image")
 								if (FileUploadImagen${field}.PostedFile == null) { }
 								else
@@ -172,7 +163,7 @@ res.idportal= sf.entero(HttpContext.Current.Session["admin"]);
 											
 									}
 								}
-								 #end 
+							 #end 
 							#if ($field.targetType.toString() == "_document")
 								if (FileUpload${field}.PostedFile == null) { }
 								else
@@ -196,11 +187,9 @@ res.idportal= sf.entero(HttpContext.Current.Session["admin"]);
 											
 									}
 								}
+								#end 	
 								 #end 									 
-							   
-					  
-				#end
-				#end
+					 #end 
 				#set ($count = $count + 1 )
 			#end 
 
@@ -216,35 +205,28 @@ res.idportal= sf.entero(HttpContext.Current.Session["admin"]);
 			${table} res = new ${table}(); 
 			#set ($count = 0)
 			#foreach( $field in $table.GetArrayOfFields )
-#if ($field == "idportal")
-res.idportal= sf.entero(HttpContext.Current.Session["admin"]);
-#end				
-			 #if ($field != "idportal")	
+
+			
+			 #if ($field == "idportal")	
+			 #else
 				#if (!$field.isKey())
-					
-					 
 							  #if ($field.targetType.toString() == "_integer")
 								#if (! $field.isForeignKey())
 									res.${field}=sf.entero(txt${field}.Text) ;
 								#else
-									 res.${field}=sf.entero(lo.comboValorSeleccionado(ref cmb${field},ctes.eTipoCampo.id)) ;
-								 #end
-							   
-								 #end 
+									 res.${field}=sf.entero(cmb${field}.SelectedValue) ;
+								 #end                                   
+							 #end 
 							  #if ($field.targetType.toString() == "_string")
-								#if ( $field.size() >= 251)>
-								   res.${field}=sf.cadena(txt${field}.Text);
-								#else
-									res.${field}=sf.cadena(txt${field}.Text) ;
-								 #end									
-								 #end 
+								res.${field}=sf.cadena(txt${field}.Text) ;	
+							 #end 
 							  #if ($field.targetType.toString() == "_date")
 								res.${field}=sf.fecha(${field}.SelectedDate) ;
-								 #end 
+							  #end 
 							  #if ($field.targetType.toString() == "_boolean")
 								 res.${field}=sf.Bool(ck${field}.Checked) ;
-								 #end 
-							 #if ($field.targetType.toString() == "_image")
+							  #end 
+							#if ($field.targetType.toString() == "_image")
 								if (FileUploadImagen${field}.PostedFile == null) { }
 								else
 								{
@@ -267,7 +249,7 @@ res.idportal= sf.entero(HttpContext.Current.Session["admin"]);
 											
 									}
 								}
-								 #end 
+							 #end 
 							#if ($field.targetType.toString() == "_document")
 								if (FileUpload${field}.PostedFile == null) { }
 								else
@@ -291,14 +273,11 @@ res.idportal= sf.entero(HttpContext.Current.Session["admin"]);
 											
 									}
 								}
-								 #end 										 
-							 
-				#end
-				#end
+							#end 		
+						#end 									 
+					 #end 
 				#set ($count = $count + 1 )
-				
-			#end 
-			
+			#end 			
 			 ${table}.Insert(res);
 			 res = null;
 			mensaje("Insertado con exito");
@@ -339,8 +318,9 @@ res.idportal= sf.entero(HttpContext.Current.Session["admin"]);
 							  #if ($field.targetType.toString() == "_image")
 								 protected void btnborrarimagen${field}_Click(object sender, EventArgs e)
 								{
-									${table} res = new ${table}(sf.entero(Request["id"])#foreach( $field in $table.GetArrayOfFields )#if ($field.targetName()=="idportales"  && ${table}!="portales")>,sf.entero(Request["idportal"])#end#end );
-									res.${field}();
+									${table} res = new ${table}(sf.entero(Request["id"]));
+ 
+									res.${field}="";
 									res.Update();
 									img${field}.Visible = false;
 									btnborrarimagen${field}.Visible = false;
@@ -357,7 +337,8 @@ res.idportal= sf.entero(HttpContext.Current.Session["admin"]);
 							  #if ($field.targetType.toString() == "_document")
 								 protected void btnborrar${field}_Click(object sender, EventArgs e)
 								{
-									${table} res = new ${table}(sf.entero(Request["id"])#foreach( $field in $table.GetArrayOfFields )#if ($field.targetName()=="idportales"  && ${table}!="portales")>,sf.entero(Request["idportal"])#end#end );
+									${table} res = new ${table}(sf.entero(Request["id"]));
+ 
 									res.${field}="";
 									res.Update();
 									lbl${field}.Visible = false;

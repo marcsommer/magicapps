@@ -59,7 +59,6 @@
             this.butReturnToScript = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.cmbGoToCode = new System.Windows.Forms.ComboBox();
             this.txtBus = new System.Windows.Forms.TextBox();
-            this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -240,7 +239,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.kryptonButton3);
             this.groupBox2.Controls.Add(this.labNumberOfApps);
             this.groupBox2.Controls.Add(this.kbTargetDirectory);
             this.groupBox2.Controls.Add(this.kryptonLabel4);
@@ -335,16 +333,6 @@
             this.txtBus.TabIndex = 0;
             this.txtBus.TextChanged += new System.EventHandler(this.txtBus_TextChanged);
             // 
-            // kryptonButton3
-            // 
-            this.kryptonButton3.Location = new System.Drawing.Point(17, 89);
-            this.kryptonButton3.Name = "kryptonButton3";
-            this.kryptonButton3.Size = new System.Drawing.Size(147, 25);
-            this.kryptonButton3.TabIndex = 42;
-            this.kryptonButton3.Values.Image = global::myWay.Properties.Resources.application_lightning;
-            this.kryptonButton3.Values.Text = "Refresh templates";
-            this.kryptonButton3.Click += new System.EventHandler(this.kryptonButton3_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -408,7 +396,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel labNumberOfLinesWritten;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel labNumberOfApps;
         private System.Windows.Forms.TextBox txtBus;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton3;
     }
 }
 

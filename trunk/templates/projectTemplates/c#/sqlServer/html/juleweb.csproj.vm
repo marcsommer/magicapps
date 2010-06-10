@@ -603,6 +603,11 @@
     <Content Include="admin\test_dir\main_test.aspx" />
     <Content Include="images\anadirCat.gif" />
     <Content Include="images\aviso.gif" />
+    
+    <Content Include="includes\jgrowl\jquery-1.3.2.js" />
+    <Content Include="includes\jgrowl\jquery.jgrowl.css" />
+    <Content Include="includes\jgrowl\jquery.jgrowl.js" />    
+    
     <Content Include="portal\master\menuPortal.ascx" />
     <Content Include="portal\master\testMasterPortal.aspx" />
   </ItemGroup>

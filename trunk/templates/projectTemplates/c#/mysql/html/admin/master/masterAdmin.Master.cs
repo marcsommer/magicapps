@@ -22,8 +22,8 @@ namespace admin.masterAdmin
           
             if (!Page.IsPostBack)
             {
-                if (portales.exists(idportal))
-                    lblportal.Text = portales.getportales(idportal).nombre;
+                //if (portales.exists(idportal))
+                //    lblportal.Text = portales.getportales(idportal).nombre;
                 cargar();
 
             }

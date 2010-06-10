@@ -246,39 +246,39 @@
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\admin\master\masterAdmin.Master.cs">
       <DependentUpon>masterAdmin.Master</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\admin\master\masterAdmin.Master.designer.cs">
       <DependentUpon>masterAdmin.Master.cs</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\admin\master\menuAdmin.ascx.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\admin\master\menuAdmin.ascx.designer.cs">
       <DependentUpon>menuAdmin.ascx.cs</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\App_code\themeHttpModule.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\clasesbase\ctes.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\clasesbase\dbClass.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\clasesbase\lo.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\clasesbase\redimensionarImagen.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\clasesbase\sf.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\clasesbase\templateGoogleMap.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -641,6 +641,21 @@
     <EmbeddedResource Include="img\spanner_48.png" />
     <EmbeddedResource Include="img\thumbs_down_48.png" />
     <EmbeddedResource Include="img\thumbs_up_48.png" />
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqCabDcha.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqIzq_menuH.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\includes\jgrowl\jquery-1.3.2.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\includes\jgrowl\jquery.jgrowl.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\includes\jgrowl\jquery.jgrowl.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\App_Themes\contraste1\estilos.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1076,16 +1091,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\App_Themes\admcontrastexl\admin_contraste.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\App_Themes\admcontraste\admin_contraste.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\App_Themes\adminxl\admin.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\App_Themes\admin\admin.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\base1.csproj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1525,6 +1540,7 @@
     </Content>
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\master\masterAdmin.Master">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\master\menuAdmin.ascx.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1632,10 +1648,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\admin\master\masterAdmin.Master">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\admin\master\menuAdmin.ascx.vm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\admin\userControls\uc_encuestaNPregunta.ascx.cs.vm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1698,6 +1714,15 @@
     <Content Include="templates\projectTemplates\c#\mysql\html\Web.config.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="templates\projectTemplates\c#\mysql\html\base1.csproj.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysql\html\base1.suo">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\juleweb.csproj.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="templates\projectTemplates\c#\sqlServer\html\images_contraste\Thumbs.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1748,6 +1773,9 @@
     </Content>
     <Content Include="templates\projectTemplates\c#\sqlServer\html\portal\listadoPaginado_.aspx.vm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\sqlServer\html\juleweb.csproj.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="templates\Web.config.vm" />
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\portal\ficha.aspx.designer.cs.vm">
@@ -1858,116 +1886,336 @@
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\action.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\accesib.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\aceptar.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\altocontraste.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\anadirCat.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\banner1.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\banner2.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\banner3.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\banner4.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\barraDirec.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\bordeDcha.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\bordeInf.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\bordeIzq.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\bordeSup.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\borrar.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\boton.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\btNoticias.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\contact.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\contacto.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\css.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\css2.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\denegar.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\editarProd.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\encuesta.jpg" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqCabDcha.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqCabIzq.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqDcha_menu.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqInfDcha.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqInfIzq.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqIzq_menu.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqmenuDcha.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqmenuIzq.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqPest.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqSupDcha.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqSupIzq.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esq_dcha.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esq_izq.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\examinar.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fecha.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\flecha.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\flechaMenu.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\flechaPie.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\flechaVolver.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\FondDcha.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\FondInf.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\FondIzq.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoAccesib.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoAccesibilidad.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoBusq.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoClip.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoCom1.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoCom2.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoDestacados.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoDirec.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoEncab.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoImg.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoImgCentral.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondomenu.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoMenuH.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoPie.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoRaya.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoSubtit.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoT2.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoTit.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoTit2.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoTitulos.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondPest.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondPestanas.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondSeparador.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\foto1.jpg" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\foto2.jpg" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\icoAcesib.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\imgAsoc.jpg" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\imgEncab.jpg" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\imgProg.jpg" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\imgRaton.jpg" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\insertar.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\irCatalogo.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\itemMenu.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\itemMenuHover.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\itemSubtit.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\itemTit.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\logoAvanza.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\logotipoUDP.jpg" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\logoUDPSup.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\mapa.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\modificar.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\puntoLi.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\puntoLi2.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\separadorH.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\separadorIcos.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\separadorP.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\separadorV.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\signoMas.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\solotexto.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\sombraPie.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\taw.png" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\tel.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\terminarSesion.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\titBanner.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\titMenu.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\titulos.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\verProductos.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\w3c_aa.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\w3c_aaa.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\wai-aa.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\waiAA.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\wai_aa.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\xhtml.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\xhtml1.gif" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\zonamenu.gif" />
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\accesib.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\aceptar.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\altocontraste.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\anadirCat.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\banner1.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\banner2.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\banner3.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\banner4.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\barraDirec.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\bordeDcha.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\bordeInf.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\bordeIzq.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\bordeSup.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\borrar.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\boton.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\btNoticias.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\contact.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\contacto.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\css.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\css2.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\denegar.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\editarProd.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\encuesta.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqCabDcha.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqCabIzq.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqDcha_menu.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqInfDcha.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqInfIzq.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqIzq_menu.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqmenuDcha.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqmenuIzq.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqPest.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqSupDcha.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqSupIzq.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esq_dcha.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esq_izq.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\examinar.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fecha.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\flecha.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\flechaMenu.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\flechaPie.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\flechaVolver.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\FondDcha.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\FondInf.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\FondIzq.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoAccesib.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoAccesibilidad.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoBusq.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoClip.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoCom1.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoCom2.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoDestacados.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoDirec.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoEncab.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoImg.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoImgCentral.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondomenu.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoMenuH.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoPie.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoRaya.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoSubtit.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoT2.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoTit.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoTit2.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondoTitulos.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondPest.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondPestanas.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\fondSeparador.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\foto1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\foto2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\icoAcesib.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\imgAsoc.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\imgEncab.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\imgProg.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\imgRaton.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\insertar.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\irCatalogo.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\itemMenu.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\itemMenuHover.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\itemSubtit.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\itemTit.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\logoAvanza.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\logotipoUDP.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\logoUDPSup.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\mapa.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\modificar.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\puntoLi.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\puntoLi2.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\separadorH.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\separadorIcos.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\separadorP.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\separadorV.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\signoMas.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\solotexto.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\sombraPie.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\taw.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\tel.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\terminarSesion.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\titBanner.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\titMenu.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\titulos.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\verProductos.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\w3c_aa.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\w3c_aaa.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\wai-aa.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\waiAA.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\wai_aa.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\xhtml.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\xhtml1.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\zonamenu.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\master\testMaster.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

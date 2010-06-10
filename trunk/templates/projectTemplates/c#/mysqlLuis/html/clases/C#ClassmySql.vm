@@ -455,7 +455,7 @@ using System.ComponentModel;
 		
 			
 		
-  public void Update()
+  public bool Update()
 		{
             MySqlDataReader reg;
             System.Text.StringBuilder sqlt = new System.Text.StringBuilder();
@@ -511,6 +511,7 @@ using System.ComponentModel;
 		  #end
 		#end 
               reg = db.sql(sqlt.ToString());
+              return true;
               }   
             catch (Exception ex)
             {
@@ -521,6 +522,7 @@ using System.ComponentModel;
                 db.Dispose();
               
             }
+            return false;
 
        }
 
