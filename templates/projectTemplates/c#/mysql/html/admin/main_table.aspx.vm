@@ -62,33 +62,41 @@
 							<asp:TextBox ID="txt${field}" CssClass="textoLargo" runat="server"></asp:TextBox>
 						                     
                     </label>
-						</div>
+		</div>
         #end
+        #if ($field.targetType.toString() == "_integer")
+				<div class="lineaForm">
+                   <label for="${field}">
+                        <span class="etiqueta">${field.targetName()}: </span>
+						  <asp:TextBox ID="txt${field}" CssClass="textoLargo" runat="server"></asp:TextBox>				                       
+                    </label>
+				</div>		
+        #end 		
         #if ($field.targetType.toString() == "_text")
-        <div class="lineaForm">
+				<div class="lineaForm">
                    <label for="${field}">
                         <span class="etiqueta">${field.targetName()}: </span>
 						   <FTB:FreeTextBox ID="txt${field}" runat="server" Language="es-ES">
 						   </FTB:FreeTextBox>						                       
                     </label>
-						</div>		
-                 #end 
-              #if ($field.targetType.toString() == "_date")
+				</div>		
+        #end 
+        #if ($field.targetType.toString() == "_date")
 			  	<div class="lineaForm">
-                 <label for="${field}">
+					<label for="${field}">
                         <span class="etiqueta">${field.targetName()}: </span>
                          <ew:CalendarPopup ID="${field}" runat="server" >
                          </ew:CalendarPopup>
                     </label>
-						</div>		
-                 #end 
+				</div>		
+        #end 
               #if ($field.targetType.toString() == "_boolean")
 			  	<div class="lineaForm">
                   <label for="${field}">
                         <span class="etiqueta">${field.targetName()}: </span>
                         <asp:CheckBox ID="ck${field}"   runat="server" />
                     </label>
-						</div>
+				</div>
         #end
         #if ($field.targetType.toString() == "_image")
         <div class="lineaForm">

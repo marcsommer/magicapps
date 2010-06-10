@@ -205,3 +205,7 @@ li.logospie{ background:none!important;}
 .preciocompra{padding:10px 0; font-weight:bold; clear:both;}
 .preciocompra span{ color:#f2066a;}
 /*------*/
+
+.msgError{ border:1px solid #e8e1b5; padding:5px 5px 5px 25px; background:#fdfaee url(../../admin/imagesadmin/denegar.gif) no-repeat;} 
+.msgSuccess{ border:1px solid #e8e1b5; padding:5px 5px 5px 25px; background:#fdfaee url(../../admin/imagesadmin/aceptar.gif) no-repeat;} 
+.msgInfo{ border:1px solid #e8e1b5; padding:5px 5px 5px 25px; background:#fdfaee url(../../admin/imagesadmin/denegar.gif) no-repeat;} 

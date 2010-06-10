@@ -72,11 +72,8 @@ namespace ${project}.${table}_dir {
                     /// Campo generado automáticamente.
                     /// Para modificar, mueva la declaraci�n del campo del archivo del diseñador al archivo de c�digo subyacente.
                     /// </remarks>
-                    #if ( $field.size() >= 251)
-					   protected global::FreeTextBoxControls.FreeTextBox txt${field};
-					#else
-						protected global::System.Web.UI.WebControls.TextBox txt${field};
-					 #end
+					protected global::System.Web.UI.WebControls.TextBox txt${field};
+
                  #end 
               #if ($field.targetType.toString() == "_date")
                    /// <summary>
@@ -90,6 +87,20 @@ namespace ${project}.${table}_dir {
 		
 		
                  #end 
+				  #if ($field.targetType.toString() == "_hidden")
+				  #end 
+              #if ($field.targetType.toString() == "_text")
+                   /// <summary>
+					/// Control ${field}.
+					/// </summary>
+					/// <remarks>
+					/// Campo generado autom�ticamente.
+					/// Para modificar, mueva la declaraci�n del campo del archivo del dise�ador al archivo de c�digo subyacente.
+					/// </remarks>
+					protected global::FreeTextBoxControls.FreeTextBox txt${field};
+		
+		
+                 #end 					 
               #if ($field.targetType.toString() == "_bigString")
                    /// <summary>
 					/// Control ${field}.

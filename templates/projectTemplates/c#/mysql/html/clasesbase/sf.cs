@@ -150,16 +150,36 @@ public class sf
 
     public static int entero(double valor)
     {
-        return System.Convert.ToInt32(valor);
-
+        try
+        {
+            return System.Convert.ToInt32(valor);
+        }
+        catch (System.Exception ex)
+        {
+            return 0;
+        }
     }
     public static int entero(object valor)
     {
-        return System.Convert.ToInt32(valor);
+        try
+        {
+            return System.Convert.ToInt32(valor);
+        }
+        catch (System.Exception ex)
+        {
+            return 0;
+        }
     }
     public static int entero(System.DBNull valor)
     {
-        return 0;
+        try
+        {
+            return 0;
+        }
+        catch (System.Exception ex)
+        {
+            return 0;
+        }
     }
 
 
@@ -180,28 +200,28 @@ public class sf
 
     }
 
-    public static double Doble(double valor)
+    public static double doble(double valor)
     {
-        return System.Convert.ToDouble(valor);
+        return valor;
     }
 
 
-    public static double Doble(string valor)
+    public static double doble(string valor)
     {
         double salida;
-        valor = valor.Replace('.', ',');
-        double.TryParse(valor, out  salida);
+        double.TryParse(valor.Replace(".",","), out  salida);
         return salida;
 
     }
 
-    public static double Doble(bool valor)
+    public static double doble(bool valor)
     {
         return System.Convert.ToDouble(valor);
     }
-    public static double Doble(object valor)
+
+    public static double doble(object valor)
     {
-        return System.Convert.ToDouble(valor);
+        return Math.Round(System.Convert.ToDouble(valor),2);
     }
 
     #endregion
@@ -211,19 +231,19 @@ public class sf
 
     public static System.DateTime fecha(string valor)
     {
+        System.DateTime retorno;
         try
         {
-            System.DateTime retorno;
+           
             System.DateTime.TryParse(valor, out retorno);
+
             return retorno;
         }
         catch (System.Exception ex)
         {
-            System.DateTime retorno = System.DateTime.Now;
-            return retorno;
+            System.DateTime.TryParse("2000-01-01 00:00:00", out retorno);
+              return retorno;
         }
-
-
     }
 
 
@@ -236,7 +256,7 @@ public class sf
 
 
     //        '    try
-    //        '        ' nos aseguramos que vaya a español
+    //        '        ' nos aseguramos que vaya a espa�ol
     //        '        Dim culture As CultureInfo = New CultureInfo("es-ES")
 
     //        '        return Date.MinValue
@@ -251,22 +271,16 @@ public class sf
     {
         //System.DateTime retorno;
         //System.DateTime.TryParse(valor, out  retorno);
-        try
-        {
-            return System.Convert.ToDateTime(valor);
-        }
-        catch (System.Exception ex)
-        {
-            System.DateTime retorno = System.DateTime.Now;
-            return retorno;
-        }
+
+        return System.Convert.ToDateTime(valor);
+
 
     }
 
     //        ' esta funcion devuelve la fecha en formato short
     //        ' devolvemos 01/01/1901 como fecha minima
 
-
+ 
 
     //        public static Function FechaCorta(ByVal valor As Date) As string
     //            try
@@ -301,7 +315,7 @@ public class sf
     //        while (dte[x] != '/' & x < 10)
     //        {
     //            mesx = mesx + dte[x].ToString();
-
+                
     //            x++;
     //        }
     //        dteMonth = sf.entero(mesx);
@@ -332,7 +346,7 @@ public class sf
 
 
     //}
-
+    
     public static string fechaSql(string dte)
     {
         //
@@ -356,7 +370,7 @@ public class sf
     public static string fechaSql(int day, int month, int year)
     {
         //
-        return (year + "-" + month + "-" + day);
+            return (year + "-" + month + "-" + day);
     }
 
     public static string fechaSql(System.DateTime dte)
@@ -364,7 +378,8 @@ public class sf
         if (esFecha(dte))
         {
 
-            return (dte.Year + "-" + dte.Month + "-" + dte.Day);
+
+            return (dte.Year + "-" + dte.Month + "-" + dte.Day + " " + dte.Hour + ":" + dte.Minute + ":" + dte.Second);
         }
         else
             return null;
@@ -398,10 +413,10 @@ public class sf
         if (esFecha(dte))
         {
 
-            return (dte.Year + "-" + dte.Month + "-" + dte.Day + " " + dte.Hour + ":" + dte.Minute);
+            return (dte.Year + "-" + dte.Month + "-" + dte.Day + " " + dte.Hour + ":" + dte.Minute + ":" + dte.Second);
         }
         else
-            return ("0001-01-01 12:00");
+            return null;
 
     }
 
@@ -553,7 +568,7 @@ public class sf
     //                ' primera comprobacion
     //                Dim fechita As Date = Date.Parse(fecha)
 
-    //                ' sql server no admite años anteriores a 1700
+    //                ' sql server no admite a�os anteriores a 1700
     //                if ( fechita.Year < 1700 )  {
     //                    return ""
     //                }
@@ -610,83 +625,38 @@ public class sf
     }
     public static string SafeMeta(string cadena)
     {
-
         string s = cadena;
+        s = cadena.Replace("'", "");
+        s = s.Replace("`", "");
+        s = s.Replace("�", "");
+        s = s.Replace("�", "");
+        s = s.Replace("�", "");
+        s = s.Replace("�", "");
+        s = s.Replace("\"", "");
+ 
+        
+        return s;
+    }
+    public static string SafeSqlturismoaccesible(string inputSQL)
+    {
+
         try
         {
-            s = cadena.Replace("'", "");
+            string s = inputSQL;
+            s = inputSQL.Replace("'", "");
             s = s.Replace("`", "");
-            s = s.Replace("’", "");
-            s = s.Replace("´", "");
-            s = s.Replace("‘", "");
-            s = s.Replace("‘", "");
-            s = s.Replace("\"", "");
+            s = s.Replace("�", "");
+            s = s.Replace("�", "");
+            s = s.Replace("�", "");
+
+
+            return s;
         }
         catch (System.Exception ex)
         {
             return "";
         }
 
-        return s;
-    }
-    public static string SafeSqlfede(string inputSQL)
-    {
-        string s = inputSQL;
-        s = inputSQL.Replace("'", "''");
-        s = s.Replace("`", "``");
-        s = s.Replace("’", "’’");
-        s = s.Replace("€", "&euro;");
-
-
-        //s = s.Replace("´", "´´");
-        s = s.Replace("‘", "‘‘");
-
-
-        return s;
-    }
-
-    public static string prueba(string inputSQL)
-    {
-        string s = inputSQL;
-        s = inputSQL.Replace("<P>", "<p>");
-        s = s.Replace("</P>", "</p>");
-        s = s.Replace("<P >", "<p>");
-        s = s.Replace("<P  >", "<p>");
-        s = s.Replace("<P   >", "<p>");
-        s = s.Replace("<P    >", "<p>");
-        s = s.Replace("<P     >", "<p>");
-        s = s.Replace("<P      >", "<p>");
-        s = s.Replace("<P       >", "<p>");
-        s = s.Replace("<P        >", "<p>");
-        s = s.Replace("<P         >", "<p>");
-
-
-        return s;
-    }
-
-    public static string fueraComillas(string inputSQL)
-    {
-        string s = inputSQL;
-        s = inputSQL.Replace("'", "");
-        s = s.Replace("`", "");
-        s = s.Replace("’", "");
-        //s = s.Replace("´", "´´");
-        s = s.Replace("‘", "");
-        s = s.Replace("\"", "");
-
-        return s;
-    }
-    public static string SafeArchivo(string nombre)
-    {
-        string s = nombre;
-        s = nombre.Replace("'", "");
-        s = s.Replace("`", "");
-        s = s.Replace("’", "");
-        //s = s.Replace("´", "´´");
-        s = s.Replace("‘", "");
-        s = s.Replace(" ", "-");
-
-        return s;
     }
     public static string moneda2(string valor)
     {
@@ -742,8 +712,8 @@ public class sf
     public static string cadena(double valor)
     {
         string a;
-        a = System.Convert.ToString(valor);
-        a.Replace("'", "");
+        a   = System.Convert.ToString(valor);
+        a.Replace("'","");
         return a;
     }
     public static string cadena(object valor)
@@ -755,12 +725,7 @@ public class sf
     }
     public static string cadena(string valor)
     {
-
-        if (valor == null)
-            return "";
-        else
-            return System.Convert.ToString(valor);
-
+        return   System.Convert.ToString(valor);
     }
 
 
@@ -770,7 +735,7 @@ public class sf
         return System.Convert.ToString(valor);
 
     }
-
+ 
     public static string cadena(System.DBNull valor)
     {
         try
@@ -816,9 +781,9 @@ public class sf
     }
 
 
-    //    ·················································
+    //    �������������������������������������������������
     //                Funciones HTML2TEXT
-    //    ·················································
+    //    �������������������������������������������������
 
     public static string html2text(string html)
     {
@@ -827,23 +792,23 @@ public class sf
         // then run another pass over the html (twice), removing unwanted attributes 
         html = System.Text.RegularExpressions.Regex.Replace(html, @"<([^>]*)(?:class|lang|style|size|face|[ovwxp]:\w+)=(?:'[^']*'|""[^""]*""|[^\s>]+)([^>]*)>", "<$1$2>", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
         html = System.Text.RegularExpressions.Regex.Replace(html, @"<([^>]*)(?:class|lang|style|size|face|[ovwxp]:\w+)=(?:'[^']*'|""[^""]*""|[^\s>]+)([^>]*)>", "<$1$2>", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-
-
+      
+        
         return html;
     }
 
-    //    strResult = System.Text.RegularExpressions.Regex.Replace(strIn put,
-    //txtSearch.Text.ToString().Trim(), "<b>" + txtSearch.Text.ToString().Trim() +
-    //"</b>", System.Text.RegularExpressions.RegexOptions.Ignore Case);
+//    strResult = System.Text.RegularExpressions.Regex.Replace(strIn put,
+//txtSearch.Text.ToString().Trim(), "<b>" + txtSearch.Text.ToString().Trim() +
+//"</b>", System.Text.RegularExpressions.RegexOptions.Ignore Case);
 
-    //strInput = "This is a Test."
-    //txtSearch.Text = "test"
-    //strResult ="this is a <b>test</b>."
+//strInput = "This is a Test."
+//txtSearch.Text = "test"
+//strResult ="this is a <b>test</b>."
     public static string text2html(string html)
     {
         // start by completely removing all unwanted tags 
         html = System.Text.RegularExpressions.Regex.Replace(html, "<br>", "<br />", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-
+ 
 
 
         return html;
@@ -860,23 +825,13 @@ public class sf
         {
             return texto;
         }
-
+        
     }
     public static string html2text2strict(string html)
     {
 
         return System.Text.RegularExpressions.Regex.Replace(html, @"<(.|\n)*?>", string.Empty);
-
-
-    }
-
-    public static string html2textFede(string html)
-    {
-        html = html.ToLower();
-
-        return System.Text.RegularExpressions.Regex.Replace(html, @"<(?!\/?a(?=>|\s.*>))(?!\/?br(?=>|\s.*>))(?!\/?strong(?=>|\s.*>))(?!\/?b(?=>|\s.*>))(?!\/?p(?=>|\s.*>))\/?.*?>", string.Empty);
-        // Cada esto: (?!\/?b(?=>|\s.*>)) es una excepción donde b es la letra o lo que sea
-        // otro ejemplo (?!\/?strong(?=>|\s.*>))
+  
 
     }
     #endregion
@@ -960,10 +915,23 @@ public class sf
 
     #endregion
 
-    #region "mysql"
+    #region "cadenaMySql"
     //   funciones para mysql
 
-    public static String mySql(String valor)
+	 public static String cadenaMySql(double valor)
+    {
+        try
+        {
+            return "'" + sf.cadena(valor).Replace(",",".") + "'";
+        }
+        catch (Exception ex)
+        {
+            return "'0'";
+        }
+    }
+
+    
+    public static String cadenaMySql(String valor)
     {
         try
         {
@@ -971,11 +939,12 @@ public class sf
         }
         catch (Exception ex)
         {
-            return "0";
+            return "''";
         }
     }
-
-    public static String mySql(int valor)
+	
+  
+    public static String cadenaMySql(int valor)
     {
         try
         {
@@ -987,7 +956,7 @@ public class sf
         }
     }
 
-    public static String mySql(Boolean valor)
+    public static String cadenaMySql(Boolean valor)
     {
         try
         {
@@ -1003,7 +972,7 @@ public class sf
         }
     }
 
-    public static String mySql(Object valor)
+    public static String cadenaMySql(Object valor)
     {
         try
         {
@@ -1021,7 +990,7 @@ public class sf
 
 
     // to convert dates to mysql
-    public static String mySql(DateTime date)
+    public static String cadenaMySql(DateTime date)
     {
         if (date == null)
         {
@@ -1029,12 +998,94 @@ public class sf
         }
         return "'" + date.ToShortDateString() + "'";
     }
-    public static string cadenaMySql(string p)
-    {
-        if (p == null) return "NULL";
-        return "'" + p.ToString() + "'";
-    }
+
     #endregion
+
+    #region "cadenaSqlServer"
+    //   funciones para sql server
+
+    public static String cadenaSqlServer(String valor)
+    {
+        try
+        {
+            return "'" + valor + "'";
+        }
+        catch (Exception ex)
+        {
+            return "0";
+        }
+    }
+
+    public static String cadenaSqlServer(int valor)
+    {
+        try
+        {
+            return sf.cadena(valor);
+        }
+        catch (Exception ex)
+        {
+            return "0";
+        }
+    }
+
+    public static String cadenaSqlServer(double valor)
+    {
+        try
+        {
+            return "'" + sf.cadena(valor).Replace(",",".") + "'";
+        }
+        catch (Exception ex)
+        {
+            return "0";
+        }
+    }
+
+    public static String cadenaSqlServer(Boolean valor)
+    {
+        try
+        {
+            if (valor)
+                return "1";
+            else
+                return "0";
+
+        }
+        catch (Exception ex)
+        {
+            return "0";
+        }
+    }
+
+    public static String cadenaSqlServer(Object valor)
+    {
+        try
+        {
+            if (valor == null)
+                return "NULL";
+            else
+                return "'" + sf.cadena(valor) + "'";
+
+        }
+        catch (Exception ex)
+        {
+            return "NULL";
+        }
+    }    // fin cadenas...
+
+
+    // to convert dates to mysql
+    public static String cadenaSqlServer(DateTime date)
+    {
+        if (date == null)
+        {
+            return "NULL";
+        }
+        return "'" + date.ToShortDateString() + "'";
+    }
+
+    #endregion
+
+
 }
 
 

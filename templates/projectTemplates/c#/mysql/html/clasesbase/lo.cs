@@ -8,7 +8,6 @@ using System.Web.UI.WebControls;
 using System.Data;
 // para el correo
 using System.Web.Mail;
-using MySql.Data.MySqlClient;
 // para construirmensajeerror
 using System.Text;
 using System.Globalization;
@@ -47,14 +46,14 @@ public class lo
         bool negativa;
         negativa = false;
         double numx;
-        if (sf.Doble(Numero) < 0)
+        if (sf.doble(Numero) < 0)
         {
             negativa = true;
             Numero = sf.cadena(sf.entero(Numero) * -1);
         }
         string ParteEntera;
         ParteEntera = sf.cadena(Int(Numero));
-        numx = sf.Doble(Numero);
+        numx = sf.doble(Numero);
         Numero = sf.cadena(numx);
         ParteDecimal = "";
         ndecimales = 2;
@@ -179,21 +178,21 @@ public class lo
         bool negativa;
         negativa = false;
         double numx;
-        if (sf.Doble(Numero) < 0)
+        if (sf.doble(Numero) < 0)
         {
             negativa = true;
             Numero = sf.cadena(sf.entero(Numero) * -1);
         }
         string ParteEntera;
         ParteEntera = sf.cadena(Int(Numero));
-        numx = sf.Doble(Numero);
+        numx = sf.doble(Numero);
         Numero = sf.cadena(numx);
         ParteDecimal = "";
         ndecimales = 2;//empresa.getDecimal;
         if (!(sf.Right(Numero, 1) == ","))
         {
             //mal
-            if (!(Int(Numero) == sf.Doble(Numero)))
+            if (!(Int(Numero) == sf.doble(Numero)))
             //mal
             {
                 if (!(Numero.Length == ParteEntera.Length))
@@ -406,7 +405,7 @@ public class lo
     }
     /*
         Public Function listBoxValorSEleccionado(ByRef tmpList As System.Web.UI.WebControls.ListBox, Optional ByVal tipoCampo As eTipoCampo = ctes.eTipoCampo.id) As String
-            ' Me da el text/id del elemento seleccionado según el parámetro tipoCampo
+            ' Me da el text/id del elemento seleccionado seg�n el par�metro tipoCampo
             Dim retorno As String
 
             If (tmpList.SelectedIndex < 0) Then
@@ -595,7 +594,7 @@ public class lo
 */
     public static string comboValorSeleccionado(ref System.Web.UI.WebControls.DropDownList tmpList)
     {
-        // Me da el text/id del elemento seleccionado según el parámetro tipoCampo
+        // Me da el text/id del elemento seleccionado seg�n el par�metro tipoCampo
         string retorno = "";
         try
         {
@@ -626,7 +625,7 @@ public class lo
 
     public static string comboValorSeleccionado(ref System.Web.UI.WebControls.DropDownList tmpList, ctes.eTipoCampo tipoCampo)
     {
-        // Me da el text/id del elemento seleccionado según el parámetro tipoCampo
+        // Me da el text/id del elemento seleccionado seg�n el par�metro tipoCampo
         string retorno = "";
         try
         {
@@ -664,192 +663,146 @@ public class lo
 
     public static void comboRellenar(System.Web.UI.WebControls.DropDownList combo, string textoSql, string cadenaConexion, string mensajeInicial)
     {
-
-        if (cadenaConexion == "" || cadenaConexion == null)
+        combo.Items.Clear();
+        if (cadenaConexion == "")
         {
             cadenaConexion = ctes.conStringAdoGeneral;
         }
         dbClass pp = new dbClass(cadenaConexion);
-        try
+        MySql.Data.MySqlClient.MySqlDataReader reg;
+        // 'SqlClient.SqlDataReader
+        DataTable esquema;
+        reg = pp.sql(textoSql);
+        esquema = reg.GetSchemaTable();
+        combo.DataSource = reg; //myDataReader
+        combo.DataTextField = sf.cadena(esquema.Rows[1].ItemArray[0]);
+        combo.DataValueField = sf.cadena(esquema.Rows[0].ItemArray[0]);
+        //.Columns(1).ColumnName.ToString '.Item(0).ColumnName.ToString;
+        //'"idlicencias" 'myDataReader.Fields(0).Name;
+        combo.DataBind();
+        //   mensajeInicial = "<Elija una opcion>";
+        if (mensajeInicial != "")
         {
-            combo.Items.Clear();
-
-            MySql.Data.MySqlClient.MySqlDataReader reg;
-            // 'SqlClient.SqlDataReader
-            DataTable esquema;
-            reg = pp.sql(textoSql);
-            esquema = reg.GetSchemaTable();
-            combo.DataSource = reg; //myDataReader
-            combo.DataTextField = sf.cadena(esquema.Rows[1].ItemArray[0]);
-            combo.DataValueField = sf.cadena(esquema.Rows[0].ItemArray[0]);
-            //.Columns(1).ColumnName.ToString '.Item(0).ColumnName.ToString;
-            //'"idlicencias" 'myDataReader.Fields(0).Name;
-            combo.DataBind();
-            //   mensajeInicial = "<Elija una opcion>";
-            if (mensajeInicial != "")
-            {
-                ListItem per = new ListItem();
-                per.Value = sf.cadena(0);
-                per.Text = mensajeInicial;
-                combo.Items.Insert(0, per);
-            }
-
-
+            ListItem per = new ListItem();
+            per.Value = sf.cadena(0);
+            per.Text = mensajeInicial;
+            combo.Items.Insert(0, per);
         }
-        catch (Exception ex)
-        {
+        pp.Dispose();
 
-            lo.tratarError(ex, "Error en lo.combo", textoSql);
-        }
-        finally
-        {
-            pp.Dispose();
-        }
-
+        
 
     }
-    public static void comboRellenarExtra(System.Web.UI.WebControls.DropDownList combo, string textoSql, string cadenaConexion, string mensajeInicial, string mensajeFinal)
-    {
 
-        if (cadenaConexion == "" || cadenaConexion == null)
+    public static void comboRellenar(System.Web.UI.WebControls.DropDownList combo, string textoSql, string cadenaConexion, string mensajeInicial, bool autonumerar)
+    {
+        int cont = 0;
+        combo.Items.Clear();
+        if (cadenaConexion == "")
         {
             cadenaConexion = ctes.conStringAdoGeneral;
         }
         dbClass pp = new dbClass(cadenaConexion);
-        try
+        MySql.Data.MySqlClient.MySqlDataReader reg;
+        // 'SqlClient.SqlDataReader
+        DataTable esquema;
+        reg = pp.sql(textoSql);
+        esquema = reg.GetSchemaTable();
+        combo.DataSource = reg; //myDataReader
+        combo.DataTextField = sf.cadena(esquema.Rows[1].ItemArray[0]);
+        combo.DataValueField = sf.cadena(esquema.Rows[0].ItemArray[0]);
+        //.Columns(1).ColumnName.ToString '.Item(0).ColumnName.ToString;
+        //'"idlicencias" 'myDataReader.Fields(0).Name;
+        combo.DataBind();
+        //   mensajeInicial = "<Elija una opcion>";
+        if (mensajeInicial != "")
         {
-            combo.Items.Clear();
+            ListItem per = new ListItem();
+            per.Value = sf.cadena(0);
+            per.Text = mensajeInicial;
+            combo.Items.Insert(0, per);
+        }
+        pp.Dispose();
 
-            MySql.Data.MySqlClient.MySqlDataReader reg;
-            // 'SqlClient.SqlDataReader
-            DataTable esquema;
-            reg = pp.sql(textoSql);
-            esquema = reg.GetSchemaTable();
-            combo.DataSource = reg; //myDataReader
-            combo.DataTextField = sf.cadena(esquema.Rows[1].ItemArray[0]);
-            combo.DataValueField = sf.cadena(esquema.Rows[0].ItemArray[0]);
-            //.Columns(1).ColumnName.ToString '.Item(0).ColumnName.ToString;
-            //'"idlicencias" 'myDataReader.Fields(0).Name;
-            combo.DataBind();
-            //   mensajeInicial = "<Elija una opcion>";
-            if (mensajeInicial != "")
+        if (autonumerar)
+        {
+            // ahora recorremos el combo y le cambiamos el id....
+            foreach (ListItem item in combo.Items)
             {
-                ListItem per = new ListItem();
-                per.Value = sf.cadena(0);
-                per.Text = mensajeInicial;
-                combo.Items.Insert(0, per);
+                item.Value = sf.cadena(cont);
+                cont++;
             }
-            if (mensajeFinal != "")
-            {
-                ListItem per = new ListItem();
-                per.Value = sf.cadena(0);
-                per.Text = mensajeFinal;
-                combo.Items.Insert(combo.Items.Count, per);
-            }
-
-
         }
-        catch (Exception ex)
+
+    }
+
+    // esta funcion sirve para cuando solo queremos un campo en la consulta
+    // por ejemplo cuando hacemos un distinct en una sql...
+    // select distinct 1 as idPoblaciones, poblacion from cuestionarios
+    public static void comboRellenarConSoloUnCampo(System.Web.UI.WebControls.DropDownList combo, string textoSql, string cadenaConexion, string mensajeInicial)
+    {
+        int cont = 0;
+        combo.Items.Clear();
+        if (cadenaConexion == "")
         {
-
-            lo.tratarError(ex, "Error en lo.combo", textoSql);
+            cadenaConexion = ctes.conStringAdoGeneral;
         }
-        finally
+        dbClass pp = new dbClass(cadenaConexion);
+        MySql.Data.MySqlClient.MySqlDataReader reg;
+        // 'SqlClient.SqlDataReader
+        DataTable esquema;
+        reg = pp.sql(textoSql);
+        esquema = reg.GetSchemaTable();
+        combo.DataSource = reg; //myDataReader
+        combo.DataTextField = sf.cadena(esquema.Rows[1].ItemArray[0]);
+        combo.DataValueField = sf.cadena(esquema.Rows[0].ItemArray[0]);
+        //.Columns(1).ColumnName.ToString '.Item(0).ColumnName.ToString;
+        //'"idlicencias" 'myDataReader.Fields(0).Name;
+        combo.DataBind();
+        //   mensajeInicial = "<Elija una opcion>";
+        if (mensajeInicial != "")
         {
-            pp.Dispose();
+            ListItem per = new ListItem();
+            per.Value = sf.cadena(0);
+            per.Text = mensajeInicial;
+            combo.Items.Insert(0, per);
         }
+        pp.Dispose();
 
+        // ahora recorremos el combo y le cambiamos el id....
+        foreach (ListItem item in combo.Items)
+        {
+            item.Value = sf.cadena(cont);
+            cont++;
+        }
 
     }
 
     public static void comboRellenarSinInicial(System.Web.UI.WebControls.DropDownList combo, string textoSql, string cadenaConexion)
     {
-
-        if (cadenaConexion == "" || cadenaConexion == null)
+        combo.Items.Clear();
+        if (cadenaConexion == "")
         {
             cadenaConexion = ctes.conStringAdoGeneral;
         }
         dbClass pp = new dbClass(cadenaConexion);
-        try
-        {
-            combo.Items.Clear();
+        MySql.Data.MySqlClient.MySqlDataReader reg;
+        // 'SqlClient.SqlDataReader
+        DataTable esquema;
+        reg = pp.sql(textoSql);
+        esquema = reg.GetSchemaTable();
+        combo.DataSource = reg; //myDataReader
+        combo.DataTextField = sf.cadena(esquema.Rows[1].ItemArray[0]);
+        combo.DataValueField = sf.cadena(esquema.Rows[0].ItemArray[0]);
+        //.Columns(1).ColumnName.ToString '.Item(0).ColumnName.ToString;
+        //'"idlicencias" 'myDataReader.Fields(0).Name;
+        combo.DataBind();
+        //   mensajeInicial = "<Elija una opcion>";
 
-            MySql.Data.MySqlClient.MySqlDataReader reg;
-            // 'SqlClient.SqlDataReader
-            DataTable esquema;
-            reg = pp.sql(textoSql);
-            esquema = reg.GetSchemaTable();
-            combo.DataSource = reg; //myDataReader
-            combo.DataTextField = sf.cadena(esquema.Rows[1].ItemArray[0]);
-            combo.DataValueField = sf.cadena(esquema.Rows[0].ItemArray[0]);
-            //.Columns(1).ColumnName.ToString '.Item(0).ColumnName.ToString;
-            //'"idlicencias" 'myDataReader.Fields(0).Name;
-            combo.DataBind();
-            //   mensajeInicial = "<Elija una opcion>";
-        }
-        catch (Exception ex)
-        {
-
-            lo.tratarError(ex, "Error en lo.combo", textoSql);
-        }
-        finally
-        {
-            pp.Dispose();
-        }
-
+        pp.Dispose();
 
     }
-    public static void comboSeleccionarItem(System.Web.UI.WebControls.DropDownList tmpList, int cadBusqueda, string tipoCampo)
-    {
-        //Public Sub comboSeleccionarItem(ByRef tmpList As System.Web.UI.WebControls.DropDownList, ByVal cadBusqueda As String, Optional ByVal tipoCampo As eTipoCampo = ctes.eTipoCampo.id)
 
-        int index;
-
-        int cont;
-        int pos;
-        bool seguir;
-
-        string tmpItem = "";
-        string cadenaB = sf.cadena(cadBusqueda);
-        index = -1;
-        cont = 0;
-        seguir = true;
-        if (!comboIsEmpty(tmpList))
-        {
-            do
-            {
-                switch (tipoCampo)
-                {
-                    case "Id":
-                        {
-                            pos = 0;
-                            tmpItem = tmpList.Items[cont].Value;
-                            break;
-                        }
-                    case "Texto":
-                        {
-                            pos = 1;
-                            tmpItem = tmpList.Items[cont].Text;
-                            break;
-                        }
-                }
-                string a = tmpItem.ToLower(new CultureInfo("en-US", false));
-                string b = cadenaB.ToLower(new CultureInfo("en-US", false));
-
-                if (a == b)
-                {
-                    index = cont;
-                    seguir = false;
-                }
-                else
-                {
-                    cont = cont + 1;
-                }
-            }
-            while (cont < tmpList.Items.Count && (seguir == true));
-            tmpList.SelectedIndex = cont;
-        }
-    }
     public static void comboSeleccionarItem(System.Web.UI.WebControls.DropDownList tmpList, string cadBusqueda, string tipoCampo)
     {
         //Public Sub comboSeleccionarItem(ByRef tmpList As System.Web.UI.WebControls.DropDownList, ByVal cadBusqueda As String, Optional ByVal tipoCampo As eTipoCampo = ctes.eTipoCampo.id)
@@ -1026,47 +979,23 @@ public class lo
 
     public static void tratarError(Exception exc, string descripcion, string datos)
     {
-        bool bot = false;
-        ctes.mostrarErrores = false;//quitar
+
         if (ctes.mostrarErrores)
         {
-            if (sf.cadena(HttpContext.Current.Request.ServerVariables["URL"]).Contains("chat"))
-            {
-                bot = true;
-            }
 
-            if (sf.cadena(HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"]).Contains("http://www.google.com/bot.html"))
-            {
-                bot = true;
-            }
-            if (sf.cadena(HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"]).Contains("http://help.yahoo.com/help/us/ysearch/slurp"))
-            {
-                bot = true;
-            }
-            if (sf.cadena(HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"]).Contains("http://search.msn.com/msnbot.htm"))
-            {
-                bot = true;
-            }
+            lo.enviarCorreoError(ctes.ErroresDireccionCorreoDestino, ctes.ErroresDireccionCorreoRemitente, lo.construirMensajeError(exc, datos), ctes.nombreAplicacion + " - error controlado. " + descripcion);
 
-            if (bot == false)
-            {
-                // HttpContext.Current.Response.Write(lo.construirMensajeError(exc, ""));
-                lo.enviarCorreoError("errores@micasoft.com", "error@micasoft.com", lo.construirMensajeError(exc, datos), ctes.nombreAplicacion + " - error controlado. " + descripcion);
-            }
-            string pat = HttpContext.Current.Request.Url.Authority.ToString();
-
-            HttpContext.Current.Response.Redirect("http://" + pat + "/error.aspx");
             // HttpContext.Current.Response.Redirect("../errorPage.aspx")
 
         }
 
         else
         {
-            string pat = HttpContext.Current.Request.Url.Authority.ToString();
 
-            //HttpContext.Current.Response.Redirect("http://" +pat+"/error_fede.aspx");
-            //HttpContext.Current.Response.Write(lo.construirMensajeError(exc, datos));
-            //HttpContext.Current.Response.End();
+            HttpContext.Current.Response.Write(lo.construirMensajeError(exc, datos));
+
+            HttpContext.Current.Response.End();
+
         }
 
 
@@ -1089,13 +1018,9 @@ public class lo
             System.Net.Mail.MailMessage correo = new System.Net.Mail.MailMessage();
 
             correo.Subject = asunto;
-
             correo.Body = texto;
-
             correo.To.Add(destinatario);
-
-            correo.From = new System.Net.Mail.MailAddress("no-responder@fedesp.es");
-
+            correo.From = new System.Net.Mail.MailAddress(ctes.AsociacionDireccionCorreoRemitente);
             correo.IsBodyHtml = true;
 
             if (archivoAdjunto != "")
@@ -1104,15 +1029,10 @@ public class lo
                 correo.Attachments.Add(adjunto);
             }
             System.Net.Mail.SmtpClient Smtpx = new System.Net.Mail.SmtpClient();
-
-            System.Net.NetworkCredential basicAuthenticationInfo = new NetworkCredential("no-responder@fedesp.es", "noreply1");
-
-            Smtpx.Host = "mail.fedesp.es";
-
+            System.Net.NetworkCredential basicAuthenticationInfo = new NetworkCredential(ctes.AsociacionUsuarioSmtp, ctes.AsociacionClaveSmtp);
+            Smtpx.Host = ctes.ErroresServidorSmtp;
             Smtpx.UseDefaultCredentials = false;
-
             Smtpx.Credentials = basicAuthenticationInfo;
-
             Smtpx.Send(correo);
 
         }
@@ -1134,27 +1054,16 @@ public class lo
         {
 
             System.Net.Mail.MailMessage correo = new System.Net.Mail.MailMessage();
-
             correo.Subject = asunto;
-
             correo.Body = texto;
-
-            correo.To.Add("errores@micasoft.com");
-
-            correo.From = new System.Net.Mail.MailAddress("error@micasoft.com");
-
+            correo.To.Add(ctes.ErroresDireccionCorreoDestino);
+            correo.From = new System.Net.Mail.MailAddress(ctes.ErroresDireccionCorreoRemitente);
             correo.IsBodyHtml = true;
-
             System.Net.Mail.SmtpClient Smtpx = new System.Net.Mail.SmtpClient();
-
-            System.Net.NetworkCredential basicAuthenticationInfo = new NetworkCredential("error@micasoft.com", "Error85");
-
-            Smtpx.Host = "mail.micasoft.com";
-
+            System.Net.NetworkCredential basicAuthenticationInfo = new NetworkCredential(ctes.ErroresUsuarioSmtp, ctes.ErroresClaveSmtp);
+            Smtpx.Host = ctes.ErroresServidorSmtp;
             Smtpx.UseDefaultCredentials = false;
-
             Smtpx.Credentials = basicAuthenticationInfo;
-
             Smtpx.Send(correo);
 
         }
@@ -1177,100 +1086,51 @@ public class lo
         try
         {
 
-
             strMessage.Append("<style type=" + "text/css" + ">");
-
             strMessage.Append("<!--");
-
             strMessage.Append(".basix {");
-
             strMessage.Append("font-family: Verdana, Arial, Helvetica, sans-serif;");
-
             strMessage.Append("font-size: 12px;");
-
             strMessage.Append("}");
-
             strMessage.Append(".header1 {");
-
             strMessage.Append("font-family: Verdana, Arial, Helvetica, sans-serif;");
-
             strMessage.Append("font-size: 12px;");
-
             strMessage.Append("font-weight: bold;");
-
             strMessage.Append("color: #000099;");
-
             strMessage.Append("}");
-
             strMessage.Append(".tlbbkground1 {");
-
             strMessage.Append("background-color: #000099;");
-
             strMessage.Append("}");
-
             strMessage.Append("-->");
-
             strMessage.Append("</style>");
-
             strMessage.Append("<table width=" + "85%" + " border=" + "0" + " align=" + "center" + " cellpadding=" + "5" + " cellspacing=" + "1" + " class=" + "tlbbkground1" + ">");
-
             strMessage.Append("<tr bgcolor=" + "#eeeeee" + ">");
-
             strMessage.Append("<td colspan=" + "2" + " class=" + "header1" + ">Page Error</td>");
-
             strMessage.Append("</tr>");
-
             strMessage.Append("<tr>");
-
             strMessage.Append("<td width=" + "100" + " align=" + "right" + " bgcolor=" + "#eeeeee" + " class=" + "header1" + " nowrap>IP Address</td>");
-
             strMessage.Append("<td bgcolor=" + "#FFFFFF" + " class=" + "basix" + ">" + HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"] + "</td>");
-
             strMessage.Append("</tr>");
-
             strMessage.Append("<tr>");
-
             strMessage.Append("<td width=" + "100" + " align=" + "right" + " bgcolor=" + "#eeeeee" + " class=" + "header1" + " nowrap>User Agent</td>");
-
             strMessage.Append("<td bgcolor=" + "#FFFFFF" + " class=" + "basix" + ">" + HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"] + "</td>");
-
             strMessage.Append("</tr>");
-
             strMessage.Append("<tr>");
-
             strMessage.Append("<td width=" + "100" + " align=" + "right" + " bgcolor=" + "#eeeeee" + " class=" + "header1" + " nowrap>Page</td>");
-
             strMessage.Append("<td bgcolor=" + "#FFFFFF" + " class=" + "basix" + ">" + HttpContext.Current.Request.Url.AbsoluteUri + "</td>");
-
             strMessage.Append("</tr>");
-
             strMessage.Append("<tr>");
-
             strMessage.Append("<td width=" + "100" + " align=" + "right" + " bgcolor=" + "#eeeeee" + " class=" + "header1" + " nowrap>Time</td>");
-
             strMessage.Append("<td bgcolor=" + "#FFFFFF" + " class=" + "basix" + ">" + System.DateTime.Now + " EST</td>");
-
             strMessage.Append("</tr>");
-
             strMessage.Append("<tr>");
-
             strMessage.Append("<td width=" + "100" + " align=" + "right" + " bgcolor=" + "#eeeeee" + " class=" + "header1" + " nowrap>Details</td>");
-
-
-
-
-
             strMessage.Append("<td bgcolor=" + "#FFFFFF" + " class=" + "basix" + ">" + exc.ToString() + exc.StackTrace.ToString() + exc.Source + "</td>");
-
             strMessage.Append("</tr>");
-
             strMessage.Append("<tr>");
-
-            strMessage.Append("<td width=" + "100" + " align=" + "right" + " bgcolor=" + "#eeeeee" + " class=" + "header1" + " nowrap>cadena Sql</td>");
-
+            strMessage.Append("<td width=" + "100" + " align=" + "right" + " bgcolor=" + "#eeeeee" + " class=" + "header1" + " nowrap>Cadena Sql</td>");
             strMessage.Append("<td bgcolor=" + "#FFFFFF" + " class=" + "basix" + ">" + cadenaSql + "</td>");
             strMessage.Append("</tr>");
-
             strMessage.Append("</table>");
 
         }
@@ -1288,137 +1148,42 @@ public class lo
 
     }
 
-    public static string construirMensajeConfirmacionCorreo(string nombre, string user, string pass, string hash, int id, int idportal)
-    {
-        if (nombre == "")
-            nombre = user;
-        //System.Web.UI.Page pagina = new System.Web.UI.Page();
-        string mensaje = "Estimado " + nombre + " Gracias por registrarse en fedesp.es.<br/> ";
-        string mensalink = "HAGA CLIC EN ESTE LINK PARA COMPLETAR EL REGISTRO Y HACERLO EFECTIVO. <a href='http://www.fedesp.es/portal/foro/confirmar.aspx?hs=" + hash + "&us=" + id + "&idportal=" + idportal + "'>http://www.fedesp.es/portal/foro/confirmar.aspx?hs=" + hash + "&us=" + id + "</a>";
-        string mensaje2 = "Al finalizar este proceso, usted podrá acceder al foro del sistema.  Si necesita ponerse en contacto con nosotros, por favor póngase en contacto en <a href='mailto:info@fedesp.es'>info@fedesp.es</a>.";
-
-
-
-        string mensaje3 = "Su información de registro:<br /> Login: " + user;
-        mensaje3 += "<br /> Contraseña:" + pass;
-
-        mensaje3 += "<br /><br />Un atento saludo, fedesp.es";
-
-        StringBuilder strMessage = new StringBuilder();
-
-        try
-        {
-
-            strMessage.Append("<style type=" + "text/css" + ">");
-
-            strMessage.Append("<!--");
-
-            strMessage.Append(".basix {");
-
-            strMessage.Append("font-family: Verdana, Arial, Helvetica, sans-serif;");
-
-            strMessage.Append("font-size: 12px;");
-
-            strMessage.Append("}");
-
-            strMessage.Append(".header1 {");
-
-            strMessage.Append("font-family: Verdana, Arial, Helvetica, sans-serif;");
-
-            strMessage.Append("font-size: 12px;");
-
-            strMessage.Append("font-weight: bold;");
-
-            strMessage.Append("color: #000099;");
-
-            strMessage.Append("}");
-
-            strMessage.Append(".tlbbkground1 {");
-
-            strMessage.Append("background-color: #000099;");
-
-            strMessage.Append("}");
-
-            strMessage.Append("-->");
-
-            strMessage.Append("</style>");
-
-            strMessage.Append("<table width=" + "85%" + " border=" + "0" + " align=" + "center" + " cellpadding=" + "5" + " cellspacing=" + "1" + " class=" + "tlbbkground1" + ">");
-
-            strMessage.Append("<tr bgcolor=" + "#eeeeee" + ">");
-
-            strMessage.Append("<td colspan=" + "2" + " class=" + "header1" + ">Confirmación usuario " + System.DateTime.Now + " EST</td>");
-
-            strMessage.Append("</tr>");
-
-            strMessage.Append("<tr>");
-
-            strMessage.Append("<td width=" + "100" + " align=" + "right" + " bgcolor=" + "#eeeeee" + " class=" + "header1" + " nowrap> </td>");
-
-            strMessage.Append("<td bgcolor=" + "#FFFFFF" + " class=" + "basix" + ">" + mensaje + "</td>");
-
-            strMessage.Append("</tr>");
-
-
-            strMessage.Append("<tr>");
-
-            strMessage.Append("<td width=" + "100" + " align=" + "right" + " bgcolor=" + "#eeeeee" + " class=" + "header1" + " nowrap> </td>");
-
-            strMessage.Append("<td bgcolor=" + "#FFFFFF" + " class=" + "basix" + ">" + mensalink + "</td>");
-
-            strMessage.Append("</tr>");
-
-            strMessage.Append("<tr>");
-
-            strMessage.Append("<td width=" + "100" + " align=" + "right" + " bgcolor=" + "#eeeeee" + " class=" + "header1" + " nowrap> </td>");
-
-            strMessage.Append("<td bgcolor=" + "#FFFFFF" + " class=" + "basix" + ">" + "</td>");
-
-            strMessage.Append("</tr>");
-
-            strMessage.Append("<tr>");
-
-            strMessage.Append("<td width=" + "100" + " align=" + "right" + " bgcolor=" + "#eeeeee" + " class=" + "header1" + " nowrap> </td>");
-
-            strMessage.Append("<td bgcolor=" + "#FFFFFF" + " class=" + "basix" + ">" + mensaje2 + "</td>");
-
-            strMessage.Append("</tr>");
-
-            strMessage.Append("<tr>");
-
-
-
-
-            strMessage.Append("<tr>");
-
-            strMessage.Append("<td width=" + "100" + " align=" + "right" + " bgcolor=" + "#eeeeee" + " class=" + "header1" + " nowrap> </td>");
-
-            strMessage.Append("<td bgcolor=" + "#FFFFFF" + " class=" + "basix" + ">" + mensaje3 + "</td>");
-
-            strMessage.Append("</tr>");
-
-
-
-
-            strMessage.Append("</table>");
-
-        }
-
-        catch (Exception ex)
-        {
-
-        }
-
-
-
-        string firma = "</br></br>Un saludo</br>  <img src='http://fedesp.es/images/centralfirma.gif' width='500' height='80' border='0' usemap='#Map' /><map name='Map' id='Map'>  <area shape='rect' coords='360,54,448,70' href='http://www.fedesp.es' /></map> </br></br> No responda a este mensaje.";
-
-        return strMessage.ToString() + firma;
-
-    }
-
 
 
     #endregion
+
+    // sirve para hacer un focus en un control...
+    public static void SetFocus(System.Web.UI.Control control)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        sb.Append("\r\n<script language='JavaScript'>\r\n");
+        sb.Append("<!--\r\n");
+        sb.Append("function SetFocus()\r\n");
+        sb.Append("{\r\n");
+        sb.Append("\tdocument.");
+
+        System.Web.UI.Control p = control.Parent;
+        while (!(p is System.Web.UI.HtmlControls.HtmlForm)) p = p.Parent;
+
+        sb.Append(p.ClientID);
+        sb.Append("['");
+        sb.Append(control.UniqueID);
+        sb.Append("'].focus();\r\n");
+        sb.Append("}\r\n");
+        sb.Append("window.onload = SetFocus;\r\n");
+        sb.Append("// -->\r\n");
+        sb.Append("</script>");
+
+        control.Page.RegisterClientScriptBlock("SetFocus", sb.ToString());
+    }
+
+
+    // convierte un arraylist a cadena simple, delim suele ser una coma...
+    public string ArrayListToString(System.Collections.ArrayList ar, string delim)
+    {
+        return string.Join(delim, (string[])ar.ToArray(typeof(string)));
+    }
+
 }
 

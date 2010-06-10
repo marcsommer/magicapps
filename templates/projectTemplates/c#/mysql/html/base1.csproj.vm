@@ -138,9 +138,6 @@
     <Compile Include="clasesbase\lo.cs" />
     <Compile Include="clasesbase\redimensionarImagen.cs" />
     <Compile Include="clasesbase\sf.cs" />
-    <Compile Include="clasesbase\templateGoogleMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
 #foreach( $tablita in $project.getTables )	
     <Compile Include="clases\\${tablita.Name()}.cs" />
     <Compile Include="clases\\${tablita.Name()}_extra.cs" />

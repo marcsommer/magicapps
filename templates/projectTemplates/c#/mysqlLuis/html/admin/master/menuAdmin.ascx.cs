@@ -15,7 +15,52 @@ namespace juleweb.admin.master
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            int idportal = sf.entero(HttpContext.Current.Session["admin"]);
+            if (idportal != 0)
+            {
+                if (idportal == 1)
+                    PanelFede.Visible = true;
+                else
+                {
+                    if (idportal == 2)
+                        PanelAsociacionNoAsoc.Visible = true;
+                    if (idportal == 3)
+                        PanelFADEX.Visible = true;
+                    if (idportal == 4)
+                        PanelAsociacionNoAsoc.Visible = true;
+                    if (idportal == 5)
+                        PanelAsociacionNoAsoc.Visible = true;
+                    if (idportal == 6)
+                        PanelAsociacion.Visible = true;
+                    if (idportal == 7)
+                        PanelMadrid.Visible = true;
+                    if (idportal == 8)
+                        PanelAsociacion.Visible = true;
+                    if (idportal == 9)
+                        PanelAsociacionNoAsoc.Visible = true;
+                    if (idportal == 10)
+                        PanelAsociacion.Visible = true;
+                    if (idportal == 11)
+                        PanelAsociacion.Visible = true;
+                    if (idportal == 12)
+                        PanelAsociacionNoAsoc.Visible = true;
+                    if (idportal == 13)
+                        PanelAsociacionNoAsoc.Visible = true;
+                    if (idportal == 14)
+                        PanelAsociacion.Visible = true;
+                    if (idportal == 15)
+                        PanelAsociacion.Visible = true;
+                    if (idportal == 16)
+                        PanelAsociacion.Visible = true;
+                    if (idportal == 17)
+                        PanelAsociacion.Visible = true;
+                    if (idportal == 18)
+                        PanelAsociacionNoAsoc.Visible = true;
+                    if (idportal == 19)
+                        PanelAsociacionNoAsoc.Visible = true;
+                }
 
+            }
         }
     }
 }

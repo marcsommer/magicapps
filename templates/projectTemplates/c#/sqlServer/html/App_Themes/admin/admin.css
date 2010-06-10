@@ -221,3 +221,8 @@ li.logospie{ background:none!important;}
 
 .ok{float:left; width: 100%; padding:5px 0; margin: 5px 0; border-top: 1px dotted #adbf8c;  border-bottom: 1px dotted #adbf8c; background:#f5ffe3 url(../../admin/imagesadmin/ok.gif) no-repeat 4px 2px; font-weight:bold; clear:both; display:block;}
 .ok p{margin:0 33px !important;}
+
+
+.msgError{ border:1px solid #e8e1b5; padding:5px 5px 5px 25px; background:#fdfaee url(../../admin/imagesadmin/denegar.gif) no-repeat;} 
+.msgSuccess{ border:1px solid #e8e1b5; padding:5px 5px 5px 25px; background:#fdfaee url(../../admin/imagesadmin/aceptar.gif) no-repeat;} 
+.msgInfo{ border:1px solid #e8e1b5; padding:5px 5px 5px 25px; background:#fdfaee url(../../admin/imagesadmin/denegar.gif) no-repeat;} 

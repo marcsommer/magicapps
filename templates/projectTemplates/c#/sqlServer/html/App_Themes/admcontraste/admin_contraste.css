@@ -213,3 +213,8 @@ li.logospie{ background:none!important;}
 .add{ background:url(../../admin/img_contraste/insertar.gif) no-repeat 4px 4px; padding-left:30px !important;}
 .modCat{ background:url(../../admin/img_contraste/modCat.gif) no-repeat 4px 4px; padding-left:30px !important;}
 .addCat{ background:url(../../admin/img_contraste/addCat.gif) no-repeat 4px 4px; padding-left:30px !important;}
+
+
+.msgError{ border:1px solid #e8e1b5; padding:5px 5px 5px 25px; background:#fdfaee url(../../admin/imagesadmin/denegar.gif) no-repeat;} 
+.msgSuccess{ border:1px solid #e8e1b5; padding:5px 5px 5px 25px; background:#fdfaee url(../../admin/imagesadmin/aceptar.gif) no-repeat;} 
+.msgInfo{ border:1px solid #e8e1b5; padding:5px 5px 5px 25px; background:#fdfaee url(../../admin/imagesadmin/denegar.gif) no-repeat;} 
