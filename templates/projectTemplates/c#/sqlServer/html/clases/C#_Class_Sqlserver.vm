@@ -446,8 +446,11 @@ public partial class ${table}
 			#if ($field.type.toString() == "_string")
 			${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + @"#if ($table.getFields.count() -  $count  != 1) , #end 
 			#end 
+			#if ($field.type.toString() == "_text")
+			${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + @"#if ($table.getFields.count() -  $count  != 1) , #end 
+			#end 
 			#if ($field.type.toString() == "_date")
-			${field}=" + sf.fechaIso(obj${table}.${field}) + @"#if ($table.getFields.count() -  $count  != 1) , #end
+			${field}='" + sf.fechaIso(obj${table}.${field}) + @"'#if ($table.getFields.count() -  $count  != 1) , #end
 			#end 
 			#if ($field.type.toString() == "_boolean")
 			${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + @"#if ($table.getFields.count() -  $count  != 1) , #end  
@@ -512,8 +515,11 @@ public partial class ${table}
 			#if ($field.type.toString() == "_string")
 			${field}=" + sf.cadenaSqlServer(this.${field}) + @" #if ($table.getFields.count() -  $count  != 1) , #end 
 			 #end 
+			#if ($field.type.toString() == "_text")
+			${field}=" + sf.cadenaSqlServer(this.${field}) + @" #if ($table.getFields.count() -  $count  != 1) , #end 
+			 #end 
 			#if ($field.type.toString() == "_date")
-			${field}=" + sf.fechaIso(this.${field}) + @" #if ($table.getFields.count() -  $count  != 1) , #end
+			${field}='" + sf.fechaIso(this.${field}) + @"' #if ($table.getFields.count() -  $count  != 1) , #end
 			 #end 
 			#if ($field.type.toString() == "_boolean")
 			${field}=" + sf.cadenaSqlServer(this.${field}) + @" #if ($table.getFields.count() -  $count  != 1) , #end

@@ -390,30 +390,12 @@ public class sf
 
     }
     public static string fechaIso(System.DateTime dte)
-    {
-        ////
-        //if ( esFecha(dte) )
-        //{
-        //    int  dteDay, dteMonth, dteYear;
-        //    dteDay = dte.Day;
-        //    dteMonth = dte.Month;
-        //    dteYear = dte.Year;
-
-        //    string dteMonthSt;
-        //    string dtedaySt;
-        //    //dteMonthSt = CStr(dteMonth + 100);
-        //    //dtedaySt = CStr(dteDay + 100);
-
-        //   return (dteYear + "-" + dteMonthSt.Substring(dteMonthSt.Length - 2, 2) + "-" + dtedaySt.Substring(dtedaySt.Length - 2, 2));
-        //}
-        //else
-        //    return  null;
-
+    {        
         //Version 2.0
         if (esFecha(dte))
         {
-
-            return (dte.Year + "-" + dte.Month + "-" + dte.Day + " " + dte.Hour + ":" + dte.Minute + ":" + dte.Second);
+            //return (dte.Year + "-" + dte.Month + "-" + dte.Day + " " + dte.Hour + ":" + dte.Minute + ":" + dte.Second);
+            return (dte.Day + "-" + dte.Month + "-" + dte.Year + " " + dte.Hour + ":" + dte.Minute + ":" + dte.Second);
         }
         else
             return null;

@@ -28,6 +28,18 @@ public partial class main_${table} : System.Web.UI.Page
 	protected void Page_Load(object sender, EventArgs e) 
 	{
 		PanelAviso.Visible = false;
+		
+		
+		#set ($count = 0)
+		#foreach( $field in $table.GetFields )		 
+			#if (!$field.isKey())
+				#if ($field.targetType.toString() == "_date")
+					Util.JQueryUtils.RegisterTextBoxForDatePicker(Page, ${field});
+				#end 
+			#end 		
+			#set ($count = $count + 1 )
+		#end 
+		
 		if (!Page.IsPostBack)
 		{
 		 #foreach( $relation in $table.getRelations() )
@@ -65,8 +77,9 @@ public partial class main_${table} : System.Web.UI.Page
 		#if ($field.targetType.toString() == "_date")
 		if (sf.esFecha(res.${field}))
 		  {
-			  ${field}.SelectedDate = res.${field};
-			${field}.VisibleDate = res.${field};
+			//${field}.SelectedDate = res.${field};
+			//${field}.VisibleDate = res.${field};
+			${field}.Text = res.${field}.ToShortDateString();
 		  }		
 		#end 
 		#if ($field.targetType.toString() == "_boolean")
@@ -166,7 +179,8 @@ lo.comboSeleccionarItem(cmb${relation.childField()}, sf.cadena(res.${relation.ch
 								res.${field}=sf.cadena(txt${field}.Text);			
 							 #end 
 							  #if ($field.targetType.toString() == "_date")
-								res.${field}=sf.fecha(${field}.SelectedDate) ;
+								//res.${field}=sf.fecha(${field}.SelectedDate) ;
+								res.${field}=sf.fecha(${field}.Text) ;
 							  #end 
 							  #if ($field.targetType.toString() == "_boolean")
 								 res.${field}=sf.Bool(ck${field}.Checked) ;
@@ -254,7 +268,8 @@ lo.comboSeleccionarItem(cmb${relation.childField()}, sf.cadena(res.${relation.ch
 								res.${field}=sf.cadena(txt${field}.Text) ;	
 							 #end 
 							  #if ($field.targetType.toString() == "_date")
-								res.${field}=sf.fecha(${field}.SelectedDate) ;
+								//res.${field}=sf.fecha(${field}.SelectedDate) ;
+								res.${field}=sf.fecha(${field}.Text) ;
 							  #end 
 							  #if ($field.targetType.toString() == "_boolean")
 								 res.${field}=sf.Bool(ck${field}.Checked) ;

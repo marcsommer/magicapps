@@ -15,7 +15,7 @@ namespace juleweb.admin.master
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Util.JQueryUtils.RegisterTextBoxForDatePicker(Page, TextBox1);
         }
     }
 }
