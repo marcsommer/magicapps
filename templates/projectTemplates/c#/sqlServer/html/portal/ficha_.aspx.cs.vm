@@ -55,7 +55,6 @@ namespace ${project}.portal.main_${table}
 					  #if ($field.targetType.toString() == "_integer")
 						 #if (! $field.isForeignKey())
 							lab${field}.Text = sf.cadena(${table}x.${field});
-						 #else												
 						 #end
 					  #end 
 					  #if ($field.targetType.toString() == "_double")
@@ -63,6 +62,9 @@ namespace ${project}.portal.main_${table}
 						 #end 
 					  #if ($field.targetType.toString() == "_string")
 						 lab${field}.Text = ${table}x.${field};
+						 #end 
+					  #if ($field.targetType.toString() == "_text")
+						 ftb${field}.Text = ${table}x.${field};
 						 #end 
 					  #if ($field.targetType.toString() == "_bigString")
 						 ftb${field}.Text = ${table}x.${field};
@@ -104,7 +106,7 @@ namespace ${project}.portal.main_${table}
 		  
 
 			#foreach( $relation in $table.getRelations() )
-			  lab${relation.childField()}.Text = sf.cadena(${relation.parentTable()}.get${relation.parentTable()}(${relation.getChildTable()}x.${relation.parentField()}).${relation.parentField()});	
+			   lab${relation.childField()}.Text = sf.cadena(${relation.childTable()}.get${relation.childTable()}(${relation.parentTable()}x.${relation.childField()})); 
 			#end 
 
         }		 

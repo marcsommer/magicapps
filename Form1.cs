@@ -1037,6 +1037,7 @@ namespace myWay
             pp = (ElementHost)panel1.Controls.Find("editor", true)[0];
             te = (TextEditor)pp.Child;
             te.Text = text;
+                        
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)

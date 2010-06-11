@@ -128,7 +128,7 @@ textoArchivo = textoArchivo.Replace("${", "{$");
                 textoArchivo = textoArchivo.Replace("<#if (field.getisForeignKey() )>", "#if ($field.isForeignKey() )");
                 textoArchivo = textoArchivo.Replace("<#if (field.getisForeignKey() )>", "#if ($field.isForeignKey() )");
 
-                textoArchivo = textoArchivo.Replace("<#if (relation.getParentTable() == \"categorias\"+ relation.getChildTable())>", "#if ($relation.ParentTable() == \"categorias\"+ $relation.ChildTable())");
+                textoArchivo = textoArchivo.Replace("<#if (relation.getParentTable() == \"categorias\"+ relation.childTable())>", "#if ($relation.ParentTable() == \"categorias\"+ $relation.ChildTable())");
                 textoArchivo = textoArchivo.Replace("<#if (field=='idportal')>", "#if ($field == \"idportal\")");
 
 

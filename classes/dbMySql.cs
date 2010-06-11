@@ -255,6 +255,26 @@ class dbMySql
                     //     fi.decimals = sf.Entero(tbl.Rows(i)!NUMERIC_PRECISION)
 
 
+                    // lets get the comment
+                    fi.comment = getComments(cadconexion, table, fi.Name);
+                    if (fi.comment.IndexOf("#image#") >= 1)
+                    {
+                        fi.targetType = field.fieldType._image;
+                        fi.comment = fi.comment.Replace("#image#", "");
+                    }
+                    if (fi.comment.IndexOf("#audio#") >= 1)
+                    {
+                        fi.targetType = field.fieldType._audio;
+                        fi.comment = fi.comment.Replace("#image#", "");
+                    }
+                    if (fi.comment.IndexOf("#doc#") >= 1)
+                    {
+                        fi.targetType = field.fieldType._document;
+                        fi.comment = fi.comment.Replace("#doc#", "");
+                    }
+                    if (!fi.comment.Equals(""))
+                        fi.targetName = fi.comment;
+
                     lista.Add(fi);
 
                 }
