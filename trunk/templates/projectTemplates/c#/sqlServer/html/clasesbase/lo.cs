@@ -1210,7 +1210,7 @@ public class lo
         }
     }
 
-    public static void javascriptMessage(string message)
+    public static void jGrowl(string message)
     {
         System.Web.UI.Page pagex = HttpContext.Current.Handler as System.Web.UI.Page;
 
