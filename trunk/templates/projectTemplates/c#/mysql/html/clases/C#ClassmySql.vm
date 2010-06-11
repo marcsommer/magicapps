@@ -693,7 +693,7 @@
             dbClass db = new dbClass(ctes.conStringAdoGeneral);
             try
             {
-            sqlt = "select * from ${relation.getChildTable()}";          
+            sqlt = "select * from ${relation.childTable()}";          
             sqlt += " where ${relation.parentField()}=" + sf.cadena(${relation.parentField()}); 
 		
 		reg = db.sql(sqlt);

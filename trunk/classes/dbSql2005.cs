@@ -454,6 +454,8 @@ class dbSql2005
                      rel.childTable = sf.cadena(miLector["ReferencedTable"]);
                      rel.childField = sf.cadena(miLector["ReferencedFK"]); 
 
+                   
+
                      //                descripcion = schemaTable.Rows(i)("PK_NAME").ToString
 
                      //tablaPadre = schemaTable.Rows(i)("PK_TABLE_NAME").ToString

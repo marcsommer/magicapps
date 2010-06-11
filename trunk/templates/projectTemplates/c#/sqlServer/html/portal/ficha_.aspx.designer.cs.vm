@@ -33,11 +33,11 @@ namespace ${project}.portal.main_${table} {
     /// </remarks>
     public partial class ficha_${table} {
         
-		#set ($count = 0)
+#set ($count = 0)
 #foreach( $field in $table.getFields )
   #if (!$field.isKey())    
      
-              #if ($field.targetType.toString() == "_integer")
+              #if ($field.targetType.toString() == "_integer" && !$field.isForeignKey())
                 
 				/// <summary>
 				/// Control lab${field}.
@@ -116,7 +116,16 @@ namespace ${project}.portal.main_${table} {
  #end
 #end 
 		
- 
+#foreach( $relation in $table.getRelations() )
+	/// <summary>
+	/// Control lab${relation.childField()}.
+	/// </summary>
+	/// <remarks>
+	/// Campo generado automaticamente.
+	/// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	/// </remarks>
+	protected global::System.Web.UI.WebControls.Label lab${relation.childField()};       
+#end  
       
         
       

@@ -1088,13 +1088,13 @@ public class sf
 
 }
 
-
 public class message
 {
+    private string _text;
     public string text
     {
-        get { return text; }
-        set { text = value; }
+        get { return _text; }
+        set { _text = value; }
     }
 
 
@@ -1105,10 +1105,11 @@ public class message
         success = 3
     }
 
+    private typeOfMessage _type;
     public typeOfMessage type
     {
-        get { return type; }
-        set { type = value; }
+        get { return _type; }
+        set { _type = value; }
     }
 
 
@@ -1119,6 +1120,3 @@ public class message
     }
 
 }
-
-
-

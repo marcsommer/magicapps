@@ -1,0 +1,96 @@
+
+#* 
+	comments: 
+	
+	Author: Luis Molina
+*#  
+ 
+ <nameFile>listado_${table}Grid</nameFile>
+<extensionFile>aspx</extensionFile>
+<languageGenerated>c_sharp</languageGenerated>
+<description>description</description>
+<targetDirectory>${table}_dir</targetDirectory>
+<appliesToAllTables>true</appliesToAllTables>
+
+
+
+<%@ Page Language="C#" MasterPageFile="~/admin/master/masterAdmin.Master" AutoEventWireup="true"  CodeBehind="listado_${table}Grid.aspx.cs" Inherits="${project}.${table}_dir.listado_${table}Grid" Title="Página sin título" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <!--PARTE DERECHA-->
+    <asp:Repeater ID="RepeaterBarraNavegacion" runat="server">
+        <ItemTemplate>
+            ><a href="<%#Eval("url")%>"><%#Eval("nombre")%></a>
+        </ItemTemplate>
+    </asp:Repeater> 
+ 
+				<!--contenido-->
+				<div id="contenido">
+				
+				<!--barra titulos-->
+				<div class="titulos">
+					<div class="itemTit">
+					  <h2 class="textoTit">   <asp:Label ID="Label1" runat="server" Text="Mantenimiento de ${table}"></asp:Label>
+					  </h2>
+					</div>
+				</div>
+				<!--barra titulos-->
+				
+				 <div class="addCategorias">
+				 <asp:Panel ID="Panel1" DefaultButton="btnBuscar" runat="server">
+				<ul  class="pestCat">
+					<li><a href="../${table}_dir/main_${table}.aspx" class="addCat">Nuevo ${table}</a></li>
+					<li><a href="../${table}_dir/listado_${table}Grid.aspx" class="modCat" >Listado ${table}</a></li>
+					<li><asp:TextBox ID="txtBusqueda" runat="server"></asp:TextBox> 
+                     <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn" OnClick="btnBuscar_Click" /></li>
+
+				</ul>
+				</asp:Panel>
+				</div>
+				
+				<!--subseccion 1-->
+					<div class="subseccion">
+					<div class="titSubseccion">
+					  <h3 class="itemh3"> <asp:Label ID="Label2" runat="server" Text="Administrar ${table}"></asp:Label></h3>
+					  </div>
+					  
+		  
+      		<div class="MenuDcha">
+      		     <div id="idlineax">
+                   <asp:GridView ID="g${table}" runat="server" Width="100%" AllowPaging="True" DataKeyNames="${table.getKey()}"
+                            AutoGenerateColumns="False" OnRowDataBound="g${table}_RowDataBound" OnRowCommand="g${table}_RowCommand" OnRowEditing="g${table}_RowEditing">
+                            <Columns>
+                                <asp:TemplateField ShowHeader="False">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lbEdit" runat="server" CausesValidation="false" CommandName="Edit" CommandArgument='<%# Eval("${table.getKey()}") %>' Text="Editar"></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                
+                                <asp:TemplateField ShowHeader="False">
+                                    <ItemTemplate>
+                                    <asp:Label ID="lab${table.getFieldDescription()}" runat="server" Text='<%# Eval("${table.getFieldDescription()}") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                
+                                <asp:TemplateField ShowHeader="False">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lbDelete" runat="server" CausesValidation="false" CommandName="Delete" CommandArgument='<%# Eval("${table.getKey()}") %>' Text="Borrar"></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+
+				  
+	           </div>
+			</div>
+			
+					</div><!--subsecciones-->
+				
+ 
+		 
+
+				</div>
+				<!--contenido-->
+ 
+
+</asp:Content>

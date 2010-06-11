@@ -3,15 +3,12 @@
 	
 	Author: Luis Molina
 *#  
- 
- <nameFile>ficha_${table}</nameFile>
+<nameFile>ficha_${table}</nameFile>
 <extensionFile>aspx.cs</extensionFile>
 <languageGenerated>c_sharp</languageGenerated>
 <description>description</description>
 <targetDirectory>main_${table}</targetDirectory>
 <appliesToAllTables>true</appliesToAllTables>
-
-
 using System;
 using System.Data;
 using System.Configuration;
@@ -31,8 +28,7 @@ namespace ${project}.portal.main_${table}
     {
 		
 		private static ${table} ${table}x = new ${table}();
-      
-	  
+        
         protected void Page_Load(object sender, EventArgs e) 
         {
 
@@ -52,60 +48,65 @@ namespace ${project}.portal.main_${table}
 		private void cargarDatos()
         {
 			${table}x = ${table}.get${table}(sf.entero(Request["id"]));
-			#foreach( $field in $table.GetArrayOfFields )
-				 #if (!$field.isKey())
-					 
-					 
-							  #if ($field.targetType.toString() == "_integer")
-								 #if (! $field.isForeignKey())
-									lab${field}.Text = sf.cadena(${table}x.${field});
-								 #else												
-								 #end
-								   #end 
-							  #if ($field.targetType.toString() == "_string")
-								 lab${field}.Text = ${table}x.${field};
-								 #end 
-							  #if ($field.targetType.toString() == "_bigString")
-								 ftb${field}.Text = ${table}x.${field};
-								 #end 
-							  #if ($field.targetType.toString() == "_date")
-								 lab${field}.Text = sf.cadena(${table}x.${field});
-								 #end 
-							  #if ($field.targetType.toString() == "_boolean")
-								 ck${field}.Checked = sf.Bool(${table}x.${field});
-								 #end 
-							  #if ($field.targetType.toString() == "_image")
-								if (${table}x.${field} != "")
-								{
-									img${field}.ImageUrl = ${table}x.${field};
-									img${field}.Visible = true;
-									//img${field}.AlternateText = " " + noticiax.titulo;									
-								}
-								 #end 
-							  #if ($field.targetType.toString() == "_audio")
-								if (${table}x.${field} != "")
-								{
-									lab${field}.Text = ${table}x.${field};
-									lab${field}.Visible = true;
-									//img${field}.AlternateText = " " + noticiax.titulo;									
-								}
-								 #end 
-							  #if ($field.targetType.toString() == "_document")
-								if (${table}x.${field} != "")
-								{
-									img${field}.ImageUrl = ${table}x.${field};
-									img${field}.Visible = true;
-									//img${field}.AlternateText = " " + noticiax.titulo;									
-								}
-								 #end 
-						
+		   
+			#set ($count = 0)
+			#foreach( $field in $table.getFields )
+				 #if (!$field.isKey())					 
+					  #if ($field.targetType.toString() == "_integer")
+						 #if (! $field.isForeignKey())
+							lab${field}.Text = sf.cadena(${table}x.${field});
+						 #end
+					  #end 
+					  #if ($field.targetType.toString() == "_double")
+						 lab${field}.Text = sf.cadena(${table}x.${field});
+						 #end 
+					  #if ($field.targetType.toString() == "_string")
+						 lab${field}.Text = ${table}x.${field};
+						 #end 
+					  #if ($field.targetType.toString() == "_text")
+						 ftb${field}.Text = ${table}x.${field};
+						 #end 
+					  #if ($field.targetType.toString() == "_bigString")
+						 ftb${field}.Text = ${table}x.${field};
+						 #end 
+					  #if ($field.targetType.toString() == "_date")
+						 lab${field}.Text = sf.cadena(${table}x.${field});
+						 #end 
+					  #if ($field.targetType.toString() == "_boolean")
+						 ck${field}.Checked = sf.boolean(${table}x.${field});
+						 #end 
+					  #if ($field.targetType.toString() == "_image")
+						if (${table}x.${field} != "")
+						{
+							img${field}.ImageUrl = ${table}x.${field};
+							img${field}.Visible = true;
+							//img${field}.AlternateText = " " + noticiax.titulo;									
+						}
+						 #end 
+					  #if ($field.targetType.toString() == "_audio")
+						if (${table}x.${field} != "")
+						{
+							lab${field}.Text = ${table}x.${field};
+							lab${field}.Visible = true;
+							//img${field}.AlternateText = " " + noticiax.titulo;									
+						}
+						 #end 
+					  #if ($field.targetType.toString() == "_document")
+						if (${table}x.${field} != "")
+						{
+							img${field}.ImageUrl = ${table}x.${field};
+							img${field}.Visible = true;
+							//img${field}.AlternateText = " " + noticiax.titulo;									
+						}
+						 #end 
+							 
 				 #end
 				#set ($count = $count + 1 )
 			 #end 
 		  
 
 			#foreach( $relation in $table.getRelations() )
-			  //lab${relation.childField()}.Text = sf.cadena(${relation.parentTable()}.get${relation.parentTable()}(${relation.getChildTable()}x.${relation.parentField()}).${relation.parentField()});	
+			   lab${relation.childField()}.Text = sf.cadena(${relation.childTable()}.get${relation.childTable()}(${relation.parentTable()}x.${relation.childField()})); 
 			#end 
 
         }		 

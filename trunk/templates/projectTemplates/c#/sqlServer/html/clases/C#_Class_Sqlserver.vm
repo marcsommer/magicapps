@@ -758,7 +758,7 @@ public partial class ${table}
             dbClass db = new dbClass(ctes.conStringAdoGeneral);
             try
             {
-            sqlt = "select * from ${relation.getChildTable()}";
+            sqlt = "select * from ${relation.childTable()}";
           
             sqlt += " where ${relation.parentField()}=" + sf.cadena(${relation.parentField()});  
 
@@ -807,7 +807,7 @@ public partial class ${table}
        }
     
 	
-	 public static  bool delete${relation.getChildTable()}By${relation.parentField()} (int ${relation.parentField()}x)
+	 public static  bool delete${relation.childTable()}By${relation.parentField()} (int ${relation.parentField()}x)
 	 {
 		 dbClass db=new  dbClass(ctes.conStringAdoGeneral);
 		 String  sqlt;

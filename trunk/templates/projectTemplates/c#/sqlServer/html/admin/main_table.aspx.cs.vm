@@ -42,11 +42,9 @@ public partial class main_${table} : System.Web.UI.Page
 		
 		if (!Page.IsPostBack)
 		{
-		 #foreach( $relation in $table.getRelations() )
-		  #if ($field != "idportal")	
-		   lo.comboRellenar(cmb${relation.childField()}, "select ${relation.childField()},${relation.descriptionChild()} from ${relation.parentTable()} ", ctes.conStringAdoGeneral, "Seleccione");
-		  #end           
-	  #end 
+			#foreach( $relation in $table.getRelations() )
+				lo.comboRellenar(cmb${relation.childField()}, "select ${relation.childField()},${relation.descriptionChild()} from ${relation.childTable()} ", ctes.conStringAdoGeneral, "Seleccione");
+			#end 
 		// si nos mandan para borrar...
 		if (Request["idb"] != null)
 		{
@@ -115,9 +113,7 @@ public partial class main_${table} : System.Web.UI.Page
 
 
 #foreach( $relation in $table.getRelations() )
-#if ($field != "idportal")	
-lo.comboSeleccionarItem(cmb${relation.childField()}, sf.cadena(res.${relation.childField()}), "Id");
-#end	               
+	lo.comboSeleccionarItem(cmb${relation.childField()}, sf.cadena(res.${relation.childField()}), "Id");
 #end 
 
 		}
