@@ -58,6 +58,7 @@ public class field : IComparable
     private bool _allowNulls;
 
     private bool _isAutoIncrement;
+    private bool _isDescriptionInCombo;
     private string _defaultValue;
     private int _size;
  
@@ -158,6 +159,13 @@ public class field : IComparable
         get { return _isAutoIncrement; }
         set { _isAutoIncrement = value; }
     }
+    
+    public bool isDescriptionInCombo
+    {
+        get { return _isDescriptionInCombo; }
+        set { _isDescriptionInCombo = value; }
+    }
+
     public string defaultValue
     {
         get { return _defaultValue; }

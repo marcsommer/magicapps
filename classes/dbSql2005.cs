@@ -394,6 +394,12 @@ class dbSql2005
                                 comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#doc#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
                                 fi.targetType = field.fieldType._document;
                             }
+                            if (comentario.Contains("#desc#"))
+                            {
+                                comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#desc#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                                fi.isDescriptionInCombo = true;
+                                table.fieldDescription = fi.Name;
+                            }
 
                         }
                     }
