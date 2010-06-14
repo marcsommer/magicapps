@@ -99,6 +99,9 @@ namespace myWay
             Thread t = new Thread(new ParameterizedThreadStart(search));
             // we need to pass data through object
             //project pro = new project();
+            if (pr == null)
+                pr = new project();
+
             pr.name = txtName.Text;
             pr.host = txtHost.Text;
             pr.database = txtDatabase.Text;
@@ -225,6 +228,15 @@ namespace myWay
                                
                                 foreach (relation re in listarelation)
                                 {
+                                    // found description of fields...
+                                    foreach (table item in pr.tables)
+                                    {
+                                        if (item.Name.Equals(re.childTable))
+                                           re.childDescription = item.fieldDescription;
+
+                                        if (item.Name.Equals(re.parentTable))
+                                            re.parentDescription = item.fieldDescription;
+                                    }
 
                                     if (!pr.existsRelation(re.parentTable, re.childTable))
                                     {
@@ -236,7 +248,7 @@ namespace myWay
                                     foreach (table item in pr.tables)
                                     {
                                         // we put the relation in the child table...
-                                        if (item.Name.Equals(re.childTable))
+                                        if (item.Name.Equals(re.parentTable))
                                             item.relations.Add(re);
                                     }
 
@@ -265,8 +277,15 @@ namespace myWay
                                                         {
                                                             campo2.isForeignKey = true;
                                                             relation rel = new relation();
-                                                            rel.name = tab.Name + "_" + tab2.Name;
-                                                            if (!pr.relations.Contains(rel.name))
+                                                            rel.name = tab2.Name + "_" + tab.Name;
+
+                                                            bool found = false;
+                                                            foreach (relation relax in pr.relations)
+                                                            {
+                                                                if (relax.name.Equals(rel.name))
+                                                                    found = true;
+                                                            }
+                                                            if (!found)
                                                             {
                                                                 rel.parentTable = tab.Name;
                                                                 rel.parentField = campo.Name;
@@ -274,6 +293,15 @@ namespace myWay
                                                                 rel.childTable = tab2.Name;
                                                                 rel.childField = campo2.Name;
 
+                                                                // found description of fields...
+                                                                foreach (table item in pr.tables)
+                                                                {
+                                                                    if (item.Name.Equals(rel.childTable))
+                                                                        rel.childDescription = item.fieldDescription;
+
+                                                                    if (item.Name.Equals(rel.parentTable))
+                                                                        rel.parentDescription = item.fieldDescription;
+                                                                }
 
                                                                 pr.relations.Add(rel);
 
@@ -320,7 +348,7 @@ namespace myWay
                         break;
 
                     case project.databaseType.SqlServer:
-                        String connectionStringSqlServer = null;
+                        //String connectionStringSqlServer = null;
 
                         String messageSqlServer = null;
 
@@ -406,22 +434,22 @@ namespace myWay
                                     // now if the relation has to do with the tables...
                                     foreach (table item in pr.tables)
                                     {
-                                        // we put the relation in the parent table...
+                                        if (item.Name.Equals(re.childTable))
+                                            re.childDescription = item.fieldDescription;
+
                                         if (item.Name.Equals(re.parentTable))
                                         {
                                             // le añadimos la descripcion
-                                            re.descriptionParent = item.fieldDescription;
-
-                                            foreach (table taby in pr.tables)
-                                            {
-                                                if (taby.Name.Equals(re.childTable))
-                                                    re.descriptionChild = taby.fieldDescription;
-                                            }
+                                            re.parentDescription = item.fieldDescription;
+                                            // we put the relation in the parent table...
                                             item.relations.Add(re);
                                         }
 
 
                                     }
+
+
+
 
                                 }
 
@@ -446,34 +474,39 @@ namespace myWay
                                                         relation rel = new relation();
 
                                                         rel.name = tab2.Name + "_" + tab.Name;
-                                                        if (!pr.relations.Contains(rel.name))
-                                                        {
-                                                            rel.parentTable = tab2.Name;
-                                                            rel.parentField = campo2.Name;
-                                                            rel.descriptionParent = tab2.fieldDescription;
 
-                                                            rel.childTable = tab.Name;
-                                                            rel.childField = campo.Name;
-                                                            rel.descriptionChild = tab.fieldDescription;
-                                                            
+
+                                                        bool found = false;
+                                                        foreach (relation relax in pr.relations)
+                                                        {
+                                                            if (relax.name.Equals(rel.name))
+                                                                found = true;
+                                                        }
+                                                        if (!found)
+                                                        {
+                                                            rel.parentTable = tab.Name;
+                                                            rel.parentField = campo.Name;
+
+                                                            rel.childTable = tab2.Name;
+                                                            rel.childField = campo2.Name;
+
+                                                            // found description of fields...
+                                                            foreach (table item in pr.tables)
+                                                            {
+                                                                if (item.Name.Equals(rel.childTable))
+                                                                    rel.childDescription = item.fieldDescription;
+
+                                                                if (item.Name.Equals(rel.parentTable))
+                                                                    rel.parentDescription = item.fieldDescription;
+                                                            }
+
                                                             pr.relations.Add(rel);
 
                                                             // now if the relation has to do with the tables...
                                                             foreach (table item in pr.tables)
                                                             {
                                                                 if (item.Name.Equals(tab2.Name))
-                                                                {
-                                                                    // see if the relation exists..
-                                                                    bool seguir = true;
-                                                                    foreach (relation rel2 in tab2.relations)
-                                                                    {
-                                                                        if (rel2.name.Equals(rel.name))
-                                                                            seguir = false;
-                                                                    }
-                                                                    if (seguir)
-                                                                        item.relations.Add(rel);
-                                                                }
-                                                                    
+                                                                    item.relations.Add(rel);
                                                             }
                                                         }
 

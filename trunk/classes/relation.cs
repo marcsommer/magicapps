@@ -33,8 +33,8 @@ using System;
 			     private string _childTable;
 			     private string _parentField;
 			     private string _childField;
-			     private string _descriptionParent;
-			     private string _descriptionChild;
+			     private string _parentDescription;
+			     private string _childDescription;
 			     private int _cardinality;
                  private typeOfRelation _relationType;
 
@@ -72,15 +72,15 @@ using System;
 			                get {return _childField;}
 			                set {_childField = value;}			                
 		                }
-			      public string descriptionParent
+			      public string parentDescription
 		                {
-			                get {return _descriptionParent;}
-			                set {_descriptionParent = value;}			                
+			                get {return _parentDescription;}
+			                set {_parentDescription = value;}			                
 		                }
-			      public string descriptionChild
+			      public string childDescription
 		                {
-			                get {return _descriptionChild;}
-			                set {_descriptionChild = value;}			                
+			                get {return _childDescription;}
+			                set {_childDescription = value;}			                
 		                }
 			      public int cardinality
 		                {

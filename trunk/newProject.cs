@@ -117,7 +117,7 @@ namespace myWay
                         String message = null;
 
 
-                        connectionString = "Server=" + pro.host + ";Database=" + pro.database + ";Uid=" + pro.user + ";Pwd=" + pro.password + ";";
+                        connectionString = "Server=" + pr.host + ";Database=" + pr.database + ";Uid=" + pr.user + ";Pwd=" + pr.password + ";";
 
 
 
@@ -128,19 +128,23 @@ namespace myWay
                             AsyncWrite("");
                             AsyncWriteLine("Success connection \n");
                             //pr = new project();
-                            //pr.name = pro.name;
+                            //pr.name = pr.name;
 
                             // lets get the tables...
                             List<table> lista = new List<table>();
-                            lista = db.getTables(connectionString, pro.database);
+                            lista = db.getTables(connectionString, pr.database);
                             //lista.Sort();
+                            pr.tables.Clear();
                             foreach (table item in lista)
                             {
                                 AsyncWriteLine("Found table... " + item.Name + "\n");
 
                                 // now lets get the fields for each table...
                                 List<field> listaField = new List<field>();
-                                listaField = db.getFields(connectionString, pro.database, item.Name);
+                                listaField = db.getFields(connectionString, pr.database, item.Name);
+
+
+
                                 if (listaField != null)
                                 {
                                     foreach (field fi in listaField)
@@ -148,6 +152,7 @@ namespace myWay
                                         item.fields.Add(fi);
                                         AsyncWriteLine("Found field... " + fi.Name + "\n");
                                     }
+
 
                                     // the descriptionField its the first string field of table...
                                     foreach (field campito in listaField)
@@ -159,11 +164,10 @@ namespace myWay
                                         }
 
                                     }
-
                                 }
 
                                 // lets get primary keys and foreign keys for the table...
-                                db.getKeys(connectionString, item, pro.database);
+                                db.getKeys(connectionString, item, pr.database);
 
 
                                 // lets sort the fields in the table...
@@ -173,6 +177,7 @@ namespace myWay
                                     item.fields.Sort(new compareFields(compareFields.CompareByOptions.name));
                                     item.fields.Sort(new compareFields(compareFields.CompareByOptions.key));
                                 }
+
                                 pr.tables.Add(item);
 
 
@@ -182,12 +187,23 @@ namespace myWay
 
 
                             //// now lets get the relations ...
+                            pr.relations.Clear();
                             List<relation> listarelation = new List<relation>();
-                            listarelation = db.getRelations(connectionString, pro.database);
+                            listarelation = db.getRelations(connectionString, pr.database);
                             if (listarelation != null)
                             {
+
                                 foreach (relation re in listarelation)
                                 {
+                                    // found description of fields...
+                                    foreach (table item in pr.tables)
+                                    {
+                                        if (item.Name.Equals(re.childTable))
+                                            re.childDescription = item.fieldDescription;
+
+                                        if (item.Name.Equals(re.parentTable))
+                                            re.parentDescription = item.fieldDescription;
+                                    }
 
                                     if (!pr.existsRelation(re.parentTable, re.childTable))
                                     {
@@ -199,7 +215,7 @@ namespace myWay
                                     foreach (table item in pr.tables)
                                     {
                                         // we put the relation in the child table...
-                                        if (item.Name.Equals(re.childTable))
+                                        if (item.Name.Equals(re.parentTable))
                                             item.relations.Add(re);
                                     }
 
@@ -226,9 +242,17 @@ namespace myWay
                                                         // check if relation exists..
                                                         if (!pr.existsRelation(tab.Name, tab2.Name))
                                                         {
+                                                            campo2.isForeignKey = true;
                                                             relation rel = new relation();
-                                                            rel.name = tab.Name + "_" + tab2.Name;
-                                                            if (!pr.relations.Contains(rel.name))
+                                                            rel.name = tab2.Name + "_" + tab.Name;
+
+                                                            bool found = false;
+                                                            foreach (relation relax in pr.relations)
+                                                            {
+                                                                if (relax.name.Equals(rel.name))
+                                                                    found = true;
+                                                            }
+                                                            if (!found)
                                                             {
                                                                 rel.parentTable = tab.Name;
                                                                 rel.parentField = campo.Name;
@@ -236,6 +260,15 @@ namespace myWay
                                                                 rel.childTable = tab2.Name;
                                                                 rel.childField = campo2.Name;
 
+                                                                // found description of fields...
+                                                                foreach (table item in pr.tables)
+                                                                {
+                                                                    if (item.Name.Equals(rel.childTable))
+                                                                        rel.childDescription = item.fieldDescription;
+
+                                                                    if (item.Name.Equals(rel.parentTable))
+                                                                        rel.parentDescription = item.fieldDescription;
+                                                                }
 
                                                                 pr.relations.Add(rel);
 
@@ -366,12 +399,12 @@ namespace myWay
                                         if (item.Name.Equals(re.parentTable))
                                         {
                                             // le añadimos la descripcion
-                                            re.descriptionParent = item.fieldDescription;
+                                            re.parentDescription = item.fieldDescription;
 
                                             foreach (table taby in pr.tables)
                                             {
                                                 if (taby.Name.Equals(re.childTable))
-                                                    re.descriptionChild = taby.fieldDescription;
+                                                    re.childDescription = taby.fieldDescription;
                                             }
                                             item.relations.Add(re);
                                         }

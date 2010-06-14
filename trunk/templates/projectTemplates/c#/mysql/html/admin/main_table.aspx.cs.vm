@@ -24,7 +24,7 @@ public partial class main_${table} : System.Web.UI.Page
 		{
 		 #foreach( $relation in $table.getRelations() )
 		  #if ($field != "idportal")	
-		   lo.comboRellenar(cmb${relation.childField()}, "select ${relation.childField()},${relation.descriptionChild()} from ${relation.parentTable()} ", ctes.conStringAdoGeneral, "Seleccione");
+		   lo.comboRellenar(cmb${relation.childField()}, "select ${relation.childField()},${relation.childDescription()} from ${relation.parentTable()} ", ctes.conStringAdoGeneral, "Seleccione");
 		  #end           
 	  #end 
 		// si nos mandan para borrar...

@@ -60,6 +60,27 @@ namespace Util
 
             page.ClientScript.RegisterClientScriptBlock(page.GetType(), "jQueryScript", sb.ToString(), true);
         }
+
+
+        // uso: Util.JQueryUtils.jGrowl(this, "perico");
+        public static void jGrowl (Page page, string cadena)
+        {
+
+            page.ClientScript.RegisterClientScriptInclude(page.GetType(), "jquery13", "/JQuery/jGrowl/jquery-1.3.2.js");
+            page.ClientScript.RegisterClientScriptInclude(page.GetType(), "jquery.jgrowl.js", "/JQuery/jGrowl/jquery.jgrowl.js");
+           
+            // style ..
+            page.ClientScript.RegisterClientScriptBlock(page.GetType(), "jquery.jgrowl.css", "<link  rel=\"stylesheet\" href=\"/JQuery/jGrowl/jquery.jgrowl.css\" />");
+                        
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("$(document).ready(function() {");
+            sb.Append("$.jGrowl('" + cadena + "');");
+            sb.Append("});");
+
+            page.ClientScript.RegisterClientScriptBlock(page.GetType(), "jQueryScript", sb.ToString(), true);
+        }
+
     }
 
 }

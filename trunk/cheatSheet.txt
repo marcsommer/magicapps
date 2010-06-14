@@ -125,5 +125,26 @@ field:
 	${field.randomMaxValue()}
     
 
+relation
+------------------------------------
+
+	${relation.name()}
+	${relation.parentTable()}
+	${relation.childTable()}
+	${relation.parentField()}
+	${relation.childField()}
+	${relation.descriptionParent()}
+	${relation.descriptionChild()}
+	${relation.cardinality()}
+	${relation.relationType()}
 
 
+comentarios posibles:
+-------------------------------------
+#image# - imagen
+#doc#	documento
+#audio#	audio
+#video#	video
+#desc#	este campo será el utilizado en los combos para mostrar texto...
+#money#
+#hide#

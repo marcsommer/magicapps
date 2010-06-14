@@ -253,28 +253,7 @@ class dbMySql
                     //     fi.defaultValue = sf.Cadena(tbl.Rows(i)!COLUMN_DEFAULT)
                     //     fi.autoNumber = sf.Bool(tbl.Rows(i)!COLUMN_KEY)
                     //     fi.decimals = sf.Entero(tbl.Rows(i)!NUMERIC_PRECISION)
-
-
-                    // lets get the comment
-                    fi.comment = getComments(cadconexion, table, fi.Name);
-                    if (fi.comment.IndexOf("#image#") >= 1)
-                    {
-                        fi.targetType = field.fieldType._image;
-                        fi.comment = fi.comment.Replace("#image#", "");
-                    }
-                    if (fi.comment.IndexOf("#audio#") >= 1)
-                    {
-                        fi.targetType = field.fieldType._audio;
-                        fi.comment = fi.comment.Replace("#image#", "");
-                    }
-                    if (fi.comment.IndexOf("#doc#") >= 1)
-                    {
-                        fi.targetType = field.fieldType._document;
-                        fi.comment = fi.comment.Replace("#doc#", "");
-                    }
-                    if (!fi.comment.Equals(""))
-                        fi.targetName = fi.comment;
-
+                    
                     lista.Add(fi);
 
                 }
@@ -322,7 +301,7 @@ class dbMySql
                     String comentario = sf.cadena(dr["COLUMN_COMMENT"]);
                     String defecto = sf.cadena(dr["COLUMN_DEFAULT"]);
                     bool isNullable = sf.Bool(dr["is_nullable"]);
-                    int  maximumLength= sf.entero(dr["character_maximum_length"]);
+                    int maximumLength = sf.entero(dr["character_maximum_length"]);
 
                     switch (tipo)
                     {
@@ -332,10 +311,10 @@ class dbMySql
                                 if (fi.Name.Equals(campo))
                                 {
                                     fi.isKey = true;
-                                    if (table.GetKey==null)
+                                    if (table.GetKey == null)
                                         table.GetKey = campo;
                                 }
-                                    
+
                             }
                             break;
                         case "MUL":
@@ -362,9 +341,64 @@ class dbMySql
                             fi.defaultValue = defecto;
                             fi.allowNulls = isNullable;
                             fi.size = maximumLength;
+
+                            // switch comment....
+                            if (comentario.Contains("#date#"))
+                            {
+                                fi.targetType = field.fieldType._date;
+                            }
+                            if (comentario.Contains("#img#") | comentario.Contains("#image#"))
+                            {
+                                fi.targetType = field.fieldType._image;
+                            }
+                            if (comentario.Contains("#audio#"))
+                            {
+                                fi.targetType = field.fieldType._audio;
+                            }
+                            if (comentario.Contains("#money#"))
+                            {
+                                fi.targetType = field.fieldType._money;
+                            }
+                            if (comentario.Contains("#video#"))
+                            {
+                                fi.targetType = field.fieldType._video;
+                            }
+                            if (comentario.Contains("#doc#") | comentario.Contains("#document#"))
+                            {
+                                fi.targetType = field.fieldType._document;
+                            }
+                            if (comentario.Contains("#hide#"))
+                            {
+                                fi.invisible = true;
+                                fi.targetType = field.fieldType._hidden;
+                            }
+                            if (comentario.Contains("#desc#"))
+                            {
+                                fi.isDescriptionInCombo = true;
+                                table.fieldDescription = fi.Name;
+                            }
+
+
+                            comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#date#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                            comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#img#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                            comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#image#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                            comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#audio#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                            comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#money#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                            comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#video#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                            comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#doc#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                            comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#document#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                            comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#hide#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                            comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#desc#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                            if (comentario != "")
+                                fi.targetName = comentario.Trim();
+
                         }
-                           
-                    }               
+
+
+                      
+
+
+                    }
 
                 }
 
@@ -412,13 +446,14 @@ class dbMySql
                 {
                     relation rel = new relation();
 
-                    rel.name = sf.cadena(miLector["constraint_name"]) ;
-                  
-                    rel.parentTable = sf.cadena(miLector["referenced_table_name"]);
-                    rel.parentField = sf.cadena(miLector["referenced_column_name"]);
+                    //rel.name = sf.cadena(miLector["constraint_name"]) ;
 
-                    rel.childTable = sf.cadena(miLector["table_name"]);
-                    rel.childField = sf.cadena(miLector["column_name"]);                
+                    rel.name = sf.cadena(miLector["table_name"]) + "_" + sf.cadena(miLector["referenced_table_name"]);
+                    rel.parentTable = sf.cadena(miLector["table_name"]);
+                    rel.parentField = sf.cadena(miLector["column_name"]);                
+
+                    rel.childTable = sf.cadena(miLector["referenced_table_name"]);
+                    rel.childField = sf.cadena(miLector["referenced_column_name"]);
                 
 
                     lista.Add(rel);
@@ -440,46 +475,7 @@ class dbMySql
 
 
 
-        // get the description for a column
-        public String getComments(string cadconexion, string table, string column)
-        {
-            MySqlConnection conexion = null;
-            try
-            {
-
-                List<String> lista = new List<String>();
-                String sql = null;
-                sql = String.Format("select value from ::fn_listextendedproperty ('MS_Description', 'user','dbo', 'table', '{0}', 'column', '{1}')", table, column);
-
-
-                conexion = new MySqlConnection(cadconexion);
-                miComando = new MySqlCommand(sql);
-                miComando.Connection = conexion;
-                conexion.ConnectionString = cadconexion;
-                conexion.Open();
-
-                MySqlDataReader dr = null;
-                dr = miComando.ExecuteReader();
-
-                while (dr.Read())
-                {
-                    return (dr["value"].ToString());
-                }
-
-                return "";
-
-
-            }
-            catch (Exception ep)
-            {
-                //  lo.tratarError(ep, "Error en dbClass.new", "");
-                return "";
-            }
-            finally
-            {
-                conexion.Close();
-            }
-        }  // getComments
+       
 
 
 
