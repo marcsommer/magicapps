@@ -23,7 +23,7 @@ namespace ${project}.${table}_dir
 public partial class main_${table} : System.Web.UI.Page
 {
 
-	protected List<message> messageList ;
+	protected List<message> messageList = new List<message>();
 
 	protected void Page_Load(object sender, EventArgs e) 
 	{
@@ -67,10 +67,13 @@ public partial class main_${table} : System.Web.UI.Page
 
  	#if (!$field.isKey())
 		#if ($field.targetType.toString() == "_string") 
-		txt${field}.Text = res.${field}; 
+			txt${field}.Text = res.${field}; 
 		#end 
 		#if ($field.targetType.toString() == "_text") 
-		txt${field}.Text = res.${field}; 
+			txt${field}.Text = res.${field}; 
+		#end 
+		#if ($field.targetType.toString() == "_double") 
+			txt${field}.Text = sf.cadena(res.${field}); 
 		#end 
 		#if ($field.targetType.toString() == "_date")
 		if (sf.esFecha(res.${field}))
@@ -81,7 +84,7 @@ public partial class main_${table} : System.Web.UI.Page
 		  }		
 		#end 
 		#if ($field.targetType.toString() == "_boolean")
-		ck${field}.Checked = sf.Bool(res.${field});
+		ck${field}.Checked = sf.boolean(res.${field});
 		#end 
 		#if ($field.targetType.toString() == "_image")
 		if (sf.cadena(res.${field}) != "")
@@ -174,12 +177,15 @@ public partial class main_${table} : System.Web.UI.Page
 							   #if ($field.targetType.toString() == "_text")
 								res.${field}=sf.cadena(txt${field}.Text);			
 							 #end 
-							  #if ($field.targetType.toString() == "_date")
+							 #if ($field.targetType.toString() == "_double")
+								res.${field}=sf.doble(txt${field}.Text);			
+							 #end
+							 #if ($field.targetType.toString() == "_date")
 								//res.${field}=sf.fecha(${field}.SelectedDate) ;
 								res.${field}=sf.fecha(${field}.Text) ;
 							  #end 
 							  #if ($field.targetType.toString() == "_boolean")
-								 res.${field}=sf.Bool(ck${field}.Checked) ;
+								 res.${field}=sf.boolean(ck${field}.Checked) ;
 							  #end 
 							#if ($field.targetType.toString() == "_image")
 								if (FileUploadImagen${field}.PostedFile == null) { }
@@ -236,7 +242,7 @@ public partial class main_${table} : System.Web.UI.Page
 
 			res.Update();
 			res = null;
-			messageList.Add(new message("Modificación correcta", message.typeOfMessage.success));    
+			messageList.Add(new message("Modificaci&oacute;n correcta", message.typeOfMessage.success));    
 
 			showMessages();
 	
@@ -263,12 +269,15 @@ public partial class main_${table} : System.Web.UI.Page
 							  #if ($field.targetType.toString() == "_string")
 								res.${field}=sf.cadena(txt${field}.Text) ;	
 							 #end 
-							  #if ($field.targetType.toString() == "_date")
+							   #if ($field.targetType.toString() == "_double")
+								res.${field}=sf.doble(txt${field}.Text) ;	
+							 #end 
+							 #if ($field.targetType.toString() == "_date")
 								//res.${field}=sf.fecha(${field}.SelectedDate) ;
 								res.${field}=sf.fecha(${field}.Text) ;
 							  #end 
 							  #if ($field.targetType.toString() == "_boolean")
-								 res.${field}=sf.Bool(ck${field}.Checked) ;
+								 res.${field}=sf.boolean(ck${field}.Checked) ;
 							  #end 
 							#if ($field.targetType.toString() == "_image")
 								if (FileUploadImagen${field}.PostedFile == null) { }

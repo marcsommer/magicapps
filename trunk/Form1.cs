@@ -531,8 +531,7 @@ namespace myWay
             OpenFileDialog fil = new OpenFileDialog();
             fil.DefaultExt = "xml";
             fil.InitialDirectory = util.projects_dir;
-            fil.ShowDialog();
-
+            
             if (fil.ShowDialog() == DialogResult.OK)
             {
                 Console.WriteLine(fil.FileName);
@@ -975,6 +974,8 @@ namespace myWay
 
                                 // le quitamos saltos de linea extra
                                 finalText = finalText.Replace("\r\n\r\n", "\r\n").Replace("\r\n\r\n\r\n", "").Replace("\r\n\r\n\r\n\r\n", "");
+
+                               
 
                                 // le quitamos los tabuladores extra
                                 finalText = finalText.Replace(tabCaracter.ToString(), " ");

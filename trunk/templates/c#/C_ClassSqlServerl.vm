@@ -160,7 +160,7 @@ public partial class ${table}
         System.Data.SqlClient.SqlDataReader reg;
         try
         {
-        sqlt.Append( " insert into ${table} ( ${table.getListOfFieldsWithoutKeys("")} )"); 
+        sqlt.Append( " insert into ${table} ( ${table.getListOfFieldsWithoutKeys(",")} )"); 
         sqlt.Append( "  values (");
 			#set ($count = 0)	
 			#foreach( $field in $table.GetArrayOfFields ) 

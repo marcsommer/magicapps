@@ -70,13 +70,13 @@ namespace myWay
             }
             catch (System.IO.DirectoryNotFoundException dfn)
             {
-                // si no encuentra el directorio cargamos el predeterminado
-                util.projectTemplates_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, "templates\\projectTemplates");
-                System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                config.AppSettings.Settings["projectTemplatesPath"].Value = util.projectTemplates_dir;
-                config.Save(ConfigurationSaveMode.Modified);
-                ConfigurationManager.RefreshSection("appSettings");
-                cargar();
+                //// si no encuentra el directorio cargamos el predeterminado
+                //util.projectTemplates_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, "templates\\projectTemplates");
+                //System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                //config.AppSettings.Settings["projectTemplatesPath"].Value = util.projectTemplates_dir;
+                //config.Save(ConfigurationSaveMode.Modified);
+                //ConfigurationManager.RefreshSection("appSettings");
+                //cargar();
             }
             catch (Exception ex)
             {

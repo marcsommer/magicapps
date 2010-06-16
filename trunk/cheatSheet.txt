@@ -59,6 +59,7 @@ project:
 	${project.tableSelected()}
 
 	${project.getTables()}
+	${project.getRelations()}
 
 
 table:

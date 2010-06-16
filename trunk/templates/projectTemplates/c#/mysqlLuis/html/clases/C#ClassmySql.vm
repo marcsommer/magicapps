@@ -28,20 +28,35 @@ using System.ComponentModel;
 		 
 	#foreach( $field in $table.GetArrayOfFields )			 
 		  #if ($field.type.toString() == "_integer")
-			 private int _${field};
-			 #end 
-		  #if ($field.type.toString() == "_double")
-			 private double _${field};
-			 #end 
+		 private int _${field};
+		 #end 
+		#if ($field.type.toString() == "_double")
+		 private double _${field};
+		 #end 
 		#if ($field.type.toString() == "_string")
-			 private string _${field};
-			 #end 
-		  #if ($field.type.toString() == "_date")
-			 private DateTime _${field};
-			 #end 
-		  #if ($field.type.toString() == "_boolean")
-			 private bool _${field};
-		 #end 			 
+		 private string _${field};
+		 #end 
+		#if ($field.type.toString() == "_text")
+		 private string _${field};
+		 #end 
+		#if ($field.type.toString() == "_date")
+		 private DateTime _${field};
+		 #end 
+		#if ($field.type.toString() == "_boolean")
+		 private bool _${field};
+		 #end 
+		#if ($field.type.toString() == "_audio")
+		 private string _${field};
+		 #end 
+		#if ($field.type.toString() == "_video")
+		 private string _${field};
+		 #end 
+		#if ($field.type.toString() == "_document")
+		 private string _${field};
+		 #end 
+		 #if ($field.type.toString() == "_image")
+		 private string _${field};
+		 #end 	 
 	#end 
 	
 	#endregion
@@ -50,48 +65,78 @@ using System.ComponentModel;
 	#region["Propiedades"]
 	
 	
-	#foreach( $field in $table.GetArrayOfFields )
+	#foreach( $field in $table.getFields )
 		#if ($field.isKey())
 				// for the objectDataSource
 				[DataObjectField(true,true)]
-		#end
-		#if ($field.type.toString() == "_integer")
-		  public int ${field}
-				{
-					get {return _${field};}
-					set {_${field} = value;}
-				}
-		 #end 
-		#if ($field.type.toString() == "_double")
+        #end
+		 
+		 
+		  #if ($field.type.toString() == "_integer")
+			  public int ${field}
+					{
+						get {return _${field};}
+						set {_${field} = value;}
+					}
+			 #end 
+		  #if ($field.type.toString() == "_double")
 		  public double ${field}
-				{
-					get {return _${field};}
-					set {_${field} = value;}
-				}
-		 #end 
-		#if ($field.type.toString() == "_string")
-		  public string ${field}
 				{
 					get {return _${field};}
 					set {_${field} = value;}			                
 				}
 		 #end 
-		#if ($field.type.toString() == "_date")
-		   public DateTime ${field}
-				{
-					get {return _${field};}
-					set {_${field} = value;}
-				}
-		 #end 
-		#if ($field.type.toString() == "_boolean")
-		 public bool ${field}
-		 {
-			 get { return _${field}; }
-			 set { _${field} = value; }
-		 }
-		 #end 
-		  	 
-	#end 	  
+		  #if ($field.type.toString() == "_string")
+			  public string ${field}
+					{
+						get {return _${field};}
+						set {_${field} = value;}			                
+					}
+			 #end 
+		  #if ($field.type.toString() == "_date")
+			   public DateTime ${field}
+					{
+						get {return _${field};}
+						set {_${field} = value;}
+					}
+			 #end 
+		  #if ($field.type.toString() == "_boolean")
+			  public bool ${field}
+					{
+						get {return _${field};}
+						set {_${field} = value;}			                
+					}
+			 #end 
+		  #if ($field.type.toString() == "_audio")
+			  public string ${field}
+					{
+						get {return _${field};}
+						set {_${field} = value;}			                
+					}
+			 #end 
+			  #if ($field.type.toString() == "_video")
+			  public string ${field}
+					{
+						get {return _${field};}
+						set {_${field} = value;}			                
+					}
+			 #end 
+			  #if ($field.type.toString() == "_document")
+			  public string ${field}
+					{
+						get {return _${field};}
+						set {_${field} = value;}			                
+					}
+			 #end 
+			  #if ($field.type.toString() == "_image")
+			  public string ${field}
+					{
+						get {return _${field};}
+						set {_${field} = value;}			                
+					}
+			 #end 
+		
+	#end 	
 	  				 
     
     #endregion
@@ -224,7 +269,7 @@ using System.ComponentModel;
 		     pp.${field} = sf.fecha(reg["${field}"].ToString());
 		     #end 
 		  #if ($field.type.toString() == "_boolean")
-		     pp.${field} = sf.Bool(reg["${field}"].ToString());
+		     pp.${field} = sf.boolean(reg["${field}"].ToString());
 		     #end  
 #end 
                lista${table}.Add(pp);
@@ -294,7 +339,7 @@ using System.ComponentModel;
 		 pp.${field} = sf.fecha(reg["${field}"].ToString());
 		 #end 
 	  #if ($field.type.toString() == "_boolean")
-		 pp.${field} = sf.Bool(reg["${field}"].ToString());
+		 pp.${field} = sf.boolean(reg["${field}"].ToString());
 		 #end  
 #end 
                lista${table}.Add(pp);
@@ -363,7 +408,7 @@ using System.ComponentModel;
 						obj${table}.${field} = sf.fecha(reg["${field}"].ToString());
 						 #end 
 					  #if ($field.type.toString() == "_boolean")
-						 obj${table}.${field} = sf.Bool(reg["${field}"].ToString());
+						 obj${table}.${field} = sf.boolean(reg["${field}"].ToString());
 						 #end  
                 #end 		 
            
@@ -626,7 +671,7 @@ using System.ComponentModel;
 						 this.${field} = sf.fecha(reg["${field}"].ToString());
 						 #end 
 					  #if ($field.type.toString() == "_boolean")
-						 this.${field} = sf.Bool(reg["${field}"]);
+						 this.${field} = sf.boolean(reg["${field}"]);
 						 #end  
                 #end 
            
@@ -687,7 +732,7 @@ using System.ComponentModel;
 		 pp.${field} = sf.fecha(reg["${field}"].ToString());
 		 #end 
 	  #if ($field.type.toString() == "_boolean")
-		 pp.${field} = sf.Bool(reg["${field}"].ToString());
+		 pp.${field} = sf.boolean(reg["${field}"].ToString());
 		 #end   
 #end 
                lista${table}.Add(pp);

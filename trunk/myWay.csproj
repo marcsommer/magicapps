@@ -653,6 +653,15 @@
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqIzq_menuH.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="templates\projectTemplates\c#\mysqlLuis\html\bin\MySql.Data.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\System.Web.Extensions.Design.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\System.Web.Extensions.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\JQuery\demos.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1963,9 +1972,11 @@
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\portal\miscelanea\accesibilidad.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\portal\miscelanea\condiciones.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysql\html\portal\miscelanea\mapaweb.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1983,6 +1994,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\sqlServer\html\JQuery\demos.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\sqlServer\html\JQuery\jGrowl\jquery-1.3.2.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\sqlServer\html\JQuery\jGrowl\jquery.jgrowl.css">
@@ -2809,6 +2823,15 @@
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\portal\ficha_.aspx.designer.cs.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="templates\projectTemplates\c#\sqlServer\html\admin\masterDetail.aspx.cs.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\sqlServer\html\admin\masterDetail.aspx.designer.cs.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\sqlServer\html\admin\masterDetail.aspx.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="templates\projectTemplates\c#\sqlServer\html\images_contraste\Thumbs.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -2884,6 +2907,7 @@
     </Content>
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\portal\master\masterWeb.Master">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\portal\master\menuPortal.ascx.vm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -3353,15 +3377,17 @@
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\texto\solotexto.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\eWorld.UI.Compatibility.dll" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\eWorld.UI.dll" />
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\eWorld.UI.Compatibility.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\eWorld.UI.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\FreeTextBox.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="templates\projectTemplates\c#\mysqlLuis\html\bin\juleweb.dll" />
     <None Include="templates\projectTemplates\c#\mysqlLuis\html\bin\juleweb.pdb" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\MenuPilot.dll" />
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\RSSMaster.dll" />
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\default.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -3973,6 +3999,7 @@
     </Content>
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\portal\miscelanea\accesibilidad.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\portal\miscelanea\condiciones.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -5060,6 +5087,7 @@
     </Content>
     <Content Include="templates\projectTemplates\c#\sqlServer\html\portal\miscelanea\condiciones.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="templates\projectTemplates\c#\sqlServer\html\portal\miscelanea\condiciones.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -5265,7 +5293,6 @@
     <Folder Include="templates\projectTemplates\c#\sqlServer\html\bddocumentos\" />
     <Folder Include="templates\projectTemplates\c#\sqlServer\html\bdimages\" />
     <Folder Include="templates\projectTemplates\c#\sqlServer\html\data\" />
-    <Folder Include="templates\projectTemplates\c#\sqlServer\html\includes\jgrowl\" />
     <Folder Include="templates\projectTemplates\c#\sqlServer\html\js\" />
     <Folder Include="templates\projectTemplates\c#\sqlServer\html\portal\includes\calendar\" />
   </ItemGroup>

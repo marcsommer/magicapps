@@ -189,7 +189,7 @@ relations in the table
 	new${table}.${field} = sf.fecha(row["${field}"].ToString());
 #end  
 #if ($field.type.toString() == "_boolean")
-	new${table}.${field} = sf.Bool(row["${field}"]);					
+	new${table}.${field} = sf.boolean(row["${field}"]);					
 #end 		
 #end 
 #end 

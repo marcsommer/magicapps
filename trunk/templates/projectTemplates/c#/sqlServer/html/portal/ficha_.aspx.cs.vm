@@ -82,31 +82,30 @@ namespace ${project}.portal.main_${table}
 							img${field}.Visible = true;
 							//img${field}.AlternateText = " " + noticiax.titulo;									
 						}
-						 #end 
-					  #if ($field.targetType.toString() == "_audio")
+					 #end 
+					 #if ($field.targetType.toString() == "_audio")
 						if (${table}x.${field} != "")
 						{
 							lab${field}.Text = ${table}x.${field};
 							lab${field}.Visible = true;
 							//img${field}.AlternateText = " " + noticiax.titulo;									
 						}
-						 #end 
-					  #if ($field.targetType.toString() == "_document")
+					 #end 
+					 #if ($field.targetType.toString() == "_document")
 						if (${table}x.${field} != "")
 						{
 							img${field}.ImageUrl = ${table}x.${field};
 							img${field}.Visible = true;
 							//img${field}.AlternateText = " " + noticiax.titulo;									
 						}
-						 #end 
-							 
+					#end 	 
 				 #end
 				#set ($count = $count + 1 )
 			 #end 
 		  
 
 			#foreach( $relation in $table.getRelations() )
-			   lab${relation.childField()}.Text = sf.cadena(${relation.childTable()}.get${relation.childTable()}(${relation.parentTable()}x.${relation.childField()})); 
+			   lab${relation.childField()}.Text = sf.cadena(${relation.childTable()}.get${relation.childTable()}(${relation.parentTable()}x.${relation.parentField()})); 
 			#end 
 
         }		 

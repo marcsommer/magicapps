@@ -1,5 +1,7 @@
 <nameFile>main_${table}</nameFile>
 <extensionFile>aspx.cs</extensionFile>
+<languageGenerated>c_sharp</languageGenerated>
+<description>description</description>
 <targetDirectory>${table}_dir</targetDirectory>
 <appliesToAllTables>true</appliesToAllTables>
 using System;
@@ -61,7 +63,7 @@ ${field}.SelectedDate = res.${field};
 //txt${field}.Text = res.${field};
 #end 
 #if ($field.targetType.toString() == "_boolean")
-ck${field}.Checked = sf.Bool(res.${field});
+ck${field}.Checked = sf.boolean(res.${field});
 
 
 #end 
@@ -138,7 +140,7 @@ lo.comboSeleccionarItem(cmb${relation.childField()}, sf.cadena(res.${relation.ch
 								res.${field}=sf.fecha(${field}.SelectedDate) ;
 							  #end 
 							  #if ($field.targetType.toString() == "_boolean")
-								 res.${field}=sf.Bool(ck${field}.Checked) ;
+								 res.${field}=sf.boolean(ck${field}.Checked) ;
 							  #end 
 							#if ($field.targetType.toString() == "_image")
 								if (FileUploadImagen${field}.PostedFile == null) { }
@@ -224,7 +226,7 @@ lo.comboSeleccionarItem(cmb${relation.childField()}, sf.cadena(res.${relation.ch
 								res.${field}=sf.fecha(${field}.SelectedDate) ;
 							  #end 
 							  #if ($field.targetType.toString() == "_boolean")
-								 res.${field}=sf.Bool(ck${field}.Checked) ;
+								 res.${field}=sf.boolean(ck${field}.Checked) ;
 							  #end 
 							#if ($field.targetType.toString() == "_image")
 								if (FileUploadImagen${field}.PostedFile == null) { }

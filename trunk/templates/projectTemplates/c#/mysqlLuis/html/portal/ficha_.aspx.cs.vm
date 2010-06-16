@@ -73,7 +73,7 @@ namespace ${project}.portal.main_${table}
 						 lab${field}.Text = sf.cadena(${table}x.${field});
 						 #end 
 					  #if ($field.targetType.toString() == "_boolean")
-						 ck${field}.Checked = sf.Bool(${table}x.${field});
+						 ck${field}.Checked = sf.boolean(${table}x.${field});
 						 #end 
 					  #if ($field.targetType.toString() == "_image")
 						if (${table}x.${field} != "")
@@ -82,24 +82,23 @@ namespace ${project}.portal.main_${table}
 							img${field}.Visible = true;
 							//img${field}.AlternateText = " " + noticiax.titulo;									
 						}
-						 #end 
-					  #if ($field.targetType.toString() == "_audio")
+					 #end 
+					 #if ($field.targetType.toString() == "_audio")
 						if (${table}x.${field} != "")
 						{
 							lab${field}.Text = ${table}x.${field};
 							lab${field}.Visible = true;
 							//img${field}.AlternateText = " " + noticiax.titulo;									
 						}
-						 #end 
-					  #if ($field.targetType.toString() == "_document")
+					 #end 
+					 #if ($field.targetType.toString() == "_document")
 						if (${table}x.${field} != "")
 						{
 							img${field}.ImageUrl = ${table}x.${field};
 							img${field}.Visible = true;
 							//img${field}.AlternateText = " " + noticiax.titulo;									
 						}
-						 #end 
-							 
+					#end 	 
 				 #end
 				#set ($count = $count + 1 )
 			 #end 

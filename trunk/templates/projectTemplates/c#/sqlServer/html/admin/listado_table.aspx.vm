@@ -1,5 +1,7 @@
- <nameFile>listado_${table}</nameFile>
+<nameFile>listado_${table}</nameFile>
 <extensionFile>aspx</extensionFile>
+<languageGenerated>c_sharp</languageGenerated>
+<description>description</description>
 <targetDirectory>${table}_dir</targetDirectory>
 <appliesToAllTables>true</appliesToAllTables>
 <%@ Page Language="C#" MasterPageFile="~/admin/master/masterAdmin.Master" AutoEventWireup="true"  CodeBehind="listado_${table}.aspx.cs" Inherits="${project}.${table}_dir.listado_${table}" Title="Página sin título" %>
@@ -71,37 +73,45 @@
                       
 				<tr>
 			 	<th></th>
-				
-									
 								
-								
-                                    #set ($count = 0)
-									#foreach( $field in $table.GetArrayOfFields )
-										#if ($field.isKey())
-										#else
-											#if ($count <2 && $count >=1)
-											 <th align="center">${field}</th>	
-					 
-											#end
-										#end
-										#set ($count = $count + 1 )
-									#end 
-									
-							#set ($count = 0)
+                            #set ($count = 0)
 							#foreach( $field in $table.GetArrayOfFields )
-								#if ($field.isKey())
-								#else
-					#if ($field.targetType.toString() == "_image")
-				 
-						 <th align="center">${field}</th>	
-					 
-					#end
-								#end
+								#if (!$field.isKey())
+								  #if ($field.targetType.toString() == "_integer")
+									 <th align="center">${field.targetName}</th>
+									 #end 
+									#if ($field.targetType.toString() == "_double")
+									 <th align="center">${field.targetName}</th>
+									 #end 
+									#if ($field.targetType.toString() == "_string")
+									 <th align="center">${field.targetName}</th>
+									 #end 
+									#if ($field.targetType.toString() == "_text")
+									 <th align="center">${field.targetName}</th>
+									 #end 
+									#if ($field.targetType.toString() == "_date")
+									 <th align="center">${field.targetName}</th>
+									 #end 
+									#if ($field.targetType.toString() == "_boolean")
+									 <th align="center">${field.targetName}</th>
+									 #end 
+									#if ($field.targetType.toString() == "_audio")
+									 <th align="center">${field.targetName}</th>
+									 #end 
+									#if ($field.targetType.toString() == "_video")
+									 <th align="center">${field.targetName}</th>
+									 #end 
+									#if ($field.targetType.toString() == "_document")
+									 <th align="center">${field.targetName}</th>
+									 #end 
+									 #if ($field.targetType.toString() == "_image")
+									 <th align="center">${field.targetName}</th>
+									 #end 	 
+								
+									
+			 					#end
 								#set ($count = $count + 1 )
-							#end			
-				
-				
- 
+							#end  
  						
 	            <th></th>
 				</tr>
@@ -115,36 +125,65 @@
                  			    <td align="center">
 									<a href="./main_${table}.aspx?id=<%#Eval("${table.getKey()}")%> " class="btn">Editar</a> 
 								</td>
-								
-								
-								
-								
-                                    #set ($count = 0)
-									#foreach( $field in $table.GetArrayOfFields )
-										#if ($field.isKey())
-										#else
-											#if ($count <2 && $count >=1)
-											<td  align="center">
-													<%#Eval("${field}")%>
-											</td>
-											#end
-										#end
-										#set ($count = $count + 1 )
-									#end 
-									
-							#set ($count = 0)
+								 #set ($count = 0)
 							#foreach( $field in $table.GetArrayOfFields )
-								#if ($field.isKey())
-								#else
-					#if ($field.targetType.toString() == "_image")
-					<td  align="center">
-						<img src="<%#Eval("${field}")%>" alt="<%#Eval("${field}")%>" width="70px" />
-					</td>
-					#end
-								#end
+								#if (!$field.isKey())
+								  #if ($field.targetType.toString() == "_integer")
+										<td  align="center">
+											<%#Eval("${field}")%>
+										</td>
+									 #end 
+									#if ($field.targetType.toString() == "_double")
+										<td  align="center">
+											<%#Eval("${field}")%>
+										</td>
+									 #end 
+									#if ($field.targetType.toString() == "_string")
+										<td  align="center">
+											<%#Eval("${field}")%>
+										</td>
+									 #end 
+									#if ($field.targetType.toString() == "_text")
+										<td  align="center">
+											<%#Eval("${field}")%>
+										</td>
+									 #end 
+									#if ($field.targetType.toString() == "_date")
+										<td  align="center">
+											<%#Eval("${field}")%>
+										</td>
+									 #end 
+									#if ($field.targetType.toString() == "_boolean")
+										<td  align="center">
+											<%#Eval("${field}")%>
+										</td>
+									 #end 
+									#if ($field.targetType.toString() == "_audio")
+										<td  align="center">
+											<%#Eval("${field}")%>
+										</td>
+									 #end 
+									#if ($field.targetType.toString() == "_video")
+										<td  align="center">
+											<%#Eval("${field}")%>
+										</td>
+									 #end 
+									#if ($field.targetType.toString() == "_document")
+										<td  align="center">
+											<%#Eval("${field}")%>
+										</td>
+									 #end 
+									 #if ($field.targetType.toString() == "_image")
+										<td  align="center">
+											<%# ((DataBinder.Eval(Container.DataItem, "image").ToString() == "") ? "" : "<a href=" + DataBinder.Eval(Container.DataItem, "image") + "><img src='" + DataBinder.Eval(Container.DataItem, "image") + "' border='0' width='70px' /></a>")%>
+										</td>
+									 #end 	 
+								
+									
+			 					#end
 								#set ($count = $count + 1 )
-							#end 	 
-					          
+							#end  
+                            					         
                                     <td align="center">
                                       <a href="./main_${table}.aspx?idb=<%#Eval("${table.getKey()}")%> " class="btn">Borrar</a> 
  

@@ -35,7 +35,7 @@
 			  
 			  <h3 class="tipo1">Atajos de teclado</h3>
 			  <p>La mayor&iacute;a de los navegadores soportan ir directamente a enlaces espec&iacute;ficos pulsando determinadas combinaciones de teclas (teclas de acceso) definidas en el sitio web. <br /><br />Por ejemplo, en Windows funciona pulsando <kbd>ALT</kbd> + <kbd>Tecla de acceso</kbd> (en Internet Explorer hay que pulsar adem&aacute;s la tecla <kbd>intro</kbd>) en Macintosh, funciona pulsando <kbd>CTRL</kbd> + <kbd>Tecla de acceso</kbd>.</p>
-			  <p>En&nbsp;<a href="http://www.mayoresudp.org/">www.mayoresudp.org</a> est&aacute;n disponibles las siguientes teclas de acceso:</p>
+			  <p>En&nbsp;<a href="http://www.jule.org/">www.jule.org</a> est&aacute;n disponibles las siguientes teclas de acceso:</p>
 			  
 			  <ul class="listagenerica">
 			  <li><kbd>0</kbd> Accesibilidad</li><li><kbd>1</kbd> P&aacute;gina de Inicio</li><li><kbd>2</kbd> Saltar men&uacute; de navegaci&oacute;n</li><li><kbd>3</kbd>&nbsp;Mapa Web</li> <li><kbd>8</kbd> Responsable web</li><li><kbd>9</kbd> Contacto</li>
