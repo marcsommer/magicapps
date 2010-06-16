@@ -212,7 +212,27 @@ namespace ${project}.${table}_dir {
  #end
 #end 
 
+#foreach( $relation in $project.getRelations() )
+ 	 #* only if has a relation and its the child table.. *#
+	#if ($relation.childTable.equals(${table.name}))	
+	
+		#foreach( $tablaPadre in $project.getTables() )
+			#if ($relation.parentTable.equals(${tablaPadre.name}))
+				/// <summary>
+				/// Control Repeater${tablaPadre.name}.
+				/// </summary>
+				/// <remarks>
+				/// Campo generado automáticamente.
+				/// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+				/// </remarks>
+				protected global::System.Web.UI.WebControls.Repeater Repeater${tablaPadre.name};
+						
+			#end
+		#end
+		
+	#end
 
+#end 
  
 
 

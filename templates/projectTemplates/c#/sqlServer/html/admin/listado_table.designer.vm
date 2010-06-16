@@ -90,17 +90,8 @@ namespace ${project}.${table}_dir {
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater Repeater1;
-       		#foreach( $relation in $table.getRelations() )
-			#if ($relation.ParentTable() == "categorias"+ $relation.ChildTable())		 
-        /// <summary>
-        /// Control Repeater1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater2;
-						#end			
-				#end 	
+        
+        
+       			
     }
 }
