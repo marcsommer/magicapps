@@ -132,8 +132,8 @@ public partial class masterDetail_${table} : System.Web.UI.Page
 				List<${tablaPadre.name}> lista = new List<${tablaPadre.name}>();
 				lista = ${tablaPadre.name}.getList();
      
-				Repeater1.DataSource = lista;
-				Repeater1.DataBind(); 
+				Repeater${tablaPadre.name}.DataSource = lista;
+				Repeater${tablaPadre.name}.DataBind(); 
 							
 			#end
 		#end
