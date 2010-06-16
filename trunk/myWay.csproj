@@ -629,7 +629,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="cheatSheet.txt" />
     <Content Include="classes\cakePhpValidation.txt" />
     <EmbeddedResource Include="modifyProject.resx">
       <DependentUpon>modifyProject.cs</DependentUpon>
@@ -653,6 +652,7 @@
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqIzq_menuH.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="cheatSheet.vm" />
     <None Include="templates\projectTemplates\c#\mysqlLuis\html\bin\MySql.Data.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
