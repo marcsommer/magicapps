@@ -36,7 +36,7 @@ public static class ctes
     {
         if (ErroresDireccionCorreoDestino == null)
         {
-            mostrarErrores = sf.Bool(System.Web.Configuration.WebConfigurationManager.AppSettings["mostrarErrores"]);
+            mostrarErrores = sf.boolean(System.Web.Configuration.WebConfigurationManager.AppSettings["mostrarErrores"]);
             ErroresDireccionCorreoDestino = System.Web.Configuration.WebConfigurationManager.AppSettings["ErroresDireccionCorreoDestino"];
             ErroresDireccionCorreoRemitente = System.Web.Configuration.WebConfigurationManager.AppSettings["ErroresDireccionCorreoRemitente"];
             ErroresServidorSmtp = System.Web.Configuration.WebConfigurationManager.AppSettings["ErroresServidorSmtp"];

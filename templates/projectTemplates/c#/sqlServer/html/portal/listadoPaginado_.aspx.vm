@@ -19,7 +19,7 @@
 					<ul class="list${table}">
 					  <asp:Repeater ID="Repeater1" runat="server">
                          <ItemTemplate>
-                          <li>  <a  class="asoc" href="ficha_${table}.aspx?id=<%#Eval("${table.getKey()}")%>"><%#Eval("${table.getKey()}")%></a></li>
+                          <li>  <a  class="asoc" href="ficha_${table}.aspx?id=<%#Eval("${table.getKey()}")%>"><%#Eval("${table.fieldDescription()}")%></a></li>
                           #set ($count = 0)
 						#foreach( $field in $table.GetArrayOfFields )
 						  #if (!$field.isKey())     

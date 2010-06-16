@@ -55,7 +55,7 @@ class dbMySql
 
                 System.Data.DataTable dt=new System.Data.DataTable();
                 dt = conexion.GetSchema("Tables", new String[] { null, database, null, null });
-               
+              
 
                 foreach (System.Data.DataRow rowDatabase in dt.Rows)
                 {
@@ -205,7 +205,7 @@ class dbMySql
                     fi.targetType = fi.type;
 
 
-                    fi.allowNulls = sf.Bool(row["IS_NULLABLE"]);
+                    fi.allowNulls = sf.boolean(row["IS_NULLABLE"]);
                     fi.size = sf.entero(row["CHARACTER_MAXIMUM_LENGTH"]);
                     //     fi.comment = sf.Cadena(tbl.Rows(i)!COLUMN_COMMENT);
                     fi.defaultValue = sf.cadena(row["COLUMN_DEFAULT"]);
@@ -225,8 +225,8 @@ class dbMySql
 
                     //}
 
-                    //fi.autoNumber = sf.Bool(row["COLUMN_KEY"]);
-                    //   fi.isKey = sf.Bool(row["COLUMN_KEY"]);
+                    //fi.autoNumber = sf.boolean(row["COLUMN_KEY"]);
+                    //   fi.isKey = sf.boolean(row["COLUMN_KEY"]);
                     fi.decimals = sf.entero(row["NUMERIC_PRECISION"]);
 
                     // // Retrieve the column's default value.
@@ -249,9 +249,9 @@ class dbMySql
 
                     //fi.size = sf.Entero(tbl.Rows(i)!CHARACTER_MAXIMUM_LENGTH)
                     //     fi.comment = sf.Cadena(tbl.Rows(i)!COLUMN_COMMENT)
-                    //fi.allowNulls = sf.Bool(row["IS_NULLABLE"]);//tbl.Rows(i)!IS_NULLABLE)
+                    //fi.allowNulls = sf.boolean(row["IS_NULLABLE"]);//tbl.Rows(i)!IS_NULLABLE)
                     //     fi.defaultValue = sf.Cadena(tbl.Rows(i)!COLUMN_DEFAULT)
-                    //     fi.autoNumber = sf.Bool(tbl.Rows(i)!COLUMN_KEY)
+                    //     fi.autoNumber = sf.boolean(tbl.Rows(i)!COLUMN_KEY)
                     //     fi.decimals = sf.Entero(tbl.Rows(i)!NUMERIC_PRECISION)
                     
                     lista.Add(fi);
@@ -300,7 +300,7 @@ class dbMySql
                     String campo = sf.cadena(dr["COLUMN_NAME"]);
                     String comentario = sf.cadena(dr["COLUMN_COMMENT"]);
                     String defecto = sf.cadena(dr["COLUMN_DEFAULT"]);
-                    bool isNullable = sf.Bool(dr["is_nullable"]);
+                    bool isNullable = sf.boolean(dr["is_nullable"]);
                     int maximumLength = sf.entero(dr["character_maximum_length"]);
 
                     switch (tipo)

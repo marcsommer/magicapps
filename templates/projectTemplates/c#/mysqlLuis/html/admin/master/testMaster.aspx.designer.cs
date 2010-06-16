@@ -12,5 +12,14 @@ namespace juleweb.admin.master {
     
     
     public partial class testMaster {
+        
+        /// <summary>
+        /// Control nbDemo4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::eWorld.UI.NumericBox nbDemo4;
     }
 }

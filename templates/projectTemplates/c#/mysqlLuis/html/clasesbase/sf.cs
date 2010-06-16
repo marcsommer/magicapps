@@ -221,7 +221,7 @@ public class sf
 
     public static double doble(object valor)
     {
-        return Math.Round(System.Convert.ToDouble(valor),2);
+        return Math.Round(System.Convert.ToDouble(valor),4);
     }
 
     #endregion
@@ -838,7 +838,7 @@ public class sf
 
     #region "boolean"
 
-    public static bool Bool(string valor)
+    public static bool boolean(string valor)
     {
 
         bool reto = false;
@@ -849,7 +849,7 @@ public class sf
 
     }
 
-    public static bool Bool(int valor)
+    public static bool boolean(int valor)
     {
 
         try
@@ -868,7 +868,7 @@ public class sf
 
     }
 
-    public static bool Bool(System.DBNull valor)
+    public static bool boolean(System.DBNull valor)
     {
 
         try
@@ -887,14 +887,14 @@ public class sf
 
     }
 
-    public static bool Bool(bool valor)
+    public static bool boolean(bool valor)
     {
 
         return valor;
 
     }
 
-    public static bool Bool(object valor)
+    public static bool boolean(object valor)
     {
 
         try
@@ -992,7 +992,7 @@ public class sf
     // to convert dates to mysql
     public static String cadenaMySql(DateTime date)
     {
-        if (date == null)
+        if (date == null || !esFecha(date))
         {
             return "NULL";
         }
@@ -1076,7 +1076,7 @@ public class sf
     // to convert dates to mysql
     public static String cadenaSqlServer(DateTime date)
     {
-        if (date == null)
+        if (date == null || !esFecha(date))
         {
             return "NULL";
         }

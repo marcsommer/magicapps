@@ -197,6 +197,14 @@ public class project : ISerializable
         set { _tableSelected = value; }
     }
 
+    // le decimos al serializer que lo ignore o nos duplica los campos...
+    [System.Xml.Serialization.XmlIgnore]
+    public ArrayList getRelations
+    {
+        get { return relations; }
+        set { relations = value; }
+    }
+
     #endregion
 
 

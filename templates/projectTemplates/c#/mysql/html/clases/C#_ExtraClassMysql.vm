@@ -49,7 +49,7 @@ public partial class ${table}
 	     pp.${field} = sf.fecha(reg["${field}"].ToString());
 	     #end 
 	  #if ($field.type.toString() == "_boolean")
-	     pp.${field} = sf.Bool(reg["${field}"].ToString());
+	     pp.${field} = sf.boolean(reg["${field}"].ToString());
 	     #end 		  
 #end 
                lista${table}.Add(pp);
@@ -134,7 +134,7 @@ public partial class ${table}
 		     pp.${field} = sf.fecha(reg["${field}"].ToString());
 		     #end 
 		  #if ($field.type.toString() == "_boolean")
-		     pp.${field} = sf.Bool(reg["${field}"].ToString());
+		     pp.${field} = sf.boolean(reg["${field}"].ToString());
 		     #end 
 #end 
                lista${table}.Add(pp);

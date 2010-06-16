@@ -150,7 +150,7 @@
         System.Data.Odbc.OdbcDataReader reg;
         try
         {
-        sqlt.Append( " insert into ${table} ( ${table.getListOfFieldsWithoutKeys("")} )"); 
+        sqlt.Append( " insert into ${table} ( ${table.getListOfFieldsWithoutKeys(",")} )"); 
         sqlt.Append( "  values (");
 			#set ($count = 0)	
 			#foreach( $field in $table.GetArrayOfFields ) 
@@ -228,7 +228,7 @@
 		     pp.${field} = sf.fecha(reg["${field}"].ToString());
 		     #end
 		  #if ($field.type.toString() == "_boolean")
-		     pp.${field} = sf.Bool(reg["${field}"].ToString());
+		     pp.${field} = sf.boolean(reg["${field}"].ToString());
 		     #end
 		  
 #end
@@ -307,7 +307,7 @@
 		     pp.${field} = sf.fecha(reg["${field}"].ToString());
 		     #end
 		  #if ($field.type.toString() == "_boolean")
-		     pp.${field} = sf.Bool(reg["${field}"].ToString());
+		     pp.${field} = sf.boolean(reg["${field}"].ToString());
 		     #end
 		  
 #end
@@ -380,7 +380,7 @@
                                     obj${table}.${field} = sf.fecha(reg["${field}"].ToString());
                                      #end
                                   #if ($field.type.toString() == "_boolean")
-                                     obj${table}.${field} = sf.Bool(reg["${field}"].ToString());
+                                     obj${table}.${field} = sf.boolean(reg["${field}"].ToString());
                                      #end
                                
                 #end		 
@@ -429,7 +429,7 @@
 						  #set ($count = $count + 1 ) 
 						 #end
 					  #if ($field.type.toString() == "_boolean")
-						 sqlt.Append(" ${field}=" + sf.Bool(obj${table}.${field}) + "', ");
+						 sqlt.Append(" ${field}=" + sf.boolean(obj${table}.${field}) + "', ");
 						 #set ($count = $count + 1 ) 
 						 #end
 					  
@@ -484,7 +484,7 @@
 						  #set ($count = $count + 1 ) 
 						 #end
 					  #if ($field.type.toString() == "_boolean")
-						sqlt.Append(" ${field}=" + sf.Bool(this.${field}) );
+						sqlt.Append(" ${field}=" + sf.boolean(this.${field}) );
 						#set ($count = $count + 1 ) 
 						 #end
 					 
@@ -632,7 +632,7 @@
 								 this.${field} = sf.fecha(reg["${field}"].ToString());
 								 #end
 							  #if ($field.type.toString() == "_boolean")
-								 this.${field} = sf.Bool(reg["${field}"]);
+								 this.${field} = sf.boolean(reg["${field}"]);
 								 #end
 							 
                 #end
@@ -692,7 +692,7 @@
                                     obj${table}.${field} = sf.fecha(reg["${field}"].ToString());
                                      #end
                                   #if ($field.type.toString() == "_boolean")
-                                     obj${table}.${field} = sf.Bool(reg["${field}"].ToString());
+                                     obj${table}.${field} = sf.boolean(reg["${field}"].ToString());
                                      #end
                                 
 

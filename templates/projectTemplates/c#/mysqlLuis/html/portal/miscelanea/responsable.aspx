@@ -23,13 +23,13 @@
         </div>
         Tfno: 91 542 02 67
         <br />
-        email:<a href="mailto:informacion@mayoresudp.net">informacion@mayoresudp.net</a>
+        email:<a href="mailto:informacion@jule.org">informacion@jule.org</a>
         <br />        <br />        <br />
         <div class="titulo">
             POLITICA DE PROTECCI&Oacute;N DE DATOS
         </div>
         <p>
-            <a href="mailto:informacion@mayoresudp.net">informacion@mayoresudp.net</a> salvaguarda
+            <a href="mailto:informacion@jule.org">informacion@jule.org</a> salvaguarda
             los derechos de sus usuarios en el &aacute;mbito de su protecci&oacute;n de datos
             en la Red, cumpliendo estrictamente la normativa aplicable y, en especial, lo dispuesto
             en la Ley Org&aacute;nica 15/1999, de 13 de Diciembre, de Protecci&oacute;n de Datos
@@ -37,7 +37,7 @@
         </p>
         <br />
         <p>
-            <a href="mailto:informacion@mayoresudp.net">informacion@mayoresudp.net</a> cumple
+            <a href="mailto:informacion@jule.org">informacion@jule.org</a> cumple
             estrictamente los procedimientos de garant&iacute;a y salvaguarda de la confidencialidad
             de los datos personales que le conf&iacute;an sus usuarios. Micasoft se compromete
             a guardar secreto sobre los datos de car&aacute;cter personal que el usuario ha
@@ -51,17 +51,17 @@
        
         <br />
         <p>
-            <a href="mailto:informacion@mayoresudp.net">informacion@mayoresudp.net</a> posibilita
+            <a href="mailto:informacion@jule.org">informacion@jule.org</a> posibilita
             al usuario el ejercicio de los derechos de acceso, rectificaci&oacute;n, oposici&oacute;n
             y cancelaci&oacute;n de los datos personales recogidos por la empresa, seg&uacute;n
             contemplan los art&iacute;culos 15, 16 y 17 de la Ley 15/1999. Estos derechos pueden
             ser ejercidos por el usuario, o quien lo represente, debidamente acreditado, bien
-            mediante solicitud escrita y firmada, dirigida al domicilio social de <a href="mailto:informacion@mayoresudp.net">
-                informacion@mayoresudp.net</a> , a la atenci&oacute;n del Responsable de Seguridad,
+            mediante solicitud escrita y firmada, dirigida al domicilio social de <a href="mailto:informacion@jule.org">
+                informacion@jule.org</a> , a la atenci&oacute;n del Responsable de Seguridad,
             conteniendo los datos de identificaci&oacute;n y domicilio del usuario para el env&iacute;o
             de notificaciones, as&iacute; como fotocopia del documento nacional de identidad
             o pasaporte, o bien mediante el env&iacute;o del correspondiente formulario habilitado
-            para tal efecto a la cuenta de correo: <a href="mailto:informacion@mayoresudp.net">informacion@mayoresudp.net</a>
+            para tal efecto a la cuenta de correo: <a href="mailto:informacion@jule.org">informacion@jule.org</a>
         </p>
          <br /> <br /> <br />
         <!-- fin parte inferior -->

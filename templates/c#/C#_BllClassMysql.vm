@@ -56,7 +56,7 @@ public partial class ${table}
 								 new${table}.${field} = sf.fecha(row["${field}"]);
 								 #end
 							  #if ($field.type.toString() == "_boolean")
-								 new${table}.${field} = sf.bool(row["${field}"]);
+								 new${table}.${field} = sf.boolean(row["${field}"]);
 								 #end
 						 
 				#end
@@ -92,7 +92,7 @@ public partial class ${table}
         try
         {
             sql.Append(" select "); 
-            sql.Append(" ${table.getListOfFieldsWithoutKeys("")} ");
+            sql.Append(" ${table.getListOfFieldsWithoutKeys(",")} ");
             
             sql.Append(" from ${table} ");
             sql.Append(" where  ${table.getKey()}=");
@@ -117,7 +117,7 @@ public partial class ${table}
 								 new${table}.${field} = sf.fecha(reg["${field}"]);
 								 #end
 							  #if ($field.type.toString() == "_boolean")
-								 new${table}.${field} = sf.bool(reg["${field}"]);
+								 new${table}.${field} = sf.boolean(reg["${field}"]);
 								 #end
 							  
 				#end
@@ -183,7 +183,7 @@ public static bool UpdateBll(${table} obj${table})
 					  sqlt.Append(" ${field}='" + sf.fechaIso(obj${table}.${field}) + "', " );
 					 #end
 				  #if ($field.type.toString() == "_boolean")
-					 sqlt.Append(" ${field}=" + sf.Bool(obj${table}.${field}) + "', ");
+					 sqlt.Append(" ${field}=" + sf.boolean(obj${table}.${field}) + "', ");
 					 #end
 				   		 
 		 #set ($count = $count + 1 ) 
@@ -323,7 +323,7 @@ public static bool UpdateBll(${table} obj${table})
 		     pp.${field} = sf.fecha(reg["${field}"].ToString());
 		     #end 
 		  #if ($field.type.toString() == "_boolean")
-		     pp.${field} = sf.Bool(reg["${field}"].ToString());
+		     pp.${field} = sf.boolean(reg["${field}"].ToString());
 		     #end 
 #end 
                lista${table}.Add(pp);

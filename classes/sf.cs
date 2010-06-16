@@ -227,9 +227,10 @@ public class sf
     {
         return System.Convert.ToDouble(valor);
     }
+   
     public static double doble(object valor)
     {
-        return System.Convert.ToDouble(valor);
+        return Math.Round(System.Convert.ToDouble(valor), 4);
     }
 
 
@@ -827,7 +828,7 @@ public class sf
 
     #region "boolean"
 
-    public static bool Bool(string valor)
+    public static bool boolean(string valor)
     {
 
         bool reto = false;
@@ -848,7 +849,7 @@ public class sf
     }
 
 
-    public static bool Bool(int valor)
+    public static bool boolean(int valor)
     {
 
         try
@@ -867,7 +868,7 @@ public class sf
 
     }
 
-    public static bool Bool(System.DBNull valor)
+    public static bool boolean(System.DBNull valor)
     {
 
         try
@@ -886,14 +887,14 @@ public class sf
 
     }
 
-    public static bool Bool(bool valor)
+    public static bool boolean(bool valor)
     {
 
         return valor;
 
     }
 
-    public static bool Bool(object valor)
+    public static bool boolean(object valor)
     {
 
         try

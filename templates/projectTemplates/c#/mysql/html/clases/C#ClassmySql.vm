@@ -248,7 +248,7 @@
 		     pp.${field} = sf.fecha(reg["${field}"].ToString());
 		     #end 
 		  #if ($field.type.toString() == "_boolean")
-		     pp.${field} = sf.Bool(reg["${field}"].ToString());
+		     pp.${field} = sf.boolean(reg["${field}"].ToString());
 		     #end 
 		   
 #end 
@@ -323,7 +323,7 @@
 		     pp.${field} = sf.fecha(reg["${field}"].ToString());
 		     #end 
 		  #if ($field.type.toString() == "_boolean")
-		     pp.${field} = sf.Bool(reg["${field}"].ToString());
+		     pp.${field} = sf.boolean(reg["${field}"].ToString());
 		     #end 
 		  
 #end 
@@ -399,7 +399,7 @@
                                     obj${table}.${field} = sf.fecha(reg["${field}"].ToString());
                                      #end 
                                   #if ($field.type.toString() == "_boolean")
-                                     obj${table}.${field} = sf.Bool(reg["${field}"].ToString());
+                                     obj${table}.${field} = sf.boolean(reg["${field}"].ToString());
                                      #end 
                                    
                 #end 		 
@@ -657,7 +657,7 @@
 						 this.${field} = sf.fecha(reg["${field}"].ToString());
 						 #end 
 					  #if ($field.type.toString() == "_boolean")
-						 this.${field} = sf.Bool(reg["${field}"]);
+						 this.${field} = sf.boolean(reg["${field}"]);
 						 #end 
                 #end            
                }
@@ -714,7 +714,7 @@
 	     pp.${field} = sf.fecha(reg["${field}"].ToString());
 	     #end 
 	  #if ($field.type.toString() == "_boolean")
-	     pp.${field} = sf.Bool(reg["${field}"].ToString());
+	     pp.${field} = sf.boolean(reg["${field}"].ToString());
 	     #end 	   
 #end 
                lista${table}.Add(pp);

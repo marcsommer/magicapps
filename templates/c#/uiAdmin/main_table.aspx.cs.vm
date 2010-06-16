@@ -85,7 +85,7 @@ namespace ${project}.${table}_dir
 								 txt${field}.Text = sf.cadena(${table}x.${field});
 								 #end
 							  #if ($field.type.toString() == "_boolean")
-								 ck${field}.Checked = sf.Bool(${table}x.${field});
+								 ck${field}.Checked = sf.boolean(${table}x.${field});
 								 #end
 							  #if ($field.type.toString() == "_image")
 								if (${table}x.${field} != "")
@@ -157,7 +157,7 @@ namespace ${project}.${table}_dir
                                    ${table}x.${field}=sf.fecha(txt${field}.Text) ;
                                      #end
                                   #if ($field.type.toString() == "_boolean")
-                                     ${table}x.${field}=sf.Bool(ck${field}.Checked) ;
+                                     ${table}x.${field}=sf.boolean(ck${field}.Checked) ;
                                      #end
                                   #if ($field.type.toString() == "_image")
                                      if (Upload${field}.PostedFile == null) { }
@@ -259,10 +259,10 @@ namespace ${project}.${table}_dir
                                    ${table}x.${field}=sf.fecha(txt${field}.Text);
                                      #end
                                   #if ($field.type.toString() == "_boolean")
-                                     ${table}x.${field}=sf.Bool(ck${field}.Text) ;
+                                     ${table}x.${field}=sf.boolean(ck${field}.Text) ;
                                      #end
                                   <#case "_imagen">
-                                     ${table}x.${field}=sf.Bool(ck${field}.Text) ;
+                                     ${table}x.${field}=sf.boolean(ck${field}.Text) ;
                                      #end
                                    
                     #end

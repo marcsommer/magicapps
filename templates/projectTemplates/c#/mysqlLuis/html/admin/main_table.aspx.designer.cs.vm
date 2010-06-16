@@ -64,7 +64,18 @@ namespace ${project}.${table}_dir {
 
                 
                  #end 
-              #if ($field.targetType.toString() == "_string")
+              #if ($field.targetType.toString() == "_double")
+                  /// <summary>
+					/// Control txt${field}.
+					/// </summary>
+					/// <remarks>
+					/// Campo generado automáticamente.
+					/// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+					/// </remarks>
+					protected global::eWorld.UI.NumericBox txt${field};
+
+                 #end  
+                 #if ($field.targetType.toString() == "_string")
                    /// <summary>
                     /// Control txt${field}.
                     /// </summary>

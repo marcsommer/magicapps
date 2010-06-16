@@ -1,23 +1,19 @@
- 
 #* 
 	comments: 
 	
 	Author: Luis Molina
 *#  
- 
 <nameFile>${table}</nameFile>
 <extensionFile>cs</extensionFile>
 <languageGenerated>c_sharp</languageGenerated>
 <description>description</description>
 <targetDirectory></targetDirectory>
 <appliesToAllTables>true</appliesToAllTables>
-
-
-	using System;
-	using System.Collections;
-    using System.Web;
-    using System.Collections.Generic;
-    using System.ComponentModel; 
+using System;
+using System.Collections;
+using System.Web;
+using System.Collections.Generic;
+using System.ComponentModel; 
     
     
 public partial class ${table} 
@@ -26,25 +22,36 @@ public partial class ${table}
 		 
 		 
 	#foreach( $field in $table.getFields )
-		
-		 
-		 
-			  #if ($field.type.toString() == "_integer")
-			     private int _${field};
-			     #end 
-			  #if ($field.type.toString() == "_string")
-			     private string _${field};
-			     #end 
-			  #if ($field.type.toString() == "_date")
-			     private DateTime _${field};
-			     #end 
-			  #if ($field.type.toString() == "_boolean")
-			     private bool _${field};
-			     #end 
-			 #if ($field.type.toString() == "_double")
-			     private double _${field};
-			     #end 
- 	 
+		#if ($field.type.toString() == "_integer")
+		 private int _${field};
+		 #end 
+		#if ($field.type.toString() == "_double")
+		 private double _${field};
+		 #end 
+		#if ($field.type.toString() == "_string")
+		 private string _${field};
+		 #end 
+		#if ($field.type.toString() == "_text")
+		 private string _${field};
+		 #end 
+		#if ($field.type.toString() == "_date")
+		 private DateTime _${field};
+		 #end 
+		#if ($field.type.toString() == "_boolean")
+		 private bool _${field};
+		 #end 
+		#if ($field.type.toString() == "_audio")
+		 private string _${field};
+		 #end 
+		#if ($field.type.toString() == "_video")
+		 private string _${field};
+		 #end 
+		#if ($field.type.toString() == "_document")
+		 private string _${field};
+		 #end 
+		 #if ($field.type.toString() == "_image")
+		 private string _${field};
+		 #end 
 	#end 
 	
 	#endregion
@@ -60,43 +67,69 @@ public partial class ${table}
         #end
 		 
 		 
-			  #if ($field.type.toString() == "_integer")
-			      public int ${field}
-		                {
-			                get {return _${field};}
-			                set {_${field} = value;}
-		                }
-			     #end 
-			  #if ($field.type.toString() == "_string")
-			      public string ${field}
-		                {
-			                get {return _${field};}
-			                set {_${field} = value;}			                
-		                }
-			     #end 
-			  #if ($field.type.toString() == "_date")
-			       public DateTime ${field}
-		                {
-			                get {return _${field};}
-			                set {_${field} = value;}
-		                }
-			     #end 
-			  #if ($field.type.toString() == "_boolean")
-				  public bool ${field}
-						{
-							get {return _${field};}
-							set {_${field} = value;}			                
-						}
-			     #end 
-			  #if ($field.type.toString() == "_double")
-				  public double ${field}
-						{
-							get {return _${field};}
-							set {_${field} = value;}			                
-						}
-			     #end 
-			
-		  
+		  #if ($field.type.toString() == "_integer")
+			  public int ${field}
+					{
+						get {return _${field};}
+						set {_${field} = value;}
+					}
+			 #end 
+		  #if ($field.type.toString() == "_double")
+		  public double ${field}
+				{
+					get {return _${field};}
+					set {_${field} = value;}			                
+				}
+		 #end 
+		  #if ($field.type.toString() == "_string")
+			  public string ${field}
+					{
+						get {return _${field};}
+						set {_${field} = value;}			                
+					}
+			 #end 
+		  #if ($field.type.toString() == "_date")
+			   public DateTime ${field}
+					{
+						get {return _${field};}
+						set {_${field} = value;}
+					}
+			 #end 
+		  #if ($field.type.toString() == "_boolean")
+			  public bool ${field}
+					{
+						get {return _${field};}
+						set {_${field} = value;}			                
+					}
+			 #end 
+		  #if ($field.type.toString() == "_audio")
+			  public string ${field}
+					{
+						get {return _${field};}
+						set {_${field} = value;}			                
+					}
+			 #end 
+			  #if ($field.type.toString() == "_video")
+			  public string ${field}
+					{
+						get {return _${field};}
+						set {_${field} = value;}			                
+					}
+			 #end 
+			  #if ($field.type.toString() == "_document")
+			  public string ${field}
+					{
+						get {return _${field};}
+						set {_${field} = value;}			                
+					}
+			 #end 
+			  #if ($field.type.toString() == "_image")
+			  public string ${field}
+					{
+						get {return _${field};}
+						set {_${field} = value;}			                
+					}
+			 #end 
 		
 	#end 	
 	
@@ -169,31 +202,29 @@ public partial class ${table}
         System.Data.SqlClient.SqlDataReader reg;
         try
         {
-        sql= @" insert into ${table} ( ${table.getListOfFieldsWithoutKeys("")} )  
+        sql= @" insert into ${table} ( ${table.getListOfFieldsWithoutKeys(",")} )  
                  values (
 			#set ($count = 0)	
 			#foreach( $field in $table.getFields ) 
 				#if (!$field.isKey())
-					 
-					 
-							  #if ($field.type.toString() == "_integer")
-			 					  " + sf.cadenaSqlServer(obj${table}.${field}) + @" <#if ($table.getFields.count -  $count  != 1)>, #end   
-								 #end 
-							  #if ($field.type.toString() == "_string")
-								   " + sf.cadenaSqlServer(obj${table}.${field}) + @" <#if ($table.getFields.count -  $count  != 1)>, #end   
-								 #end 
-							  #if ($field.type.toString() == "_date")
-								   " + sf.cadenaSqlServer(obj${table}.${field}) + @" <#if ($table.getFields.count -  $count  != 1)>, #end    
-								 #end 
-							  #if ($field.type.toString() == "_boolean")
-								  " + sf.cadenaSqlServer(obj${table}.${field})  + @" <#if ($table.getFields.count -  $count  != 1)>, #end  
-								 #end 
-							  #if ($field.type.toString() == "_double")
-								   " + sf.cadenaSqlServer(obj${table}.${field})  + @" <#if ($table.getFields.count -  $count  != 1)>, #end  
-								 #end 
-							  
+					#if ($field.type.toString() == "_integer")
+					" + sf.cadenaSqlServer(obj${table}.${field}) + @" #if ($table.getFields.count -  $count  != 1), #end   
+					#end 
+					#if ($field.type.toString() == "_string")
+					" + sf.cadenaSqlServer(obj${table}.${field}) + @" #if ($table.getFields.count -  $count  != 1), #end   
+					#end 
+					#if ($field.type.toString() == "_date")
+					" + sf.cadenaSqlServer(obj${table}.${field}) + @" #if ($table.getFields.count -  $count  != 1), #end    
+					#end 
+					#if ($field.type.toString() == "_boolean")
+					" + sf.cadenaSqlServer(obj${table}.${field})  + @" #if ($table.getFields.count -  $count  != 1), #end  
+					#end 
+					#if ($field.type.toString() == "_double")
+					" + sf.cadenaSqlServer(obj${table}.${field})  + @" #if ($table.getFields.count -  $count  != 1), #end  
+					#end 							  
 				#end
 			 #set ($count = $count + 1 )
+			 
 			#end 	 
 			  )" ;
 

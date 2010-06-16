@@ -221,7 +221,7 @@ public class sf
 
     public static double doble(object valor)
     {
-        return Math.Round(System.Convert.ToDouble(valor),2);
+        return Math.Round(System.Convert.ToDouble(valor),4);
     }
 
     #endregion
@@ -992,7 +992,7 @@ public class sf
     // to convert dates to mysql
     public static String cadenaMySql(DateTime date)
     {
-        if (date == null)
+        if (date == null || !esFecha(date))
         {
             return "NULL";
         }
@@ -1076,7 +1076,7 @@ public class sf
     // to convert dates to mysql
     public static String cadenaSqlServer(DateTime date)
     {
-        if (date == null)
+        if (date == null || !esFecha(date))
         {
             return "NULL";
         }

@@ -64,23 +64,23 @@
                     </label>
 		</div>
         #end
-        #if ($field.targetType.toString() == "_integer")
+		#if ($field.targetType.toString() == "_text")
+			<div class="lineaForm">
+			   <label for="${field}">
+					<span class="etiqueta">${field.targetName()}: </span>
+					   <FTB:FreeTextBox ID="txt${field}" runat="server" Language="es-ES">
+					   </FTB:FreeTextBox>						                       
+				</label>
+			</div>		
+		#end 
+		#if ($field.targetType.toString() == "_double")
 				<div class="lineaForm">
                    <label for="${field}">
                         <span class="etiqueta">${field.targetName()}: </span>
-						  <asp:TextBox ID="txt${field}" CssClass="textoLargo" runat="server"></asp:TextBox>				                       
+						 	<ew:NumericBox runat="server" id="txt${field}" DecimalPlaces="4" AutoFormatCurrency="True"  BackColor="#FFFFCC" DecimalSign="," GroupingSeparator="." DollarSign=" " />  
                     </label>
 				</div>		
         #end 		
-        #if ($field.targetType.toString() == "_text")
-				<div class="lineaForm">
-                   <label for="${field}">
-                        <span class="etiqueta">${field.targetName()}: </span>
-						   <FTB:FreeTextBox ID="txt${field}" runat="server" Language="es-ES">
-						   </FTB:FreeTextBox>						                       
-                    </label>
-				</div>		
-        #end 
         #if ($field.targetType.toString() == "_date")
 			  	<div class="lineaForm">
 					<label for="${field}">

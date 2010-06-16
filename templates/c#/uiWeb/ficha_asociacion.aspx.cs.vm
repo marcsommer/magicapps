@@ -75,7 +75,7 @@ namespace ${project}.${table}_dir
 								 lab${field}.Text = sf.cadena(${table}x.${field});
 								 #end
 							  #if ($field.type.toString() == "_boolean")
-								 ck${field}.Checked = sf.Bool(${table}x.${field});
+								 ck${field}.Checked = sf.boolean(${table}x.${field});
 								 #end
 							  #if ($field.type.toString() == "_image")
 								if (${table}x.${field} != "")

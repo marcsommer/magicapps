@@ -215,14 +215,14 @@ class dbSql2005
 
 
 
-                    fi.allowNulls = sf.Bool(row["IS_NULLABLE"]);
+                    fi.allowNulls = sf.boolean(row["IS_NULLABLE"]);
                     fi.size = sf.entero(row["CHARACTER_MAXIMUM_LENGTH"]);
                     //     fi.comment = sf.Cadena(tbl.Rows(i)!COLUMN_COMMENT);
                     fi.defaultValue = sf.cadena(row["COLUMN_DEFAULT"]);
 
 
-                    //fi.autoNumber = sf.Bool(row["COLUMN_KEY"]);
-                    //   fi.isKey = sf.Bool(row["COLUMN_KEY"]);
+                    //fi.autoNumber = sf.boolean(row["COLUMN_KEY"]);
+                    //   fi.isKey = sf.boolean(row["COLUMN_KEY"]);
                     fi.decimals = sf.entero(row["NUMERIC_PRECISION"]);
 
                     // // Retrieve the column's default value.
@@ -245,9 +245,9 @@ class dbSql2005
 
                     //fi.size = sf.Entero(tbl.Rows(i)!CHARACTER_MAXIMUM_LENGTH)
                     //     fi.comment = sf.Cadena(tbl.Rows(i)!COLUMN_COMMENT)
-                    //fi.allowNulls = sf.Bool(row["IS_NULLABLE"]);//tbl.Rows(i)!IS_NULLABLE)
+                    //fi.allowNulls = sf.boolean(row["IS_NULLABLE"]);//tbl.Rows(i)!IS_NULLABLE)
                     //     fi.defaultValue = sf.Cadena(tbl.Rows(i)!COLUMN_DEFAULT)
-                    //     fi.autoNumber = sf.Bool(tbl.Rows(i)!COLUMN_KEY)
+                    //     fi.autoNumber = sf.boolean(tbl.Rows(i)!COLUMN_KEY)
                     //     fi.decimals = sf.Entero(tbl.Rows(i)!NUMERIC_PRECISION)
 
 

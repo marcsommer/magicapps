@@ -51,6 +51,16 @@ namespace ${project}.portal.main_${table} {
 				protected global::System.Web.UI.WebControls.Label lab${field};       
                 
                  #end 
+              #if ($field.targetType.toString() == "_double")
+                   /// <summary>
+                    /// Control lab${field}.
+                    /// </summary>
+                    /// <remarks>
+                    /// Campo generado automaticamente.
+                    /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+                    /// </remarks>
+                    protected global::System.Web.UI.WebControls.Label lab${field};
+                 #end 
               #if ($field.targetType.toString() == "_string")
                    /// <summary>
                     /// Control lab${field}.
@@ -61,7 +71,7 @@ namespace ${project}.portal.main_${table} {
                     /// </remarks>
                     protected global::System.Web.UI.WebControls.Label lab${field};
                  #end 
-              #if ($field.targetType.toString() == "_date")
+                 #if ($field.targetType.toString() == "_date")
                    /// <summary>
                     /// Control lab${field}.
                     /// </summary>
