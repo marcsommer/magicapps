@@ -22,7 +22,7 @@
 	#set ($count = 0)
 		#foreach( $name in $project.getTables )
 			<li>
-				<asp:HyperLink ID="hpl${name}" runat="server"  NavigateUrl="~/portal/main_{$name}/listado_${name}.aspx">${name}</asp:HyperLink>
+				<asp:HyperLink ID="hpl${name}" runat="server"  NavigateUrl="~/portal/main_${name}/listado_${name}.aspx">${name}</asp:HyperLink>
 			</li>
 		 #end 
     </ul>

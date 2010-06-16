@@ -24,40 +24,37 @@
 	/* Table structure for table '${tablita}'	*/
 	/* -------------------------------------	*/
 
-	CREATE TABLE "${tablita}" (
+	CREATE TABLE "${tablita}" (	 
+		 #foreach( $field in $tablita.getFields())  
+			  #if ($field.type.toString() == "_integer")
+				 #if ($field.isKey())
+					   [${field}] [int] IDENTITY(1,1) NOT NULL,
+					#else
+						 [${field}] [int] NULL default (0),
+				#end
+				#end
+			  #if ($field.type.toString() == "_string")
+				#if ( $field.size() == 1)
+						[${field}] [char](1) COLLATE Modern_Spanish_CI_AS NULL default ${field.defaultValue},
+					#else
+						 [${field}] [varchar](${field.getSize()}) COLLATE Modern_Spanish_CI_AS NULL default ${field.defaultValue},
+				#end
+				
+			#end
+			#if ($field.type.toString() == "_date")
+				[${field}] [datetime] NULL,
+			#end
+			#if ($field.type.toString() == "_boolean")
+				[${field}] [bit] NULL DEFAULT (${field.defaultValue}),
+			#end
+		#end
+			  
+#end		
+	PRIMARY KEY  (${tablita.getListOnlyKeyFields(",")}),
 	 
-		<#list tablita.getFields() as field>
-		 
-			 
-			 
-				  #if ($field.type.toString() == "_integer")
-					 #if ($field.isKey())
-						   [${field}] [int] IDENTITY(1,1) NOT NULL,
-						#else
-							 [${field}] [int] NULL default (0),
-					#end
-					#end
-				  #if ($field.type.toString() == "_string")
-					#if ( $field.size() == 1)>
-							[${field}] [char](1) COLLATE Modern_Spanish_CI_AS NULL default (''),
-						#else
-							 [${field}] [varchar](${field.getSize()}) COLLATE Modern_Spanish_CI_AS NULL,
-					#end
-					
-					 #end
-				  #if ($field.type.toString() == "_date")
-					[${field}] [datetime] NULL,
-					 #end
-				  #if ($field.type.toString() == "_boolean")
-					[${field}] [bit] NULL DEFAULT ((0)),
-					 #end
-				  
-		#end		
-		PRIMARY KEY  (${tablita.getListOnlyKeyFields()}),
-		 
-	);
+);
 	
-#end
+
 
 
  

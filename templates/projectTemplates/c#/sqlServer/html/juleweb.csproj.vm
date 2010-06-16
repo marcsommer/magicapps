@@ -71,6 +71,19 @@
 </Compile>	
 #end
 
+
+#foreach( $tablita in $project.getTables )
+<Content Include="admin\\${tablita.Name()}_dir\masterDetail_${tablita.Name()}.aspx" />
+<Compile Include="admin\\${tablita.Name()}_dir\masterDetail_${tablita.Name()}.aspx.cs">
+  <DependentUpon>masterDetail_${tablita.Name()}.aspx</DependentUpon>
+  <SubType>ASPXCodeBehind</SubType>
+</Compile>
+<Compile Include="admin\\${tablita.Name()}_dir\masterDetail_${tablita.Name()}.aspx.designer.cs">
+  <DependentUpon>masterDetail_${tablita.Name()}.aspx</DependentUpon>
+</Compile>		
+#end
+
+
   #foreach( $tablita in $project.getTables )
 <Content Include="portal\\main_${tablita.Name()}\listado_${tablita.Name()}.aspx" />
 <Compile Include="portal\\main_${tablita.Name()}\listado_${tablita.Name()}.aspx.cs">

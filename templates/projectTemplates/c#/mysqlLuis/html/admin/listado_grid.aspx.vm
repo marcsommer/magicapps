@@ -68,7 +68,7 @@
                                 
                                 <asp:TemplateField ShowHeader="False">
                                     <ItemTemplate>
-                                    <asp:Label ID="lab${table.getFieldDescription()}" runat="server" Text='<%# Eval("${table.getFieldDescription()}") %>'></asp:Label>
+                                    <asp:Label ID="lab${table.fieldDescription()}" runat="server" Text='<%# Eval("${table.fieldDescription()}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 

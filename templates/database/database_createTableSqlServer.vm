@@ -12,11 +12,6 @@
 <targetDirectory>${table}_dir</targetDirectory>
 <appliesToAllTables>true</appliesToAllTables>
 
-
- 
-
-
- 
  
 #
 # Table structure for table '${table}'
