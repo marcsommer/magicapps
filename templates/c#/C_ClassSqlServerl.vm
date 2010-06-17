@@ -711,7 +711,7 @@ public partial class ${table}
    }
 
 
-	 public void delete${relation.getParentTable()}By${relation.parentField()} (int ${relation.parentField()}x)
+	 public void delete${relation.parentTable()}By${relation.parentField()} (int ${relation.parentField()}x)
 	 {
 		 dbClass db=new  dbClass(ctes.conStringAdoGeneral);
 		 String  sqlt;

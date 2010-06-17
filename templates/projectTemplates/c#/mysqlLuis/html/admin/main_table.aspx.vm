@@ -136,13 +136,9 @@
 #end 			
 			
 			
-    <asp:Panel ID="PanelAviso" visible="false" runat="server">
-					     <div class="aviso">
-            
-                        <p>    <asp:Label ID="lblinfo" Visible="false"  runat="server" Text=""></asp:Label></p>
- 
-						</div>
-						</asp:Panel>
+<asp:Panel ID="PanelAviso" visible="false" runat="server">
+	<p><asp:Label ID="lblinfo" Visible="false"  runat="server" Text=""></asp:Label></p>
+</asp:Panel>
 					
 					</div><!--subsecciones-->
 					

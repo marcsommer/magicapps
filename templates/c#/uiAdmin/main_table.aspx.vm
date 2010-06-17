@@ -38,11 +38,11 @@
 				</div>
 				
 				<!--subseccion 1-->
-					<div class="subseccion">
-					<div class="titSubseccion">
-					  <h3 class="itemh3">
-                          Rellene los datos</h3>
-					</div>
+					<div class="subsecciones">
+						<div class="titSubseccion">
+						  <h3 class="itemh3">
+							  Rellene los datos</h3>
+						</div>
 					
 		 	
 #set ($count = 0)
@@ -158,20 +158,15 @@
 					</div><!--subsecciones-->
 					
 					
-					<div class="botonesSub"></div>
-					
-					
-					
+										
 					<!--botones formulario-->
 					<div class="botonesSub">
-					       
-
-					<span>
-                         <asp:Button ID="butModificar" runat="server" CssClass="aceptar" OnClick="butModificar_Click" Text="Modificar" />
-					</span>
-					<span>
-                         <asp:Button ID="butCancelar" runat="server" CssClass="denegar" OnClick="butCancelar_Click" Text="Cancelar" />
-				    </span>
+						<span>
+							 <asp:Button ID="butModificar" runat="server" CssClass="aceptar" OnClick="butModificar_Click" Text="Modificar" />
+						</span>
+						<span>
+							 <asp:Button ID="butCancelar" runat="server" CssClass="denegar" OnClick="butCancelar_Click" Text="Cancelar" />
+						</span>
 					</div>
 					<!--botones formulario-->
 				

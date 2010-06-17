@@ -272,10 +272,12 @@ namespace myWay
                                                 {
                                                     if (campo.Name.Equals(campo2.Name))
                                                     {
+                                                        campo2.isForeignKey = true;
+
                                                         // check if relation exists..
                                                         if (!pr.existsRelation(tab.Name, tab2.Name))
                                                         {
-                                                            campo2.isForeignKey = true;
+                                                            
                                                             relation rel = new relation();
                                                             rel.name = tab2.Name + "_" + tab.Name;
 
@@ -470,13 +472,14 @@ namespace myWay
                                                 foreach (field campo2 in tab2.fields)
                                                 {
                                                     if (campo.Name.Equals(campo2.Name))
-                                                    {
-                                                        relation rel = new relation();
+                                                        {
+                                                            campo2.isForeignKey = true;
 
+                                                        // to know if exists
+                                                            relation rel = new relation();
                                                         rel.name = tab2.Name + "_" + tab.Name;
 
-
-                                                        bool found = false;
+                                                            bool found = false;
                                                         foreach (relation relax in pr.relations)
                                                         {
                                                             if (relax.name.Equals(rel.name))

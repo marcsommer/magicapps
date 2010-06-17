@@ -2,8 +2,7 @@
 	comments: creates a function to get all the elements in a table, util for filling a combobox with a table...
 	
 	Author: Luis Molina
-*# 
- 
+*#  
 <nameFile>main_$table</nameFile>
 <extensionFile>aspx.cs</extensionFile>
 <languageGenerated>c_sharp</languageGenerated>
