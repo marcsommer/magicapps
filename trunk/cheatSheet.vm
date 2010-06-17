@@ -72,12 +72,12 @@ table:
 	${table.getKey()}
 	${table.fieldDescription()}
 
-	${table.getListOfFields()}
-	${table.getListOfFieldsWithoutKeys()}
-	${table.getListOfKeyFields()}
-	${table.getListOfParameters()}
-	${table.getListOfParametersForVb()}
-	${table.getListOfParametersForPhp()}
+	${table.getFields(",")}
+	${table.getListOfFieldsWithoutKeys(",")}
+	${table.getListOfKeyFields(",")}
+	${table.getListOfParameters(",")}
+	${table.getListOfParametersForVb(",")}
+	${table.getListOfParametersForPhp(",")}
 
 	${table.GetArrayOfFields()} // obsolete
 	${table.getFields()}
