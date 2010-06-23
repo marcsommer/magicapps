@@ -175,7 +175,7 @@
 									 #end 
 									 #if ($field.targetType.toString() == "_image")
 										<td  align="center">
-											<%# ((DataBinder.Eval(Container.DataItem, "image").ToString() == "") ? "" : "<a href=" + DataBinder.Eval(Container.DataItem, "image") + "><img src='" + DataBinder.Eval(Container.DataItem, "image") + "' border='0' width='70px' /></a>")%>
+											<%# ((DataBinder.Eval(Container.DataItem, "${field}").ToString() == "") ? "" : "<a href=" + DataBinder.Eval(Container.DataItem, "${field}") + "><img src='" + DataBinder.Eval(Container.DataItem, "${field}") + "' border='0' width='70px' /></a>")%>
 										</td>
 									 #end 	 
 								

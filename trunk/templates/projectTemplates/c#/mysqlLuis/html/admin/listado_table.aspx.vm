@@ -138,7 +138,7 @@
 								#else
 					#if ($field.targetType.toString() == "_image")
 					<td  align="center">
-						<img src="<%#Eval("${field}")%>" alt="<%#Eval("${field}")%>" width="70px" />
+							<%# ((DataBinder.Eval(Container.DataItem, "${field}").ToString() == "") ? "" : "<a href=" + DataBinder.Eval(Container.DataItem, "${field}") + "><img src='" + DataBinder.Eval(Container.DataItem, "${field}") + "' border='0' width='70px' /></a>")%>										
 					</td>
 					#end
 								#end

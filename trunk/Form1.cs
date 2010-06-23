@@ -511,7 +511,8 @@ namespace myWay
             }
             catch (Exception ex)
             {
-                util.playSimpleSound(Path.Combine(util.sound_dir, "zasentodalaboca.wav"));
+               // util.playSimpleSound(Path.Combine(util.sound_dir, "zasentodalaboca.wav"));
+                SystemSounds.Asterisk.Play();
                 rt1.Text = ex.Message;
             }
         }

@@ -5,8 +5,14 @@ Public Class Form1
         'MsgBox(ctes.conStringAdo)
 
         ' abrimos una nueva ventana..
-        Dim ca As New listCars
-        ca.Show()
+        'Dim ca As New listCars
+        'ca.Show()
+
+        Dim listaben As New List(Of benefi)
+        listaben = benefi.getList()
+
+        Dim fm As New benefiDetail
+        fm.ShowDialog()
 
     End Sub
 End Class

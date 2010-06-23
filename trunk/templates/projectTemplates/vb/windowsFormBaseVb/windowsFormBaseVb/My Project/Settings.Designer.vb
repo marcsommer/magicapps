@@ -65,6 +65,17 @@ Namespace My
                 Me("propiedad1") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\data\estancia.mdb;Pe"& _ 
+            "rsist Security Info=True")>  _
+        Public ReadOnly Property estanciaConnectionString() As String
+            Get
+                Return CType(Me("estanciaConnectionString"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

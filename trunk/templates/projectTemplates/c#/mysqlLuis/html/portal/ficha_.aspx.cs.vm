@@ -105,7 +105,7 @@ namespace ${project}.portal.main_${table}
 		  
 
 			#foreach( $relation in $table.getRelations() )
-			   lab${relation.childField()}.Text = sf.cadena(${relation.childTable()}.get${relation.childTable()}(${relation.parentTable()}x.${relation.parentField()})); 
+			      lab${relation.childField()}.Text =sf.cadena(${relation.parentTable()}.get${relation.parentTable()}(${relation.childTable()}x.${relation.parentField()}));
 			#end 
 
         }		 

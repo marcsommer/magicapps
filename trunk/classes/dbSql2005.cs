@@ -344,6 +344,7 @@ class dbSql2005
                                 if (fi.Name.Equals(campo))
                                 {
                                     fi.isKey = true;
+                                    table.keyFields.Add(fi);
                                     if (table.GetKey == null)
                                         table.GetKey = campo;
                                 }

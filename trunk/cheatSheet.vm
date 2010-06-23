@@ -72,7 +72,9 @@ table:
 	${table.getKey()}
 	${table.fieldDescription()}
 
-	${table.getFields(",")}
+	${table.getFields}
+	${table.getKeyFields}
+	
 	${table.getListOfFieldsWithoutKeys(",")}
 	${table.getListOfKeyFields(",")}
 	${table.getListOfParameters(",")}

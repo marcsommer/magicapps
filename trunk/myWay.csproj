@@ -128,6 +128,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes\compareFields.cs" />
+    <Compile Include="classes\dbAccess.cs" />
+    <Compile Include="classes\dbDbf.cs" />
     <Compile Include="classes\extra\luceneAdapter.cs" />
     <Compile Include="classes\fieldNode.cs" />
     <Compile Include="classes\fixTemplate.cs" />
@@ -653,6 +655,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="cheatSheet.vm" />
+    <Content Include="templates\c#\Cs_BllClassOledb.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\c#\Cs_ClassOledb.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\c#\Cs_ClassOledbMa.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="templates\projectTemplates\c#\mysqlLuis\html\bin\MySql.Data.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
