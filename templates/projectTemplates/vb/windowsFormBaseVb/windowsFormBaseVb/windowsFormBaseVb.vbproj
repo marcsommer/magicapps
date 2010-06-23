@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.50727</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{7F74DB3B-30D0-48BA-ADDE-73E7892E15D3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -54,14 +54,13 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="baseClasses\dbClassOleDb.vb" />
     <Compile Include="baseClasses\ctes.vb" />
-    <Compile Include="baseClasses\dbClass.vb" />
-    <Compile Include="baseClasses\dbClassOdbc.vb" />
     <Compile Include="baseClasses\lo.vb" />
     <Compile Include="baseClasses\sf.vb" />
     <Compile Include="baseClasses\validator.vb" />
     <Compile Include="baseClasses\ValidLengthAttribute.vb" />
-    <Compile Include="classes\cars.vb" />
+    <Compile Include="classes\benfi.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -69,22 +68,10 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\detailsCars.Designer.vb">
-      <DependentUpon>detailsCars.vb</DependentUpon>
+    <Compile Include="forms\benefiDetail.Designer.vb">
+      <DependentUpon>benefiDetail.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\detailsCars.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\listCars.Designer.vb">
-      <DependentUpon>listCars.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\listCars.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\listCarsWithObjectDataSource.Designer.vb">
-      <DependentUpon>listCarsWithObjectDataSource.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\listCarsWithObjectDataSource.vb">
+    <Compile Include="forms\benefiDetail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -108,17 +95,8 @@
       <SubType>Designer</SubType>
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\detailsCars.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>detailsCars.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\listCars.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>listCars.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\listCarsWithObjectDataSource.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>listCarsWithObjectDataSource.vb</DependentUpon>
+    <EmbeddedResource Include="forms\benefiDetail.resx">
+      <DependentUpon>benefiDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -139,6 +117,11 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="data\estancia.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

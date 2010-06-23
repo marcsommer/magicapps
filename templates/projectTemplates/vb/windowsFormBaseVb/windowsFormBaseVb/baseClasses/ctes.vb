@@ -5,8 +5,14 @@
 Public Class ctes
 
     Public Shared serverServicesWeb As New String("")
-    Public Shared conStringAdo As String = "Data Source=192.168.10.135\SQL2005;Network Library=DBMSSOCN;Initial Catalog=cars;User ID=sa;Password=xx;"
 
+    Public Shared directorioAplicacion As String = System.AppDomain.CurrentDomain.BaseDirectory
+    'Public Shared conStringAdoSqlServer As String = ""
+    'Public Shared conStringAdoMySql As String = ""
+    'Public Shared conStringOleDb As String = "PROVIDER=MICROSOFT.JET.OLEDB.4.0;DATA SOURCE=" + directorioAplicacion + "/data/estancia.mdb"
+    'Public Shared conStringAdoOdbc As String = ""
+
+    Public Shared conStringAdo As String = "PROVIDER=MICROSOFT.JET.OLEDB.4.0;DATA SOURCE=" + directorioAplicacion + "/data/estancia.mdb"
 
 
 #Region " Enumerados "

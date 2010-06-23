@@ -69,12 +69,7 @@ Partial Class details${table}
 								#if ($field.type.toString() == "_image")
                                      
                                      #end 
-                                  <#default>
-                                     #if ( $field.size() >= 251)>
-                                       Me.txt${field} = New System.Windows.Forms.TextBox
-                                    #else
-                                        Me.txt${field} = New System.Windows.Forms.TextBox
-                                     #end		
+                                
                           
                      #end
                     #set ($count = $count + 1 )

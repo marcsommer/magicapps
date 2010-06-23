@@ -45,6 +45,14 @@ public partial class table : IComparable
     [System.Xml.Serialization.XmlArrayItem("Field", typeof(field))]
     public ArrayList fields = new ArrayList();
 
+
+    // This attribute enables the ArrayList to be serialized:
+    [System.Xml.Serialization.XmlArray("keyFields")]
+    // Explicitly tell the serializer to expect the Item class
+    // so it can be properly written to XML from the collection:
+    [System.Xml.Serialization.XmlArrayItem("keyFields", typeof(field))]
+    public ArrayList keyFields = new ArrayList();
+
     // This attribute enables the ArrayList to be serialized:
     [System.Xml.Serialization.XmlArray("Relations")]
     // Explicitly tell the serializer to expect the Item class
@@ -185,8 +193,12 @@ public partial class table : IComparable
                    
                    case field.fieldType._tinyInt:
                         al.Add("bool " + item.Name);
+                        break;
+
+                   case field.fieldType._boolean:
+                        al.Add("bool " + item.Name);
                         break; 
-                    
+                   
                     case field.fieldType._string:
                         al.Add("string " + item.Name);
                         break;                   
@@ -326,6 +338,14 @@ public partial class table : IComparable
     {
         get { return fields; }
         set { fields = value; }
+    }
+
+    // le decimos al serializer que lo ignore o nos duplica los campos...
+    [System.Xml.Serialization.XmlIgnore]
+    public ArrayList getKeyFields
+    {
+        get { return keyFields; }
+        set { keyFields = value; }
     }
 
     // le decimos al serializer que lo ignore o nos duplica los campos...

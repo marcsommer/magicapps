@@ -311,6 +311,7 @@ class dbMySql
                                 if (fi.Name.Equals(campo))
                                 {
                                     fi.isKey = true;
+                                    table.keyFields.Add(fi);
                                     if (table.GetKey == null)
                                         table.GetKey = campo;
                                 }

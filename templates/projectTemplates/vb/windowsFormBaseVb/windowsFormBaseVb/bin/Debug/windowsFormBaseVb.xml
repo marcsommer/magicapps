@@ -6,7 +6,12 @@ windowsFormBaseVb
 </name>
 </assembly>
 <members>
-<member name="P:windowsFormBaseVb.My.Resources.Resources.ResourceManager">
+<member name="M:windowsFormBaseVb.benefi.savebenefi(System.String,windowsFormBaseVb.benefi)">
+	<summary>
+ Save the benefi to xml
+ </summary>
+	<param name="nombreArchivo">The nombre archivo.</param>
+</member><member name="P:windowsFormBaseVb.My.Resources.Resources.ResourceManager">
 	<summary>
   Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
 </summary>
