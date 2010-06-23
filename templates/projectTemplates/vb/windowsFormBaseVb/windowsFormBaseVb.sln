@@ -1,6 +1,5 @@
-
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "windowsFormBaseVb", "windowsFormBaseVb\windowsFormBaseVb.vbproj", "{7F74DB3B-30D0-48BA-ADDE-73E7892E15D3}"
 EndProject
 Global
