@@ -1,9 +1,9 @@
 Imports System.Data.SqlClient
-Imports System.Web.Mail
+
 
 
 ' para copiar
-'Dim db As New Micasoft.Asp.db.dbClass(ctes.conStringAdoSvAdmin)
+'Dim db As New dbClass(ctes.conStringAdoSvAdmin)
 'Dim reg As Object
 '        Try
 '            reg = db.sql(sql)
