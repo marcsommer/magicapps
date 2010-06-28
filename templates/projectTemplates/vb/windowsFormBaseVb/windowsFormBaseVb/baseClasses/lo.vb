@@ -300,7 +300,7 @@ Class lo
         ' pillo el segundo campo que me pasan en la select para el el campo value me pasan el campo a almacenar
 
         Dim pp As New dbClass(ctes.conStringAdo)
-        Dim dr As SqlClient.SqlDataReader
+        Dim dr As System.Data.OleDb.OleDbDataReader
 
         Try
             dr = pp.sql(textoSql)
