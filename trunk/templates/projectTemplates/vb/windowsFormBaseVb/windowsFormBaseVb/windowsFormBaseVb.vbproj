@@ -60,7 +60,7 @@
     <Compile Include="baseClasses\sf.vb" />
     <Compile Include="baseClasses\validator.vb" />
     <Compile Include="baseClasses\ValidLengthAttribute.vb" />
-    <Compile Include="classes\benfi.vb" />
+    <Compile Include="classes\benefi.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
