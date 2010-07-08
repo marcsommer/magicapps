@@ -68,14 +68,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Netron.Diagramming.Core, Version=3.0.2727.8754, Culture=neutral, PublicKeyToken=9c4817ccfa6cd2b1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\Netron.Diagramming.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Netron.Diagramming.Win, Version=3.0.2727.8756, Culture=neutral, PublicKeyToken=9c4817ccfa6cd2b1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\Netron.Diagramming.Win.dll</HintPath>
-    </Reference>
     <Reference Include="NVelocity, Version=0.4.2.8580, Culture=neutral, PublicKeyToken=44382d1b57473eda">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\dll\NVelocity.dll</HintPath>
@@ -2897,6 +2889,10 @@
     <Content Include="templates\projectTemplates\c#\sqlServer\html\juleweb.csproj.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="templates\vb\vb_Class_winform.vm">
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="templates\Web.config.vm" />
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\portal\ficha.aspx.designer.cs.vm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -2999,7 +2995,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\database\database_recreateTablesSqlServer.vm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\c#\C_getListMySql.vm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -5208,17 +5204,17 @@
     <Content Include="templates\vb\crud\detalle.aspx.vb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\vb\crud\insertar.aspx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="templates\vb\crud\main_table.aspx.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\vb\crud\insertar.aspx.vb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="templates\vb\crud\main_table.aspx.vb.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\vb\crud\listado.aspx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="templates\vb\crud\listado.aspx.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\vb\crud\listado.aspx.vb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="templates\vb\crud\listado.aspx.vb.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="templates\vb\snippets\insert.aspx.vm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -5235,6 +5231,7 @@
     </Content>
     <Content Include="templates\vb\snippets\tabla.aspx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="templates\vb\vb_Bll_vb.vm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

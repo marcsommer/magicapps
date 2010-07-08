@@ -35,25 +35,30 @@
 				#end
 			  #if ($field.type.toString() == "_string")
 				#if ( $field.size() == 1)
-						[${field}] [char](1) COLLATE Modern_Spanish_CI_AS NULL default ${field.defaultValue},
+						[${field}] [char](1) COLLATE Modern_Spanish_CI_AS NULL #if ( !$field.defaultValue.equals("")) default ${field.defaultValue} #end,
 					#else
-						 [${field}] [varchar](${field.getSize()}) COLLATE Modern_Spanish_CI_AS NULL default ${field.defaultValue},
+						 [${field}] [varchar](${field.size()}) COLLATE Modern_Spanish_CI_AS NULL #if ( !$field.defaultValue.equals("")) default ${field.defaultValue} #end  ,
 				#end
 				
 			#end
 			#if ($field.type.toString() == "_date")
-				[${field}] [datetime] NULL,
+				[${field}] [datetime] NULL #if ( !$field.defaultValue.equals("")) default ${field.defaultValue} #end,
+			#end
+			#if ($field.type.toString() == "_decimal")
+				[${field}] [decimal] NULL,
+			#end
+			#if ($field.type.toString() == "_double")
+				[${field}] [float] NULL  #if ( !$field.defaultValue.equals("")) default ${field.defaultValue} #end,
 			#end
 			#if ($field.type.toString() == "_boolean")
-				[${field}] [bit] NULL DEFAULT (${field.defaultValue}),
+				[${field}] [bit] NULL #if ( !$field.defaultValue.equals("")) default ${field.defaultValue} #end,
 			#end
 		#end
-			  
-#end		
-	PRIMARY KEY  (${tablita.getListOnlyKeyFields(",")}),
+		
 	 
+	 #if ( !$tablita.getListOfKeyFields(",").equals("")) PRIMARY KEY  (${tablita.getListOfKeyFields(",")}), #end
 );
-	
+#end	
 
 
 

@@ -20,19 +20,19 @@ values
 	#foreach( $field in $table.GetArrayOfFields ) 
 		#if (!$field.isKey())
 			#if ($field.type.toString() == "_integer")
-			 ${table.randomInt($field.randomMinValue, $field.randomMaxValue)} #if ($table.GetArrayOfFields.count -  $count  != 1)  , #end 
+			 ${table.randomInt($field.randomMinValue, $field.randomMaxValue)} #if ($table.countOfFieldsNotKey -  $count  != 1)  , #end 
 			 #end
 			#if ($field.type.toString() == "_string")
-			 '${table.randomString()}' #if ($table.GetArrayOfFields.count -  $count  != 1) , #end 
+			 '${table.randomString()}' #if ($table.countOfFieldsNotKey -  $count  != 1) , #end 
 			 #end
 			#if ($field.type.toString() == "_date")
-			 '${table.randomDateMysql()}' #if ($table.GetArrayOfFields.count -  $count  != 1) , #end 
+			 '${table.randomDateMysql()}' #if ($table.countOfFieldsNotKey -  $count  != 1) , #end 
 			 #end
 			#if ($field.type.toString() == "_boolean")
-			  ${table.randomBool()}  #if ($table.GetArrayOfFields.count -  $count  != 1) , #end 
+			  ${table.randomBool()}  #if ($table.countOfFieldsNotKey -  $count  != 1) , #end 
 			 #end
 			#if ($field.type.toString() == "_double")
-			 '${table.randomDouble($field.randomMinValue, $field.randomMaxValue)}'  #if ($table.GetArrayOfFields.count -  $count  != 1) ,#end 
+			 '${table.randomDouble($field.randomMinValue, $field.randomMaxValue)}'  #if ($table.countOfFieldsNotKey -  $count  != 1) ,#end 
 			#end			 
 		#end
 		#set ($count = $count + 1 ) 

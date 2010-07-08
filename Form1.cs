@@ -640,7 +640,6 @@ namespace myWay
 
                 writeText(sho.text);
 
-
                 kbTemplate.Text = sho.smallTitle;
 
                 general.templateSelectedFullUri = sho.templateSelected;

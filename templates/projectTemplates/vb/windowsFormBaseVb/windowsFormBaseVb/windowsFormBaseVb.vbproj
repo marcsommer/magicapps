@@ -74,6 +74,12 @@
     <Compile Include="forms\benefiDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\benefi_list.Designer.vb">
+      <DependentUpon>benefi_list.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\benefi_list.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -97,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\benefiDetail.resx">
       <DependentUpon>benefiDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\benefi_list.resx">
+      <DependentUpon>benefi_list.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

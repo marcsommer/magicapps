@@ -37,11 +37,11 @@ CREATE TABLE /*!32312 IF NOT EXISTS*/ "${tablita}" (
 		 
 		 
 			  #if ($field.type.toString() == "_integer")
-			     "${field}" int(${field.getSize()}) unsigned NOT NULL 
+			     "${field}" int(${field.size()}) unsigned NOT NULL 
 				 
 				#end
 			  #if ($field.type.toString() == "_string")
-			     "${field}" varchar(${field.getSize()}) NOT NULL default '',
+			     "${field}" varchar(${field.size()}) NOT NULL default '',
 			     #end
 			  #if ($field.type.toString() == "_date")
 			     "${field}" datetime NOT NULL default '0000-00-00 00:00:00',

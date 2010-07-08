@@ -32,16 +32,16 @@ foreach (${table} tix in lista${table})
 				 
 				 
 						  #if ($field.type.toString() == "_integer")
-							 sqlt.Append( sf.mySql(tix.${field}) <#if ($table.GetArrayOfFields.count -  $count  != 1)>+ " ,"#end) ;
+							 sqlt.Append( sf.mySql(tix.${field}) <#if ($table.countOfFieldsNotKey -  $count  != 1)>+ " ,"#end) ;
 							 #end
 						  #if ($field.type.toString() == "_string")
-							 sqlt.Append( sf.mySql(tix.${field}) <#if ($table.GetArrayOfFields.count -  $count  != 1)>+ " ,"#end) ;
+							 sqlt.Append( sf.mySql(tix.${field}) <#if ($table.countOfFieldsNotKey -  $count  != 1)>+ " ,"#end) ;
 							 #end
 						  #if ($field.type.toString() == "_date")
-							 sqlt.Append( sf.mySql(tix.${field}) <#if ($table.GetArrayOfFields.count -  $count  != 1)>+ " ,"#end)  ;
+							 sqlt.Append( sf.mySql(tix.${field}) <#if ($table.countOfFieldsNotKey -  $count  != 1)>+ " ,"#end)  ;
 							 #end
 						  #if ($field.type.toString() == "_boolean")
-							 sqlt.Append( sf.mySql(tix.${field})  <#if ($table.GetArrayOfFields.count -  $count  != 1)>+ " ,"#end);
+							 sqlt.Append( sf.mySql(tix.${field})  <#if ($table.countOfFieldsNotKey -  $count  != 1)>+ " ,"#end);
 							 #end
 						 
 				#set ($count = $count + 1 ) 

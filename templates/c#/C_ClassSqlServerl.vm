@@ -166,19 +166,19 @@ public partial class ${table}
 			#foreach( $field in $table.GetArrayOfFields ) 
 				#if (!$field.isKey())
 					  #if ($field.type.toString() == "_integer")
-	 					 sqlt.Append( sf.cadenaSqlServer(obj${table}.${field}) <#if ($table.GetArrayOfFields.count -  $count  != 1)>+ " ,"#end) ;
+	 					 sqlt.Append( sf.cadenaSqlServer(obj${table}.${field}) <#if ($table.countOfFieldsNotKey -  $count  != 1)>+ " ,"#end) ;
 						 #end
 					  #if ($field.type.toString() == "_string")
-						 sqlt.Append( sf.cadenaSqlServer(obj${table}.${field}) <#if ($table.GetArrayOfFields.count -  $count  != 1)>+ " ,"#end) ;
+						 sqlt.Append( sf.cadenaSqlServer(obj${table}.${field}) <#if ($table.countOfFieldsNotKey -  $count  != 1)>+ " ,"#end) ;
 						 #end
 					  #if ($field.type.toString() == "_date")
-						 sqlt.Append( sf.cadenaSqlServer(obj${table}.${field}) <#if ($table.GetArrayOfFields.count -  $count  != 1)>+ " ,"#end)  ;
+						 sqlt.Append( sf.cadenaSqlServer(obj${table}.${field}) <#if ($table.countOfFieldsNotKey -  $count  != 1)>+ " ,"#end)  ;
 						 #end
 					  #if ($field.type.toString() == "_boolean")
-						 sqlt.Append( sf.cadenaSqlServer(obj${table}.${field})  <#if ($table.GetArrayOfFields.count -  $count  != 1)>+ " ,"#end);
+						 sqlt.Append( sf.cadenaSqlServer(obj${table}.${field})  <#if ($table.countOfFieldsNotKey -  $count  != 1)>+ " ,"#end);
 						 #end
 					  #if ($field.type.toString() == "_double")
-						 sqlt.Append( sf.cadenaSqlServer(obj${table}.${field})  <#if ($table.GetArrayOfFields.count -  $count  != 1)>+ " ,"#end);
+						 sqlt.Append( sf.cadenaSqlServer(obj${table}.${field})  <#if ($table.countOfFieldsNotKey -  $count  != 1)>+ " ,"#end);
 						 #end
 				#end
 			 #set ($count = $count + 1 ) 
@@ -420,19 +420,19 @@ public partial class ${table}
 			#if ( $field.isKey() || $field.TargetType() == "_image")
 			#else
 					  #if ($field.type.toString() == "_integer")
-							sqlt.Append(" ${field}=" + sf.cadenaSqlServer(obj${table}.${field})+ "'#if ($table.GetArrayOfFields.count -  $count  != 1),#end ") ;
+							sqlt.Append(" ${field}=" + sf.cadenaSqlServer(obj${table}.${field})+ "'#if ($table.countOfFieldsNotKey -  $count  != 1),#end ") ;
 						 #end
 					  #if ($field.type.toString() == "_string")
-						sqlt.Append(" ${field}=" + sf.cadenaSqlServer(obj${table}.${field})+ " #if ($table.GetArrayOfFields.count -  $count  != 1),#end "); 
+						sqlt.Append(" ${field}=" + sf.cadenaSqlServer(obj${table}.${field})+ " #if ($table.countOfFieldsNotKey -  $count  != 1),#end "); 
 						 #end
 					  #if ($field.type.toString() == "_date")
-						  sqlt.Append(" ${field}=" + sf.fechaIso(obj${table}.${field}) + " #if ($table.GetArrayOfFields.count -  $count  != 1),#end " );
+						  sqlt.Append(" ${field}=" + sf.fechaIso(obj${table}.${field}) + " #if ($table.countOfFieldsNotKey -  $count  != 1),#end " );
 						 #end
 					  #if ($field.type.toString() == "_boolean")
-						 sqlt.Append(" ${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + " #if ($table.GetArrayOfFields.count -  $count  != 1),#end ");
+						 sqlt.Append(" ${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + " #if ($table.countOfFieldsNotKey -  $count  != 1),#end ");
 						 #end
 					  #if ($field.type.toString() == "_double")
-						 sqlt.Append(" ${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + "'#if ($table.GetArrayOfFields.count -  $count  != 1),#end ");
+						 sqlt.Append(" ${field}=" + sf.cadenaSqlServer(obj${table}.${field}) + "'#if ($table.countOfFieldsNotKey -  $count  != 1),#end ");
 						 #end
 			#end	
 			#set ($count = $count + 1 ) 
@@ -485,19 +485,19 @@ public partial class ${table}
 			#if ( $field.isKey() || $field.TargetType() == "_image")
 			#else
 			  #if ($field.type.toString() == "_integer")
-				sqlt.Append( " ${field}=" + sf.cadenaSqlServer(this.${field}) + " #if ($table.GetArrayOfFields.count -  $count  != 1),#end");
+				sqlt.Append( " ${field}=" + sf.cadenaSqlServer(this.${field}) + " #if ($table.countOfFieldsNotKey -  $count  != 1),#end");
 				 #end
 			  #if ($field.type.toString() == "_string")
-				  sqlt.Append(" ${field}=" + sf.cadenaSqlServer(this.${field}) + " #if ($table.GetArrayOfFields.count -  $count  != 1),#end" );
+				  sqlt.Append(" ${field}=" + sf.cadenaSqlServer(this.${field}) + " #if ($table.countOfFieldsNotKey -  $count  != 1),#end" );
 				 #end
 			  #if ($field.type.toString() == "_date")
-				  sqlt.Append( " ${field}=" + sf.fechaIso(this.${field}) + " #if ($table.GetArrayOfFields.count -  $count  != 1),#end") ;
+				  sqlt.Append( " ${field}=" + sf.fechaIso(this.${field}) + " #if ($table.countOfFieldsNotKey -  $count  != 1),#end") ;
 				 #end
 			  #if ($field.type.toString() == "_boolean")
-				sqlt.Append(" ${field}=" + sf.cadenaSqlServer(this.${field}) + " #if ($table.GetArrayOfFields.count -  $count  != 1),#end");
+				sqlt.Append(" ${field}=" + sf.cadenaSqlServer(this.${field}) + " #if ($table.countOfFieldsNotKey -  $count  != 1),#end");
 				 #end
 			  #if ($field.type.toString() == "_double")
-				sqlt.Append(" ${field}=" + sf.cadenaSqlServer(this.${field}) + " #if ($table.GetArrayOfFields.count -  $count  != 1),#end");
+				sqlt.Append(" ${field}=" + sf.cadenaSqlServer(this.${field}) + " #if ($table.countOfFieldsNotKey -  $count  != 1),#end");
 				 #end				
 			#end				
 	    #set ($count = $count + 1 ) 

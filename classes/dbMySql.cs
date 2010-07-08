@@ -322,10 +322,21 @@ class dbMySql
                             foreach (field fi in table.fields)
                             {
                                 if (fi.Name.Equals(campo))
+                                {
                                     fi.isForeignKey = true;
+                                    table.notKeyFields.Add(fi);
+                                }
+
                             }
                             break;
                         default:
+                            foreach (field fix in table.fields)
+                            {
+                                if (fix.Name.Equals(campo))
+                                {
+                                    table.notKeyFields.Add(fix);
+                                }
+                            }
                             break;
                     }
 
