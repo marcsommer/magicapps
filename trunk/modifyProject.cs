@@ -413,9 +413,9 @@ namespace myWay
                                 // we order but put first key fields
                                 if (general.orderFields)
                                 {
-                                    item.fields.Sort(new compareFields(compareFields.CompareByOptions.name));
+                                    item.fields.Sort(new compareFields(compareFields.CompareByOptions.name)); 
+                                    item.fields.Sort(new compareFields(compareFields.CompareByOptions.key));                            
                                 }
-                                     item.fields.Sort(new compareFields(compareFields.CompareByOptions.key));
                                pr.tables.Add(item);
 
 

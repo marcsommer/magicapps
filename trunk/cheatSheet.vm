@@ -75,6 +75,7 @@ table:
 	${table.getFields}
 	${table.getKeyFields}
 	
+	${table.getListOfFields(",")}
 	${table.getListOfFieldsWithoutKeys(",")}
 	${table.getListOfKeyFields(",")}
 	${table.getListOfParameters(",")}
@@ -84,6 +85,9 @@ table:
 	${table.GetArrayOfFields()} // obsolete
 	${table.getFields()}
 	${table.getRelations()}
+	
+	${table.countOfFields}
+	${table.countOfFieldsNotKey}
 	
 	
 field:

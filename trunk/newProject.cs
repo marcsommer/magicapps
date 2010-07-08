@@ -67,7 +67,6 @@ namespace myWay
             pr.password = txtPassword.Text;
             pr.dbDataType = (project.databaseType)cmbDataType.SelectedItem;
 
-
             t.Start(pr);
 
             // use this for debugging
@@ -140,8 +139,7 @@ namespace myWay
                                 // now lets get the fields for each table...
                                 List<field> listaField = new List<field>();
                                 listaField = db.getFields(connectionString, pr.database, item.Name);
-
-
+                                
 
                                 if (listaField != null)
                                 {

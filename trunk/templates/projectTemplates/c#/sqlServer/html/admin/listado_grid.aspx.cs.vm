@@ -41,7 +41,7 @@ namespace ${project}.${table}_dir
         }
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            List<${table}> lista = new List<${table}>();
+			List<${table}> lista = new List<${table}>();
             lista = ${table}.getListByBusquedaGeneral(txtBusqueda.Text);
             g${table}.DataSource = lista;
             g${table}.DataBind();

@@ -204,6 +204,13 @@ class dbSql2005
                             fi.type = field.fieldType._date;
                             break;
 
+                        case "uniqueidentifier":
+                            fi.type = field.fieldType._uniqueidentifier;
+                            break;
+                        case "decimal":
+                            fi.type = field.fieldType._decimal;
+                            break;
+
                         default:
                             fi.type = field.fieldType._string;
                             break;
@@ -220,6 +227,14 @@ class dbSql2005
                     //     fi.comment = sf.Cadena(tbl.Rows(i)!COLUMN_COMMENT);
                     fi.defaultValue = sf.cadena(row["COLUMN_DEFAULT"]);
 
+                    if (fi.defaultValue.Equals("-1"))
+                        fi.defaultValue = "0";
+
+                    //if (fi.defaultValue.Equals("(getdate())"))
+                    //    fi.defaultValue = "0";
+
+                    //if (sf.cadena(row["COLUMN_DEFAULT"]).IndexOf("getdate()") != -1)
+                    //    fi.defaultValue = "0";
 
                     //fi.autoNumber = sf.boolean(row["COLUMN_KEY"]);
                     //   fi.isKey = sf.boolean(row["COLUMN_KEY"]);
@@ -355,10 +370,22 @@ class dbSql2005
                             foreach (field fi in table.fields)
                             {
                                 if (fi.Name.Equals(campo))
+                                {
                                     fi.isForeignKey = true;
+                                    table.notKeyFields.Add(fi);
+                                }
+
                             }
                             break;
                         default:
+
+                            foreach (field fix in table.fields)
+                            {
+                                if (fix.Name.Equals(campo))
+                                {
+                                    table.notKeyFields.Add(fix);
+                                }
+                            }
                             break;
                     }
 

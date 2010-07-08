@@ -54,6 +54,13 @@ public partial class table : IComparable
     public ArrayList keyFields = new ArrayList();
 
     // This attribute enables the ArrayList to be serialized:
+    [System.Xml.Serialization.XmlArray("notKeyFields")]
+    // Explicitly tell the serializer to expect the Item class
+    // so it can be properly written to XML from the collection:
+    [System.Xml.Serialization.XmlArrayItem("notKeyFields", typeof(field))]
+    public ArrayList notKeyFields = new ArrayList();
+
+    // This attribute enables the ArrayList to be serialized:
     [System.Xml.Serialization.XmlArray("Relations")]
     // Explicitly tell the serializer to expect the Item class
     // so it can be properly written to XML from the collection:
@@ -96,6 +103,16 @@ public partial class table : IComparable
     {
         get { return _fieldDescription; }
         set { _fieldDescription = value; }
+    }
+
+    public int countOfFields
+    {
+        get { return getFields.Count; }
+    }
+
+    public int countOfFieldsNotKey
+    {
+        get { return getFields.Count - getNotKeyFields.Count; }
     }
 
     // return a string with delimiter...
@@ -350,11 +367,21 @@ public partial class table : IComparable
 
     // le decimos al serializer que lo ignore o nos duplica los campos...
     [System.Xml.Serialization.XmlIgnore]
+    public ArrayList getNotKeyFields
+    {
+        get { return notKeyFields; }
+        set { notKeyFields = value; }
+    }
+
+    // le decimos al serializer que lo ignore o nos duplica los campos...
+    [System.Xml.Serialization.XmlIgnore]
     public ArrayList GetArrayOfRelations
     {
         get { return relations; }
         set { relations = value; }
     }
+
+
 
 
     // le decimos al serializer que lo ignore o nos duplica los campos...

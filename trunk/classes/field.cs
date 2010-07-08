@@ -26,7 +26,7 @@ public class field : IComparable
         _hidden,
         _tinyInt,
         _long,
-        _decimalx,
+        _decimal,
         _double,
         _date,
         _datetime,
@@ -38,7 +38,9 @@ public class field : IComparable
         _image,
         _document,
         _audio,
-        _video
+        _video,
+        _uniqueidentifier
+
     }
 
     #region["Variables"]
