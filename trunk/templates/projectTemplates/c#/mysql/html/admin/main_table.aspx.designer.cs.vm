@@ -36,7 +36,7 @@ namespace ${project}.${table}_dir {
         
 
 #set ($count = 0)
-#foreach( $field in $table.GetArrayOfFields )
+#foreach( $field in $table.GetFields )
   #if (!$field.isKey())
 
    

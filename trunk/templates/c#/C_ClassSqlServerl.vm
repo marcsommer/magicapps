@@ -23,7 +23,7 @@ public partial class ${table}
 	#region["Variables"]
 		 
 		 
-	#foreach( $field in $table.GetArrayOfFields )
+	#foreach( $field in $table.GetFields )
 	  #if ($field.type.toString() == "_integer")
 	     private int _${field};
 	     #end
@@ -47,7 +47,7 @@ public partial class ${table}
 	#region["Propiedades"]
 	
 	
-	#foreach( $field in $table.GetArrayOfFields )
+	#foreach( $field in $table.GetFields )
 		#if ($field.isKey())
 				// for the objectDataSource
 				[DataObjectField(true,true)]
@@ -106,7 +106,7 @@ public partial class ${table}
         sqlt += " where 1!=0";  
         
         #set ($count = 0)	
-        #foreach( $field in $table.GetArrayOfFields )
+        #foreach( $field in $table.GetFields )
             #if ($field.isKey())
                 #if ($field.type.toString() == "_string")
                     sqlt += " and ${field}='" + sf.cadenaSqlServer(${field})';
@@ -163,7 +163,7 @@ public partial class ${table}
         sqlt.Append( " insert into ${table} ( ${table.getListOfFieldsWithoutKeys(",")} )"); 
         sqlt.Append( "  values (");
 			#set ($count = 0)	
-			#foreach( $field in $table.GetArrayOfFields ) 
+			#foreach( $field in $table.GetFields ) 
 				#if (!$field.isKey())
 					  #if ($field.type.toString() == "_integer")
 	 					 sqlt.Append( sf.cadenaSqlServer(obj${table}.${field}) <#if ($table.countOfFieldsNotKey -  $count  != 1)>+ " ,"#end) ;
@@ -225,7 +225,7 @@ public partial class ${table}
                 ${table} pp = new ${table}();
        
 
-#foreach( $field in $table.GetArrayOfFields ) 
+#foreach( $field in $table.GetFields ) 
 	  #if ($field.type.toString() == "_integer")
 	     pp.${field} = sf.entero(reg["${field}"].ToString());
 	     #end
@@ -274,7 +274,7 @@ public partial class ${table}
            sqlt = "select ${table.getListOfFields(",")} from ${table}";
             sqlt += " where 1!=0  and (";              
 			#set ($count = 0)				
-			#foreach( $field in $table.GetArrayOfFields ) 				
+			#foreach( $field in $table.GetFields ) 				
 				  #if ($field.type.toString() == "_integer")					  
 					 #end
 				  #if ($field.type.toString() == "_string")
@@ -299,7 +299,7 @@ public partial class ${table}
                 ${table} pp = new ${table}();
        
 
-#foreach( $field in $table.GetArrayOfFields ) 
+#foreach( $field in $table.GetFields ) 
 		  #if ($field.type.toString() == "_integer")
 		     pp.${field} = sf.entero(reg["${field}"].ToString());
 		     #end
@@ -348,7 +348,7 @@ public partial class ${table}
             {
             sqlt = "select ${table.getListOfFields(",")} from ${table}";          
             sqlt += " where 1!=0";  
-            #foreach( $field in $table.GetArrayOfFields )
+            #foreach( $field in $table.GetFields )
               #if ($field.isKey())   
                   #if ($field.type.toString() == "_integer")
                     sqlt += " and ${field}=" + sf.cadenaSqlServer(${field});
@@ -372,7 +372,7 @@ public partial class ${table}
             if (reg.Read())
             {
           
-              #foreach( $field in $table.GetArrayOfFields )
+              #foreach( $field in $table.GetFields )
                       #if ($field.type.toString() == "_integer")
                          obj${table}.${field} = sf.entero(reg["${field}"].ToString());
                          #end
@@ -416,7 +416,7 @@ public partial class ${table}
             {
             sqlt.Append(" update ${table} set");
 		#set ($count = 0)		
-		#foreach( $field in $table.GetArrayOfFields )
+		#foreach( $field in $table.GetFields )
 			#if ( $field.isKey() || $field.TargetType() == "_image")
 			#else
 					  #if ($field.type.toString() == "_integer")
@@ -438,7 +438,7 @@ public partial class ${table}
 			#set ($count = $count + 1 ) 
 		#end
 		    sqlt.Append(" where 1!=0");          
-		#foreach( $field in $table.GetArrayOfFields )
+		#foreach( $field in $table.GetFields )
 			#if ($field.isKey())
 				  #if ($field.type.toString() == "_integer")
 					sqlt.Append( " and ${field}=" + obj${table}.${field});
@@ -481,7 +481,7 @@ public partial class ${table}
 
 
 		#set ($count = 0)		
-		#foreach( $field in $table.GetArrayOfFields )
+		#foreach( $field in $table.GetFields )
 			#if ( $field.isKey() || $field.TargetType() == "_image")
 			#else
 			  #if ($field.type.toString() == "_integer")
@@ -504,7 +504,7 @@ public partial class ${table}
 	    #end 
             sqlt.Append(" where 1!=0");  
         
-		#foreach( $field in $table.GetArrayOfFields )
+		#foreach( $field in $table.GetFields )
 			#if ($field.isKey())
 			  #if ($field.type.toString() == "_integer")
 				sqlt.Append( " and ${field}=" + this.${field});
@@ -549,7 +549,7 @@ public partial class ${table}
             sqlt = "select * from ${table}";
             sqlt += " where 1!=0";  
 
-            #foreach( $field in $table.GetArrayOfFields )
+            #foreach( $field in $table.GetFields )
                 #if ($field.isKey())
                       #if ($field.type.toString() == "_integer")
                         sqlt += " and ${field}=" + sf.cadenaSqlServer(${field});
@@ -598,7 +598,7 @@ public partial class ${table}
 
          sqlt += " where 1!=0";  
 
-        #foreach( $field in $table.GetArrayOfFields )
+        #foreach( $field in $table.GetFields )
             #if ($field.isKey())
               #if ($field.type.toString() == "_integer")
                 sqlt += " and ${field}=" + ${field};
@@ -618,7 +618,7 @@ public partial class ${table}
         if (reg.Read())
         {
 
-        #foreach( $field in $table.GetArrayOfFields )					 
+        #foreach( $field in $table.GetFields )					 
 			  #if ($field.type.toString() == "_integer")
 				 this.${field} = sf.entero(reg["${field}"].ToString());
 				 #end
@@ -675,7 +675,7 @@ public partial class ${table}
         if (reg.Read())
         {
       
-          #foreach( $field in $table.GetArrayOfFields )
+          #foreach( $field in $table.GetFields )
                   #if ($field.type.toString() == "_integer")
                      obj${table}.${field} = sf.entero(reg["${field}"].ToString());
                      #end
@@ -734,7 +734,7 @@ public partial class ${table}
 
 // funciones extra para campos extra
 		#set ($count = 0)
-		#foreach( $field in $table.GetArrayOfFields )
+		#foreach( $field in $table.GetFields )
 			#if (!$field.isKey())				 
 			  #if ($field.type.toString() == "_image")
 				public string deleteImg${field}()

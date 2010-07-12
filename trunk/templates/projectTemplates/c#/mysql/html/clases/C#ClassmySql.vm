@@ -20,7 +20,7 @@
 	#region["Variables"]
 		 
 		 
-	#foreach( $field in $table.GetArrayOfFields )	
+	#foreach( $field in $table.GetFields )	
 		 
 		 
 			  #if ($field.type.toString() == "_integer")
@@ -50,7 +50,7 @@
 	#region["Propiedades"]
 	
 	
-	#foreach( $field in $table.GetArrayOfFields )
+	#foreach( $field in $table.GetFields )
 		#if ($field.isKey())
 				// for the objectDataSource
 				[DataObjectField(true,true)]
@@ -127,7 +127,7 @@
         sqlt += " where 1!=0";  
         
         #set ($count = 0)	
-        #foreach( $field in $table.GetArrayOfFields )
+        #foreach( $field in $table.GetFields )
             #if ($field.isKey())
                 #if ($field.type.toString() == "_string")
                     sqlt += " and ${field}='" + sf.cadena(${field})';
@@ -166,27 +166,27 @@
         sqlt.Append( " insert into ${table} ( ${table.getListOfFieldsWithoutKeys(",")} )"); 
         sqlt.Append( " values (");
 			#set ($count = 0)	
-			#foreach( $field in $table.GetArrayOfFields ) 
+			#foreach( $field in $table.GetFields ) 
 				#if (!$field.isKey())
 					 
 					 
 							  #if ($field.type.toString() == "_integer")
-			 					 sqlt.Append(sf.cadenaMySql(obj${table}.${field}) + " #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end") ;
+			 					 sqlt.Append(sf.cadenaMySql(obj${table}.${field}) + " #if ($table.GetFields.count() -  $count  != 1) , #end") ;
 								 #end 
 							  #if ($field.type.toString() == "_double")
-			 					 sqlt.Append(sf.cadenaMySql(obj${table}.${field}) + " #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end") ;
+			 					 sqlt.Append(sf.cadenaMySql(obj${table}.${field}) + " #if ($table.GetFields.count() -  $count  != 1) , #end") ;
 								 #end 
 							  #if ($field.type.toString() == "_string")
-								 sqlt.Append( sf.cadenaMySql(obj${table}.${field}) + " #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end") ;
+								 sqlt.Append( sf.cadenaMySql(obj${table}.${field}) + " #if ($table.GetFields.count() -  $count  != 1) , #end") ;
 								 #end 
 							  #if ($field.type.toString() == "_text")
-								 sqlt.Append( sf.cadenaMySql(obj${table}.${field}) + " #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end") ;
+								 sqlt.Append( sf.cadenaMySql(obj${table}.${field}) + " #if ($table.GetFields.count() -  $count  != 1) , #end") ;
 								 #end 								 
 							  #if ($field.type.toString() == "_date")
-								 sqlt.Append( sf.cadenaMySql(sf.fechaIso(obj${table}.${field})) + " #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end ")  ;
+								 sqlt.Append( sf.cadenaMySql(sf.fechaIso(obj${table}.${field})) + " #if ($table.GetFields.count() -  $count  != 1) , #end ")  ;
 								 #end 
 							  #if ($field.type.toString() == "_boolean")
-								 sqlt.Append( sf.cadenaMySql(obj${table}.${field})  + " #if ($table.GetArrayOfFields.count() -  $count  != 1) , #end");
+								 sqlt.Append( sf.cadenaMySql(obj${table}.${field})  + " #if ($table.GetFields.count() -  $count  != 1) , #end");
 								 #end 
 							  
 					  
@@ -232,7 +232,7 @@
             while (reg.Read())
                 {
                 ${table} pp = new ${table}();
-#foreach( $field in $table.GetArrayOfFields ) 
+#foreach( $field in $table.GetFields ) 
 	 
 	 
 		  #if ($field.type.toString() == "_integer")
@@ -285,7 +285,7 @@
             sqlt = "select * from ${table}";
             sqlt += " where 1!=0 and ("; 
             #set ($count = 0)            
-			#foreach( $field in $table.GetArrayOfFields ) 
+			#foreach( $field in $table.GetFields ) 
 				  #if ($field.type.toString() == "_integer")	
 					 #end 
 				  #if ($field.type.toString() == "_string")
@@ -307,7 +307,7 @@
             while (reg.Read())
                 {
                 ${table} pp = new ${table}();   
-#foreach( $field in $table.GetArrayOfFields ) 
+#foreach( $field in $table.GetFields ) 
 	 
 	 
 		  #if ($field.type.toString() == "_integer")
@@ -356,7 +356,7 @@
             {
             sqlt = "select * from ${table}";          
             sqlt += " where 1!=0";  
-            #foreach( $field in $table.GetArrayOfFields )
+            #foreach( $field in $table.GetFields )
               #if ($field.isKey())   
                      
                      
@@ -383,7 +383,7 @@
             reg = db.sql(sqlt);
             if (reg.Read())
             {          
-              #foreach( $field in $table.GetArrayOfFields )
+              #foreach( $field in $table.GetFields )
                          
                          
                                   #if ($field.type.toString() == "_integer")
@@ -430,7 +430,7 @@
             {
             sqlt.Append(" update ${table} set");
 		#set ($count = 0)		
-		#foreach( $field in $table.GetArrayOfFields )
+		#foreach( $field in $table.GetFields )
 			#if ($field.isKey())
 			#else
 				#if ($field.type.toString() == "_integer")
@@ -453,7 +453,7 @@
 		#end 
 		
            sqlt.Append(" where 1!=0");          
-		#foreach( $field in $table.GetArrayOfFields )
+		#foreach( $field in $table.GetFields )
 			#if ($field.isKey())
 			 
 			 
@@ -500,7 +500,7 @@
             {
             sqlt.Append(" update ${table} set");
 		#set ($count = 0)		
-		#foreach( $field in $table.GetArrayOfFields )
+		#foreach( $field in $table.GetFields )
 			#if ($field.isKey())
 			#else
 				  #if ($field.type.toString() == "_integer")
@@ -523,7 +523,7 @@
 		#end  
             sqlt.Remove(sqlt.Length - 1, 1);
             sqlt.Append(" where 1!=0");          
-		#foreach( $field in $table.GetArrayOfFields )
+		#foreach( $field in $table.GetFields )
 			#if ($field.isKey())
 			 	  #if ($field.type.toString() == "_integer")
 					sqlt.Append( " and ${field}=" + this.${field});
@@ -569,7 +569,7 @@
             {
             sqlt = "select * from ${table}";
             sqlt += " where 1!=0";  
-            #foreach( $field in $table.GetArrayOfFields )
+            #foreach( $field in $table.GetFields )
                 #if ($field.isKey())
 					  #if ($field.type.toString() == "_integer")
 						sqlt += " and ${field}=" + sf.cadena(${field});
@@ -618,7 +618,7 @@
                 {
                 sqlt = "select * from ${table}";
                 sqlt += " where 1!=0"; 
-                #foreach( $field in $table.GetArrayOfFields )
+                #foreach( $field in $table.GetFields )
                     #if ($field.isKey())
                          
                          
@@ -643,7 +643,7 @@
                 reg = db.sql(sqlt);
                 if (reg.Read())
                 {        
-                #foreach( $field in $table.GetArrayOfFields )
+                #foreach( $field in $table.GetFields )
 					  #if ($field.type.toString() == "_integer")
 						 this.${field} = sf.entero(reg["${field}"].ToString());
 						 #end 
@@ -700,7 +700,7 @@
             while (reg.Read())
                 {
                 ${table} pp = new ${table}();   
-#foreach( $field in $table.GetArrayOfFields ) 
+#foreach( $field in $table.GetFields ) 
 	  #if ($field.type.toString() == "_integer")
 	     pp.${field} = sf.entero(reg["${field}"].ToString());
 	     #end 
@@ -754,7 +754,7 @@
 #end 
 // funciones extra para campos extra
 		#set ($count = 0)
-                #foreach( $field in $table.GetArrayOfFields )
+                #foreach( $field in $table.GetFields )
                     #if (!$field.isKey())
                         
                          

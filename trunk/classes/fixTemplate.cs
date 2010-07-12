@@ -136,9 +136,9 @@ textoArchivo = textoArchivo.Replace("${", "{$");
                 textoArchivo = textoArchivo.Replace("<#if (count <=2 && count >=1)>", "#if ($count <=2 && $count >=1)");
 
 
-                textoArchivo = textoArchivo.Replace("<#if (table.getNumberOfFields() -  $count  != 1)>,#end", "#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end");
-                textoArchivo = textoArchivo.Replace("#if (table.getNumberOfFields()", "#if ($table.GetArrayOfFields.count");
-                textoArchivo = textoArchivo.Replace("<<#if ($table.GetArrayOfFields.count", "<#if ($table.GetArrayOfFields.count");
+                textoArchivo = textoArchivo.Replace("<#if (table.getNumberOfFields() -  $count  != 1)>,#end", "#if ($table.GetFields.count() -  $count  != 1) , #end");
+                textoArchivo = textoArchivo.Replace("#if (table.getNumberOfFields()", "#if ($table.GetFields.count");
+                textoArchivo = textoArchivo.Replace("<<#if ($table.GetFields.count", "<#if ($table.GetFields.count");
 
 
                 textoArchivo = textoArchivo.Replace("<#if (countx==0)>", "#if ($count==0)");
@@ -159,7 +159,7 @@ textoArchivo = textoArchivo.Replace("${", "{$");
 
 
 
-                textoArchivo = textoArchivo.Replace("<#list table.getFields() as field>", "#foreach( $field in $table.GetArrayOfFields )");
+                textoArchivo = textoArchivo.Replace("<#list table.getFields() as field>", "#foreach( $field in $table.GetFields )");
                 textoArchivo = textoArchivo.Replace("</#list>", "#end ");
 
                 textoArchivo = textoArchivo.Replace("<#break>", "#end");

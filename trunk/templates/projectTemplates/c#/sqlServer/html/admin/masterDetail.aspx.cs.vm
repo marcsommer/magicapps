@@ -58,7 +58,7 @@ public partial class masterDetail_${table} : System.Web.UI.Page
 			${table} res = new ${table}(sf.entero(Request["id"]));			
 			
 #set ($count = 0)
-#foreach( $field in $table.GetArrayOfFields )
+#foreach( $field in $table.GetFields )
 #if (!$field.isKey())
 #if ($field.toString()!= "idportal")	
 #if ($field.targetType.toString() == "_integer")
@@ -182,7 +182,7 @@ public partial class masterDetail_${table} : System.Web.UI.Page
 			${table} res = new ${table}(sf.entero(Request["id"]));
  
 			#set ($count = 0)
-			#foreach( $field in $table.GetArrayOfFields )
+			#foreach( $field in $table.GetFields )
 
 			 
 			 #if ($field == "idportal")	
@@ -278,7 +278,7 @@ public partial class masterDetail_${table} : System.Web.UI.Page
 
 			${table} res = new ${table}(); 
 			#set ($count = 0)
-			#foreach( $field in $table.GetArrayOfFields )
+			#foreach( $field in $table.GetFields )
 
 			
 			 #if ($field == "idportal")	
@@ -417,7 +417,7 @@ public partial class masterDetail_${table} : System.Web.UI.Page
 	
 	// funciones extra para campos extra
 	#set ($count = 0)
-			#foreach( $field in $table.GetArrayOfFields )
+			#foreach( $field in $table.GetFields )
 				#if (!$field.isKey())
 					
 					 

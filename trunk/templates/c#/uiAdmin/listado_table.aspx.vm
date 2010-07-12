@@ -17,7 +17,7 @@
  
  we need the keyfield...
  -->
-#foreach( $field in $table.GetArrayOfFields )
+#foreach( $field in $table.GetFields )
  #if ($field.isKey())
     <#assign keyField=field>
  #end
@@ -69,7 +69,7 @@
 				<tr>
 			 	<th></th>
 				     #set ($count = 0)
-							#foreach( $field in $table.GetArrayOfFields )
+							#foreach( $field in $table.GetFields )
 								#if ($field.isKey())
 								#else
 									#if ($count <=2 && $count >=1)
@@ -92,7 +92,7 @@
 								</td>
 								
                                     #set ($count = 0)
-									#foreach( $field in $table.GetArrayOfFields )
+									#foreach( $field in $table.GetFields )
 										#if ($field.isKey())
 										#else
 											#if ($count <=2 && $count >=1)

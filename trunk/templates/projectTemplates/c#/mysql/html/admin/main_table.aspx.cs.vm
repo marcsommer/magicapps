@@ -41,7 +41,7 @@ public partial class main_${table} : System.Web.UI.Page
 			
 			//res = ${table}.get${table}(sf.entero(Request["id"]));
 #set ($count = 0)
-#foreach( $field in $table.GetArrayOfFields )
+#foreach( $field in $table.GetFields )
 #if (!$field.isKey())
 #if ($field.toString()!= "idportal")	
 #if ($field.targetType.toString() == "_integer")
@@ -119,7 +119,7 @@ lo.comboSeleccionarItem(cmb${relation.childField()}, sf.cadena(res.${relation.ch
 			${table} res = new ${table}(sf.entero(Request["id"]));
  
 			#set ($count = 0)
-			#foreach( $field in $table.GetArrayOfFields )
+			#foreach( $field in $table.GetFields )
 
 			 
 			 #if ($field == "idportal")	
@@ -206,7 +206,7 @@ lo.comboSeleccionarItem(cmb${relation.childField()}, sf.cadena(res.${relation.ch
 
 			${table} res = new ${table}(); 
 			#set ($count = 0)
-			#foreach( $field in $table.GetArrayOfFields )
+			#foreach( $field in $table.GetFields )
 
 			
 			 #if ($field == "idportal")	
@@ -313,7 +313,7 @@ lo.comboSeleccionarItem(cmb${relation.childField()}, sf.cadena(res.${relation.ch
 	
 	// funciones extra para campos extra
 	#set ($count = 0)
-			#foreach( $field in $table.GetArrayOfFields )
+			#foreach( $field in $table.GetFields )
 				#if (!$field.isKey())
 					
 					 

@@ -35,7 +35,7 @@ public partial class ${table}
             while (reg.Read())
                 {
                ${table} pp = new ${table}();
-#foreach( $field in $table.GetArrayOfFields )  
+#foreach( $field in $table.GetFields )  
 	  #if ($field.type.toString() == "_integer")
 	     pp.${field} = sf.entero(reg["${field}"].ToString());
 	     #end 
@@ -120,7 +120,7 @@ public partial class ${table}
             while (reg.Read())
                 {
                 ${table} pp = new ${table}();
-#foreach( $field in $table.GetArrayOfFields ) 	 
+#foreach( $field in $table.GetFields ) 	 
 		  #if ($field.type.toString() == "_integer")
 		     pp.${field} = sf.entero(reg["${field}"].ToString());
 		     #end 

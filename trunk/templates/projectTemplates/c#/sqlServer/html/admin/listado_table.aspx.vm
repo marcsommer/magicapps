@@ -75,7 +75,7 @@
 			 	<th></th>
 								
                             #set ($count = 0)
-							#foreach( $field in $table.GetArrayOfFields )
+							#foreach( $field in $table.GetFields )
 								#if (!$field.isKey())
 								  #if ($field.targetType.toString() == "_integer")
 									 <th align="center">${field.targetName}</th>
@@ -126,7 +126,7 @@
 									<a href="./main_${table}.aspx?id=<%#Eval("${table.getKey()}")%> " class="btn">Editar</a> 
 								</td>
 								 #set ($count = 0)
-							#foreach( $field in $table.GetArrayOfFields )
+							#foreach( $field in $table.GetFields )
 								#if (!$field.isKey())
 								  #if ($field.targetType.toString() == "_integer")
 										<td  align="center">
@@ -202,7 +202,8 @@
 					
 					
 	</div>
-					</div><!--subsecciones-->
+					</div>
+					<!--subseccion 1-->
 				
  
 		 

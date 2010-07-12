@@ -23,7 +23,7 @@
 					 
 		 	
 #set ($count = 0)
-#foreach( $field in $table.GetArrayOfFields )
+#foreach( $field in $table.GetFields )
   #if (!$field.isKey())     
               #if ($field.type.toString() == "_integer")
                 #if ( $field.isForeignKey())
