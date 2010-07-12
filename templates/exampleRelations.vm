@@ -33,7 +33,7 @@ name of relation ${relation.name}
             if (reg.Read())
             {
           
-			#foreach( $field in $table.GetArrayOfFields )                         
+			#foreach( $field in $table.GetFields )                         
 
 			#if ($field.type.toString() == "_integer")
 			 obj${table}.${field} = sf.entero(reg["${field}"].ToString());

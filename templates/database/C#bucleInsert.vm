@@ -28,7 +28,7 @@ foreach (${table} tix in lista${table})
 	sqlt.Append( " insert into ${table} ( ${table.getListOfFields(",")} )"); 
         sqlt.Append( "  values (");
 			#set ($count = 0)	
-			#foreach( $field in $table.GetArrayOfFields ) 
+			#foreach( $field in $table.GetFields ) 
 				 
 				 
 						  #if ($field.type.toString() == "_integer")

@@ -33,7 +33,7 @@ namespace ${project}.portal.main_${table} {
     public partial class ficha_${table} {
         
 		#set ($count = 0)
-#foreach( $field in $table.GetArrayOfFields )
+#foreach( $field in $table.GetFields )
   #if (!$field.isKey())
 
    

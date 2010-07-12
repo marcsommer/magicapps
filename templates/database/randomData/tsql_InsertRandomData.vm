@@ -15,7 +15,7 @@
 insert into ${table} ( ${table.getListOfFieldsWithoutKeys(",")} )
 values(
 	#set ($count = 0)	
-	#foreach( $field in $table.GetArrayOfFields ) 
+	#foreach( $field in $table.GetFields ) 
 		#if (!$field.isKey())
 			#if ($field.type.toString() == "_integer")
 			 ${table.randomInt($field.randomMinValue, $field.randomMaxValue)} #if ($table.countOfFieldsNotKey -  $count  != 1)  , #end 

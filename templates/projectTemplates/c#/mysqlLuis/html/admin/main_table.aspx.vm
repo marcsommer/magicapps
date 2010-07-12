@@ -32,7 +32,7 @@
  
 
         #set ($count = 0)
-        #foreach( $field in $table.GetArrayOfFields )
+        #foreach( $field in $table.GetFields )
         #if (!$field.isKey())
         #if ($field.targetType.toString() == "_integer")
         #if ($field.isForeignKey() )
@@ -154,6 +154,8 @@
 						</span>
 					</div>
 					<!--botones formulario-->
-				
+					<br />
+					<asp:HyperLink ID="hListado" runat="server" NavigateUrl="./list_${table}.aspx">Volver al listado ...</asp:HyperLink><br />
+
 				</div> 
 </asp:Content>

@@ -8,12 +8,12 @@ $table.FieldDescription
 
 
 ----------
-number of fields in table: $table.GetArrayOfFields.count
+number of fields in table: $table.GetFields.count
 
 
 ----------
 fields in the table:
-#foreach( $field in $table.GetArrayOfFields )
+#foreach( $field in $table.GetFields )
     $field.Name is great!
     
     

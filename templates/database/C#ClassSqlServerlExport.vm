@@ -26,7 +26,7 @@
 	#region["Variables"]
 		 
 		 
-	#foreach( $field in $table.GetArrayOfFields )
+	#foreach( $field in $table.GetFields )
 		
 		 
 		 
@@ -51,7 +51,7 @@
 	#region["Propiedades"]
 	
 	
-	#foreach( $field in $table.GetArrayOfFields )
+	#foreach( $field in $table.GetFields )
 		#if ($field.isKey())
 				// for the objectDataSource
 				[DataObjectField(true,true)]
@@ -115,7 +115,7 @@
         sqlt += " where 1!=0";  
         
         #set ($count = 0)	
-        #foreach( $field in $table.GetArrayOfFields )
+        #foreach( $field in $table.GetFields )
             #if ($field.isKey())
                 #if ($field.type.toString() == "_string")
                     sqlt += " and ${field}='" + sf.cadena(${field})';
@@ -172,7 +172,7 @@
         sqlt.Append( " insert into ${table} ( ${table.getListOfFieldsWithoutKeys(",")} )"); 
         sqlt.Append( "  values (");
 			#set ($count = 0)	
-			#foreach( $field in $table.GetArrayOfFields ) 
+			#foreach( $field in $table.GetFields ) 
 				#if (!$field.isKey())
 					 
 					 
@@ -233,7 +233,7 @@
                 ${table} pp = new ${table}();
        
 
-#foreach( $field in $table.GetArrayOfFields ) 
+#foreach( $field in $table.GetFields ) 
 	 
 	 
 		  #if ($field.type.toString() == "_integer")
@@ -282,7 +282,7 @@
            sqlt = "select ${table.getListOfFields(",")} from ${table}";
             sqlt += " where 1!=0  and (";              
 			#set ($count = 0)				
-			#foreach( $field in $table.GetArrayOfFields ) 
+			#foreach( $field in $table.GetFields ) 
 				
 				
 					  #if ($field.type.toString() == "_integer")					  
@@ -310,7 +310,7 @@
                 ${table} pp = new ${table}();
        
 
-#foreach( $field in $table.GetArrayOfFields ) 
+#foreach( $field in $table.GetFields ) 
 	 
 	 
 		  #if ($field.type.toString() == "_integer")
@@ -359,7 +359,7 @@
             {
             sqlt = "select ${table.getListOfFields(",")} from ${table}";          
             sqlt += " where 1!=0";  
-            #foreach( $field in $table.GetArrayOfFields )
+            #foreach( $field in $table.GetFields )
               #if ($field.isKey())   
                      
                      
@@ -383,7 +383,7 @@
             if (reg.Read())
             {
           
-              #foreach( $field in $table.GetArrayOfFields )
+              #foreach( $field in $table.GetFields )
                          
                          
                                   #if ($field.type.toString() == "_integer")
@@ -427,7 +427,7 @@
             {
             sqlt.Append(" update ${table} set");
 		#set ($count = 0)		
-		#foreach( $field in $table.GetArrayOfFields )
+		#foreach( $field in $table.GetFields )
 			#if ( $field.isKey() || $field.TargetType() == "_image")
 			#else
 				 
@@ -475,7 +475,7 @@
 
 
 		#set ($count = 0)		
-		#foreach( $field in $table.GetArrayOfFields )
+		#foreach( $field in $table.GetFields )
 			#if ( $field.isKey() || $field.TargetType() == "_image")
 			#else
 				
@@ -499,7 +499,7 @@
 	    #end 
             sqlt.Append(" where 1!=0");  
         
-		#foreach( $field in $table.GetArrayOfFields )
+		#foreach( $field in $table.GetFields )
 			#if ($field.isKey())
 			 
 			 
@@ -549,7 +549,7 @@
             sqlt = "select * from ${table}";
             sqlt += " where 1!=0";  
 
-            #foreach( $field in $table.GetArrayOfFields )
+            #foreach( $field in $table.GetFields )
                 #if ($field.isKey())
                      
                      
@@ -601,7 +601,7 @@
 
                  sqlt += " where 1!=0";  
 
-                #foreach( $field in $table.GetArrayOfFields )
+                #foreach( $field in $table.GetFields )
                     #if ($field.isKey())
                          
                          
@@ -625,7 +625,7 @@
                 if (reg.Read())
                 {
         
-                #foreach( $field in $table.GetArrayOfFields )
+                #foreach( $field in $table.GetFields )
 					 
 					 
 							  #if ($field.type.toString() == "_integer")
@@ -684,7 +684,7 @@
             if (reg.Read())
             {
           
-              #foreach( $field in $table.GetArrayOfFields )
+              #foreach( $field in $table.GetFields )
 
                          
                          
@@ -745,7 +745,7 @@
 
 // funciones extra para campos extra
 		#set ($count = 0)
-		#foreach( $field in $table.GetArrayOfFields )
+		#foreach( $field in $table.GetFields )
 			#if (!$field.isKey())
 				
 				 
@@ -826,7 +826,7 @@
 			sqlt.Append( " insert into ${table} ( ${table.getListOfFields(",")} )"); 
 			sqlt.Append( "  values (");
 			#set ($count = 0)	
-			#foreach( $field in $table.GetArrayOfFields ) 
+			#foreach( $field in $table.GetFields ) 
 				 
 				 
 						  #if ($field.type.toString() == "_integer")

@@ -78,7 +78,7 @@
 								
 								
                                     #set ($count = 0)
-									#foreach( $field in $table.GetArrayOfFields )
+									#foreach( $field in $table.GetFields )
 										#if ($field.isKey())
 										#else
 											#if ($count <2 && $count >=1)
@@ -90,7 +90,7 @@
 									#end 
 									
 							#set ($count = 0)
-							#foreach( $field in $table.GetArrayOfFields )
+							#foreach( $field in $table.GetFields )
 								#if ($field.isKey())
 								#else
 					#if ($field.targetType.toString() == "_image")
@@ -122,7 +122,7 @@
 								
 								
                                     #set ($count = 0)
-									#foreach( $field in $table.GetArrayOfFields )
+									#foreach( $field in $table.GetFields )
 										#if ($field.isKey())
 										#else
 											#if ($count <2 && $count >=1)
@@ -135,7 +135,7 @@
 									#end 
 									
 							#set ($count = 0)
-							#foreach( $field in $table.GetArrayOfFields )
+							#foreach( $field in $table.GetFields )
 								#if ($field.isKey())
 								#else
 					#if ($field.targetType.toString() == "_image")

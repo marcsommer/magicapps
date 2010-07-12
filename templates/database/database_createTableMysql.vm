@@ -25,7 +25,7 @@
 
 CREATE TABLE "${table}" (
  
-	#foreach( $field in $table.GetArrayOfFields )
+	#foreach( $field in $table.GetFields )
 	 
 		 
 		 

@@ -23,7 +23,7 @@ using System.ComponentModel;
 	#region["Variables"]
 		 
 		 
-	#foreach( $field in $table.GetArrayOfFields )		
+	#foreach( $field in $table.GetFields )		
 	  #if ($field.type.toString() == "_integer")
 		 private int _${field};
 		 #end
@@ -44,7 +44,7 @@ using System.ComponentModel;
 	#region["Propiedades"]
 	
 	
-	#foreach( $field in $table.GetArrayOfFields )
+	#foreach( $field in $table.GetFields )
 		#if ($field.isKey())
 				// for the objectDataSource
 				[DataObjectField(true,true)]
@@ -100,7 +100,7 @@ using System.ComponentModel;
         sqlt += " where 1!=0";  
         
         #set ($count = 0)	
-        #foreach( $field in $table.GetArrayOfFields )
+        #foreach( $field in $table.GetFields )
             #if ($field.isKey())
                 #if ($field.type.toString() == "_string")
                     sqlt += " and ${field}='" + sf.cadena(${field})';
@@ -139,7 +139,7 @@ using System.ComponentModel;
         sqlt.Append( " insert into ${table} ( ${table.getListOfFieldsWithoutKeys(",")} )"); 
         sqlt.Append( " values (");
 			#set ($count = 0)	
-			#foreach( $field in $table.GetArrayOfFields ) 
+			#foreach( $field in $table.GetFields ) 
 				#if (!$field.isKey()) 
 					  #if ($field.type.toString() == "_integer")
 						 sqlt.Append(sf.entero(obj${table}.${field}) + " ,") ;
@@ -196,7 +196,7 @@ using System.ComponentModel;
             while (reg.Read())
                 {
                 ${table} pp = new ${table}();
-#foreach( $field in $table.GetArrayOfFields )  
+#foreach( $field in $table.GetFields )  
 		  #if ($field.type.toString() == "_integer")
 		     pp.${field} = sf.entero(reg["${field}"].ToString());
 		     #end
@@ -242,7 +242,7 @@ using System.ComponentModel;
             sqlt = "select ${table.getListOfFields(",")} from ${table}";
             sqlt += " where 1!=0  and (";              
 			#set ($count = 0)				
-			#foreach( $field in $table.GetArrayOfFields )  
+			#foreach( $field in $table.GetFields )  
 					  #if ($field.type.toString() == "_integer")					  
 						 #end
 					  #if ($field.type.toString() == "_string")
@@ -265,7 +265,7 @@ using System.ComponentModel;
             while (reg.Read())
                 {
                 ${table} pp = new ${table}();   
-#foreach( $field in $table.GetArrayOfFields )  
+#foreach( $field in $table.GetFields )  
 		  #if ($field.type.toString() == "_integer")
 		     pp.${field} = sf.entero(reg["${field}"].ToString());
 		     #end
@@ -308,7 +308,7 @@ using System.ComponentModel;
             {
             sqlt = "select ${table.getListOfFields(",")} from ${table}";          
             sqlt += " where 1!=0";  
-            #foreach( $field in $table.GetArrayOfFields )
+            #foreach( $field in $table.GetFields )
               #if ($field.isKey())    
 				  #if ($field.type.toString() == "_integer")
 					sqlt += " and ${field}=" + sf.cadena(${field});
@@ -328,7 +328,7 @@ using System.ComponentModel;
             reg = db.sql(sqlt);
             if (reg.Read())
             {          
-              #foreach( $field in $table.GetArrayOfFields ) 
+              #foreach( $field in $table.GetFields ) 
 					  #if ($field.type.toString() == "_integer")
 						 obj${table}.${field} = sf.entero(reg["${field}"].ToString());
 						 #end
@@ -369,7 +369,7 @@ using System.ComponentModel;
             {
             sqlt.Append(" update ${table} set");
 		#set ($count = 0)		
-		#foreach( $field in $table.GetArrayOfFields )
+		#foreach( $field in $table.GetFields )
 			#if ( $field.isKey() || $field.TargetType() == "_image")
 			#else 
 				#if ($field.type.toString() == "_integer")
@@ -415,7 +415,7 @@ using System.ComponentModel;
             {
             sqlt.Append(" update ${table} set");
 		#set ($count = 0)		
-		#foreach( $field in $table.GetArrayOfFields )
+		#foreach( $field in $table.GetFields )
 			#if ( $field.isKey() || $field.TargetType() == "_image")
 			#else 
 				#if ($field.type.toString() == "_integer")
@@ -438,7 +438,7 @@ using System.ComponentModel;
 		#end  
             sqlt.Remove(sqlt.Length - 1, 1);
             sqlt.Append(" where 1!=0");          
-		#foreach( $field in $table.GetArrayOfFields )
+		#foreach( $field in $table.GetFields )
 			#if ($field.isKey()) 
 				  #if ($field.type.toString() == "_integer")
 					sqlt.Append( " and ${field}=" + this.${field});
@@ -483,7 +483,7 @@ using System.ComponentModel;
             {
             sqlt = "select * from ${table}";
             sqlt += " where 1!=0";  
-            #foreach( $field in $table.GetArrayOfFields )
+            #foreach( $field in $table.GetFields )
                 #if ($field.isKey()) 
 				  #if ($field.type.toString() == "_integer")
 					sqlt += " and ${field}=" + sf.cadena(${field});
@@ -529,7 +529,7 @@ using System.ComponentModel;
                 {
                 sqlt = "select * from ${table}";
                 sqlt += " where 1!=0"; 
-                #foreach( $field in $table.GetArrayOfFields )
+                #foreach( $field in $table.GetFields )
                     #if ($field.isKey())
 						  #if ($field.type.toString() == "_integer")
 							sqlt += " and ${field}=" + ${field};
@@ -548,7 +548,7 @@ using System.ComponentModel;
                 reg = db.sql(sqlt);
                 if (reg.Read())
                 {        
-                #foreach( $field in $table.GetArrayOfFields ) 
+                #foreach( $field in $table.GetFields ) 
 					  #if ($field.type.toString() == "_integer")
 						 this.${field} = sf.entero(reg["${field}"].ToString());
 						 #end
@@ -602,7 +602,7 @@ using System.ComponentModel;
             if (reg.Read())
             {
           
-              #foreach( $field in $table.GetArrayOfFields )                         
+              #foreach( $field in $table.GetFields )                         
 					  #if ($field.type.toString() == "_integer")
 						 obj${table}.${field} = sf.entero(reg["${field}"].ToString());
 						 #end
@@ -651,7 +651,7 @@ using System.ComponentModel;
 #end 
 // funciones extra para campos extra
 		#set ($count = 0)
-                #foreach( $field in $table.GetArrayOfFields )
+                #foreach( $field in $table.GetFields )
                     #if (!$field.isKey())
 					  #if ($field.type.toString() == "_image")
 						public string deleteImg${field}()

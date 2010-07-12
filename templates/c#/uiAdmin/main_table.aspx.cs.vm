@@ -66,7 +66,7 @@ namespace ${project}.${table}_dir
 			${table}x = ${table}.get${table}(sf.entero(Request["id"]));
 		   
 			#set ($count = 0)
-			#foreach( $field in $table.GetArrayOfFields )
+			#foreach( $field in $table.GetFields )
 				 #if (!$field.isKey())
 					 
 					 
@@ -138,7 +138,7 @@ namespace ${project}.${table}_dir
                 ${table} ${table}x = new ${table}();
                 ${table}x = ${table}.get${table}(sf.entero(Request["id"]));
                 #set ($count = 0)
-                #foreach( $field in $table.GetArrayOfFields )
+                #foreach( $field in $table.GetFields )
                     #if (!$field.isKey())
                         
                          
@@ -240,7 +240,7 @@ namespace ${project}.${table}_dir
 
                 ${table} ${table}x = new ${table}(); 
                 #set ($count = 0)
-                #foreach( $field in $table.GetArrayOfFields )
+                #foreach( $field in $table.GetFields )
                     #if (!$field.isKey())
                         
                          
@@ -289,7 +289,7 @@ namespace ${project}.${table}_dir
         
 		
 		     #set ($count = 0)
-                #foreach( $field in $table.GetArrayOfFields )
+                #foreach( $field in $table.GetFields )
                     #if (!$field.isKey())
                         
                          

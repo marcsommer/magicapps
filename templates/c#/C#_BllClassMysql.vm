@@ -42,7 +42,7 @@ public partial class ${table}
             {
                 ${table} new${table}= new ${table}();
                 #set ($count = 0)		
-				#foreach( $field in $table.GetArrayOfFields ) 
+				#foreach( $field in $table.GetFields ) 
 				#if (!$field.isKey())
 					 
 					 
@@ -103,7 +103,7 @@ public partial class ${table}
             {
                
 			    #set ($count = 0)		
-				#foreach( $field in $table.GetArrayOfFields ) 
+				#foreach( $field in $table.GetFields ) 
 				#if (!$field.isKey())
 					 
 					 
@@ -170,7 +170,7 @@ public static bool UpdateBll(${table} obj${table})
             {
             sqlt.Append(" update ${table} set");
 			#set ($count = 0)		
-			#foreach( $field in $table.GetArrayOfFields )
+			#foreach( $field in $table.GetFields )
 		 	 
 			 
 				  #if ($field.type.toString() == "_integer")
@@ -217,7 +217,7 @@ public static bool UpdateBll(${table} obj${table})
         sqlt.Append( " insert into ${table} (${table.getListOfFieldsWithoutKeys(",")})"); 
         sqlt.Append( " ) values (");
 			#set ($count = 0)	
-			#foreach( $field in $table.GetArrayOfFields ) 
+			#foreach( $field in $table.GetFields ) 
 				#if (!$field.isKey())
 					 
 					 
@@ -312,7 +312,7 @@ public static bool UpdateBll(${table} obj${table})
             while (reg.Read())
                 {
                 ${table} pp = new ${table}();
-#foreach( $field in $table.GetArrayOfFields ) 	 
+#foreach( $field in $table.GetFields ) 	 
 		  #if ($field.type.toString() == "_integer")
 		     pp.${field} = sf.entero(reg["${field}"].ToString());
 		     #end 

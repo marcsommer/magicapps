@@ -120,7 +120,7 @@ project:
 
 
 ----------
-number of fields in table: $table.GetArrayOfFields.count
+number of fields in table: $table.GetFields.count
 
 
 ---------------------------------
@@ -134,7 +134,7 @@ tables in the project
 
 ----------
 fields in the table:
-#foreach( $field in $table.GetArrayOfFields )
+#foreach( $field in $table.GetFields )
     $field.Name is great!
     
     
@@ -156,19 +156,19 @@ relations in the table
  // ejemplo de bucle... con una coma al final..
  
 #set ($count = 0)
-#foreach( $field in $table.GetArrayOfFields )
+#foreach( $field in $table.GetFields )
 #if (! $field.isKey)
 #if ($field.type.toString() == "_integer")
-	sqlt.Append( sf.mySql(obj${table}.${field}) + "#if ($table.GetArrayOfFields.count() -  $count  != 1) , #end") ;
+	sqlt.Append( sf.mySql(obj${table}.${field}) + "#if ($table.GetFields.count() -  $count  != 1) , #end") ;
 #end  
 #if ($field.type.toString() == "_string")
-	sqlt.Append( sf.mySql(obj${table}.${field}) + "#if ($table.GetArrayOfFields.count()-  $count  != 1) , #end") ;
+	sqlt.Append( sf.mySql(obj${table}.${field}) + "#if ($table.GetFields.count()-  $count  != 1) , #end") ;
 #end  
 #if ($field.type.toString() == "_date")
-	sqlt.Append( sf.mySql(obj${table}.${field}) + "#if ($table.GetArrayOfFields.count()-  $count  != 1) , #end") ;
+	sqlt.Append( sf.mySql(obj${table}.${field}) + "#if ($table.GetFields.count()-  $count  != 1) , #end") ;
 #end  
 #if ($field.type.toString() == "_boolean")
-	sqlt.Append( sf.mySql(obj${table}.${field}) + "#if ($table.GetArrayOfFields.count()-  $count  != 1) , #end") ;
+	sqlt.Append( sf.mySql(obj${table}.${field}) + "#if ($table.GetFields.count()-  $count  != 1) , #end") ;
 #end 		
 #end 
 #set ($count = $count + 1 ) 
@@ -177,7 +177,7 @@ relations in the table
 
 // ejemplo de bucle
 
-#foreach( $field in $table.GetArrayOfFields )
+#foreach( $field in $table.GetFields )
 #if (! $field.isKey)
 #if ($field.type.toString() == "_integer")
 	new${table}.${field} = sf.entero(row["${field}"]);
