@@ -17,13 +17,8 @@
 # Table structure for table '${table}'
 #
 
-
-CREATE TABLE "${table}" (
- 
-	#foreach( $field in $table.GetFields )
-	 
-		 
-		 
+	CREATE TABLE "${table}" (	 
+		 #foreach( $field in $table.getFields())  
 			  #if ($field.type.toString() == "_integer")
 				 #if ($field.isKey())
 					   [${field}] [int] IDENTITY(1,1) NOT NULL,
@@ -32,23 +27,29 @@ CREATE TABLE "${table}" (
 				#end
 				#end
 			  #if ($field.type.toString() == "_string")
-				#if ( $field.size() == 1)>
-					    [${field}] [char](1) COLLATE Modern_Spanish_CI_AS NULL default (''),
+				#if ( $field.size() == 1)
+						[${field}] [char](1) COLLATE Modern_Spanish_CI_AS NULL #if ( !$field.defaultValue.equals("")) default ${field.defaultValue} #end,
 					#else
-						 [${field}] [varchar](${field.getSize()}) COLLATE Modern_Spanish_CI_AS NULL,
+						 [${field}] [varchar](${field.size()}) COLLATE Modern_Spanish_CI_AS NULL #if ( !$field.defaultValue.equals("")) default ${field.defaultValue} #end  ,
 				#end
-			    
-			     #end
-			  #if ($field.type.toString() == "_date")
-				[${field}] [datetime] NULL,
-			     #end
-			  #if ($field.type.toString() == "_boolean")
-				[${field}] [bit] NULL DEFAULT ((0)),
-			     #end
-			  
-	#end		
-	PRIMARY KEY  (${table.getListOfKeyFields(",")}),
+				
+			#end
+			#if ($field.type.toString() == "_date")
+				[${field}] [datetime] NULL #if ( !$field.defaultValue.equals("")) default ${field.defaultValue} #end,
+			#end
+			#if ($field.type.toString() == "_decimal")
+				[${field}] [decimal] NULL,
+			#end
+			#if ($field.type.toString() == "_double")
+				[${field}] [float] NULL  #if ( !$field.defaultValue.equals("")) default ${field.defaultValue} #end,
+			#end
+			#if ($field.type.toString() == "_boolean")
+				[${field}] [bit] NULL #if ( !$field.defaultValue.equals("")) default ${field.defaultValue} #end,
+			#end
+		#end
+		
 	 
+	 #if ( !$table.getListOfKeyFields(",").equals("")) PRIMARY KEY  (${table.getListOfKeyFields(",")}), #end
 );
 
 

@@ -95,8 +95,8 @@ field:
 
 	${field.Name()}
 
-	 ${field.type()}
-	$field.type.toString()}
+	${field.type()}
+	${field.type.toString()}
 	${field.targetType()}
 	${field.targetType.toString()}
 	${field.targetName()}
@@ -163,7 +163,7 @@ recorrer los campos de una tabla
 ---------------------------------
 
 #set ($count = 0)
-#foreach( $field in $tablaPadre.GetArrayOfFields )
+#foreach( $field in $table.GetArrayOfFields )
 	#if (!$field.isKey())
 		#if ($field.targetType.toString() == "_integer")
 			<th align="center">${field.targetName}</th>
@@ -211,13 +211,13 @@ maestro detalle
 	#if ($relation.childTable.equals(${table.name}))
 		<!-- master detail -->
 		$relation.name
-		#foreach( $tablaPadre in $project.getTables() )
+		#foreach( $table in $project.getTables() )
 			#if ($relation.parentTable.equals(${tablaPadre.name}))
 				tabla padre ... ${tablaPadre.name}
 					 
 											
 				#set ($count = 0)
-				#foreach( $field in $tablaPadre.GetArrayOfFields )
+				#foreach( $field in $table.GetArrayOfFields )
 					#if (!$field.isKey())
 					  #if ($field.targetType.toString() == "_integer")
 						 <th align="center">${field.targetName}</th>

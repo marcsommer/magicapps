@@ -1238,6 +1238,10 @@
     <Content Include="templates\projectTemplates\c#\mysql\html\Properties\licenses.licx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\Form1.resx" />
+    <EmbeddedResource Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\benefiDetail.resx" />
+    <EmbeddedResource Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\benefi_list.resx" />
+    <EmbeddedResource Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Resources.resx" />
     <EmbeddedResource Include="userControls\userControlEditField.resx">
       <DependentUpon>userControlEditField.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -2889,8 +2893,67 @@
     <Content Include="templates\projectTemplates\c#\sqlServer\html\juleweb.csproj.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb.sln" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\cListItem.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\cNodoBox.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\ctes.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\dbClass.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\dbClassOdbc.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\dbClassOleDb.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\lo.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\sf.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\validator.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\ValidLengthAttribute.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\classes\benefi.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\Form1.Designer.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\Form1.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\benefiDetail.Designer.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\benefiDetail.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\benefi_list.Designer.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\benefi_list.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Application.Designer.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Application.myapp" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\AssemblyInfo.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Resources.Designer.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Settings.Designer.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\windowsFormBaseVb.vbproj" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\windowsFormBaseVb.vbproj.user" />
     <Content Include="templates\vb\vb_Class_winform.vm">
       <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\app.config" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\classes\vb_Class_winform.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\table_list.Designer.vb.vm" />
+    <None Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\table_list.resx.vm" />
+    <None Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\table_list.vb.vm" />
+    <None Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\DataSources\cars.datasource" />
+    <None Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Settings.settings" />
+    <Content Include="templates\vb_dataTable.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="templates\Web.config.vm" />
@@ -5304,6 +5367,8 @@
     <Folder Include="templates\projectTemplates\c#\sqlServer\html\data\" />
     <Folder Include="templates\projectTemplates\c#\sqlServer\html\js\" />
     <Folder Include="templates\projectTemplates\c#\sqlServer\html\portal\includes\calendar\" />
+    <Folder Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\bin\" />
+    <Folder Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
