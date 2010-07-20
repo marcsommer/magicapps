@@ -209,10 +209,13 @@ Class lo
 
                 End Select
 
-                If tmpItem.ToLower = cadBusqueda.ToLower Then
-                    index = cont
-                    seguir = False
+                If Not tmpItem Is Nothing Then
+                    If tmpItem.ToLower = cadBusqueda.ToLower Then
+                        index = cont
+                        seguir = False
+                    End If
                 End If
+
                 cont = cont + 1
             Loop
         End If
@@ -235,7 +238,7 @@ Class lo
         Return (retorno)
     End Function
 
-    Public Shared Sub ComboDB(ByRef tmpCombo As ComboBox, ByVal textoSql As String, ByVal connectionString As String, ByRef Texto As String, ByRef Value As String)
+    Public Shared Sub comboFill(ByRef tmpCombo As ComboBox, ByVal textoSql As String, ByVal connectionString As String, ByRef Texto As String, ByRef Value As String)
         ' Rellena el combo que me pasan con la select pasada
         ' En el campo texto me pasan el campo a mostrar
         ' En el campo value me pasan el campo a almacenar
@@ -291,30 +294,23 @@ Class lo
         Return (retorno)
     End Function
 
-#End Region
-
-
-    Public Shared Sub rellenarListaDB(ByRef tmpList As ComboBox, ByVal textoSql As String, ByVal connectionString As String)
+    Public Shared Sub comboFill(ByRef tmpList As ComboBox, ByVal textoSql As String, ByVal connectionString As String)
         ' Rellena la lista que me pasan con la select pasada
-        ' pillo el primer campo que me pasan en la select para el campo texto
-        ' pillo el segundo campo que me pasan en la select para el el campo value me pasan el campo a almacenar
-
+        ' pillo el segundo campo que me pasan en la select para el campo texto
+        ' pillo el primer campo que me pasan en la select para el el campo value me pasan el campo a almacenar
+        ' ejemplo select banco_, nombre from bancos
         Dim pp As New dbClass(ctes.conStringAdo)
-        Dim dr As System.Data.OleDb.OleDbDataReader
+        Dim ds As System.Data.DataSet
 
         Try
-            dr = pp.sql(textoSql)
-            Do While dr.Read()
+            ds = pp.sqlDataset(textoSql)
 
-            Loop
-
-
-            'tmpList.DataSource = ds.DefaultViewManager
-            'tmpList.DisplayMember = ds.Tables(0).Columns.Item(0).ColumnName.ToString '.Rows(1).Item(0)
-            'tmpList.ValueMember = ds.Tables(0).Columns(1).ColumnName.ToString
-
+            tmpList.DataSource = ds.Tables(0)
+            tmpList.DisplayMember = ds.Tables(0).Columns(1).ColumnName.ToString
+            tmpList.ValueMember = ds.Tables(0).Columns(0).ColumnName.ToString
 
             'tmpList.DataBind()
+
             'Dim per As New ListItem
             'per.Value = 0
             'per.Text = "Elija ..."
@@ -326,6 +322,12 @@ Class lo
         End Try
 
     End Sub
+
+
+#End Region
+
+
+    
 
 
     Public Function listaValorSEleccionado(ByRef tmpList As ComboBox, Optional ByVal tipoCampo As eTipoCampo = eTipoCampo.id) As String

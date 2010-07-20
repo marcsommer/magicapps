@@ -22,17 +22,30 @@ Partial Class Form1
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.d1 = New System.Windows.Forms.DataGridView
+        CType(Me.d1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'd1
+        '
+        Me.d1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.d1.Location = New System.Drawing.Point(66, 49)
+        Me.d1.Name = "d1"
+        Me.d1.Size = New System.Drawing.Size(240, 150)
+        Me.d1.TabIndex = 0
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(292, 266)
+        Me.ClientSize = New System.Drawing.Size(601, 266)
+        Me.Controls.Add(Me.d1)
         Me.Name = "Form1"
         Me.Text = "Form1"
+        CType(Me.d1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
+    Friend WithEvents d1 As System.Windows.Forms.DataGridView
 
 End Class
