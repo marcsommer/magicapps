@@ -61,10 +61,8 @@
     <Compile Include="baseClasses\validator.vb" />
     <Compile Include="baseClasses\ValidLengthAttribute.vb" />
     <Compile Include="classes\bancos.vb" />
+    <Compile Include="classes\bancosList.vb" />
     <Compile Include="classes\benefi.vb" />
-    <Compile Include="classes\benefiDataTable.vb">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="classes\benefiList.vb" />
     <Compile Include="classes\customerx.vb" />
     <Compile Include="Form1.vb">
@@ -72,6 +70,18 @@
     </Compile>
     <Compile Include="Form1.Designer.vb">
       <DependentUpon>Form1.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\bancosDetail.Designer.vb">
+      <DependentUpon>bancosDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\bancosDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\bancos_list.Designer.vb">
+      <DependentUpon>bancos_list.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\bancos_list.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\benefiDetail.Designer.vb">
@@ -106,6 +116,12 @@
     <EmbeddedResource Include="Form1.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\bancosDetail.resx">
+      <DependentUpon>bancosDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\bancos_list.resx">
+      <DependentUpon>bancos_list.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\benefiDetail.resx">
       <DependentUpon>benefiDetail.vb</DependentUpon>
