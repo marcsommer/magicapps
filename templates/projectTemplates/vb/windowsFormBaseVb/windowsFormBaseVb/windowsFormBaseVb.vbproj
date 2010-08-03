@@ -64,7 +64,6 @@
     <Compile Include="classes\bancosList.vb" />
     <Compile Include="classes\benefi.vb" />
     <Compile Include="classes\benefiList.vb" />
-    <Compile Include="classes\customerx.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
