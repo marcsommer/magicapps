@@ -12,8 +12,10 @@ Public Class ctes
     'Public Shared conStringOleDb As String = "PROVIDER=MICROSOFT.JET.OLEDB.4.0;DATA SOURCE=" + directorioAplicacion + "/data/estancia.mdb"
     'Public Shared conStringAdoOdbc As String = ""
 
-    Public Shared conStringAdo As String = "PROVIDER=MICROSOFT.JET.OLEDB.4.0;DATA SOURCE=" + directorioAplicacion + "/data/estancia.mdb"
+    Public Shared conStringAdo As String = System.IO.Path.Combine("PROVIDER=MICROSOFT.JET.OLEDB.4.0;DATA SOURCE=" + directorioAplicacion, "data\estancia.mdb") ';Persist Security info=""False"""
 
+    ' used at creating new items, cause i cant pass the text to the list...
+    Public Shared last As New String("")
 
 #Region " Enumerados "
 
