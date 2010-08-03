@@ -299,6 +299,11 @@ ByVal inputSQL As String) As String
         Try
             Dim cadena As String
 
+            Select Case fecha
+                Case "01/01/0001", "01/01/1900", "", "00010101 00:00", "01/01/1900 0:00:00", "01/01/0001 0:00:00"
+                    Return ""
+            End Select
+
             ' Return Date.MinValue.ToString
 
             cadena = fecha.Year.ToString.PadLeft(4, "0") + fecha.Month.ToString.PadLeft(2, "0") + fecha.Day.ToString.PadLeft(2, "0") + " " + fecha.Hour.ToString.PadLeft(2, "0") + ":" + fecha.Minute.ToString.PadLeft(2, "0")
@@ -467,6 +472,32 @@ ByVal inputSQL As String) As String
         End Try
 
     End Function
+
+
+    ' la insercion siempre con formato yyyymmdd hh:mm
+    Public Shared Function cadenaSqlServer(ByVal fecha As Date) As String
+        Try
+            Dim cadena As String
+
+            Select Case fecha
+                Case "01/01/0001", "01/01/1900", "", "00010101 00:00", "01/01/1900 0:00:00", "01/01/0001 0:00:00"
+                    Return "null"
+            End Select
+
+
+            'cadena = "#" + fecha.Year.ToString.PadLeft(4, "0") + fecha.Month.ToString.PadLeft(2, "0") + fecha.Day.ToString.PadLeft(2, "0") + " " + fecha.Hour.ToString.PadLeft(2, "0") + ":" + fecha.Minute.ToString.PadLeft(2, "0") + "#"
+            cadena = "#" + fecha.Year.ToString.PadLeft(4, "0") + "/" + fecha.Month.ToString.PadLeft(2, "0") + "/" + fecha.Day.ToString.PadLeft(2, "0") + "#"
+            Return cadena
+        Catch ex As System.Exception
+            ' devolvemos la cadena vacia ya que no se permite
+            ' insertar del date.minvalue en formato iso, es
+            ' mejor dejarlo en blanco que es lo mismo
+            Return ""
+
+        End Try
+
+    End Function
+
 #End Region
 
 
