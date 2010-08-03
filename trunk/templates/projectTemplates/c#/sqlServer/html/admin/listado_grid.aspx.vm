@@ -59,23 +59,27 @@
       		     <div id="idlineax">
                    <asp:GridView ID="g${table}" runat="server" Width="100%" AllowPaging="True" DataKeyNames="${table.getKey()}"
                             AutoGenerateColumns="False" OnRowDataBound="g${table}_RowDataBound" OnRowCommand="g${table}_RowCommand" OnRowEditing="g${table}_RowEditing">
-                            <Columns>
+                             <AlternatingRowStyle BackColor=AliceBlue BorderWidth=1 BorderColor=Blue />
+							<Columns>
                                 <asp:TemplateField ShowHeader="False">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lbEdit" runat="server" CausesValidation="false" CommandName="Edit" CommandArgument='<%# Eval("${table.getKey()}") %>' Text="Editar"></asp:LinkButton>
                                     </ItemTemplate>
-                                </asp:TemplateField>
+                                       <ItemStyle Width="4%" Wrap="False" HorizontalAlign="Left" />								
+                               </asp:TemplateField>
                                 
                                 <asp:TemplateField ShowHeader="False">
                                     <ItemTemplate>
-                                    <asp:Label ID="lab${table.fieldDescription()}" runat="server" Text='<%# Eval("${table.fieldDescription()}") %>'></asp:Label>
+                                    <asp:Label ID="lab${table.fieldDescription()}" runat="server" Text='<%# Eval("${table.fieldDescription()}") %>' CssClass="tdIzq" ></asp:Label>
                                     </ItemTemplate>
-                                </asp:TemplateField>
+                                     <ItemStyle Width="60%" Wrap="False" HorizontalAlign="Left" />
+								 </asp:TemplateField>
                                 
                                 <asp:TemplateField ShowHeader="False">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="lbDelete" runat="server" CausesValidation="false" CommandName="Delete" CommandArgument='<%# Eval("${table.getKey()}") %>' Text="Borrar"></asp:LinkButton>
+                                        <asp:LinkButton ID="lbDelete" runat="server" CausesValidation="false" CommandName="Delete" CommandArgument='<%# Eval("${table.getKey()}") %>' Text="Borrar" OnClientClick="return confirm('¿Est&aacute;s seguro de querer borrar?');"></asp:LinkButton>
                                     </ItemTemplate>
+                                      <ItemStyle Width="4%" Wrap="False" HorizontalAlign="Left" />								
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>

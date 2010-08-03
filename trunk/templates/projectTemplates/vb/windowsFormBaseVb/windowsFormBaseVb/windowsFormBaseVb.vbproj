@@ -65,6 +65,8 @@
     <Compile Include="classes\benefiDataTable.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="classes\benefiList.vb" />
+    <Compile Include="classes\customerx.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
