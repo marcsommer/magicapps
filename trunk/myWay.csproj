@@ -640,6 +640,7 @@
     <EmbeddedResource Include="img\spanner_48.png" />
     <EmbeddedResource Include="img\thumbs_down_48.png" />
     <EmbeddedResource Include="img\thumbs_up_48.png" />
+    <Content Include="Resources\script_go.png" />
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqCabDcha.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1238,10 +1239,32 @@
     <Content Include="templates\projectTemplates\c#\mysql\html\Properties\licenses.licx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\Form1.resx" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\Form1.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\bancosDetail.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\bancos_list.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\benefiDetail.resx" />
     <EmbeddedResource Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\benefi_list.resx" />
-    <EmbeddedResource Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Resources.resx" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\bancosDetail.Designer.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\bancosDetail.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\bancos_list.Designer.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\bancos_list.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Resources.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="userControls\userControlEditField.resx">
       <DependentUpon>userControlEditField.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1252,7 +1275,6 @@
     </EmbeddedResource>
     <None Include="App.config">
     </None>
-    <None Include="Resources\script_go.png" />
     <Content Include="templates\projectTemplates\c#\mysql\html\admin\imagesadmin\accesib.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2893,7 +2915,9 @@
     <Content Include="templates\projectTemplates\c#\sqlServer\html\juleweb.csproj.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb.sln" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb.sln">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\cListItem.vb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -2927,33 +2951,79 @@
     <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\classes\benefi.vb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\Form1.Designer.vb" />
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\Form1.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\Form1.Designer.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\Form1.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\benefiDetail.Designer.vb" />
     <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\benefiDetail.vb" />
     <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\benefi_list.Designer.vb" />
     <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\benefi_list.vb" />
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Application.Designer.vb" />
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Application.myapp" />
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\AssemblyInfo.vb" />
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Resources.Designer.vb" />
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Settings.Designer.vb" />
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\windowsFormBaseVb.vbproj" />
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\windowsFormBaseVb.vbproj.user" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Application.Designer.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Application.myapp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\AssemblyInfo.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Resources.Designer.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Settings.Designer.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\windowsFormBaseVb.vbproj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\windowsFormBaseVb.vbproj.user">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="templates\vb\vb_Class_winform.vm">
       <SubType>ASPXCodeBehind</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\app.config" />
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\classes\vb_Class_winform.vm">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\app.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\table_list.Designer.vb.vm" />
-    <None Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\table_list.resx.vm" />
-    <None Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\table_list.vb.vm" />
-    <None Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\DataSources\cars.datasource" />
-    <None Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Settings.settings" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\classes\vb_Class_winform.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\classes\vb_Class_bindingList.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Settings.settings">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="templates\vb_dataTable.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\vb\vb_Class_bindingList.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\windowsFormBaseVb.vbproj.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\tableDetail.Designer.vb.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\tableDetail.resx.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\tableDetail.vb.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\table_list.Designer.vb.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\table_list.resx.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\table_list.vb.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="templates\Web.config.vm" />
@@ -5369,6 +5439,7 @@
     <Folder Include="templates\projectTemplates\c#\sqlServer\html\portal\includes\calendar\" />
     <Folder Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\bin\" />
     <Folder Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\data\" />
+    <Folder Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

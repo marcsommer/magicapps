@@ -746,6 +746,8 @@ namespace myWay
                                 // now lets get the fields for each table...
                                 List<field> listaField = new List<field>();
                                 listaField = dba.getFields(connectionString, item.Name);
+                                                                                      
+                                
                                 if (listaField != null)
                                 {
                                     foreach (field fi in listaField)
@@ -753,12 +755,20 @@ namespace myWay
                                         item.fields.Add(fi);
                                         AsyncWriteLine("Found field... " + fi.Name + "\n");
 
-                                    }
+                                    }                                   
 
+                                }
+
+                                // lets get primary keys and foreign keys for the table...
+                                dba.getKeys(connectionString, item);
+
+                                // now we search a text field that is not key
+                                if (listaField != null)
+                                {
                                     // the descriptionField its the first string field of table...
                                     foreach (field campito in listaField)
                                     {
-                                        if (campito.type.ToString().Equals("_string"))
+                                        if (campito.type.ToString().Equals("_string") && !campito.isKey)
                                         {
                                             item.fieldDescription = campito.Name;
                                             break;
@@ -768,8 +778,7 @@ namespace myWay
 
                                 }
 
-                                // lets get primary keys and foreign keys for the table...
-                                dba.getKeys(connectionString, item);
+                              
 
                                 // lets sort the fields in the table...
                                 // we order but put first key fields
