@@ -498,6 +498,36 @@ ByVal inputSQL As String) As String
 
     End Function
 
+    ' la insercion siempre con formato yyyymmdd hh:mm
+    Public Shared Function cadenaSqlServer(ByVal cadena As String) As String
+        Try
+            Return "'" + cadena + "'"
+        Catch ex As System.Exception
+             Return ""
+        End Try
+
+    End Function
+
+    ' la insercion siempre con formato yyyymmdd hh:mm
+    Public Shared Function cadenaSqlServer(ByVal num As Integer) As String
+        Try
+            Return sf.Cadena(num)
+        Catch ex As System.Exception
+            Return ""
+        End Try
+
+    End Function
+
+    ' la insercion siempre con formato yyyymmdd hh:mm
+    Public Shared Function cadenaSqlServer(ByVal num As Double) As String
+        Try
+            Return "'" + sf.Cadena(num) + "'"
+        Catch ex As System.Exception
+            Return ""
+        End Try
+
+    End Function
+
 #End Region
 
 
