@@ -70,6 +70,7 @@ table:
 	${table.targetName()}
 	${table.numberOfFields()}
 	${table.getKey()}
+	${table.getKeyType()}
 	${table.fieldDescription()}
 
 	${table.getFields}
@@ -263,3 +264,14 @@ maestro detalle
 	#end
 
 #end 
+
+
+----------------------------------------------
+
+
+
+ #* segun el campo clave sea entero o cadena ... *#  
+#if (${table.getKeyFieldType() == "_integer"} )	
+
+#end
+          

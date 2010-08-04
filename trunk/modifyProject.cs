@@ -777,7 +777,8 @@ namespace myWay
                                     }
 
                                 }
-
+                                if (item.fieldDescription == null)
+                                    item.fieldDescription = item.GetKey;
                               
 
                                 // lets sort the fields in the table...
