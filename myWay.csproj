@@ -1242,26 +1242,8 @@
     <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\Form1.resx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\bancosDetail.resx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\bancos_list.resx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <EmbeddedResource Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\benefiDetail.resx" />
     <EmbeddedResource Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\benefi_list.resx" />
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\bancosDetail.Designer.vb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\bancosDetail.vb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\bancos_list.Designer.vb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\bancos_list.vb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Resources.resx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

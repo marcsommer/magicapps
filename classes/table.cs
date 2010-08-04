@@ -338,6 +338,27 @@ public partial class table : IComparable
         return retorno;
     }
 
+    // return the type of key field
+    public String getFieldType(string nombre)
+    {
+        foreach (field item in fields)
+        {
+            if (item.Name.Equals(nombre))
+                return item.type.ToString();
+        }
+        return "";
+    }
+
+    // return the type of key field
+    public String getKeyFieldType()
+    {
+        foreach (field item in fields)
+        {
+            if (item.isKey)
+                return item.type.ToString();
+        }
+        return "";
+    }
 
 
     // le decimos al serializer que lo ignore o nos duplica los campos...

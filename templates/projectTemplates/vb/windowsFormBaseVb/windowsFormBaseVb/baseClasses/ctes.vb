@@ -4,6 +4,12 @@
 ' en esta clase irian las constantes...
 Public Class ctes
 
+    Public Enum tipoMensaje
+        info = 1
+        fallo = 2
+        exito = 3
+    End Enum
+
     Public Shared serverServicesWeb As New String("")
 
     Public Shared directorioAplicacion As String = System.AppDomain.CurrentDomain.BaseDirectory

@@ -200,8 +200,12 @@ ByVal inputSQL As String) As String
     End Function
 
     Public Shared Function Fecha(ByVal valor As String) As Date
+        Dim test As New Date
         Dim retorno As New Date
         Date.TryParse(valor, retorno)
+        If retorno = test Then
+            Return Date.MinValue
+        End If
         Return retorno
 
         
@@ -340,11 +344,11 @@ ByVal inputSQL As String) As String
     Public Shared Function esFecha(ByVal fecha As Date) As Boolean
         Try
             Select Case fecha.ToShortDateString
-                Case "01/01/0001", "01/01/1900"
+                Case "01/01/0001", "01/01/1900", ""
                     Return False
             End Select
 
-            Dim fechita As Date = New Date().Parse(fecha.ToString)
+            Dim fechita As Date = Date.Parse(fecha.ToString)
 
 
             Return True
