@@ -55,6 +55,7 @@ Class lo
             ds = db.sqlDataset(sql)
             Dim myDataRow As DataRow
             For Each myDataRow In ds.Tables(0).Rows
+
                 Dim nodo As New nodoLista
                 nodo.id = myDataRow(campoId).ToString()
                 nodo.text = myDataRow(campoNombre).ToString()
@@ -76,7 +77,7 @@ Class lo
         Call pp.Items.Clear()
     End Sub
 
-
+    ' actual ...
     Public Function listaValorSEleccionado(ByRef tmpList As ListBox, Optional ByVal tipoCampo As eTipoCampo = eTipoCampo.id) As String
         ' Me da el text/id del elemento seleccionado seg�n el par�metro tipoCampo
         Dim retorno As String
@@ -86,10 +87,8 @@ Class lo
         Else
             If (tipoCampo = eTipoCampo.id) Then
                 retorno = CType(CType(tmpList.SelectedItem, Object), lo.nodoLista).id
-                'tmpList.SelectedItem.Value() '.SelectedIndex 'SelectedValue
             Else
                 retorno = CType(CType(tmpList.SelectedItem, Object), lo.nodoLista).text
-
             End If
         End If
 
@@ -102,56 +101,47 @@ Class lo
 
 
     Public Function ListaIsEmpty(ByRef tmpList As ListBox) As Boolean
-        ' Me devuevel el estado del combo
-        Dim retorno As Boolean
-
-        If (tmpList.Items.Count <= 0) Then
-            retorno = True
-        Else
-            retorno = False
-        End If
-
-        Return (retorno)
+        Return (tmpList.Items.Count <= 0)
     End Function
 
-    Public Sub listaSeleccionarItem(ByRef tmpList As ListBox, ByVal cadBusqueda As String, Optional ByVal tipoCampo As eTipoCampo = eTipoCampo.id)
-        ' Busca el nodo que me dan y le colocan el focus
-        Dim index As Integer
+    'Public Sub listaSeleccionarItem(ByRef tmpList As ListBox, ByVal cadBusqueda As String, Optional ByVal tipoCampo As eTipoCampo = eTipoCampo.id)
+    '    ' Busca el nodo que me dan y le colocan el focus
+    '    Dim index As Integer
 
-        Dim cont As Integer
-        Dim pos As Integer
-        Dim seguir As Boolean
+    '    Dim cont As Integer
+    '    Dim pos As Integer
+    '    Dim seguir As Boolean
 
-        Dim tmpItem As String
+    '    Dim tmpItem As String
 
-        index = -1
-        cont = 0
-        seguir = True
-        If Not (ListaIsEmpty(tmpList)) Then
+    '    index = -1
+    '    cont = 0
+    '    seguir = True
+    '    If Not (ListaIsEmpty(tmpList)) Then
 
 
-            Do While (cont < tmpList.Items.Count) And (seguir)
-                Select Case tipoCampo
-                    Case eTipoCampo.id
-                        pos = 0
-                        tmpItem = tmpList.Items(cont).id 'Value
-                    Case eTipoCampo.texto
-                        pos = 1
-                        tmpItem = tmpList.Items(cont).Text
-                End Select
+    '        Do While (cont < tmpList.Items.Count) And (seguir)
+    '            Select Case tipoCampo
+    '                Case eTipoCampo.id
+    '                    pos = 0
+    '                    tmpItem = tmpList.Items(cont).id 'Value
+    '                Case eTipoCampo.texto
+    '                    pos = 1
+    '                    tmpItem = tmpList.Items(cont).Text
+    '            End Select
 
-                If tmpItem.ToLower = cadBusqueda.ToLower Then
-                    index = cont
-                    seguir = False
-                End If
-                cont = cont + 1
-            Loop
-        End If
+    '            If tmpItem.ToLower = cadBusqueda.ToLower Then
+    '                index = cont
+    '                seguir = False
+    '            End If
+    '            cont = cont + 1
+    '        Loop
+    '    End If
 
-        tmpList.SelectedIndex = index
-        'tmpList.Items.FindByText(cadBusqueda).Selected = True '.Value()
+    '    tmpList.SelectedIndex = index
+    '    'tmpList.Items.FindByText(cadBusqueda).Selected = True '.Value()
 
-    End Sub
+    'End Sub
     'End Class
 
 
@@ -159,16 +149,12 @@ Class lo
 
 #Region "ComboBox -------------------------------------------"
 
-    ' combos - combobox
-    Shared Sub vaciarCombo(ByVal pp As ComboBox)
+
+    Shared Sub comboVaciar(ByRef pp As ComboBox)
         Call pp.Items.Clear()
     End Sub
 
-    Shared Sub comboVaciar(ByVal pp As ComboBox)
-        Call pp.Items.Clear()
-    End Sub
-
-    Shared Sub comboEstaticoAddItem(ByVal pp As ComboBox, ByVal cadena As String, ByVal valor As Integer)
+    Shared Sub comboEstaticoAddItem(ByRef pp As ComboBox, ByVal cadena As String, ByVal valor As Integer)
         Dim cb As New cNodoBox(cadena, valor)
         pp.Items.Add(cb)
     End Sub
@@ -188,77 +174,64 @@ Class lo
         seguir = True
         If Not (comboIsEmpty(tmpList)) Then
 
-            Do While (cont < tmpList.Items.Count) And (seguir)
-                Select Case tipoCampo
-                    Case eTipoCampo.id
-                        pos = 0
-                        Try
-                            tmpItem = tmpList.Items(cont).id
-                        Catch ex As Exception
+            Select Case tipoCampo
+                Case eTipoCampo.id
+                    tmpList.SelectedValue = cadBusqueda
+                Case eTipoCampo.texto
+                    tmpList.SelectedText = cadBusqueda
+            End Select
 
-                        End Try
-
-                    Case eTipoCampo.texto
-                        pos = 1
-                        Try
-
-                            tmpItem = tmpList.Items(cont).Text
-                        Catch ex As Exception
-
-                        End Try
-
-                End Select
-
-                If Not tmpItem Is Nothing Then
-                    If tmpItem.ToLower = cadBusqueda.ToLower Then
-                        index = cont
-                        seguir = False
-                    End If
-                End If
-
-                cont = cont + 1
-            Loop
         End If
-
-        tmpList.SelectedIndex = index
-        'tmpList.Items.FindByText(cadBusqueda).Selected = True '.Value()
-
     End Sub
 
-    Public Shared Function comboIsEmpty(ByRef tmpList As ComboBox) As Boolean
-        ' Me devuevel el estado del combo
-        Dim retorno As Boolean
 
-        If (tmpList.Items.Count <= 0) Then
-            retorno = True
+
+    Public Shared Function comboValorSeleccionado(ByRef tmpList As ComboBox, Optional ByVal tipoCampo As eTipoCampo = eTipoCampo.id) As String
+        ' Me da el text/id del elemento seleccionado seg�n el par�metro tipoCampo
+        Dim retorno As String
+
+        If (tmpList.SelectedIndex < 0) Then
+            retorno = "-1"
         Else
-            retorno = False
+            If (tipoCampo = eTipoCampo.id) Then
+                retorno = tmpList.SelectedValue.ToString() 'CType(CType(tmpList.SelectedItem, Object), lo.nodoLista).id
+            Else
+                retorno = tmpList.SelectedText.ToString() 'CType(CType(tmpList.SelectedItem, Object), lo.nodoLista).text
+            End If
+        End If
+
+        If (retorno = "") Then
+            retorno = "-1"
         End If
 
         Return (retorno)
     End Function
 
-    Public Shared Sub comboFill(ByRef tmpCombo As ComboBox, ByVal textoSql As String, ByVal connectionString As String, ByRef Texto As String, ByRef Value As String)
-        ' Rellena el combo que me pasan con la select pasada
-        ' En el campo texto me pasan el campo a mostrar
-        ' En el campo value me pasan el campo a almacenar
-        Dim adoNET As New dbClass(connectionString)
-        Try
+    Public Shared Function comboIsEmpty(ByRef tmpList As ComboBox) As Boolean
+       Return (tmpList.Items.Count <= 0) 
+    End Function
 
-            Dim aRegistros As Object
-            aRegistros = adoNET.sql(textoSql)
+    'Public Shared Sub comboFill(ByRef tmpCombo As ComboBox, ByVal textoSql As String, ByVal connectionString As String, ByRef Texto As String, ByRef Value As String)
+    '    ' Rellena el combo que me pasan con la select pasada
+    '    ' En el campo texto me pasan el campo a mostrar
+    '    ' En el campo value me pasan el campo a almacenar
+    '    Dim adoNET As New dbClass(connectionString)
+    '    Try
 
-            Do While aRegistros.read()
-                Call insertarNodo(tmpCombo, aRegistros(Texto), aRegistros(Value))
-            Loop
-            aRegistros.close()
+    '        Dim aRegistros As Object
+    '        aRegistros = adoNET.sql(textoSql)
 
-        Catch ex As Exception
-        Finally
-            adoNET.dispose()
-        End Try
+    '        Do While aRegistros.read()
+    '            Call insertarNodo(tmpCombo, aRegistros(Texto), aRegistros(Value))
+    '        Loop
+    '        aRegistros.close()
 
-    End Sub
+    '    Catch ex As Exception
+    '    Finally
+    '        adoNET.dispose()
+    '    End Try
+
+    'End Sub
 
     Public Shared Sub insertarNodo(ByRef tmpCombo As ComboBox, ByVal tmpTexto As String, ByVal tmpId As String)
         Dim tmpNodo As cNodoBox
@@ -267,32 +240,32 @@ Class lo
         tmpCombo.Items.Add(tmpNodo)
     End Sub
 
-    Public Shared Function comboValorSEleccionado(ByRef tmpCombo As ComboBox, ByVal campoBusqueda As eTipoCampo) As Object
-        '  Me da el text/id del nodo seleccionado seg�n el par�metro flagValue
-        Dim tmpRetorno As cNodoBox
-        Dim retorno As Object
+    'Public Shared Function comboValorSEleccionado(ByRef tmpCombo As ComboBox, ByVal campoBusqueda As eTipoCampo) As Object
+    '    '  Me da el text/id del nodo seleccionado seg�n el par�metro flagValue
+    '    Dim tmpRetorno As cNodoBox
+    '    Dim retorno As Object
 
-        If (tmpCombo.SelectedIndex = -1) Then
-            Select Case campoBusqueda
-                Case eTipoCampo.id
-                    retorno = 0
-                Case Else
-                    retorno = "-1"
-            End Select
-        Else
-            tmpRetorno = tmpCombo.SelectedItem
-            Select Case campoBusqueda
-                Case eTipoCampo.id
-                    retorno = tmpRetorno.id
-                Case eTipoCampo.texto
-                    retorno = tmpRetorno.text
-                    'Case eTipoCampo.nodo
-                    '    retorno = tmpRetorno
-            End Select
-        End If
+    '    If (tmpCombo.SelectedIndex = -1) Then
+    '        Select Case campoBusqueda
+    '            Case eTipoCampo.id
+    '                retorno = 0
+    '            Case Else
+    '                retorno = "-1"
+    '        End Select
+    '    Else
+    '        tmpRetorno = tmpCombo.SelectedItem
+    '        Select Case campoBusqueda
+    '            Case eTipoCampo.id
+    '                retorno = tmpRetorno.id
+    '            Case eTipoCampo.texto
+    '                retorno = tmpRetorno.text
+    '                'Case eTipoCampo.nodo
+    '                '    retorno = tmpRetorno
+    '        End Select
+    '    End If
 
-        Return (retorno)
-    End Function
+    '    Return (retorno)
+    'End Function
 
     Public Shared Sub comboFill(ByRef tmpList As ComboBox, ByVal textoSql As String, ByVal connectionString As String)
         ' Rellena la lista que me pasan con la select pasada
@@ -330,68 +303,68 @@ Class lo
     
 
 
-    Public Function listaValorSEleccionado(ByRef tmpList As ComboBox, Optional ByVal tipoCampo As eTipoCampo = eTipoCampo.id) As String
-        ' Me da el text/id del elemento seleccionado seg�n el par�metro tipoCampo
-        Dim retorno As String
+    'Public Function listaValorSEleccionado(ByRef tmpList As ComboBox, Optional ByVal tipoCampo As eTipoCampo = eTipoCampo.id) As String
+    '    ' Me da el text/id del elemento seleccionado seg�n el par�metro tipoCampo
+    '    Dim retorno As String
 
-        If (tmpList.SelectedIndex < 0) Then
-            retorno = "-1"
-        Else
-            If (tipoCampo = eTipoCampo.id) Then
-                retorno = tmpList.SelectedItem.Value '.SelectedIndex 'SelectedValue
-            Else
-                retorno = tmpList.SelectedItem.ToString
+    '    If (tmpList.SelectedIndex < 0) Then
+    '        retorno = "-1"
+    '    Else
+    '        If (tipoCampo = eTipoCampo.id) Then
+    '            retorno = tmpList.SelectedItem.Value '.SelectedIndex 'SelectedValue
+    '        Else
+    '            retorno = tmpList.SelectedItem.ToString
 
-            End If
-        End If
+    '        End If
+    '    End If
 
-        If (retorno = "") Then
-            retorno = "-1"
-        End If
+    '    If (retorno = "") Then
+    '        retorno = "-1"
+    '    End If
 
-        Return (retorno)
-    End Function
-
-
+    '    Return (retorno)
+    'End Function
 
 
-    Public Sub listaSeleccionarItem(ByRef tmpList As ComboBox, ByVal cadBusqueda As String, Optional ByVal tipoCampo As eTipoCampo = eTipoCampo.id)
-        ' Busca el nodo que me dan y le colocan el focus
-        Dim index As Integer
 
-        Dim cont As Integer
-        Dim pos As Integer
-        Dim seguir As Boolean
 
-        Dim tmpItem As String
+    'Public Sub listaSeleccionarItem(ByRef tmpList As ComboBox, ByVal cadBusqueda As String, Optional ByVal tipoCampo As eTipoCampo = eTipoCampo.id)
+    '    ' Busca el nodo que me dan y le colocan el focus
+    '    Dim index As Integer
 
-        index = -1
-        cont = 0
-        seguir = True
-        If Not (comboIsEmpty(tmpList)) Then
+    '    Dim cont As Integer
+    '    Dim pos As Integer
+    '    Dim seguir As Boolean
 
-            Do While (cont < tmpList.Items.Count) And (seguir)
-                Select Case tipoCampo
-                    Case eTipoCampo.id
-                        pos = 0
-                        tmpItem = tmpList.Items(cont).Value
-                    Case eTipoCampo.texto
-                        pos = 1
-                        tmpItem = tmpList.Items(cont).Text
-                End Select
+    '    Dim tmpItem As String
 
-                If tmpItem.ToLower = cadBusqueda.ToLower Then
-                    index = cont
-                    seguir = False
-                End If
-                cont = cont + 1
-            Loop
-        End If
+    '    index = -1
+    '    cont = 0
+    '    seguir = True
+    '    If Not (comboIsEmpty(tmpList)) Then
 
-        tmpList.SelectedIndex = index
-        'tmpList.Items.FindByText(cadBusqueda).Selected = True '.Value()
+    '        Do While (cont < tmpList.Items.Count) And (seguir)
+    '            Select Case tipoCampo
+    '                Case eTipoCampo.id
+    '                    pos = 0
+    '                    tmpItem = tmpList.Items(cont).Value
+    '                Case eTipoCampo.texto
+    '                    pos = 1
+    '                    tmpItem = tmpList.Items(cont).Text
+    '            End Select
 
-    End Sub
+    '            If tmpItem.ToLower = cadBusqueda.ToLower Then
+    '                index = cont
+    '                seguir = False
+    '            End If
+    '            cont = cont + 1
+    '        Loop
+    '    End If
+
+    '    tmpList.SelectedIndex = index
+    '    'tmpList.Items.FindByText(cadBusqueda).Selected = True '.Value()
+
+    'End Sub
 
 
 

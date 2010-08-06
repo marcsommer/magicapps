@@ -312,7 +312,7 @@ class dbMySql
                                 {
                                     fi.isKey = true;
                                     table.keyFields.Add(fi);
-                                    if (table.GetKey == null)
+                                    if (table.GetKey == "")
                                         table.GetKey = campo;
                                 }
 
