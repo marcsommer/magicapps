@@ -360,7 +360,7 @@ class dbSql2005
                                 {
                                     fi.isKey = true;
                                     table.keyFields.Add(fi);
-                                    if (table.GetKey == null)
+                                    if (table.GetKey == "")
                                         table.GetKey = campo;
                                 }
 

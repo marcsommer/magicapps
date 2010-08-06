@@ -163,6 +163,11 @@ ByVal inputSQL As String) As String
         Return retorno
 
     End Function
+
+    Public Shared Function Doble(ByVal valor As System.DBNull) As Double
+        Return 0
+    End Function
+
     Public Shared Function Doble(ByVal valor As String) As Double
 
         Dim retorno As New Double

@@ -657,6 +657,7 @@ namespace myWay
                                                 {
                                                     if (campo.Name.Equals(campo2.Name))
                                                     {
+                                                        campo2.isForeignKey = true;
                                                         relation rel = new relation();
                                                         rel.name = tab.Name + "_" + tab2.Name;
                                                         if (!pr.relations.Contains(rel.name))
@@ -844,6 +845,7 @@ namespace myWay
                                                 {
                                                     if (campo.Name.Equals(campo2.Name))
                                                     {
+                                                        campo2.isForeignKey = true;
                                                         relation rel = new relation();
                                                         rel.name = tab.Name + "_" + tab2.Name;
                                                         if (!pr.relations.Contains(rel.name))

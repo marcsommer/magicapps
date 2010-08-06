@@ -95,7 +95,12 @@ public partial class table : IComparable
 
     public String GetKey
     {
-        get { return getKey; }
+        get {
+            if (getKey == null)
+                return "";
+            return getKey; 
+        
+        }
         set { getKey = value; }
     }
     
@@ -112,8 +117,46 @@ public partial class table : IComparable
 
     public int countOfFieldsNotKey
     {
-        get { return getFields.Count - getNotKeyFields.Count; }
+        get { return getNotKeyFields.Count; }
     }
+
+
+    // return the name of the parent table of a foreign key
+    public String getTableNameByForeignKey( project pr, string fieldName)
+    {
+        try
+        {
+ 
+        foreach (table item in pr.GetTables)
+        {
+            if (item.GetKey.Equals(fieldName))
+                return item.Name;
+        }
+        }
+        catch (Exception ex)
+        {
+            
+            throw;
+        }
+
+
+       
+        return "";
+    }
+
+    // return the name of the keyField of the parent table from a foreign key
+    public String getKeyFieldByForeignKey(project pr, string fieldName)
+    {
+        
+        foreach (table item in pr.GetTables)
+        {
+            if (item.GetKey.Equals(fieldName))
+                return item.GetKey;
+        }
+        return "";
+    }
+
+
 
     // return a string with delimiter...
     public String getListOfFields(string delimiter)
@@ -136,6 +179,40 @@ public partial class table : IComparable
         {
             retorno = string.Join(delimiter, returnArray);
            // retorno = retorno.Remove(retorno.LastIndexOf(delimiter), delimiter.Length);
+        }
+
+        return retorno;
+    }
+
+    // return a string with delimiter... and with previousString added at init
+    public String getListOfFields(string delimiter,string previousString)
+    {
+        ArrayList al = new ArrayList();
+        foreach (field item in fields)
+        {
+            al.Add(item.Name);
+        }
+        string[] returnArray;
+        string retorno = "";
+
+        returnArray = (string[])al.ToArray(Type.GetType("System.String"));
+
+        if ( ! previousString.Equals(""))
+        {
+            for (int i = 0; i < returnArray.Length -1; i++)
+            {
+                returnArray[i] = previousString + returnArray[i];
+            }
+        }
+
+        if (returnArray.Length == 1)
+        {
+            retorno = returnArray[0];
+        }
+        else
+        {
+            retorno = string.Join(delimiter, returnArray);
+            // retorno = retorno.Remove(retorno.LastIndexOf(delimiter), delimiter.Length);
         }
 
         return retorno;

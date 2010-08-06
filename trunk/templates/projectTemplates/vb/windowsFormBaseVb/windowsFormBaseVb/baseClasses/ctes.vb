@@ -23,6 +23,10 @@ Public Class ctes
     ' used at creating new items, cause i cant pass the text to the list...
     Public Shared last As New String("")
 
+
+    ' used at creating new items, cause i cant pass the text to the list...
+    Public Shared lastObject As New Object
+
 #Region " Enumerados "
 
     Public Enum eTipoCampo As Integer

@@ -4,18 +4,19 @@ Public Class Form1
         
         d1.AutoGenerateColumns = False
         d1.DataSource = BANCOS.getList()
-
         d1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+
+
         ' Dim fm As New bancos_list
         ' fm.ShowDialog()
 
         Dim fm As New bancosDetail
         fm.ShowDialog()
 
-
-
-        'Dim fm As New benefiDetail
-        'fm.ShowDialog()
+        ' Dim fm As New benefiDetail
+        ' ' fm.createNewItem = True
+        ' ' ctes.last = "33"
+        ' fm.ShowDialog()
 
     End Sub
 

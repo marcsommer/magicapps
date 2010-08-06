@@ -76,7 +76,11 @@ table:
 	${table.getFields}
 	${table.getKeyFields}
 	
+	${table.getTableNameByForeignKey( project , "name" )}
+	${table.getKeyFieldByForeignKey ( project , "name" )}
+	
 	${table.getListOfFields(",")}
+	${table.getListOfFields(",","pre")} ' gets a list with "pre + field + ,"
 	${table.getListOfFieldsWithoutKeys(",")}
 	${table.getListOfKeyFields(",")}
 	${table.getListOfParameters(",")}
@@ -274,4 +278,16 @@ maestro detalle
 #if (${table.getKeyFieldType() == "_integer"} )	
 
 #end
-          
+      
+------------------------------
+sample: to get a string with the fields starting with Me. and separated with a comma
+
+${table.getListOfFields(",","Me.")}    
+result: Me.ANIO, Me.FACTURA, Me.idCabGeri, Me.MES_, TOTAL
+
+------------------------------
+sample: we got a foreign key and want to know about their parent table
+
+${table.getTableNameByForeignKey( project , "name" )}
+${table.getKeyFieldByForeignKey ( project , "name" )}
+
