@@ -17,6 +17,7 @@ namespace myWay
         public String text;
         public String smallTitle;
 
+        public bool tries = true;
         public showProjectTemplates()
         {
             InitializeComponent();
@@ -27,14 +28,54 @@ namespace myWay
         private void cargar()
         {
             trTemplates.Nodes.Clear();
+
+            if (!Directory.Exists(util.projectTemplates_dir))
+            {
+                util.projectTemplates_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, "templates\\projectTemplates");
+                System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config.AppSettings.Settings["projectTemplatesPath"].Value = util.projectTemplates_dir;
+                config.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("appSettings");
+            }
+
             loadTreeTemplates(util.projectTemplates_dir, null);
             //trTemplates.ExpandAll();
+
+            // try to select node ...
+            TreeNode tr;
+            tr = SearchTree(trTemplates.Nodes, general.actualProject.projectTemplatesDirectorySmall);
+
+            // if nothing its loaded then its because the path to templates its erroneous ...
+            if (trTemplates.Nodes.Count == 0 && tries)
+            {
+                tries = false;
+                butRestorePath_Click(this, null);
+            }
+
+
+
+        }
+
+        public TreeNode SearchTree(TreeNodeCollection nodes, string searchtext)
+        {
+            foreach (TreeNode node in nodes)
+            {
+                if (node.Text as string == searchtext)
+                {
+                    trTemplates.SelectedNode = node;
+                    return node;
+
+                }
+                SearchTree(node.Nodes, searchtext);
+            }
+            return null;
         }
 
         private void loadTreeTemplates(String dir, TreeNode parentNode)
         {
             try
-            {
+            {             
+
                 TreeNode nodo = new TreeNode();
                 nodo.Text = new DirectoryInfo(dir).Name;
                 nodo.ImageIndex = 0;
@@ -67,6 +108,10 @@ namespace myWay
                     trTemplates.Nodes.Add(nodo);
                 }
 
+                
+            
+
+
             }
             catch (System.IO.DirectoryNotFoundException dfn)
             {
@@ -77,11 +122,13 @@ namespace myWay
                 //config.Save(ConfigurationSaveMode.Modified);
                 //ConfigurationManager.RefreshSection("appSettings");
                 //cargar();
+                            
+
+            
             }
             catch (Exception ex)
             {
-
-
+               
                 // throw;
             }
            

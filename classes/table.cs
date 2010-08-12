@@ -25,7 +25,7 @@ public partial class table : IComparable
     #region["Variables"]
 
 
-     
+
     private string name;
     private string targetName;
     private int numberOfFields;
@@ -37,7 +37,7 @@ public partial class table : IComparable
     private Boolean _deleted;
 
 
-  
+
     // This attribute enables the ArrayList to be serialized:
     [System.Xml.Serialization.XmlArray("Fields")]
     // Explicitly tell the serializer to expect the Item class
@@ -66,7 +66,7 @@ public partial class table : IComparable
     // so it can be properly written to XML from the collection:
     [System.Xml.Serialization.XmlArrayItem("Relation", typeof(relation))]
     public ArrayList relations = new ArrayList();
-    
+
 
 
     #endregion
@@ -74,7 +74,7 @@ public partial class table : IComparable
 
     #region["Propiedades"]
 
-        
+
     //public String getName() { return _name; }
 
     public String Name
@@ -95,15 +95,16 @@ public partial class table : IComparable
 
     public String GetKey
     {
-        get {
+        get
+        {
             if (getKey == null)
                 return "";
-            return getKey; 
-        
+            return getKey;
+
         }
         set { getKey = value; }
     }
-    
+
     public String fieldDescription
     {
         get { return _fieldDescription; }
@@ -122,32 +123,30 @@ public partial class table : IComparable
 
 
     // return the name of the parent table of a foreign key
-    public String getTableNameByForeignKey( project pr, string fieldName)
+    public String getTableNameByForeignKey(project pr, string fieldName)
     {
         try
         {
- 
-        foreach (table item in pr.GetTables)
-        {
-            if (item.GetKey.Equals(fieldName))
-                return item.Name;
-        }
+            foreach (table item in pr.GetTables)
+            {
+                if (item.GetKey.Equals(fieldName))
+                    return item.Name;
+            }
         }
         catch (Exception ex)
         {
-            
+
             throw;
         }
 
 
-       
+
         return "";
     }
 
     // return the name of the keyField of the parent table from a foreign key
     public String getKeyFieldByForeignKey(project pr, string fieldName)
     {
-        
         foreach (table item in pr.GetTables)
         {
             if (item.GetKey.Equals(fieldName))
@@ -156,6 +155,38 @@ public partial class table : IComparable
         return "";
     }
 
+    // return the name of the keyField of the parent table from a foreign key
+    public String getDescriptionFieldByForeignKey(project pr, string fieldName)
+    {
+        foreach (table item in pr.GetTables)
+        {
+            if (item.GetKey.Equals(fieldName))
+                return item.fieldDescription;
+        }
+        return "";
+    }
+
+    // return the name of the keyField of the parent table from a foreign key
+    public table getForeignTableByForeignKey(project pr, string fieldName)
+    {
+        foreach (table item in pr.GetTables)
+        {
+            if (item.GetKey.Equals(fieldName))
+                return item;
+        }
+        return null;
+    }
+
+    // return the name of the keyField of the parent table from a foreign key
+    public table getFTByFK(project pr, string fieldName)
+    {
+        foreach (table item in pr.GetTables)
+        {
+            if (item.GetKey.Equals(fieldName))
+                return item;
+        }
+        return null;
+    }
 
 
     // return a string with delimiter...
@@ -178,14 +209,14 @@ public partial class table : IComparable
         else
         {
             retorno = string.Join(delimiter, returnArray);
-           // retorno = retorno.Remove(retorno.LastIndexOf(delimiter), delimiter.Length);
+            // retorno = retorno.Remove(retorno.LastIndexOf(delimiter), delimiter.Length);
         }
 
         return retorno;
     }
 
     // return a string with delimiter... and with previousString added at init
-    public String getListOfFields(string delimiter,string previousString)
+    public String getListOfFields(string delimiter, string previousString)
     {
         ArrayList al = new ArrayList();
         foreach (field item in fields)
@@ -197,9 +228,9 @@ public partial class table : IComparable
 
         returnArray = (string[])al.ToArray(Type.GetType("System.String"));
 
-        if ( ! previousString.Equals(""))
+        if (!previousString.Equals(""))
         {
-            for (int i = 0; i < returnArray.Length -1; i++)
+            for (int i = 0; i < returnArray.Length - 1; i++)
             {
                 returnArray[i] = previousString + returnArray[i];
             }
@@ -257,18 +288,18 @@ public partial class table : IComparable
         string[] returnArray;
         string retorno = "";
 
-        returnArray= (string[])al.ToArray(Type.GetType("System.String"));
+        returnArray = (string[])al.ToArray(Type.GetType("System.String"));
 
         if (returnArray.Length == 1)
         {
-            retorno = returnArray[0] ;
+            retorno = returnArray[0];
         }
         else
         {
             retorno = string.Join(delimiter, returnArray);
             //retorno = retorno.Remove(retorno.LastIndexOf(delimiter), delimiter.Length);
         }
-        
+
         return retorno;
     }
 
@@ -284,25 +315,25 @@ public partial class table : IComparable
                     case field.fieldType._integer:
                         al.Add("int " + item.Name);
                         break;
-                   
-                   case field.fieldType._tinyInt:
+
+                    case field.fieldType._tinyInt:
                         al.Add("bool " + item.Name);
                         break;
 
-                   case field.fieldType._boolean:
+                    case field.fieldType._boolean:
                         al.Add("bool " + item.Name);
-                        break; 
-                   
+                        break;
+
                     case field.fieldType._string:
                         al.Add("string " + item.Name);
-                        break;                   
-                   
+                        break;
+
 
                     default:
                         al.Add("string " + item.Name);
                         break;
 
-                }               
+                }
         }
         string[] returnArray;
         string retorno = "";
@@ -323,7 +354,7 @@ public partial class table : IComparable
     }
 
     // return a string of parametes (int idCars, ..) with delimiter... fields key
-    public String getListOfParametersForVb (string delimiter)
+    public String getListOfParametersForVb(string delimiter)
     {
         ArrayList al = new ArrayList();
         foreach (field item in fields)
@@ -534,9 +565,8 @@ public partial class table : IComparable
     }
 
     public override string ToString()
-    {        
+    {
         return this.Name;
     }
 
 }
- 

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 using System.IO;
 
-using Antlr3.ST;
+
 
 using Velocity = NVelocity.App.Velocity;
 using VelocityContext = NVelocity.VelocityContext;
@@ -21,7 +21,7 @@ using ComponentFactory.Krypton.Toolkit;
 // para usar avalonEdit
 // son necesarias las siguientes dll-referencias (copiadas del framework 3.0 la mayoria)
 // ICSharpCode.AvalonEdit - PresentationCore - PresentationFramework - WindowsBase - WindowsFormsIntegration
-       
+
 using System.Windows.Forms.Integration;
 using ICSharpCode.AvalonEdit;
 using ICSharpCode.AvalonEdit.Highlighting;
@@ -52,7 +52,7 @@ namespace myWay
     {
 
         protected List<string> errores = new List<string>();
-        
+
 
 
         public Form1()
@@ -60,7 +60,7 @@ namespace myWay
             InitializeComponent();
 
             // diagraming...
-        // http://www.dalssoft.com/diagram/
+            // http://www.dalssoft.com/diagram/
 
 
             // nos aseguramos de que existen los directorios...
@@ -82,8 +82,8 @@ namespace myWay
                 refreshDataWithActualProject();
 
             }
-           
-            
+
+
 
             //cargarArbol();
 
@@ -91,7 +91,7 @@ namespace myWay
         }
 
 
-       
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -105,11 +105,11 @@ namespace myWay
             //// para apañar templates antiguos...
             //myWay.classes.fixTemplate fi = new myWay.classes.fixTemplate();
             //fi.traverseDirectory("I:\\proyectos\\desktop\\myWay\\templates\\vb");
-             
+
             // para crear el control avalonEdit
             // son necesarias las siguientes dll (copiadas del framework 3.0 la mayoria)
             // ICSharpCode.AvalonEdit - PresentationCore - PresentationFramework - WindowsBase - WindowsFormsIntegration
-       
+
             ElementHost host = new ElementHost();
             host.Name = "editor";
             host.Dock = DockStyle.Fill;
@@ -144,13 +144,13 @@ namespace myWay
 
             string labNumberOfAppsBefore = sf.toLong(System.Configuration.ConfigurationManager.AppSettings["labNumberOfAppsWritten"]).ToString();
             labNumberOfApps.Values.Text = sf.cadena(labNumberOfAppsBefore) + " apps written with myWay";
-              
-           
+
+
         }
 
-       
 
-# region ["avalonEdit events"]
+
+        # region ["avalonEdit events"]
         CompletionWindow completionWindow;
 
         void textEditor_TextArea_TextEntered(object sender, TextCompositionEventArgs e)
@@ -168,7 +168,7 @@ namespace myWay
                 IList<ICompletionData> data = completionWindow.CompletionList.CompletionData;
                 data.Add(new MyCompletionData("{table}"));
                 data.Add(new MyCompletionData("{table.getListOfParameters(\", \")"));
-                
+
                 data.Add(new MyCompletionData("Item3"));
                 completionWindow.Show();
                 completionWindow.Closed += delegate
@@ -192,8 +192,8 @@ namespace myWay
             // Do not set e.Handled=true.
             // We still want to insert the character that was typed.
         }
-#endregion
-         
+        #endregion
+
 
 
 
@@ -276,9 +276,9 @@ namespace myWay
 
 
 
-        
 
-       
+
+
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -320,8 +320,8 @@ namespace myWay
 
         }
 
-         
-       
+
+
         private void butEditModel_Click(object sender, EventArgs e)
         {
             model ed = new model();
@@ -364,14 +364,14 @@ namespace myWay
         private void butApplyTemplate2_Click(object sender, EventArgs e)
         {
 
-            
+
             char tabCaracter = '\u0009';
             try
             {
 
                 String plantilla = util.loadFile(general.templateSelectedFullUri);
 
-             // clean cmbGotocode
+                // clean cmbGotocode
                 cmbGoToCode.Items.Clear();
 
                 table tab = new table();
@@ -389,7 +389,7 @@ namespace myWay
                         tab = item;
                         if (tab.GetKey == null)
                         {
-                            MessageBox.Show( "Alert, review data, table doesnt have a key" );
+                            MessageBox.Show("Alert, review data, table doesnt have a key");
                             AsyncWriteLine("Alert, review data, table doesnt have a key");
                         }
                     }
@@ -467,7 +467,7 @@ namespace myWay
 
                         throw;
                     }
-                   
+
 
                     // now we got all the functions contained in the code
                     // and populate a combo with this...
@@ -480,13 +480,13 @@ namespace myWay
                         st = mt.ToString();
                         st = st.Replace("public", "");
                         st = st.Replace("private", "");
-                        st = st.Replace("static", "");                    
+                        st = st.Replace("static", "");
                         st = st.Replace("void", "");
 
                         cmbGoToCode.Items.Add(st.Trim());
-                       // Response.Write(mt.ToString() + "<br />");
+                        // Response.Write(mt.ToString() + "<br />");
                     }
-                  
+
 
                 }
                 catch (System.Exception exx)
@@ -500,18 +500,18 @@ namespace myWay
                     System.Console.Out.WriteLine("Problem evaluating template : " + exx);
                 }
 
-                 
+
 
                 SystemSounds.Exclamation.Play();
 
                 //util.playSimpleSound(Path.Combine(util.sound_dir, "risapetergriffin.wav"));
-               
+
 
 
             }
             catch (Exception ex)
             {
-               // util.playSimpleSound(Path.Combine(util.sound_dir, "zasentodalaboca.wav"));
+                // util.playSimpleSound(Path.Combine(util.sound_dir, "zasentodalaboca.wav"));
                 SystemSounds.Asterisk.Play();
                 rt1.Text = ex.Message;
             }
@@ -532,7 +532,7 @@ namespace myWay
             OpenFileDialog fil = new OpenFileDialog();
             fil.DefaultExt = "xml";
             fil.InitialDirectory = util.projects_dir;
-            
+
             if (fil.ShowDialog() == DialogResult.OK)
             {
                 Console.WriteLine(fil.FileName);
@@ -547,10 +547,10 @@ namespace myWay
                     general.actualProject.saveProject(Path.Combine(util.projects_dir, "conf.xml"));
 
                     refreshDataWithActualProject();
-                    
-                   
+
+
                 }
-              
+
             }
         }
 
@@ -560,7 +560,7 @@ namespace myWay
             if (general.actualProject != null)
             {
                 general.actualTable = general.actualProject.actualTable;
-               
+
                 if (general.actualProject.nameSpace != null)
                     txtNameSpace.Text = general.actualProject.nameSpace;
 
@@ -577,20 +577,29 @@ namespace myWay
                 kbTargetDirectory.Text = general.actualProject.targetDirectory;
                 general.targetDirectory = general.actualProject.targetDirectory;
 
-                if (general.projectTemplateSelectedFullUri != null)
+                //if (general.projectTemplateSelectedFullUri != null)
+                //{
+                //    kbProjectTemplate.Text = general.projectTemplateSelected;
+                //    kbTemplate.Text = general.templateSelected;
+                //}
+
+                if (general.actualProject.projectTemplatesDirectory != null)
                 {
-                    kbProjectTemplate.Text = general.projectTemplateSelected;
-                    kbTemplate.Text = general.templateSelected;
+                    kbProjectTemplate.Text = general.actualProject.projectTemplatesDirectorySmall;
                 }
+
+
+                kbTemplate.Text = general.templateSelected;
+
 
                 fillComboWithTables();
 
                 if (general.actualTable != null)
                 {
                     int index = cmbTablesx.FindStringExact(general.actualTable.Name);
-                    cmbTablesx.SelectedIndex = index;      
+                    cmbTablesx.SelectedIndex = index;
                 }
-                    
+
             }
 
         } // refreshDataWithActualProject
@@ -611,7 +620,7 @@ namespace myWay
                 if (np.DialogResult == DialogResult.Yes)
                 {
                     general.actualProject = np.pr;
-                    refreshDataWithActualProject();                    
+                    refreshDataWithActualProject();
                 }
 
             }
@@ -620,7 +629,7 @@ namespace myWay
 
         private void textBox1_Click_1(object sender, EventArgs e)
         {
-            
+
 
         }
 
@@ -632,6 +641,7 @@ namespace myWay
         private void kbTemplate_Click(object sender, EventArgs e)
         {
             showTemplates sho = new showTemplates();
+            sho.searchTemplate = kbTemplate.Text;
             sho.ShowDialog();
 
             if (sho.templateSelected != null)
@@ -647,7 +657,7 @@ namespace myWay
             }
         }
 
-       
+
 
         private void kbProjectTemplate_Click(object sender, EventArgs e)
         {
@@ -699,8 +709,8 @@ namespace myWay
             {
                 return;
             }
-            
-         
+
+
         }
 
         private void kryptonButton1_Click(object sender, EventArgs e)
@@ -738,7 +748,7 @@ namespace myWay
                 }
             }
 
-         
+
         }
 
         public void initTraverse(object Folder)
@@ -791,22 +801,22 @@ namespace myWay
                 Console.WriteLine(ex.Message);
             }
 
-           
+
         }
 
 
         private void tratarFile(object file)
         {
 
-           
+
 
             // ahora tratamos cada archivo en una nueva tarea...
             try
             {
-                
+
                 string archivito = "";
-                archivito = file.ToString();              
-                           
+                archivito = file.ToString();
+
 
                 AsyncWriteLine("Procesando " + archivito);
 
@@ -857,18 +867,18 @@ namespace myWay
 
                     // si no tiene variables de configuracion es que no es un template...
                     if (var.description == null && var.extensionFile == null)
-                        // no es una plantilla...
-                    {                        
+                    // no es una plantilla...
+                    {
                         // simplemente lo grabamos a disco
                         //util.saveTextToFile(nombreArchivoFinal, plantilla);
-                        System.IO.File.Copy(archivito, nombreArchivoFinal,true);
+                        System.IO.File.Copy(archivito, nombreArchivoFinal, true);
 
                     }
 
                     else
-                        // es una plantilla...
+                    // es una plantilla...
                     {
-                       
+
                         try
                         {
                             // si da un error en singleton es que falta la libreria commons o log4net..
@@ -910,10 +920,10 @@ namespace myWay
                                     varT = util.getVariablesFromTemplate(writer.GetStringBuilder().ToString());
                                     if (varT.namefile != null)
                                     {
-                                        if (!Directory.Exists(Path.Combine(rutaArchivoFinal,varT.targetDirectory)))
-                                            Directory.CreateDirectory(Path.Combine(rutaArchivoFinal,varT.targetDirectory));
+                                        if (!Directory.Exists(Path.Combine(rutaArchivoFinal, varT.targetDirectory)))
+                                            Directory.CreateDirectory(Path.Combine(rutaArchivoFinal, varT.targetDirectory));
 
-                                        nombreArchivoFinal = Path.Combine(Path.Combine(rutaArchivoFinal,varT.targetDirectory), varT.namefile + "." + var.extensionFile);
+                                        nombreArchivoFinal = Path.Combine(Path.Combine(rutaArchivoFinal, varT.targetDirectory), varT.namefile + "." + var.extensionFile);
                                     }
 
 
@@ -926,9 +936,9 @@ namespace myWay
 
                                     // le quitamos los tabuladores extra
                                     finalText = finalText.Replace(tabCaracter.ToString(), " ");
-                                   
-                                    
-                                
+
+
+
                                     // grabamos segun el 
                                     util.saveTextToFile(nombreArchivoFinal, finalText);
 
@@ -944,7 +954,7 @@ namespace myWay
                                     errores.Add(file.ToString());
 
                                     //AsyncAddControl(file.ToString());
-                                    
+
                                     //rt1.Text = exx.Message;
                                     //System.Console.Out.WriteLine("Problem merging template : " + exx);
                                     System.Console.Out.WriteLine("Problem evaluating template : " + exx);
@@ -975,13 +985,13 @@ namespace myWay
                                 // le quitamos saltos de linea extra
                                 finalText = finalText.Replace("\r\n\r\n", "\r\n").Replace("\r\n\r\n\r\n", "").Replace("\r\n\r\n\r\n\r\n", "");
 
-                               
+
 
                                 // le quitamos los tabuladores extra
                                 finalText = finalText.Replace(tabCaracter.ToString(), " ");
 
                                 util.saveTextToFile(nombreArchivoFinal, finalText);
-                               
+
                             }
                             catch (System.Exception exx)
                             {
@@ -991,14 +1001,14 @@ namespace myWay
                             }
                         }
 
-                        
+
                     }
 
-                   
-                   
-                   
 
-                     
+
+
+
+
 
 
                     //                
@@ -1038,7 +1048,7 @@ namespace myWay
             pp = (ElementHost)panel1.Controls.Find("editor", true)[0];
             te = (TextEditor)pp.Child;
             te.Text = text;
-                        
+
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)
@@ -1071,7 +1081,7 @@ namespace myWay
 
             string st = "";
             int numLinea = 0;
-            st =  cmbGoToCode.SelectedItem.ToString().Trim();
+            st = cmbGoToCode.SelectedItem.ToString().Trim();
 
             // get the control of editor
             ElementHost pp = new ElementHost();
@@ -1102,19 +1112,19 @@ namespace myWay
 
 
         }
-        
+
 
         // someone clicks on a error in a template
         private void rt1_LinkClicked(object sender, LinkClickedEventArgs e)
         {
             if (!e.LinkText.Equals(""))
             {
-                string url=null;
+                string url = null;
                 string text = null;
                 string smallTitle = null;
 
                 // le quitamos el file://
-                url=e.LinkText.Replace("file://","") ;
+                url = e.LinkText.Replace("file://", "");
 
                 text = util.loadFile(url);
                 smallTitle = url.Substring(url.LastIndexOf("\\") + 1, url.Length - url.LastIndexOf("\\") - 1);
@@ -1132,7 +1142,7 @@ namespace myWay
 
         private void txtBus_TextChanged(object sender, EventArgs e)
         {
-           
+
 
         }
 
@@ -1141,12 +1151,12 @@ namespace myWay
         //    this.Cursor  = System.Windows.Forms.Cursors.WaitCursor;
         //    string url = System.Reflection.Assembly.GetExecutingAssembly().Location;
         //    string dir = url.Substring(0,url.IndexOf("\\bin"));
-           
+
         //    string dirProjectTemplatesOriginal = Path.Combine(dir, "templates\\projectTemplates");
 
         //    string dirFinal = url.Substring(0, url.IndexOf("\\myWay.exe"));
         //    dirFinal = Path.Combine(dirFinal, "templates\\projectTemplates");
-            
+
 
         //    util.copyDirectory(dirProjectTemplatesOriginal, dirFinal);
         //    this.Cursor = System.Windows.Forms.Cursors.Default;
@@ -1155,7 +1165,7 @@ namespace myWay
         //} // buttonGeneric_Click
 
 
-    
+
 
         #endregion
 

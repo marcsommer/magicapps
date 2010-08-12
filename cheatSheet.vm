@@ -76,8 +76,13 @@ table:
 	${table.getFields}
 	${table.getKeyFields}
 	
-	${table.getTableNameByForeignKey( project , "name" )}
-	${table.getKeyFieldByForeignKey ( project , "name" )}
+	${table.getTableNameByForeignKey( project , "nameOfField" )}	// returns the name of the foreign table ...
+	${table.getKeyFieldByForeignKey ( project , "nameOfField" )}
+	${table.getDescriptionFieldByForeignKey ( project , "nameOfField" )}
+	
+	${table.getForeignTableByForeignKey ( project , "nameOfField" )}	// returns the foreign table
+	${table.getFTByFK ( project , "nameOfField" )}						// returns the foreign table
+	
 	
 	${table.getListOfFields(",")}
 	${table.getListOfFields(",","pre")} ' gets a list with "pre + field + ,"
