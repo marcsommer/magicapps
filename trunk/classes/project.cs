@@ -44,8 +44,8 @@ public class project : ISerializable
     private string _name;
     private string _description;
     private string _nameSpace;
-   
-    
+
+
     private databaseType _dbDataType;
     private string _database;
     private string _user;
@@ -65,7 +65,7 @@ public class project : ISerializable
 
     private table _actualTable;
     private String _tableSelected;
-   
+
 
     // This attribute enables the ArrayList to be serialized:
     [System.Xml.Serialization.XmlArray("Tables")]
@@ -110,21 +110,21 @@ public class project : ISerializable
         get { return _nameSpace; }
         set { _nameSpace = value; }
     }
-  
-    
-    
+
+
+
     public databaseType dbDataType
     {
         get { return _dbDataType; }
         set { _dbDataType = value; }
     }
-   
+
     public string targetDirectory
     {
         get { return _targetDirectory; }
         set { _targetDirectory = value; }
     }
-    
+
     public string database
     {
         get { return _database; }
@@ -227,24 +227,24 @@ public class project : ISerializable
     {
         try
         {
-  // Create an instance of the XmlSerializer class;
-        // specify the type of object to serialize.
-        XmlSerializer serializer = new XmlSerializer(typeof(project));
-        TextWriter writer = new StreamWriter(filename);
-        project po = new project();
-        po = this;
+            // Create an instance of the XmlSerializer class;
+            // specify the type of object to serialize.
+            XmlSerializer serializer = new XmlSerializer(typeof(project));
+            TextWriter writer = new StreamWriter(filename);
+            project po = new project();
+            po = this;
 
-        // Serialize and close the TextWriter.
-        serializer.Serialize(writer, po);
-        writer.Close();
+            // Serialize and close the TextWriter.
+            serializer.Serialize(writer, po);
+            writer.Close();
         }
         catch (Exception ex)
         {
-            
+
             throw;
         }
 
-      
+
 
 
     }
@@ -276,7 +276,7 @@ public class project : ISerializable
 
         finally
         {
-            
+
         }
 
     }
@@ -308,13 +308,13 @@ public class project : ISerializable
             {
                 return true;
             }
-               
+
         }
         return retorno;
     }
 }
-		
-		
-		
- 
- 
+
+
+
+
+

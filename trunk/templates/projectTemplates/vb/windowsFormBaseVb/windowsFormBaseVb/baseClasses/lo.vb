@@ -1,4 +1,5 @@
 Imports System.data
+Imports DevExpress.XtraEditors
 
 Class lo
 
@@ -150,28 +151,19 @@ Class lo
 #Region "ComboBox -------------------------------------------"
 
 
-    Shared Sub comboVaciar(ByRef pp As ComboBox)
+    Shared Sub comboVaciar(ByRef pp As System.Windows.Forms.ComboBox)
         Call pp.Items.Clear()
     End Sub
 
-    Shared Sub comboEstaticoAddItem(ByRef pp As ComboBox, ByVal cadena As String, ByVal valor As Integer)
+    Shared Sub comboEstaticoAddItem(ByRef pp As System.Windows.Forms.ComboBox, ByVal cadena As String, ByVal valor As Integer)
         Dim cb As New cNodoBox(cadena, valor)
         pp.Items.Add(cb)
     End Sub
 
-    Public Shared Sub comboSeleccionarItem(ByRef tmpList As ComboBox, ByVal cadBusqueda As String, Optional ByVal tipoCampo As eTipoCampo = eTipoCampo.id)
+    Public Shared Sub comboSeleccionarItem(ByRef tmpList As System.Windows.Forms.ComboBox, ByVal cadBusqueda As String, Optional ByVal tipoCampo As eTipoCampo = eTipoCampo.id)
         ' Busca el nodo que me dan y le colocan el focus
-        Dim index As Integer
-
-        Dim cont As Integer
-        Dim pos As Integer
-        Dim seguir As Boolean
-
-        Dim tmpItem As String
-
-        index = -1
-        cont = 0
-        seguir = True
+        
+      
         If Not (comboIsEmpty(tmpList)) Then
 
             Select Case tipoCampo
@@ -186,7 +178,7 @@ Class lo
 
 
 
-    Public Shared Function comboValorSeleccionado(ByRef tmpList As ComboBox, Optional ByVal tipoCampo As eTipoCampo = eTipoCampo.id) As String
+    Public Shared Function comboValorSeleccionado(ByRef tmpList As System.Windows.Forms.ComboBox, Optional ByVal tipoCampo As eTipoCampo = eTipoCampo.id) As String
         ' Me da el text/id del elemento seleccionado seg�n el par�metro tipoCampo
         Dim retorno As String
 
@@ -207,11 +199,11 @@ Class lo
         Return (retorno)
     End Function
 
-    Public Shared Function comboIsEmpty(ByRef tmpList As ComboBox) As Boolean
-       Return (tmpList.Items.Count <= 0) 
+    Public Shared Function comboIsEmpty(ByRef tmpList As System.Windows.Forms.ComboBox) As Boolean
+        Return (tmpList.Items.Count <= 0)
     End Function
 
-    'Public Shared Sub comboFill(ByRef tmpCombo As ComboBox, ByVal textoSql As String, ByVal connectionString As String, ByRef Texto As String, ByRef Value As String)
+    'Public Shared Sub comboFill(ByRef tmpCombo As System.Windows.Forms.ComboBox, ByVal textoSql As String, ByVal connectionString As String, ByRef Texto As String, ByRef Value As String)
     '    ' Rellena el combo que me pasan con la select pasada
     '    ' En el campo texto me pasan el campo a mostrar
     '    ' En el campo value me pasan el campo a almacenar
@@ -233,14 +225,14 @@ Class lo
 
     'End Sub
 
-    Public Shared Sub insertarNodo(ByRef tmpCombo As ComboBox, ByVal tmpTexto As String, ByVal tmpId As String)
+    Public Shared Sub insertarNodo(ByRef tmpCombo As System.Windows.Forms.ComboBox, ByVal tmpTexto As String, ByVal tmpId As String)
         Dim tmpNodo As cNodoBox
 
         tmpNodo = New cNodoBox(tmpTexto, tmpId)
         tmpCombo.Items.Add(tmpNodo)
     End Sub
 
-    'Public Shared Function comboValorSEleccionado(ByRef tmpCombo As ComboBox, ByVal campoBusqueda As eTipoCampo) As Object
+    'Public Shared Function comboValorSEleccionado(ByRef tmpCombo As System.Windows.Forms.ComboBox, ByVal campoBusqueda As eTipoCampo) As Object
     '    '  Me da el text/id del nodo seleccionado seg�n el par�metro flagValue
     '    Dim tmpRetorno As cNodoBox
     '    Dim retorno As Object
@@ -267,7 +259,7 @@ Class lo
     '    Return (retorno)
     'End Function
 
-    Public Shared Sub comboFill(ByRef tmpList As ComboBox, ByVal textoSql As String, ByVal connectionString As String)
+    Public Shared Sub comboFill(ByRef tmpList As System.Windows.Forms.ComboBox, ByVal textoSql As String, ByVal connectionString As String)
         ' Rellena la lista que me pasan con la select pasada
         ' pillo el segundo campo que me pasan en la select para el campo texto
         ' pillo el primer campo que me pasan en la select para el el campo value me pasan el campo a almacenar
@@ -297,13 +289,48 @@ Class lo
     End Sub
 
 
+    Public Shared Sub comboXFill(ByRef cm As DevExpress.XtraEditors.ImageComboBoxEdit, ByVal textoSql As String, ByVal campoId As String, ByVal campoTexto As String, ByVal connectionString As String)
+        ' Rellena la lista que me pasan con la select pasada
+        ' pillo el segundo campo que me pasan en la select para el campo texto
+        ' pillo el primer campo que me pasan en la select para el el campo value me pasan el campo a almacenar
+        ' ejemplo select banco_, nombre from bancos
+        Dim pp As New dbClass(ctes.conStringAdo)
+        Dim ds As System.Data.DataSet
+
+        Try
+
+            Dim aRegistros As Object
+            aRegistros = pp.sql(textoSql)
+
+            Do While aRegistros.read()
+                Dim im As New Controls.ImageComboBoxItem
+                im.Description = aRegistros(campoTexto)
+                im.Value = aRegistros(campoId)
+                cm.Properties.Items.Add(im)
+            Loop
+            aRegistros.close()
+
+
+            'Dim per As New ListItem
+            'per.Value = 0
+            'per.Text = "Elija ..."
+            'tmpList.Items.Insert(0, per) ' "Elija ...")
+
+        Catch ex As Exception
+        Finally
+            pp.dispose()
+        End Try
+
+    End Sub
+
+
 #End Region
 
 
-    
 
 
-    'Public Function listaValorSEleccionado(ByRef tmpList As ComboBox, Optional ByVal tipoCampo As eTipoCampo = eTipoCampo.id) As String
+
+    'Public Function listaValorSEleccionado(ByRef tmpList As System.Windows.Forms.ComboBox, Optional ByVal tipoCampo As eTipoCampo = eTipoCampo.id) As String
     '    ' Me da el text/id del elemento seleccionado seg�n el par�metro tipoCampo
     '    Dim retorno As String
 
@@ -328,7 +355,7 @@ Class lo
 
 
 
-    'Public Sub listaSeleccionarItem(ByRef tmpList As ComboBox, ByVal cadBusqueda As String, Optional ByVal tipoCampo As eTipoCampo = eTipoCampo.id)
+    'Public Sub listaSeleccionarItem(ByRef tmpList As System.Windows.Forms.ComboBox, ByVal cadBusqueda As String, Optional ByVal tipoCampo As eTipoCampo = eTipoCampo.id)
     '    ' Busca el nodo que me dan y le colocan el focus
     '    Dim index As Integer
 

@@ -7,13 +7,16 @@ Public Class Form1
         d1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 
 
-        ' Dim fm As New bancos_list
-        ' fm.ShowDialog()
-
-        Dim fm As New bancosDetail
+        Dim fm As New bancos_list
         fm.ShowDialog()
 
-        ' Dim fm As New benefiDetail
+        '   Dim fm As New benefi_list
+        '   fm.ShowDialog()
+
+        ' Dim fm As New bancosDetail
+        ' fm.ShowDialog()
+
+        'Dim fm As New benefiDetail
         ' ' fm.createNewItem = True
         ' ' ctes.last = "33"
         ' fm.ShowDialog()

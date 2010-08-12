@@ -17,10 +17,14 @@ namespace myWay
         public String text;
         public String smallTitle;
 
+        public String searchTemplate;
+
+        public bool tries = true;
+
         public showTemplates()
         {
             InitializeComponent();
-            cargar();
+            
 
         }
 
@@ -38,7 +42,36 @@ namespace myWay
             tn = trTemplates.Nodes.Find("projectTemplates", true);
             if (tn.Count() != 0)
                 tn[0].Collapse();
+
+            TreeNode tr;
+            tr = SearchTree(trTemplates.Nodes, searchTemplate);
+          
+
+            // if nothing its loaded then its because the path to templates its erroneous ...
+            if (trTemplates.Nodes.Count == 0 && tries)
+            {
+                tries = false;
+                butRestorePath_Click(this, null);
+            }
+            
         }
+
+
+        public TreeNode SearchTree(TreeNodeCollection nodes, string searchtext)
+        {
+            foreach (TreeNode node in nodes)
+            {
+                if (node.Text as string == searchtext)
+                {
+                    trTemplates.SelectedNode = node;
+                    return node;
+                    
+                }
+                SearchTree(node.Nodes, searchtext);
+            }
+            return null;
+        }
+
 
         private void loadTreeTemplates(String dir, TreeNode parentNode)
         {
@@ -125,7 +158,7 @@ namespace myWay
 
         private void showTemplates_Load(object sender, EventArgs e)
         {
-
+            cargar();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -168,14 +201,6 @@ namespace myWay
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("appSettings");
             cargar();
- 
-
-
-
-
-
-
-
 
  
         }
