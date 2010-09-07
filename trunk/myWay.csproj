@@ -71,6 +71,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Nini, Version=1.1.0.0, Culture=neutral, PublicKeyToken=691faec150a7fa7b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dll\Nini.dll</HintPath>
+    </Reference>
     <Reference Include="NVelocity, Version=0.4.2.8580, Culture=neutral, PublicKeyToken=44382d1b57473eda">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\dll\NVelocity.dll</HintPath>
@@ -123,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes\compareFields.cs" />
+    <Compile Include="classes\ctes.cs" />
     <Compile Include="classes\dbAccess.cs" />
     <Compile Include="classes\dbDbf.cs" />
     <Compile Include="classes\extra\luceneAdapter.cs" />
@@ -361,6 +366,7 @@
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\clasesbase\JQueryUtils.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Compile Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\classes\projectConfigFiles.cs" />
     <Compile Include="userControls\userControlEditField.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -661,6 +667,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\database\CrearApartadosEstadistica.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\configProject.pcf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="templates\projectTemplates\c#\mysqlLuis\html\bin\MySql.Data.dll">
@@ -2864,6 +2873,12 @@
     <Content Include="templates\projectTemplates\c#\sqlServer\html\admin\masterDetail.aspx.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="templates\projectTemplates\c#\mysql\configProject.pcf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\sqlServer\configProject.pcf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="templates\projectTemplates\c#\sqlServer\html\images_contraste\Thumbs.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -3036,6 +3051,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\table_report.vb.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\classes\vb_Bll_vb.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb.pcf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="templates\Web.config.vm" />

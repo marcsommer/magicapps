@@ -37,7 +37,6 @@
             this.butOpenProject2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.butNewProject2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kbProjectTemplate = new ComponentFactory.Krypton.Toolkit.KryptonDropButton();
             this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.labNumberOfLinesWritten = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
@@ -59,6 +58,7 @@
             this.butReturnToScript = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.cmbGoToCode = new System.Windows.Forms.ComboBox();
             this.txtBus = new System.Windows.Forms.TextBox();
+            this.lbProjectTemplate = new ComponentFactory.Krypton.Toolkit.KryptonListBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -126,22 +126,13 @@
             // 
             // kryptonButton1
             // 
-            this.kryptonButton1.Location = new System.Drawing.Point(215, 89);
+            this.kryptonButton1.Location = new System.Drawing.Point(215, 163);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.Size = new System.Drawing.Size(167, 25);
             this.kryptonButton1.TabIndex = 30;
             this.kryptonButton1.Values.Image = global::myWay.Properties.Resources.application_lightning;
             this.kryptonButton1.Values.Text = "Apply project template";
             this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
-            // 
-            // kbProjectTemplate
-            // 
-            this.kbProjectTemplate.Location = new System.Drawing.Point(114, 19);
-            this.kbProjectTemplate.Name = "kbProjectTemplate";
-            this.kbProjectTemplate.Size = new System.Drawing.Size(268, 25);
-            this.kbProjectTemplate.TabIndex = 31;
-            this.kbProjectTemplate.Values.Text = "Select a project template";
-            this.kbProjectTemplate.Click += new System.EventHandler(this.kbProjectTemplate_Click);
             // 
             // kryptonLabel3
             // 
@@ -239,23 +230,24 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.lbProjectTemplate);
             this.groupBox2.Controls.Add(this.labNumberOfApps);
             this.groupBox2.Controls.Add(this.kbTargetDirectory);
             this.groupBox2.Controls.Add(this.kryptonLabel4);
-            this.groupBox2.Controls.Add(this.kbProjectTemplate);
             this.groupBox2.Controls.Add(this.kryptonButton1);
             this.groupBox2.Controls.Add(this.kryptonLabel3);
-            this.groupBox2.Location = new System.Drawing.Point(12, 242);
+            this.groupBox2.Location = new System.Drawing.Point(12, 202);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(393, 168);
+            this.groupBox2.Size = new System.Drawing.Size(393, 208);
             this.groupBox2.TabIndex = 34;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Project generation";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // labNumberOfApps
             // 
             this.labNumberOfApps.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.SuperTip;
-            this.labNumberOfApps.Location = new System.Drawing.Point(114, 128);
+            this.labNumberOfApps.Location = new System.Drawing.Point(13, 163);
             this.labNumberOfApps.Name = "labNumberOfApps";
             this.labNumberOfApps.Size = new System.Drawing.Size(21, 25);
             this.labNumberOfApps.TabIndex = 41;
@@ -263,7 +255,7 @@
             // 
             // kbTargetDirectory
             // 
-            this.kbTargetDirectory.Location = new System.Drawing.Point(114, 52);
+            this.kbTargetDirectory.Location = new System.Drawing.Point(114, 126);
             this.kbTargetDirectory.Name = "kbTargetDirectory";
             this.kbTargetDirectory.Size = new System.Drawing.Size(268, 25);
             this.kbTargetDirectory.TabIndex = 33;
@@ -272,7 +264,7 @@
             // 
             // kryptonLabel4
             // 
-            this.kryptonLabel4.Location = new System.Drawing.Point(10, 58);
+            this.kryptonLabel4.Location = new System.Drawing.Point(10, 132);
             this.kryptonLabel4.Name = "kryptonLabel4";
             this.kryptonLabel4.Size = new System.Drawing.Size(90, 19);
             this.kryptonLabel4.TabIndex = 32;
@@ -333,6 +325,14 @@
             this.txtBus.TabIndex = 0;
             this.txtBus.TextChanged += new System.EventHandler(this.txtBus_TextChanged);
             // 
+            // lbProjectTemplate
+            // 
+            this.lbProjectTemplate.Location = new System.Drawing.Point(114, 25);
+            this.lbProjectTemplate.Name = "lbProjectTemplate";
+            this.lbProjectTemplate.Size = new System.Drawing.Size(268, 89);
+            this.lbProjectTemplate.TabIndex = 42;
+            this.lbProjectTemplate.SelectedIndexChanged += new System.EventHandler(this.lbProjectTemplate_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -374,7 +374,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton butOpenProject2;
         private ComponentFactory.Krypton.Toolkit.KryptonButton butNewProject2;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
-        private ComponentFactory.Krypton.Toolkit.KryptonDropButton kbProjectTemplate;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;
         private System.Windows.Forms.GroupBox groupBox1;
         private ComponentFactory.Krypton.Toolkit.KryptonDropButton kbTemplate;
@@ -396,6 +395,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel labNumberOfLinesWritten;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel labNumberOfApps;
         private System.Windows.Forms.TextBox txtBus;
+        private ComponentFactory.Krypton.Toolkit.KryptonListBox lbProjectTemplate;
     }
 }
 

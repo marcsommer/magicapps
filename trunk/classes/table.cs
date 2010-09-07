@@ -105,6 +105,106 @@ public partial class table : IComparable
         set { getKey = value; }
     }
 
+    public field getKeyField
+    {
+        get
+        {
+            if (keyFields[0] != null)
+                return ((field)keyFields[0]) ;
+            else
+                return null;
+
+        }
+    }
+
+    public String getKeyType
+    {
+        get
+        {
+            if (keyFields[0] != null)
+            {
+                field.fieldType tipo = ((field)keyFields[0]).type;
+
+                switch (tipo)
+                {
+                    case field.fieldType._integer:
+                        return ("integer");
+                        break;
+                   
+                    case field.fieldType._double:
+                        return ("double");
+                        break;
+
+                    case field.fieldType._tinyInt:
+                        return ("integer");
+                        break;
+
+                    case field.fieldType._boolean:
+                        return ("boolean");
+                        break;
+
+                    case field.fieldType._string:
+                       return ("string");
+                        break;
+
+
+                    default:
+                        return ("string");
+                        break;
+
+                }
+            }
+            else
+                return ""; 
+
+        }
+    }
+
+
+    public String getKeyTypeForVb
+    {
+        get
+        {
+            if (keyFields[0] != null)
+            {
+                field.fieldType tipo = ((field)keyFields[0]).type;
+
+                switch (tipo)
+                {
+                    case field.fieldType._integer:
+                        return ("integer");
+                        break;
+
+                    case field.fieldType._double:
+                        return ("double");
+                        break;
+
+                    case field.fieldType._tinyInt:
+                        return ("integer");
+                        break;
+
+                    case field.fieldType._boolean:
+                        return ("boolean");
+                        break;
+
+                    case field.fieldType._string:
+                        return ("string");
+                        break;
+
+
+                    default:
+                        return ("string");
+                        break;
+
+                }
+            }
+            else
+                return "";
+
+        }
+    }
+
+
     public String fieldDescription
     {
         get { return _fieldDescription; }
@@ -315,6 +415,10 @@ public partial class table : IComparable
                     case field.fieldType._integer:
                         al.Add("int " + item.Name);
                         break;
+                   
+                    case field.fieldType._double:
+                        al.Add("double " + item.Name);
+                        break;
 
                     case field.fieldType._tinyInt:
                         al.Add("bool " + item.Name);
@@ -363,20 +467,24 @@ public partial class table : IComparable
                 switch (item.type)
                 {
                     case field.fieldType._integer:
-                        al.Add("int " + item.Name);
+                        al.Add("Byval " + item.Name + " as integer");
+                        break;
+
+                    case field.fieldType._double:
+                        al.Add("Byval " + item.Name + " as double");
                         break;
 
                     case field.fieldType._tinyInt:
-                        al.Add("bool " + item.Name);
+                        al.Add("Byval " + item.Name + " as integer");
                         break;
 
                     case field.fieldType._string:
-                        al.Add("string " + item.Name);
+                        al.Add("Byval " + item.Name + " as string");
                         break;
 
 
                     default:
-                        al.Add("string " + item.Name);
+                        al.Add("Byval " + item.Name + " as string");
                         break;
 
                 }

@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.IO;
 
 
+using Nini.Config;
+
 
 using Velocity = NVelocity.App.Velocity;
 using VelocityContext = NVelocity.VelocityContext;
@@ -69,22 +71,7 @@ namespace myWay
                 Directory.CreateDirectory(util.projects_dir);
             }
 
-            // vemos si existe un conf.xml o ultimo proyecto utilizado...
-            project pr = new project();
-            pr = project.loadProject(Path.Combine(util.conf_dir, "conf.xml"));
-            if (pr != null)
-            {
-                this.Text = "myWay " + pr.name;
-                groupBox1.Text = pr.name;
-                this.Text = "myWay " + pr.name;
-                general.actualProject = pr;
-
-                refreshDataWithActualProject();
-
-            }
-
-
-
+           
             //cargarArbol();
 
 
@@ -146,6 +133,94 @@ namespace myWay
             labNumberOfApps.Values.Text = sf.cadena(labNumberOfAppsBefore) + " apps written with myWay";
 
 
+            // lets load config files of project templates ...
+            traverseDirectorySearchProjectConfigFiles(util.projectTemplates_dir);
+            foreach (projectconfigfiles item in ctes.listaProjectConfigFiles)
+            {
+                lbProjectTemplate.Items.Add(item.Name);
+            }
+
+            // vemos si existe un conf.xml o ultimo proyecto utilizado...
+            project pr = new project();
+            pr = project.loadProject(Path.Combine(util.conf_dir, "conf.xml"));
+            if (pr != null)
+            {
+                this.Text = "myWay " + pr.name;
+                groupBox1.Text = pr.name;
+                this.Text = "myWay " + pr.name;
+                general.actualProject = pr;
+
+                refreshDataWithActualProject();
+
+            }
+
+
+
+
+        }
+
+
+
+        public void traverseDirectorySearchProjectConfigFiles(string Folder)
+        {
+            try
+            {
+
+
+                DirectoryInfo dir = new DirectoryInfo(Folder);
+                DirectoryInfo[] subDirs = dir.GetDirectories();
+                FileInfo[] files = dir.GetFiles();
+
+                foreach (FileInfo fi in files)
+                {
+                     
+                    // Console.WriteLine("NOmbre completo" + fi.FullName);
+
+                     string originalFilename = fi.FullName;   // only the filename 
+                     if (originalFilename.EndsWith("pcf"))
+                     {
+                         XmlConfigSource source = new XmlConfigSource(fi.FullName);
+
+                         //IConfigSource source = new IniConfigSource(fi.FullName);
+                          string pName = source.Configs["Config"].Get("Name", "Default");
+                          string pDirectory = fi.Directory.ToString(); // source.Configs["Config"].Get("Directory", "Default");
+                          string pDescription = source.Configs["Config"].Get("Description", "Default");
+                          string pImage = source.Configs["Config"].Get("Image", "Default");
+                          string pUrl = source.Configs["Config"].Get("Url", "Default");
+                         source = null;
+                          
+
+                         projectconfigfiles pcf = new projectconfigfiles();
+                         pcf.Name = pName;
+                         pcf.Directory = pDirectory;
+                         pcf.Description = pDescription;
+                         pcf.Image = pImage;
+                         pcf.Url = pUrl;
+
+                         ctes.listaProjectConfigFiles.Add(pcf);
+                         pcf = null;
+
+
+                     }
+                     
+                   
+
+                  //  Console.WriteLine(cadenaFinal);
+
+                }
+
+                if (subDirs != null)
+                {
+                    foreach (DirectoryInfo sd in subDirs)
+                    {
+                        traverseDirectorySearchProjectConfigFiles(Folder + @"\\" + sd.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
 
@@ -303,8 +378,24 @@ namespace myWay
 
 
                 pr.targetDirectory = general.targetDirectory;
-                pr.projectTemplatesDirectory = general.projectTemplateSelectedFullUri;
-                pr.projectTemplatesDirectorySmall = general.projectTemplateSelected;
+
+                // save the project template from the listbox
+                if (lbProjectTemplate.Items.Count != 0 ) 
+                {
+                    string pt = lbProjectTemplate.SelectedItem.ToString();
+                    foreach (projectconfigfiles item in ctes.listaProjectConfigFiles)
+                    {
+                        if (item.Name == pt)
+                        {
+                            pr.projectTemplatesDirectory = item.Directory;
+                        }
+                    }
+                   
+                    pr.projectTemplatesDirectorySmall = pt;
+
+                }
+                //pr.projectTemplatesDirectory = general.projectTemplateSelectedFullUri;
+                //pr.projectTemplatesDirectorySmall = general.projectTemplateSelected;
 
 
                 pr.saveProject(Path.Combine(util.conf_dir, "conf.xml"));
@@ -583,10 +674,21 @@ namespace myWay
                 //    kbTemplate.Text = general.templateSelected;
                 //}
 
+                int contador = 0;
+                int contadorFinal = 0;
                 if (general.actualProject.projectTemplatesDirectory != null)
                 {
-                    kbProjectTemplate.Text = general.actualProject.projectTemplatesDirectorySmall;
+                    foreach (object item in lbProjectTemplate.Items)
+                    {
+                        if (item.ToString() == general.actualProject.projectTemplatesDirectorySmall)
+                        {
+                            contadorFinal = contador;
+                        }
+                        contador += 1;
+                    }
+                   // lbProjectTemplate.Text = general.actualProject.projectTemplatesDirectorySmall;
                 }
+                lbProjectTemplate.SetSelected(contadorFinal, true);
 
 
                 kbTemplate.Text = general.templateSelected;
@@ -659,29 +761,29 @@ namespace myWay
 
 
 
-        private void kbProjectTemplate_Click(object sender, EventArgs e)
-        {
-            showProjectTemplates sho = new showProjectTemplates();
-            sho.ShowDialog();
+        //private void kbProjectTemplate_Click(object sender, EventArgs e)
+        //{
+        //    showProjectTemplates sho = new showProjectTemplates();
+        //    sho.ShowDialog();
 
-            if (sho.templateSelected != null)
-            {
-                general.projectTemplateSelected = sho.smallTitle;
-                general.projectTemplateSelectedFullUri = sho.templateSelected;
+        //    if (sho.templateSelected != null)
+        //    {
+        //        general.projectTemplateSelected = sho.smallTitle;
+        //        general.projectTemplateSelectedFullUri = sho.templateSelected;
 
-                kbProjectTemplate.Text = sho.smallTitle;
+        //        lbProjectTemplate.Text = sho.smallTitle;
 
-                //templateSelectedFullUri = sho.templateSelected;
-                //templateSelected = sho.smallTitle;
+        //        //templateSelectedFullUri = sho.templateSelected;
+        //        //templateSelected = sho.smallTitle;
 
-                // update project
-                general.actualProject.projectTemplatesDirectory = sho.templateSelected;
+        //        // update project
+        //        general.actualProject.projectTemplatesDirectory = sho.templateSelected;
 
-                general.actualProject.projectTemplatesDirectorySmall = sho.smallTitle;
-                general.actualProject.saveProject(Path.Combine(util.projects_dir, general.actualProject.name) + ".xml");
+        //        general.actualProject.projectTemplatesDirectorySmall = sho.smallTitle;
+        //        general.actualProject.saveProject(Path.Combine(util.projects_dir, general.actualProject.name) + ".xml");
 
-            }
-        }
+        //    }
+        //}
 
         private void kbTargetDirectory_Click(object sender, EventArgs e)
         {
@@ -781,10 +883,15 @@ namespace myWay
                 {
                     Console.WriteLine(fi.FullName);
 
+                    // skip project configuration files
+                    if (!fi.Name.EndsWith("pcf"))
+                    {
+                        // tratarARchivo
+                        Thread t = new Thread(new ParameterizedThreadStart(tratarFile));
+                        t.Start(fi.FullName);
+                    }
 
-                    // tratarARchivo
-                    Thread t = new Thread(new ParameterizedThreadStart(tratarFile));
-                    t.Start(fi.FullName);
+
 
                 }
 
@@ -846,9 +953,10 @@ namespace myWay
                     nombreDirectorioAgrabar = nombreDirectorioAgrabar.Replace(nombreArchivo, "");
 
 
-                    if (nombreDirectorioAgrabar.StartsWith("\\"))
+                    if (nombreDirectorioAgrabar.StartsWith("\\") && ! nombreDirectorioAgrabar.Equals(""))
                         nombreDirectorioAgrabar = nombreDirectorioAgrabar.Substring(1, nombreDirectorioAgrabar.Length - 2);
 
+                    
                     rutaArchivoFinal = Path.Combine(general.targetDirectory, nombreDirectorioAgrabar);
 
                     if (var.namefile != null)
@@ -1144,6 +1252,30 @@ namespace myWay
         {
 
 
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbProjectTemplate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // save the project template from the listbox
+            if (lbProjectTemplate.Items.Count != 0)
+            {
+                string pt = lbProjectTemplate.SelectedItem.ToString();
+                foreach (projectconfigfiles item in ctes.listaProjectConfigFiles)
+                {
+                    if (item.Name == pt)
+                    {
+                        general.actualProject.projectTemplatesDirectory = item.Directory;
+                    }
+                }
+
+                general.actualProject.projectTemplatesDirectorySmall = pt;
+
+            }
         }
 
         //private void kryptonButton3_Click(object sender, EventArgs e)
