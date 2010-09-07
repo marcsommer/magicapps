@@ -669,7 +669,7 @@
     <Content Include="templates\database\CrearApartadosEstadistica.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\configProject.pcf">
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\configProjectMysqlLuis.pcf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="templates\projectTemplates\c#\mysqlLuis\html\bin\MySql.Data.dll">
@@ -2873,10 +2873,10 @@
     <Content Include="templates\projectTemplates\c#\sqlServer\html\admin\masterDetail.aspx.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\c#\mysql\configProject.pcf">
+    <Content Include="templates\projectTemplates\c#\mysql\configProjectMySql.pcf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\c#\sqlServer\configProject.pcf">
+    <Content Include="templates\projectTemplates\c#\sqlServer\configProjectSqlServer.pcf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="templates\projectTemplates\c#\sqlServer\html\images_contraste\Thumbs.db">

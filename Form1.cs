@@ -949,7 +949,7 @@ namespace myWay
 
                     // sacamos de la ruta el directorio del archivo ...
                     nombreDirectorioAgrabar = archivito;
-                    nombreDirectorioAgrabar = nombreDirectorioAgrabar.Replace(general.projectTemplateSelectedFullUri, "");
+                    nombreDirectorioAgrabar = nombreDirectorioAgrabar.Replace(general.actualProject.projectTemplatesDirectory, "");
                     nombreDirectorioAgrabar = nombreDirectorioAgrabar.Replace(nombreArchivo, "");
 
 
