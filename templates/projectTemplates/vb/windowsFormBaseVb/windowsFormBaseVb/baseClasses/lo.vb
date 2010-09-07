@@ -163,17 +163,26 @@ Class lo
     Public Shared Sub comboSeleccionarItem(ByRef tmpList As System.Windows.Forms.ComboBox, ByVal cadBusqueda As String, Optional ByVal tipoCampo As eTipoCampo = eTipoCampo.id)
         ' Busca el nodo que me dan y le colocan el focus
         
-      
-        If Not (comboIsEmpty(tmpList)) Then
+        If cadBusqueda <> "-1" Then
+            If Not (comboIsEmpty(tmpList)) Then
 
-            Select Case tipoCampo
-                Case eTipoCampo.id
-                    tmpList.SelectedValue = cadBusqueda
-                Case eTipoCampo.texto
-                    tmpList.SelectedText = cadBusqueda
-            End Select
+                Select Case tipoCampo
+                    Case eTipoCampo.id
+                        tmpList.SelectedValue = cadBusqueda
+                    Case eTipoCampo.texto
+                        ' Find the first match for the typed value.
+                        Dim index As New Integer
+                        index = tmpList.FindString(cadBusqueda)
 
+                        'if index > -1 then a match was found.
+                        If (index > -1) Then
+                            tmpList.SelectedIndex = index
+                        End If
+                End Select
+
+            End If
         End If
+
     End Sub
 
 
@@ -182,19 +191,21 @@ Class lo
         ' Me da el text/id del elemento seleccionado seg�n el par�metro tipoCampo
         Dim retorno As String
 
-        If (tmpList.SelectedIndex < 0) Then
-            retorno = "-1"
-        Else
-            If (tipoCampo = eTipoCampo.id) Then
-                retorno = tmpList.SelectedValue.ToString() 'CType(CType(tmpList.SelectedItem, Object), lo.nodoLista).id
+      
+        If (tipoCampo = eTipoCampo.id) Then
+            If (tmpList.SelectedIndex < 0) Then
+                retorno = "-1"
             Else
-                retorno = tmpList.SelectedText.ToString() 'CType(CType(tmpList.SelectedItem, Object), lo.nodoLista).text
+                retorno = tmpList.SelectedValue.ToString() 'CType(CType(tmpList.SelectedItem, Object), lo.nodoLista).id
             End If
+        Else
+            retorno = tmpList.Text 'CType(CType(tmpList.SelectedItem, Object), lo.nodoLista).text
         End If
+        'End If
 
-        If (retorno = "") Then
-            retorno = "-1"
-        End If
+        'If (retorno = "") Then
+        '    retorno = "-1"
+        'End If
 
         Return (retorno)
     End Function
@@ -430,7 +441,11 @@ Class lo
         '    HttpContext.Current.Response.End()
         'End If
 
+        Debug.WriteLine("·...........", "Error")
+        Debug.WriteLine(titulo, "error")
         Debug.WriteLine(ex.Message, "error")
+        Debug.WriteLine(descripcion, "error")
+        Debug.WriteLine("·...........", "error")
 
     End Function
 

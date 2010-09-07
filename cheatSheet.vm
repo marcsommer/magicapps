@@ -69,8 +69,14 @@ table:
 	${table.Name()}
 	${table.targetName()}
 	${table.numberOfFields()}
-	${table.getKey()}
-	${table.getKeyType()}
+	
+	${table.getKey}					// string with the name of keyfield
+	${table.getKeyType}				// string with the type of keyfield
+	${table.getKeyTypeForVb}		// string with the type of keyfield for vb
+	${table.getKeyField}			// returns the field itself (type field)
+	
+	
+	
 	${table.fieldDescription()}
 
 	${table.getFields}
@@ -88,6 +94,7 @@ table:
 	${table.getListOfFields(",","pre")} ' gets a list with "pre + field + ,"
 	${table.getListOfFieldsWithoutKeys(",")}
 	${table.getListOfKeyFields(",")}
+	
 	${table.getListOfParameters(",")}
 	${table.getListOfParametersForVb(",")}
 	${table.getListOfParametersForPhp(",")}
