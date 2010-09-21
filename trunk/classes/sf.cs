@@ -831,6 +831,11 @@ public class sf
     public static bool boolean(string valor)
     {
 
+        if (valor.Equals("False") || valor.Equals("false"))
+            return false;
+        if (valor.Equals("True") || valor.Equals("true"))
+            return true;
+
         bool reto = false;
 
         bool.TryParse(valor, out reto);

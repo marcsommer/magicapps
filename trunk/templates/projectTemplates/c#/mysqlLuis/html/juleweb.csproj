@@ -153,6 +153,13 @@
       <DependentUpon>portada.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="testMail.aspx.cs">
+      <DependentUpon>testMail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="testMail.aspx.designer.cs">
+      <DependentUpon>testMail.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Themes\admcontrastemed\admin_contraste.css" />
@@ -686,6 +693,7 @@
     <Content Include="JQuery\ui\minified\jquery.ui.widget.min.js" />
     <Content Include="portal\master\menuPortal.ascx" />
     <Content Include="portal\master\testMasterPortal.aspx" />
+    <Content Include="testMail.aspx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="admin\imagesadmin\Thumbs.db" />
