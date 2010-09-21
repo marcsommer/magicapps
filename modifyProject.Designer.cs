@@ -46,6 +46,7 @@
             this.butSaveChanges = new System.Windows.Forms.Button();
             this.butAddDirectory = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // label1
@@ -202,6 +203,10 @@
             this.butAddDirectory.Visible = false;
             this.butAddDirectory.Click += new System.EventHandler(this.butAddDirectory_Click);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // modifyProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -252,5 +257,6 @@
         private System.Windows.Forms.Button butSaveChanges;
         private System.Windows.Forms.Button butAddDirectory;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

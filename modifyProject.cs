@@ -722,13 +722,13 @@ namespace myWay
                         }
                         break;
 
-                    case project.databaseType.access:
+                    case project.databaseType.access2003:
 
 
                         connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + pr.database + ";User ID=" + pr.user + ";Password=" + pr.password + ";";
 
-                        dbAccess dba = new dbAccess();
-                        errorMessage = dba.test(connectionString);
+                        dbAccess dba2003 = new dbAccess();
+                        errorMessage = dba2003.test(connectionString);
                         if (errorMessage.Equals(""))
                         {
                             AsyncWrite("");
@@ -738,7 +738,7 @@ namespace myWay
 
                             // lets get the tables...
                             List<table> lista = new List<table>();
-                            lista = dba.getTables(connectionString, pr.database);
+                            lista = dba2003.getTables(connectionString, pr.database);
                             //lista.Sort();
                             foreach (table item in lista)
                             {
@@ -746,7 +746,7 @@ namespace myWay
 
                                 // now lets get the fields for each table...
                                 List<field> listaField = new List<field>();
-                                listaField = dba.getFields(connectionString, item.Name);
+                                listaField = dba2003.getFields(connectionString, item.Name);
                                                                                       
                                 
                                 if (listaField != null)
@@ -761,7 +761,7 @@ namespace myWay
                                 }
 
                                 // lets get primary keys and foreign keys for the table...
-                                dba.getKeys(connectionString, item);
+                                dba2003.getKeys(connectionString, item);
 
                                 // now we search a text field that is not key
                                 if (listaField != null)
@@ -797,7 +797,7 @@ namespace myWay
                             pr.tables.Sort();
                             // now lets get the relations ...
                             List<relation> listarelation = new List<relation>();
-                            listarelation = dba.getRelations(connectionString);
+                            listarelation = dba2003.getRelations(connectionString);
                             if (listarelation != null)
                             {
                                 foreach (relation re in listarelation)
@@ -909,6 +909,202 @@ namespace myWay
                             AsyncWriteLine(errorMessage);
                         }
                         break;
+
+                        // end of access2003
+
+
+                    case project.databaseType.access2007:
+
+
+                        connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + pr.database + ";Persist Security Info=False;";
+                       
+                        dbAccess dba2007 = new dbAccess();
+                        errorMessage = dba2007.test(connectionString);
+                        if (errorMessage.Equals(""))
+                        {
+                            AsyncWrite("");
+                            AsyncWriteLine("Success connection \n");
+                            //pr = new project();
+                            //pr.name = pro.name;9
+
+                            // lets get the tables...
+                            List<table> lista = new List<table>();
+                            lista = dba2007.getTables(connectionString, pr.database);
+                            //lista.Sort();
+                            foreach (table item in lista)
+                            {
+                                AsyncWriteLine("Found table... " + item.Name + "\n");
+
+                                // now lets get the fields for each table...
+                                List<field> listaField = new List<field>();
+                                listaField = dba2007.getFields(connectionString, item.Name);
+
+
+                                if (listaField != null)
+                                {
+                                    foreach (field fi in listaField)
+                                    {
+                                        item.fields.Add(fi);
+                                        AsyncWriteLine("Found field... " + fi.Name + "\n");
+
+                                    }
+
+                                }
+
+                                // lets get primary keys and foreign keys for the table...
+                                dba2007.getKeys(connectionString, item);
+
+                                // now we search a text field that is not key
+                                if (listaField != null)
+                                {
+                                    // the descriptionField its the first string field of table...
+                                    foreach (field campito in listaField)
+                                    {
+                                        if (campito.type.ToString().Equals("_string") && !campito.isKey)
+                                        {
+                                            item.fieldDescription = campito.Name;
+                                            campito.isDescriptiveField = true;
+                                            break;
+                                        }
+
+                                    }
+
+                                }
+                                if (item.fieldDescription == null)
+                                    item.fieldDescription = item.GetKey;
+                                
+
+
+                                // lets sort the fields in the table...
+                                // we order but put first key fields
+                                if (general.orderFields)
+                                {
+                                    item.fields.Sort(new compareFields(compareFields.CompareByOptions.name));
+                                    item.fields.Sort(new compareFields(compareFields.CompareByOptions.key));
+                                }
+                                pr.tables.Add(item);
+
+
+                            }
+
+                            pr.tables.Sort();
+                            // now lets get the relations ...
+                            List<relation> listarelation = new List<relation>();
+                            listarelation = dba2007.getRelations(connectionString);
+                            if (listarelation != null)
+                            {
+                                foreach (relation re in listarelation)
+                                {
+                                    //  item.fields.Add(re);
+                                    pr.relations.Add(re);
+                                    AsyncWriteLine("Found relation... " + re.name + "\n");
+
+                                    // now if the relation has to do with the tables...
+                                    foreach (table item in pr.tables)
+                                    {
+                                        // we put the relation in the parent table...
+                                        if (item.Name.Equals(re.parentTable))
+                                        {
+                                            // le añadimos la descripcion
+                                            re.parentDescription = item.fieldDescription;
+
+                                            foreach (table taby in pr.tables)
+                                            {
+                                                if (taby.Name.Equals(re.childTable))
+                                                    re.childDescription = taby.fieldDescription;
+                                            }
+                                            item.relations.Add(re);
+                                        }
+                                    }
+
+
+                                }
+
+                            }
+
+
+                            // also we can get relations about the field names
+                            foreach (table tab in pr.tables)
+                            {
+                                foreach (field campo in tab.fields)
+                                {
+                                    if (campo.isKey)
+                                    {
+                                        foreach (table tab2 in pr.tables)
+                                        {
+                                            if (!tab.Name.Equals(tab2.Name))
+                                            {
+                                                foreach (field campo2 in tab2.fields)
+                                                {
+                                                    if (campo.Name.Equals(campo2.Name))
+                                                    {
+                                                        campo2.isForeignKey = true;
+                                                        relation rel = new relation();
+                                                        rel.name = tab.Name + "_" + tab2.Name;
+                                                        if (!pr.relations.Contains(rel.name))
+                                                        {
+                                                            rel.parentTable = tab2.Name;
+                                                            rel.parentField = campo2.Name;
+
+                                                            rel.childTable = tab.Name;
+                                                            rel.childField = campo.Name;
+
+                                                            // found description of fields...
+                                                            foreach (table item in pr.tables)
+                                                            {
+                                                                if (item.Name.Equals(rel.childTable))
+                                                                    rel.childDescription = item.fieldDescription;
+
+                                                                if (item.Name.Equals(rel.parentTable))
+                                                                    rel.parentDescription = item.fieldDescription;
+                                                            }
+
+                                                            pr.relations.Add(rel);
+
+                                                            // now if the relation has to do with the tables...
+                                                            foreach (table item in pr.tables)
+                                                            {
+                                                                if (item.Name.Equals(tab2.Name))
+                                                                {
+                                                                    // see if the relation exists..
+                                                                    bool seguir = true;
+                                                                    foreach (relation rel2 in tab2.relations)
+                                                                    {
+                                                                        if (rel2.name.Equals(rel.name))
+                                                                            seguir = false;
+                                                                    }
+                                                                    if (seguir)
+                                                                        item.relations.Add(rel);
+                                                                }
+
+                                                            }
+                                                        }
+
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                    }
+                                }
+                            }
+
+                            right = true;
+                            pr.host = pr.host;
+                            pr.database = pr.database;
+                            pr.user = pr.user;
+                            pr.password = pr.password;
+                            pr.dbDataType = pr.dbDataType;
+
+                        }
+                        else
+                        {
+                            AsyncWriteLine(errorMessage);
+                        }
+                        break;
+
+                    // end of access2007
+
                 }
 
                
@@ -1023,21 +1219,48 @@ namespace myWay
 
         private void butAddDirectory_Click(object sender, EventArgs e)
         {
-            // Display the openFile dialog.
-            DialogResult result = folderBrowserDialog1.ShowDialog();
-
-            // OK button was pressed.
-            if (result == DialogResult.OK)
+            switch ((project.databaseType)cmbDataType.SelectedItem)
             {
-                txtDatabase.Text = folderBrowserDialog1.SelectedPath;
+                case project.databaseType.dbf:
+                    // Display the openFile dialog.
+                    DialogResult result = folderBrowserDialog1.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        txtDatabase.Text = folderBrowserDialog1.SelectedPath;
+                    }
+                    // Cancel button was pressed.
+                    else if (result == DialogResult.Cancel)
+                    {
+                        return;
+                    }
+                    break;
+                case project.databaseType.access2003:
+                    // Display the openFile dialog.
+                    DialogResult result2 = openFileDialog1.ShowDialog();
+                    if (result2 == DialogResult.OK)
+                    {
+                        txtDatabase.Text = openFileDialog1.FileName;
+                    }
+                    // Cancel button was pressed.
+                    else if (result2 == DialogResult.Cancel)
+                    {
+                        return;
+                    }
+                    break;
+                case project.databaseType.access2007:
+                    // Display the openFile dialog.
+                    DialogResult result3 = openFileDialog1.ShowDialog();
+                    if (result3 == DialogResult.OK)
+                    {
+                        txtDatabase.Text = openFileDialog1.FileName;
+                    }
+                    // Cancel button was pressed.
+                    else if (result3 == DialogResult.Cancel)
+                    {
+                        return;
+                    }
+                    break;
 
-
-            }
-
-            // Cancel button was pressed.
-            else if (result == DialogResult.Cancel)
-            {
-                return;
             }
         } // butAddDirectory_Click
 
@@ -1048,10 +1271,12 @@ namespace myWay
                 case project.databaseType.dbf:
                     butAddDirectory.Visible = true;
                     break;
-                case project.databaseType.access:
+                case project.databaseType.access2003:
                     butAddDirectory.Visible = true;
                     break;
-
+                case project.databaseType.access2007:
+                    butAddDirectory.Visible = true;
+                    break;
                 case project.databaseType.mySql:
                     butAddDirectory.Visible = false;
                     break;

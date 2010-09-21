@@ -376,6 +376,33 @@ public partial class table : IComparable
         return retorno;
     }
 
+    // return a string with delimiter... without key fields
+    public String getListOfFieldsWithoutKeys(string delimiter, string preString)
+    {
+        ArrayList al = new ArrayList();
+        foreach (field item in fields)
+        {
+            if (!item.isKey)
+                al.Add(preString + item.Name);
+        }
+        string[] returnArray;
+        string retorno = "";
+
+        returnArray = (string[])al.ToArray(Type.GetType("System.String"));
+
+        if (returnArray.Length == 1)
+        {
+            retorno = returnArray[0];
+        }
+        else
+        {
+            retorno = string.Join(delimiter, returnArray);
+            //retorno = retorno.Remove(retorno.LastIndexOf(delimiter), delimiter.Length);
+        }
+
+        return retorno;
+    }
+
     // return a string with delimiter... fields key
     public String getListOfKeyFields(string delimiter)
     {

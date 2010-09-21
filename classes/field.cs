@@ -56,7 +56,11 @@ public class field : IComparable
     private bool _isKey;
 
     private bool _isForeignKey;
+    private bool _isDescriptiveField; // indica si es un campo descripcion
 
+    private bool _required;
+    private bool _crypted;
+   
     private bool _allowNulls;
 
     private bool _isAutoIncrement;
@@ -137,6 +141,18 @@ public class field : IComparable
         set { _selected = value; }
     }
 
+    public bool required
+    {
+        get { return _required; }
+        set { _required = value; }
+    }
+
+    public bool crypted
+    {
+        get { return _crypted; }
+        set { _crypted = value; }
+    }
+
 
     public bool isKey
     {
@@ -148,6 +164,12 @@ public class field : IComparable
     {
         get { return _isForeignKey; }
         set { _isForeignKey = value; }
+    }
+
+    public bool isDescriptiveField
+    {
+        get { return _isDescriptiveField; }
+        set { _isDescriptiveField = value; }
     }
 
     public bool allowNulls
