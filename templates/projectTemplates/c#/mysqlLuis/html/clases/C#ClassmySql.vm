@@ -93,6 +93,13 @@ using System.ComponentModel;
 						set {_${field} = value;}			                
 					}
 			 #end 
+		  #if ($field.type.toString() == "_text")
+			  public string ${field}
+					{
+						get {return _${field};}
+						set {_${field} = value;}			                
+					}
+			 #end 
 		  #if ($field.type.toString() == "_date")
 			   public DateTime ${field}
 					{

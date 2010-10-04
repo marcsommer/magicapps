@@ -30,7 +30,7 @@ using System.IO;
             return path;
         }
 
-
+        
         public static string RandomString(int size, bool lowerCase)
         {
             // StringBuilder is faster than using strings (+=)
@@ -44,6 +44,11 @@ using System.IO;
                 RandStr.Append((char)(26 * randomSeed.NextDouble() + Start));
 
             return RandStr.ToString();
+        }
+
+        public static string RandomNumericString()
+        {
+            return randomSeed.Next(0, 9).ToString();
         }
          
         /// <summary>

@@ -21,7 +21,7 @@ values(
 			 ${table.randomInt($field.randomMinValue, $field.randomMaxValue)} #if ($table.countOfFieldsNotKey -  $count  != 1)  , #end 
 			 #end
 			#if ($field.type.toString() == "_string")
-			 '${table.randomString()}' #if ($table.countOfFieldsNotKey -  $count  != 1) , #end 
+			 '${table.RandomString( ${field.size} ,true)}' #if ($table.countOfFieldsNotKey -  $count  != 1) , #end 
 			 #end
 			#if ($field.type.toString() == "_date")
 			 '${table.randomDate()}' #if ($table.countOfFieldsNotKey -  $count  != 1) , #end 
@@ -32,8 +32,8 @@ values(
 			#if ($field.type.toString() == "_double")
 			 '${table.randomDouble($field.randomMinValue, $field.randomMaxValue)}'  #if ($table.countOfFieldsNotKey -  $count  != 1) ,#end 
 			#end			 
-		#end
-		#set ($count = $count + 1 ) 
+			#set ($count = $count + 1 )
+		#end		
 	#end	 
 ) 
 #end	

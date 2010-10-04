@@ -43,7 +43,7 @@ public partial class main_${table} : System.Web.UI.Page
 		if (!Page.IsPostBack)
 		{
 			#foreach( $relation in $table.getRelations() )
-				lo.comboRellenar(cmb${relation.childField()}, "select ${relation.childField()},${relation.childDescription()} from ${relation.childTable()} ", ctes.conStringAdoGeneral, "Seleccione");
+				lo.comboRellenar(cmb${relation.childField()}, "select ${relation.parentField()},${relation.parentDescription()} from ${relation.parentTable()} ", ctes.conStringAdoGeneral, "Seleccione");
 			#end 
 		// si nos mandan para borrar...
 		if (Request["idb"] != null)
@@ -72,7 +72,10 @@ public partial class main_${table} : System.Web.UI.Page
 		#if ($field.targetType.toString() == "_text") 
 			txt${field}.Text = res.${field}; 
 		#end 
-		#if ($field.targetType.toString() == "_double") 
+		#if ($field.targetType.toString() == "_bigString") 
+			txt${field}.Text = res.${field}; 
+		#end 
+			#if ($field.targetType.toString() == "_double") 
 			txt${field}.Text = sf.cadena(res.${field}); 
 		#end 
 		#if ($field.targetType.toString() == "_date")
@@ -267,6 +270,12 @@ public partial class main_${table} : System.Web.UI.Page
 								 #end                                   
 							 #end 
 							  #if ($field.targetType.toString() == "_string")
+								res.${field}=sf.cadena(txt${field}.Text) ;	
+							 #end 
+							  #if ($field.targetType.toString() == "_text")
+								res.${field}=sf.cadena(txt${field}.Text) ;	
+							 #end 
+							  #if ($field.targetType.toString() == "_bigString")
 								res.${field}=sf.cadena(txt${field}.Text) ;	
 							 #end 
 							   #if ($field.targetType.toString() == "_double")
