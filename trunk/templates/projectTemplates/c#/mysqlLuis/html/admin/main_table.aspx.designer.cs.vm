@@ -37,10 +37,6 @@ namespace ${project}.${table}_dir {
 #set ($count = 0)
 #foreach( $field in $table.GetFields )
   #if (!$field.isKey())
-
-   
-     
-     
               #if ($field.targetType.toString() == "_integer")
                 #if ( $field.isForeignKey())
                    /// <summary>
@@ -75,18 +71,7 @@ namespace ${project}.${table}_dir {
 					protected global::eWorld.UI.NumericBox txt${field};
 
                  #end  
-                 #if ($field.targetType.toString() == "_string")
-                   /// <summary>
-                    /// Control txt${field}.
-                    /// </summary>
-                    /// <remarks>
-                    /// Campo generado automáticamente.
-                    /// Para modificar, mueva la declaraci�n del campo del archivo del diseñador al archivo de c�digo subyacente.
-                    /// </remarks>
-					protected global::System.Web.UI.WebControls.TextBox txt${field};
-
-                 #end 
-              #if ($field.targetType.toString() == "_date")
+             #if ($field.targetType.toString() == "_date")
                    /// <summary>
 					/// Control ${field}.
 					/// </summary>
@@ -100,6 +85,17 @@ namespace ${project}.${table}_dir {
                  #end 
 				  #if ($field.targetType.toString() == "_hidden")
 				  #end 
+                 #if ($field.targetType.toString() == "_string")
+                   /// <summary>
+                    /// Control txt${field}.
+                    /// </summary>
+                    /// <remarks>
+                    /// Campo generado automáticamente.
+                    /// Para modificar, mueva la declaraci�n del campo del archivo del diseñador al archivo de c�digo subyacente.
+                    /// </remarks>
+					protected global::System.Web.UI.WebControls.TextBox txt${field};
+
+                 #end 
               #if ($field.targetType.toString() == "_text")
                    /// <summary>
 					/// Control ${field}.
@@ -121,9 +117,7 @@ namespace ${project}.${table}_dir {
 					/// Para modificar, mueva la declaraci�n del campo del archivo del dise�ador al archivo de c�digo subyacente.
 					/// </remarks>
 					protected global::FreeTextBoxControls.FreeTextBox txt${field};
-		
-		
-                 #end 				 
+	             #end 				 
               #if ($field.targetType.toString() == "_boolean")
                    /// <summary>
                     /// Control ck{field}.

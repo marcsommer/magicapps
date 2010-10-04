@@ -37,7 +37,7 @@
         #if ($field.targetType.toString() == "_integer")
         #if ($field.isForeignKey() )
         <div class="lineaForm">
-						<label for="${field}">				
+						<label for="cmb${field}">				
 							<span class="etiqueta">${field.targetName()}: </span>
 							<asp:DropDownList ID="cmb${field}" CssClass="textoLargo" runat="server">
 							</asp:DropDownList>
@@ -46,7 +46,7 @@
 				#else
 			    #if ($field != "idportal")	
 				<div class="lineaForm">
-                <label for="${field}">
+                <label for="txt${field}">
                         <span class="etiqueta">${field.targetName()}: </span>
                         <asp:TextBox ID="txt${field}" CssClass="textoLargo" runat="server"></asp:TextBox>
                     </label>
@@ -57,16 +57,24 @@
 
         #if ($field.targetType.toString() == "_string")
         <div class="lineaForm">
-                   <label for="${field}">
+                   <label for="txt${field}">
                         <span class="etiqueta">${field.targetName()}: </span>
 							<asp:TextBox ID="txt${field}" CssClass="textoLargo" runat="server"></asp:TextBox>
-						                     
+					</label>
+		</div>
+        #end
+        #if ($field.targetType.toString() == "_bigString")
+        <div class="lineaForm">
+                   <label for="txt${field}">
+                        <span class="etiqueta">${field.targetName()}: </span>
+							<FTB:FreeTextBox ID="txt${field}" runat="server" Language="es-ES">
+							</FTB:FreeTextBox>	                  
                     </label>
 		</div>
         #end
 		#if ($field.targetType.toString() == "_text")
 			<div class="lineaForm">
-			   <label for="${field}">
+			   <label for="txt${field}">
 					<span class="etiqueta">${field.targetName()}: </span>
 					   <FTB:FreeTextBox ID="txt${field}" runat="server" Language="es-ES">
 					   </FTB:FreeTextBox>						                       
@@ -75,7 +83,7 @@
 		#end 
 		#if ($field.targetType.toString() == "_double")
 				<div class="lineaForm">
-                   <label for="${field}">
+                   <label for="txt${field}">
                         <span class="etiqueta">${field.targetName()}: </span>
 						 	<ew:NumericBox runat="server" id="txt${field}" DecimalPlaces="4" AutoFormatCurrency="True"  BackColor="#FFFFCC" DecimalSign="," GroupingSeparator="." DollarSign=" " />  
                     </label>
@@ -91,7 +99,7 @@
         #end 
               #if ($field.targetType.toString() == "_boolean")
 			  	<div class="lineaForm">
-                  <label for="${field}">
+                  <label for="ck${field}">
                         <span class="etiqueta">${field.targetName()}: </span>
                         <asp:CheckBox ID="ck${field}"   runat="server" />
                     </label>
@@ -155,7 +163,7 @@
 					</div>
 					<!--botones formulario-->
 					<br />
-					<asp:HyperLink ID="hListado" runat="server" NavigateUrl="./list_${table}.aspx">Volver al listado ...</asp:HyperLink><br />
+					<asp:HyperLink ID="hListado" runat="server" NavigateUrl="./listado_${table}.aspx">Volver al listado ...</asp:HyperLink><br />
 
 				</div> 
 </asp:Content>

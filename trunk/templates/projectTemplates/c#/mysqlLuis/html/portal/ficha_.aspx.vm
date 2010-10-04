@@ -63,7 +63,15 @@
                     </label>
 				</div>		
                  #end 
-              #if ($field.targetType.toString() == "_date")
+                #if ($field.targetType.toString() == "_text")
+			  	<div class="lineaForm">
+                   <label for="${field}">
+                        <span class="etiqueta">${field.targetName()}: </span>
+                        <asp:Label ID="lab${field}"  text=""    runat="server"></asp:Label>
+                    </label>
+				</div>		
+                 #end 
+				#if ($field.targetType.toString() == "_date")
 			  	<div class="lineaForm">
                  <label for="${field}">
                         <span class="etiqueta">${field.targetName()}: </span>

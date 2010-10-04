@@ -43,7 +43,9 @@ namespace myWay.userControls
     public partial class templateMode : System.Windows.Forms.UserControl
     {
 
-        public project actualProject;
+        //  public project realProject;
+
+        private bool blocked;
 
         public templateMode()
         {
@@ -56,7 +58,7 @@ namespace myWay.userControls
             //CSharp Formatter Initilaization
             t1.SetHighlighting("C#");
             t1.TabIndex = 4;
-            
+
         }
 
 
@@ -64,6 +66,7 @@ namespace myWay.userControls
         {
             if (general.actualProject != null)
             {
+                blocked = true;
                 string numberOfLinesWrittenBefore = sf.toLong(System.Configuration.ConfigurationManager.AppSettings["numberOfLinesWritten"]).ToString();
                 labNumberOfLinesWritten.Values.Text = sf.cadena(numberOfLinesWrittenBefore) + " lines written with myWay";
                 if (general.actualProject.nameSpace != null)
@@ -81,11 +84,13 @@ namespace myWay.userControls
 
                 fillComboWithTables();
 
-                if (general.actualTable != null)
+                if (general.actualProject.actualTable != null)
                 {
-                    int index = cmbTablesx.FindStringExact(general.actualTable.Name);
+                    int index = cmbTablesx.FindStringExact(general.actualProject.actualTable.Name);
                     cmbTablesx.SelectedIndex = index;
                 }
+
+                blocked = false;
 
             }
 
@@ -116,35 +121,32 @@ namespace myWay.userControls
             saveData();
         } // templateMode_VisibleChanged
 
-         // jumps when parent form closes
+        // jumps when parent form closes
         private void templateMode_Disposed(object sender, EventArgs e)
         {
-            saveData();
+            //saveData();
         } //templateMode_Disposed
 
 
         private void saveData()
         {
-            project pr = new project();
-            pr = general.actualProject;
-            pr.templateSelectedFullUri = general.templateSelectedFullUri;
+            //project pr = new project();
+            //pr = general.actualProject;
+
+            //pr.templateSelected = general.actualProject.templateSelected;
+            //pr.templateSelectedFullUri = general.actualProject.templateSelectedFullUri;
 
 
-            String tableSelected = cmbTablesx.Text;
-            foreach (table item in general.actualProject.tables)
-            {
-                string numberoffields = item.fields.Count.ToString();
-                if (item.Name.Equals(tableSelected))
-                    pr.actualTable = item;
-            }
-            //confi.actualTable = actualTable;
+            //String tableSelected = cmbTablesx.Text;
+            //foreach (table item in general.actualProject.tables)
+            //{
+            //    string numberoffields = item.fields.Count.ToString();
+            //    if (item.Name.Equals(tableSelected))
+            //        pr.actualTable = item;
+            //}
 
-            //pr.templateSelected = general.templateSelected;
-            //pr.templateSelectedFullUri = general.templateSelectedFullUri;
-                  
-
-            pr.saveProject(Path.Combine(util.conf_dir, "conf.xml"));
-            pr.saveProject(Path.Combine(util.projects_dir, general.actualProject.name) + ".xml");
+            //pr.saveProject(Path.Combine(util.conf_dir, "conf.xml"));
+            //pr.saveProject(Path.Combine(util.projects_dir, general.actualProject.name) + ".xml");
 
         }
 
@@ -154,7 +156,7 @@ namespace myWay.userControls
             try
             {
                 AsyncCleanRt1("");
-                String plantilla = util.loadFile(general.templateSelectedFullUri);
+                String plantilla = util.loadFile(general.actualProject.templateSelectedFullUri);
 
                 // clean cmbGotocode
                 cmbGoToCode.Items.Clear();
@@ -164,7 +166,7 @@ namespace myWay.userControls
 
                 if (tableSelected.Equals(""))
                 {
-                   // rt1.Text = "Please, select a table";
+                    // rt1.Text = "Please, select a table";
                     t1.Text = "Please, select a table";
                 }
 
@@ -332,7 +334,7 @@ namespace myWay.userControls
                 t1.BeginInvoke(new MethodInvoker(delegate
                 {
                     t1.Text = "";
-                   // t1.Clear();
+                    // t1.Clear();
                 }));
 
             }
@@ -351,18 +353,43 @@ namespace myWay.userControls
 
             if (sho.templateSelected != null)
             {
-                 t1.Text = sho.text;                 
+                t1.Text = sho.text;
 
                 kbTemplate.Text = sho.smallTitle;
 
                 general.actualProject.templateSelectedFullUri = sho.templateSelected;
                 general.actualProject.templateSelected = sho.smallTitle;
+
+                general.actualProject.saveProject(Path.Combine(util.conf_dir, "conf.xml"));
+                general.actualProject.saveProject(Path.Combine(util.projects_dir, general.actualProject.name) + ".xml");
+
+
             }
         }
 
         private void cmbLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
             t1.SetHighlighting(((System.Windows.Forms.ComboBox)(sender)).Text);
+        }
+
+        private void cmbTablesx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!blocked)
+            {
+                String tableSelected = cmbTablesx.Text;
+
+                foreach (table item in general.actualProject.tables)
+                {
+                    string numberoffields = item.fields.Count.ToString();
+                    if (item.Name.Equals(tableSelected))
+                        general.actualProject.actualTable = item;
+                }
+
+                general.actualProject.saveProject(Path.Combine(util.conf_dir, "conf.xml"));
+                general.actualProject.saveProject(Path.Combine(util.projects_dir, general.actualProject.name) + ".xml");
+
+            }
+
         }
 
     }

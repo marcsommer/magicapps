@@ -118,7 +118,7 @@ class dbMySql
                     switch (tipo)
                     {
                         case "text":
-                            fi.type = field.fieldType._string;
+                            fi.type = field.fieldType._text;
                             break;
 
                         case "char":

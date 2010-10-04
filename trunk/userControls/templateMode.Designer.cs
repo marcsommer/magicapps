@@ -127,6 +127,7 @@
             this.cmbTablesx.Name = "cmbTablesx";
             this.cmbTablesx.Size = new System.Drawing.Size(268, 21);
             this.cmbTablesx.TabIndex = 33;
+            this.cmbTablesx.SelectedIndexChanged += new System.EventHandler(this.cmbTablesx_SelectedIndexChanged);
             // 
             // cmbGoToCode
             // 

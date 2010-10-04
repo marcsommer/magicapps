@@ -647,6 +647,11 @@ namespace myWay.userControls
                 general.actualProject.projectTemplatesDirectorySmall = pt;
 
             }
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         } // lbProjectTemplate_SelectedIndexChanged
 
 
