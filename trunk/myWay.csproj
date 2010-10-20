@@ -385,7 +385,7 @@
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\clasesbase\JQueryUtils.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Compile Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\classes\projectConfigFiles.cs" />
+    <Compile Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\classes\projectConfigFiles.cs" />
     <Compile Include="userControls\projectMode.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -686,6 +686,9 @@
     <EmbeddedResource Include="img\spanner_48.png" />
     <EmbeddedResource Include="img\thumbs_down_48.png" />
     <EmbeddedResource Include="img\thumbs_up_48.png" />
+    <Content Include="projects\empty.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\script_go.png" />
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqCabDcha.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -712,13 +715,22 @@
     <Content Include="templates\basic\cs_MessageWithStyle.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="templates\projectTemplates\c#\mysqlLuis\html\bin\MySql.Data.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\System.Web.Extensions.Design.dll">
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bindll\eWorld.UI.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\System.Web.Extensions.dll">
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bindll\FreeTextBox.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="templates\projectTemplates\c#\mysqlLuis\html\bindll\MySql.Data.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bindll\RSSMaster.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bindll\System.Web.Extensions.Design.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bindll\System.Web.Extensions.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\JQuery\demos.css">
@@ -1294,27 +1306,42 @@
     <Content Include="templates\projectTemplates\c#\mysql\html\Properties\licenses.licx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\HeaderFooterRdlGenerator.vb">
+    <Content Include="templates\projectTemplates\c#\sqlServer\html\binDll\eWorld.UI.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\RdlGenerator.vb">
+    <Content Include="templates\projectTemplates\c#\sqlServer\html\binDll\FreeTextBox.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\ReportDefinition.vb">
+    <Content Include="templates\projectTemplates\c#\sqlServer\html\binDll\RSSMaster.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\TableRdlGenerator.vb">
+    <Content Include="templates\projectTemplates\c#\sqlServer\html\binDll\System.Web.Extensions.Design.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\Form1.resx">
+    <Content Include="templates\projectTemplates\c#\sqlServer\html\binDll\System.Web.Extensions.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\benefiDetail.resx" />
-    <EmbeddedResource Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\benefi_list.resx" />
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\logoIpi.ico">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\baseClasses\HeaderFooterRdlGenerator.vb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Resources.resx">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\baseClasses\RdlGenerator.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\baseClasses\ReportDefinition.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\baseClasses\TableRdlGenerator.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\Form1.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\forms\benefiDetail.resx" />
+    <EmbeddedResource Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\forms\benefi_list.resx" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\logoIpi.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\My Project\Resources.resx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="templates\projectTemplates\vb\windowsFormVbAccess\windowsFormBaseVbAccess\Form1.vb.vm">
@@ -1331,6 +1358,67 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\vb\windowsFormVbAccess\windowsFormBaseVbAccess\My Project\Resources.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\baseClasses\ctes.vb.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\binDll\DevExpress.Data.v10.1.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\binDll\DevExpress.Utils.v10.1.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\binDll\DevExpress.Utils.v10.1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\binDll\DevExpress.XtraEditors.v10.1.Design.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\binDll\DevExpress.XtraEditors.v10.1.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\binDll\DevExpress.XtraEditors.v10.1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\binDll\ES\Microsoft.ReportViewer.WebForms.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\binDll\ES\Microsoft.ReportViewer.WinForms.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\binDll\Microsoft.ReportViewer.Common.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\binDll\Microsoft.ReportViewer.WebForms.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\binDll\Microsoft.ReportViewer.WebForms.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\binDll\Microsoft.ReportViewer.WinForms.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\binDll\Microsoft.ReportViewer.WinForms.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\binDll\MySql.Data.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\binDll\MySql.Data.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\Form1.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\forms\bancosDetail.resx" />
+    <EmbeddedResource Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\forms\bancos_list.resx" />
+    <EmbeddedResource Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\forms\benefiDetail.resx" />
+    <EmbeddedResource Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\forms\benefi_list.resx" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\My Project\licenses.licx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\My Project\Resources.resx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="userControls\projectMode.resx">
@@ -2992,74 +3080,71 @@
     <Content Include="templates\projectTemplates\c#\sqlServer\html\juleweb.csproj.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb.sln">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb.sln">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\cListItem.vb">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\baseClasses\cListItem.vb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\cNodoBox.vb">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\baseClasses\cNodoBox.vb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\ctes.vb">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\baseClasses\ctes.vb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\dbClass.vb">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\baseClasses\dbClass.vb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\dbClassOdbc.vb">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\baseClasses\dbClassOdbc.vb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\dbClassOleDb.vb">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\baseClasses\dbClassOleDb.vb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\lo.vb">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\baseClasses\lo.vb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\sf.vb">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\baseClasses\sf.vb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\validator.vb">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\baseClasses\validator.vb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\baseClasses\ValidLengthAttribute.vb">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\baseClasses\ValidLengthAttribute.vb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\classes\benefi.vb">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\classes\benefi.vb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\Form1.Designer.vb">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\Form1.Designer.vb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\Form1.vb">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\Form1.vb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\benefiDetail.Designer.vb" />
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\benefiDetail.vb" />
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\benefi_list.Designer.vb" />
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\benefi_list.vb" />
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Application.Designer.vb">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\forms\benefiDetail.Designer.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\forms\benefiDetail.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\forms\benefi_list.Designer.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\forms\benefi_list.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\My Project\Application.Designer.vb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Application.myapp">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\My Project\Application.myapp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\AssemblyInfo.vb">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\My Project\AssemblyInfo.vb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Resources.Designer.vb">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\My Project\Resources.Designer.vb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Settings.Designer.vb">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\My Project\Settings.Designer.vb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\windowsFormBaseVb.vbproj">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\windowsFormBaseVb.vbproj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\windowsFormBaseVb.vbproj.user">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormVbAccess\windowsFormBaseVb.sln">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\windowsFormBaseVb.vbproj.user">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\vb\windowsFormVbAccess\windowsFormBaseVbAccess\baseClasses\cListItem.vb">
@@ -3105,15 +3190,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\vb\windowsFormVbAccess\windowsFormBaseVbAccess\baseClasses\ValidLengthAttribute.vb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormVbAccess\windowsFormBaseVbAccess\bin\Debug\DevExpress.XtraEditors.v10.1.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormVbAccess\windowsFormBaseVbAccess\bin\Debug\DevExpress.XtraEditors.v10.1.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormVbAccess\windowsFormBaseVbAccess\bin\Debug\DevExpress.XtraEditors.v10.1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="templates\projectTemplates\vb\windowsFormVbAccess\windowsFormBaseVbAccess\bin\Debug\windowsFormBaseVb.exe" />
@@ -3162,21 +3238,118 @@
     <Content Include="templates\projectTemplates\vb\windowsFormVbAccess\windowsFormBaseVbAccess\windowsFormBaseVb.vbproj.user">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVb.sln">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\baseClasses\cListItem.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\baseClasses\cNodoBox.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\baseClasses\comboItem.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\baseClasses\ctes.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\baseClasses\dbClass.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\baseClasses\dbClassOdbc.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\baseClasses\dbClassOleDb.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\baseClasses\HeaderFooterRdlGenerator.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\baseClasses\lo.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\baseClasses\RdlGenerator.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\baseClasses\ReportDefinition.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\baseClasses\sf.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\baseClasses\TableRdlGenerator.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\baseClasses\validator.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\baseClasses\ValidLengthAttribute.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\bin\Debug\DevExpress.XtraEditors.v10.1.Design.dll" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\bin\Debug\DevExpress.XtraEditors.v10.1.dll" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\bin\Debug\DevExpress.XtraEditors.v10.1.xml" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\bin\Debug\windowsFormBaseVb.exe" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\bin\Debug\windowsFormBaseVb.pdb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\bin\Debug\windowsFormBaseVb.vshost.exe" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\bin\Debug\windowsFormBaseVb.xml" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\classes\bancos.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\classes\bancosList.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\classes\benefi.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\classes\benefiList.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\Form1.Designer.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\Form1.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\forms\bancosDetail.Designer.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\forms\bancosDetail.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\forms\bancos_list.Designer.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\forms\bancos_list.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\forms\benefiDetail.Designer.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\forms\benefiDetail.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\forms\benefi_list.Designer.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\forms\benefi_list.vb" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\logoIpi.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\My Project\Application.Designer.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\My Project\Application.myapp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\My Project\AssemblyInfo.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\My Project\Resources.Designer.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\My Project\Settings.Designer.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\windowsFormBaseVb.vbproj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\windowsFormBaseVb.vbproj.user">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="templates\vb\vb_Class_winform.vm">
       <SubType>ASPXCodeBehind</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\app.config">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\app.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\classes\vb_Class_winform.vm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\classes\vb_Class_winform.vm">
       <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\classes\vb_Class_bindingList.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\Settings.settings">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\classes\vb_Class_bindingList.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\My Project\Settings.settings">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\vb_dataTable.vm">
@@ -3185,40 +3358,40 @@
     <Content Include="templates\vb\vb_Class_bindingList.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\windowsFormBaseVb.vbproj.vm">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\windowsFormBaseVb.vbproj.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\tableDetail.Designer.vb.vm">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\forms\tableDetail.Designer.vb.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\tableDetail.resx.vm">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\forms\tableDetail.resx.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\tableDetail.vb.vm">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\forms\tableDetail.vb.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\table_list.Designer.vb.vm">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\forms\table_list.Designer.vb.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\table_list.resx.vm">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\forms\table_list.resx.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\table_list.vb.vm">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\forms\table_list.vb.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\table_report.Designer.vb.vm">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\forms\table_report.Designer.vb.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\table_report.resx.vm">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\forms\table_report.resx.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\forms\table_report.vb.vm">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\forms\table_report.vb.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\classes\vb_Bll_vb.vm">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\classes\vb_Bll_vb.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb.pcf">
+    <Content Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb.pcf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\vb\windowsFormVbAccess\windowsFormBaseVb.pcf">
@@ -3274,6 +3447,60 @@
     </Content>
     <Content Include="templates\vb\Vb_serviceWebJson.vm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql.pcf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\bin\Debug\windowsFormBaseVb.exe.config" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\bin\Debug\windowsFormBaseVb.vshost.exe.config" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\bin\Debug\windowsFormBaseVb.vshost.exe.manifest" />
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\classes\vb_Bll_vb.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\classes\vb_Class_bindingList.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\classes\vb_Class_winform.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\Form1.vb.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\forms\tableDetail.Designer.vb.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\forms\tableDetail.resx.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\forms\tableDetail.vb.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\forms\table_list.Designer.vb.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\forms\table_list.resx.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\forms\table_list.vb.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\forms\table_report.Designer.vb.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\forms\table_report.resx.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\forms\table_report.vb.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\My Project\Settings.settings">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\windowsFormBaseVb.vbproj.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="templates\Web.config.vm" />
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\portal\ficha_.aspx.cs.vm">
@@ -3763,17 +3990,6 @@
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\App_Themes\texto\solotexto.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\eWorld.UI.Compatibility.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\eWorld.UI.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bin\FreeTextBox.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="templates\projectTemplates\c#\mysqlLuis\html\bin\juleweb.dll" />
-    <None Include="templates\projectTemplates\c#\mysqlLuis\html\bin\juleweb.pdb" />
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\default.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -4857,7 +5073,6 @@
     <Content Include="templates\projectTemplates\c#\sqlServer\html\bin\eWorld.UI.Compatibility.dll" />
     <Content Include="templates\projectTemplates\c#\sqlServer\html\bin\eWorld.UI.dll" />
     <Content Include="templates\projectTemplates\c#\sqlServer\html\bin\FreeTextBox.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\sqlServer\html\bin\juleweb.dll" />
     <Content Include="templates\projectTemplates\c#\sqlServer\html\bin\juleweb.pdb" />
@@ -5659,9 +5874,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="projects\" />
     <Folder Include="templates\projectTemplates\c#\mysqlLuis\html\bddocumentos\" />
     <Folder Include="templates\projectTemplates\c#\mysqlLuis\html\bdimages\" />
+    <Folder Include="templates\projectTemplates\c#\mysqlLuis\html\bin\" />
     <Folder Include="templates\projectTemplates\c#\mysqlLuis\html\data\" />
     <Folder Include="templates\projectTemplates\c#\mysqlLuis\html\js\" />
     <Folder Include="templates\projectTemplates\c#\mysqlLuis\html\portal\includes\calendar\" />
@@ -5715,12 +5930,14 @@
     <Folder Include="templates\projectTemplates\c#\sqlServer\html\data\" />
     <Folder Include="templates\projectTemplates\c#\sqlServer\html\js\" />
     <Folder Include="templates\projectTemplates\c#\sqlServer\html\portal\includes\calendar\" />
-    <Folder Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\bin\" />
-    <Folder Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\data\" />
-    <Folder Include="templates\projectTemplates\vb\windowsFormBaseVb\windowsFormBaseVb\My Project\DataSources\" />
+    <Folder Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\bin\" />
+    <Folder Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\data\" />
+    <Folder Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVb\My Project\DataSources\" />
     <Folder Include="templates\projectTemplates\vb\windowsFormVbAccess\windowsFormBaseVbAccess\bin\Debug\data\" />
     <Folder Include="templates\projectTemplates\vb\windowsFormVbAccess\windowsFormBaseVbAccess\data\" />
     <Folder Include="templates\projectTemplates\vb\windowsFormVbAccess\windowsFormBaseVbAccess\My Project\DataSources\" />
+    <Folder Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\data\" />
+    <Folder Include="templates\projectTemplates\vb\windowsFormVbMysql\windowsFormBaseVbMySql\My Project\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

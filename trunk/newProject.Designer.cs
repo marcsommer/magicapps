@@ -172,7 +172,6 @@
             this.txtDatabase.Name = "txtDatabase";
             this.txtDatabase.Size = new System.Drawing.Size(214, 20);
             this.txtDatabase.TabIndex = 3;
-            this.txtDatabase.Text = "I:\\proyectos\\iestancia\\data\\estancia2.mdb";
             // 
             // label6
             // 

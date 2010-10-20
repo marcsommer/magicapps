@@ -192,13 +192,14 @@ namespace myWay
                                     // the descriptionField its the first string field of table...
                                     foreach (field campito in listaField)
                                     {
-                                        if (campito.type.ToString().Equals("_string"))
+                                        if (campito.type.ToString().Equals("_string") || campito.type.ToString().Equals("_text"))
                                         {
                                             item.fieldDescription = campito.Name;
                                             break;
                                         }
-
                                     }
+                                    if (item.fieldDescription == null)
+                                        item.fieldDescription = listaField[0].Name;
                                 }
 
                                 // lets get primary keys and foreign keys for the table...
@@ -394,13 +395,14 @@ namespace myWay
                                     // the descriptionField its the first string field of table...
                                     foreach (field campito in listaField)
                                     {
-                                        if (campito.type.ToString().Equals("_string"))
+                                        if (campito.type.ToString().Equals("_string") || campito.type.ToString().Equals("_text"))
                                         {
                                             item.fieldDescription = campito.Name;
                                             break;
                                         }
-
                                     }
+                                    if (item.fieldDescription == null)
+                                        item.fieldDescription = listaField[0].Name;
 
                                 }
 
@@ -581,13 +583,14 @@ namespace myWay
                                     // the descriptionField its the first string field of table...
                                     foreach (field campito in listaField)
                                     {
-                                        if (campito.type.ToString().Equals("_string"))
+                                        if (campito.type.ToString().Equals("_string") || campito.type.ToString().Equals("_text"))
                                         {
                                             item.fieldDescription = campito.Name;
                                             break;
                                         }
-
                                     }
+                                    if (item.fieldDescription == null)
+                                        item.fieldDescription = listaField[0].Name;
 
                                 }
 
@@ -769,7 +772,7 @@ namespace myWay
                                     // the descriptionField its the first string field of table...
                                     foreach (field campito in listaField)
                                     {
-                                        if (campito.type.ToString().Equals("_string") && !campito.isKey)
+                                        if (campito.type.ToString().Equals("_string") || campito.type.ToString().Equals("_text"))
                                         {
                                             item.fieldDescription = campito.Name;
                                             break;
@@ -960,13 +963,12 @@ namespace myWay
                                     // the descriptionField its the first string field of table...
                                     foreach (field campito in listaField)
                                     {
-                                        if (campito.type.ToString().Equals("_string") && !campito.isKey)
+                                        if (campito.type.ToString().Equals("_string") || campito.type.ToString().Equals("_text") )
                                         {
                                             item.fieldDescription = campito.Name;
                                             campito.isDescriptiveField = true;
                                             break;
                                         }
-
                                     }
 
                                 }
