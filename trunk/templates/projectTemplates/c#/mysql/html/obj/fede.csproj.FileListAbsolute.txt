@@ -1,2 +1,0 @@
-C:\myWay\templates\projectTemplates\c#\mysqlLuis\html\obj\Debug\ResolveAssemblyReference.cache
-C:\myWay\templates\projectTemplates\c#\mysqlLuis\html\obj\Debug\fede.dll.licenses
