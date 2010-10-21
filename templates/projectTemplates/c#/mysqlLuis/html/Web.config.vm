@@ -8,7 +8,7 @@
 <languageGenerated>c_sharp</languageGenerated>
 <description>description</description>
 <targetDirectory></targetDirectory>
-<appliesToAllTables>true</appliesToAllTables><?xml version="1.0" encoding="utf-8"?>
+<appliesToAllTables>false</appliesToAllTables><?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <appSettings>
 		<add key="mostrarErrores" value="1"/>
