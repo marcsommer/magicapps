@@ -117,13 +117,16 @@
       <DependentUpon>AboutMyWay.cs</DependentUpon>
     </Compile>
     <Compile Include="classes\compareFields.cs" />
-    <Compile Include="classes\ctes.cs" />
+    <Compile Include="classes\ctes.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="classes\dbAccess.cs" />
     <Compile Include="classes\dbDbf.cs" />
     <Compile Include="classes\fieldNode.cs" />
     <Compile Include="classes\fixTemplate.cs" />
     <Compile Include="classes\general.cs" />
     <Compile Include="classes\kriptonNodeTable.cs" />
+    <Compile Include="classes\projectConfigFiles.cs" />
     <Compile Include="classes\relation.cs" />
     <Compile Include="classes\dbMySql.cs" />
     <Compile Include="classes\dbSql2005.cs" />
@@ -242,7 +245,6 @@
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\clasesbase\message.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Compile Include="templates\projectTemplates\vb\windowsFormBaseVbEstancia\windowsFormBaseVbEstancia\classes\projectConfigFiles.cs" />
     <Compile Include="userControls\projectMode.cs">
       <SubType>UserControl</SubType>
     </Compile>
