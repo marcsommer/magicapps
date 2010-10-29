@@ -25,9 +25,9 @@ using ComponentFactory.Krypton.Toolkit;
 // ICSharpCode.AvalonEdit - PresentationCore - PresentationFramework - WindowsBase - WindowsFormsIntegration
 
 using System.Windows.Forms.Integration;
-using ICSharpCode.AvalonEdit;
-using ICSharpCode.AvalonEdit.Highlighting;
-using ICSharpCode.AvalonEdit.CodeCompletion;
+//using ICSharpCode.AvalonEdit;
+//using ICSharpCode.AvalonEdit.Highlighting;
+//using ICSharpCode.AvalonEdit.CodeCompletion;
 
 
 using System.Threading;
@@ -225,49 +225,49 @@ namespace myWay
 
 
 
-        # region ["avalonEdit events"]
-        CompletionWindow completionWindow;
+        //# region ["avalonEdit events"]
+        //CompletionWindow completionWindow;
 
-        void textEditor_TextArea_TextEntered(object sender, TextCompositionEventArgs e)
-        {
-            if (e.Text == "$")
-            {
+        //void textEditor_TextArea_TextEntered(object sender, TextCompositionEventArgs e)
+        //{
+        //    if (e.Text == "$")
+        //    {
 
-                ElementHost pp = new ElementHost();
-                TextEditor te = new TextEditor();
-                pp = (ElementHost)panel1.Controls.Find("editor", true)[0];
-                te = (TextEditor)pp.Child;
+        //        ElementHost pp = new ElementHost();
+        //        TextEditor te = new TextEditor();
+        //        pp = (ElementHost)panel1.Controls.Find("editor", true)[0];
+        //        te = (TextEditor)pp.Child;
 
-                // Open code completion after the user has pressed dot:
-                completionWindow = new CompletionWindow(te.TextArea);
-                IList<ICompletionData> data = completionWindow.CompletionList.CompletionData;
-                data.Add(new MyCompletionData("{table}"));
-                data.Add(new MyCompletionData("{table.getListOfParameters(\", \")"));
+        //        // Open code completion after the user has pressed dot:
+        //        completionWindow = new CompletionWindow(te.TextArea);
+        //        IList<ICompletionData> data = completionWindow.CompletionList.CompletionData;
+        //        data.Add(new MyCompletionData("{table}"));
+        //        data.Add(new MyCompletionData("{table.getListOfParameters(\", \")"));
 
-                data.Add(new MyCompletionData("Item3"));
-                completionWindow.Show();
-                completionWindow.Closed += delegate
-                {
-                    completionWindow = null;
-                };
-            }
-        }
+        //        data.Add(new MyCompletionData("Item3"));
+        //        completionWindow.Show();
+        //        completionWindow.Closed += delegate
+        //        {
+        //            completionWindow = null;
+        //        };
+        //    }
+        //}
 
-        void textEditor_TextArea_TextEntering(object sender, TextCompositionEventArgs e)
-        {
-            if (e.Text.Length > 0 && completionWindow != null)
-            {
-                if (!char.IsLetterOrDigit(e.Text[0]))
-                {
-                    // Whenever a non-letter is typed while the completion window is open,
-                    // insert the currently selected element.
-                    completionWindow.CompletionList.RequestInsertion(e);
-                }
-            }
-            // Do not set e.Handled=true.
-            // We still want to insert the character that was typed.
-        }
-        #endregion
+        //void textEditor_TextArea_TextEntering(object sender, TextCompositionEventArgs e)
+        //{
+        //    if (e.Text.Length > 0 && completionWindow != null)
+        //    {
+        //        if (!char.IsLetterOrDigit(e.Text[0]))
+        //        {
+        //            // Whenever a non-letter is typed while the completion window is open,
+        //            // insert the currently selected element.
+        //            completionWindow.CompletionList.RequestInsertion(e);
+        //        }
+        //    }
+        //    // Do not set e.Handled=true.
+        //    // We still want to insert the character that was typed.
+        //}
+        //#endregion
 
 
 
@@ -608,15 +608,15 @@ namespace myWay
             }
         }
 
-        private void butCopy_Click(object sender, EventArgs e)
-        {
-            // get the control of editor
-            ElementHost pp = new ElementHost();
-            TextEditor te = new TextEditor();
-            pp = (ElementHost)panel1.Controls.Find("editor", true)[0];
-            te = (TextEditor)pp.Child;
-            System.Windows.Forms.Clipboard.SetText(te.Text);
-        }
+        //private void butCopy_Click(object sender, EventArgs e)
+        //{
+        //    // get the control of editor
+        //    ElementHost pp = new ElementHost();
+        //    TextEditor te = new TextEditor();
+        //    pp = (ElementHost)panel1.Controls.Find("editor", true)[0];
+        //    te = (TextEditor)pp.Child;
+        //    System.Windows.Forms.Clipboard.SetText(te.Text);
+        //}
 
         private void butOpenProject2_Click(object sender, EventArgs e)
         {
@@ -1147,27 +1147,27 @@ namespace myWay
 
 
 
-        // used to write in avalonEdit ...
-        private void writeText(string text)
-        {
-            // get the control of editor
-            ElementHost pp = new ElementHost();
-            TextEditor te = new TextEditor();
-            pp = (ElementHost)panel1.Controls.Find("editor", true)[0];
-            te = (TextEditor)pp.Child;
-            te.Text = text;
+        //// used to write in avalonEdit ...
+        //private void writeText(string text)
+        //{
+        //    // get the control of editor
+        //    ElementHost pp = new ElementHost();
+        //    TextEditor te = new TextEditor();
+        //    pp = (ElementHost)panel1.Controls.Find("editor", true)[0];
+        //    te = (TextEditor)pp.Child;
+        //    te.Text = text;
 
-        }
+        //}
 
-        private void kryptonButton2_Click(object sender, EventArgs e)
-        {
-            // get the control of editor
-            ElementHost pp = new ElementHost();
-            TextEditor te = new TextEditor();
-            pp = (ElementHost)panel1.Controls.Find("editor", true)[0];
-            te = (TextEditor)pp.Child;
-            te.Save(general.templateSelectedFullUri);
-        }
+        //private void kryptonButton2_Click(object sender, EventArgs e)
+        //{
+        //    // get the control of editor
+        //    ElementHost pp = new ElementHost();
+        //    TextEditor te = new TextEditor();
+        //    pp = (ElementHost)panel1.Controls.Find("editor", true)[0];
+        //    te = (TextEditor)pp.Child;
+        //    te.Save(general.templateSelectedFullUri);
+        //}
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
@@ -1184,30 +1184,30 @@ namespace myWay
             }
         } // butReturnToScript_Click
 
-        private void cmbGoToCode_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        //private void cmbGoToCode_SelectedIndexChanged(object sender, EventArgs e)
+        //{
 
-            string st = "";
-            int numLinea = 0;
-            st = cmbGoToCode.SelectedItem.ToString().Trim();
+        //    string st = "";
+        //    int numLinea = 0;
+        //    st = cmbGoToCode.SelectedItem.ToString().Trim();
 
-            // get the control of editor
-            ElementHost pp = new ElementHost();
-            TextEditor te = new TextEditor();
-            pp = (ElementHost)panel1.Controls.Find("editor", true)[0];
-            te = (TextEditor)pp.Child;
+        //    // get the control of editor
+        //    ElementHost pp = new ElementHost();
+        //    TextEditor te = new TextEditor();
+        //    pp = (ElementHost)panel1.Controls.Find("editor", true)[0];
+        //    te = (TextEditor)pp.Child;
 
-            foreach (ICSharpCode.AvalonEdit.Document.DocumentLine item in te.Document.Lines)
-            {
-                if (item.Text.IndexOf(st) != -1)
-                {
-                    numLinea = item.LineNumber;
-                }
-            }
-            te.ScrollTo(numLinea, 0);
+        //    foreach (ICSharpCode.AvalonEdit.Document.DocumentLine item in te.Document.Lines)
+        //    {
+        //        if (item.Text.IndexOf(st) != -1)
+        //        {
+        //            numLinea = item.LineNumber;
+        //        }
+        //    }
+        //    te.ScrollTo(numLinea, 0);
 
 
-        } // cmbGoToCode_SelectedIndexChanged
+        //} // cmbGoToCode_SelectedIndexChanged
 
         private void txtNameSpace_TextChanged(object sender, EventArgs e)
         {
