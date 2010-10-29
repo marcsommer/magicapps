@@ -613,6 +613,15 @@
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\bindll\FreeTextBox.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\masterDetail.aspx.cs.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\masterDetail.aspx.designer.cs.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\masterDetail.aspx.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="templates\projectTemplates\c#\mysqlLuis\html\bindll\MySql.Data.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

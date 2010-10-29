@@ -219,13 +219,13 @@ namespace juleweb.${table}_dir {
 		#foreach( $tablaPadre in $project.getTables() )
 			#if ($relation.parentTable.equals(${tablaPadre.name}))
 				/// <summary>
-				/// Control Repeater${tablaPadre.name}.
+				/// Control rp${tablaPadre.name}.
 				/// </summary>
 				/// <remarks>
 				/// Campo generado automáticamente.
 				/// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 				/// </remarks>
-				protected global::System.Web.UI.WebControls.Repeater Repeater${tablaPadre.name};
+				protected global::System.Web.UI.WebControls.Repeater rp${tablaPadre.name};
 						
 			#end
 		#end

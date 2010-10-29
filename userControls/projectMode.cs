@@ -60,6 +60,7 @@ namespace myWay.userControls
 
 
             // lets load config files of project templates ...
+            ctes.listaProjectConfigFiles.Clear();
             traverseDirectorySearchProjectConfigFiles(util.projectTemplates_dir);
             foreach (projectconfigfiles item in ctes.listaProjectConfigFiles)
             {
@@ -125,8 +126,8 @@ namespace myWay.userControls
         {
             try
             {
-
-
+              
+           
                 DirectoryInfo dir = new DirectoryInfo(Folder);
                 DirectoryInfo[] subDirs = dir.GetDirectories();
                 FileInfo[] files = dir.GetFiles();

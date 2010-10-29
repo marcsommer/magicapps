@@ -225,7 +225,7 @@
 										  <tbody>
 							      	 
 							      		    
-												<asp:Repeater ID="Repeater1" runat="server">
+												<asp:Repeater ID="rp${tablaPadre}" runat="server">
 														  <ItemTemplate >
                  											<tr  title="${tablaPadre}" >
                  											<td align="center">
