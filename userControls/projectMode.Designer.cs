@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbProjectTemplate = new ComponentFactory.Krypton.Toolkit.KryptonListBox();
             this.labNumberOfApps = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
@@ -42,6 +43,9 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.rtMessage = new System.Windows.Forms.RichTextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -57,7 +61,7 @@
             this.groupBox2.Controls.Add(this.kryptonLabel3);
             this.groupBox2.Location = new System.Drawing.Point(18, 18);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(393, 208);
+            this.groupBox2.Size = new System.Drawing.Size(393, 231);
             this.groupBox2.TabIndex = 35;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Project generation";
@@ -65,16 +69,16 @@
             // 
             // lbProjectTemplate
             // 
-            this.lbProjectTemplate.Location = new System.Drawing.Point(114, 25);
+            this.lbProjectTemplate.Location = new System.Drawing.Point(13, 43);
             this.lbProjectTemplate.Name = "lbProjectTemplate";
-            this.lbProjectTemplate.Size = new System.Drawing.Size(268, 89);
+            this.lbProjectTemplate.Size = new System.Drawing.Size(369, 71);
             this.lbProjectTemplate.TabIndex = 42;
             this.lbProjectTemplate.SelectedIndexChanged += new System.EventHandler(this.lbProjectTemplate_SelectedIndexChanged);
             // 
             // labNumberOfApps
             // 
             this.labNumberOfApps.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.SuperTip;
-            this.labNumberOfApps.Location = new System.Drawing.Point(13, 163);
+            this.labNumberOfApps.Location = new System.Drawing.Point(13, 200);
             this.labNumberOfApps.Name = "labNumberOfApps";
             this.labNumberOfApps.Size = new System.Drawing.Size(21, 25);
             this.labNumberOfApps.TabIndex = 41;
@@ -82,9 +86,9 @@
             // 
             // kbTargetDirectory
             // 
-            this.kbTargetDirectory.Location = new System.Drawing.Point(114, 126);
+            this.kbTargetDirectory.Location = new System.Drawing.Point(13, 151);
             this.kbTargetDirectory.Name = "kbTargetDirectory";
-            this.kbTargetDirectory.Size = new System.Drawing.Size(268, 25);
+            this.kbTargetDirectory.Size = new System.Drawing.Size(369, 25);
             this.kbTargetDirectory.TabIndex = 33;
             this.kbTargetDirectory.Values.Text = "Select a target directory";
             this.kbTargetDirectory.Click += new System.EventHandler(this.kbTargetDirectory_Click);
@@ -93,13 +97,13 @@
             // 
             this.kryptonLabel4.Location = new System.Drawing.Point(10, 132);
             this.kryptonLabel4.Name = "kryptonLabel4";
-            this.kryptonLabel4.Size = new System.Drawing.Size(90, 19);
+            this.kryptonLabel4.Size = new System.Drawing.Size(92, 19);
             this.kryptonLabel4.TabIndex = 32;
-            this.kryptonLabel4.Values.Text = "Target directory";
+            this.kryptonLabel4.Values.Text = "Target directory:";
             // 
             // kryptonButton1
             // 
-            this.kryptonButton1.Location = new System.Drawing.Point(215, 163);
+            this.kryptonButton1.Location = new System.Drawing.Point(215, 200);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.Size = new System.Drawing.Size(167, 25);
             this.kryptonButton1.TabIndex = 30;
@@ -111,16 +115,16 @@
             // 
             this.kryptonLabel3.Location = new System.Drawing.Point(10, 25);
             this.kryptonLabel3.Name = "kryptonLabel3";
-            this.kryptonLabel3.Size = new System.Drawing.Size(92, 19);
+            this.kryptonLabel3.Size = new System.Drawing.Size(95, 19);
             this.kryptonLabel3.TabIndex = 30;
-            this.kryptonLabel3.Values.Text = "Project template";
+            this.kryptonLabel3.Values.Text = "Project template:";
             // 
             // rt1
             // 
             this.rt1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rt1.Location = new System.Drawing.Point(17, 19);
             this.rt1.Name = "rt1";
-            this.rt1.Size = new System.Drawing.Size(376, 332);
+            this.rt1.Size = new System.Drawing.Size(354, 212);
             this.rt1.TabIndex = 37;
             this.rt1.Text = "";
             // 
@@ -128,18 +132,18 @@
             // 
             this.groupBox1.Controls.Add(this.richTextBox1);
             this.groupBox1.Controls.Add(this.labHelp);
-            this.groupBox1.Location = new System.Drawing.Point(18, 232);
+            this.groupBox1.Location = new System.Drawing.Point(18, 255);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(393, 145);
+            this.groupBox1.Size = new System.Drawing.Size(393, 122);
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Help";
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(19, 52);
+            this.richTextBox1.Location = new System.Drawing.Point(19, 45);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(249, 85);
+            this.richTextBox1.Size = new System.Drawing.Size(249, 71);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "1. choose the project type you want\n2. choose target directory\n3. click on button" +
                 "\n\nmagic appears..";
@@ -147,7 +151,7 @@
             // labHelp
             // 
             this.labHelp.AutoSize = true;
-            this.labHelp.Location = new System.Drawing.Point(16, 25);
+            this.labHelp.Location = new System.Drawing.Point(16, 26);
             this.labHelp.Name = "labHelp";
             this.labHelp.Size = new System.Drawing.Size(236, 13);
             this.labHelp.TabIndex = 0;
@@ -159,13 +163,33 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.rtMessage);
             this.groupBox3.Controls.Add(this.rt1);
             this.groupBox3.Location = new System.Drawing.Point(417, 18);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(404, 359);
+            this.groupBox3.Size = new System.Drawing.Size(386, 359);
             this.groupBox3.TabIndex = 39;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Results";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 4000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 1000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
+            // rtMessage
+            // 
+            this.rtMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.rtMessage.Location = new System.Drawing.Point(17, 237);
+            this.rtMessage.Name = "rtMessage";
+            this.rtMessage.Size = new System.Drawing.Size(354, 116);
+            this.rtMessage.TabIndex = 38;
+            this.rtMessage.Text = "";
             // 
             // projectMode
             // 
@@ -175,7 +199,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "projectMode";
-            this.Size = new System.Drawing.Size(857, 390);
+            this.Size = new System.Drawing.Size(817, 390);
             this.Load += new System.EventHandler(this.projectMode_Load);
             this.VisibleChanged += new System.EventHandler(this.projectMode_VisibleChanged);
             this.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.projectMode_ControlRemoved);
@@ -204,6 +228,9 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.RichTextBox rtMessage;
 
     }
 }

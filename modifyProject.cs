@@ -41,7 +41,7 @@ namespace myWay
             //    txtUser.Text = pr.user;
             //    txtPassword.Text = pr.password;
             //    cmbDataType.SelectedItem = pr.dbDataType.ToString();
-                
+
 
             //}
 
@@ -67,7 +67,7 @@ namespace myWay
             //pro.dbDataType = (project.databaseType)cmbDataType.SelectedItem;
 
             t.Start(pr);
-         
+
         }
 
         private void newProject_Load(object sender, EventArgs e)
@@ -81,7 +81,7 @@ namespace myWay
                 txtPassword.Text = pr.password;
 
                 int index = cmbDataType.FindStringExact(pr.dbDataType.ToString());
-                cmbDataType.SelectedIndex = index;     
+                cmbDataType.SelectedIndex = index;
 
                 //cmbDataType.SelectedItem = pr.dbDataType.ToString();
             }
@@ -94,7 +94,7 @@ namespace myWay
 
             //return DialogResult.OK;
 
-            
+
             // search metadata...
             Thread t = new Thread(new ParameterizedThreadStart(search));
             // we need to pass data through object
@@ -112,20 +112,20 @@ namespace myWay
             //project.databaseType tipo = new project.databaseType();
             //tipo = (project.databaseType)cmbDataType.SelectedItem;
 
-            
+
             //pro.dbDataType = cmbDataType.SelectedItem;
 
 
             // clear data 
             pr.tables.Clear();
             pr.relations.Clear();
-            
+
             t.Start(pr);
 
-           // this.DialogResult = DialogResult.Yes;
+            // this.DialogResult = DialogResult.Yes;
 
             //MessageBox.Show("Hand message", "Hand title", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-          
+
         }
 
 
@@ -140,7 +140,7 @@ namespace myWay
                 //project pro = new project();
                 //pro = (project)file;
 
-                String errorMessage= null;
+                String errorMessage = null;
 
                 Cursor.Current = Cursors.WaitCursor;
 
@@ -148,13 +148,8 @@ namespace myWay
                 {
                     case project.databaseType.mySql:
                         String connectionString = null;
-
-                       
-
-
                         connectionString = "Server=" + pr.host + ";Database=" + pr.database + ";Uid=" + pr.user + ";Pwd=" + pr.password + ";";
-
-
+                        
 
                         dbMySql db = new dbMySql();
                         errorMessage = db.test(connectionString);
@@ -177,9 +172,7 @@ namespace myWay
                                 // now lets get the fields for each table...
                                 List<field> listaField = new List<field>();
                                 listaField = db.getFields(connectionString, pr.database, item.Name);
-                                
-                                
-                                 
+
                                 if (listaField != null)
                                 {
                                     foreach (field fi in listaField)
@@ -228,17 +221,28 @@ namespace myWay
                             listarelation = db.getRelations(connectionString, pr.database);
                             if (listarelation != null)
                             {
-                               
+
                                 foreach (relation re in listarelation)
                                 {
                                     // found description of fields...
                                     foreach (table item in pr.tables)
                                     {
-                                        if (item.Name.Equals(re.childTable))
-                                           re.childDescription = item.fieldDescription;
+                                        if (item.Name.ToLower().Equals(re.childTable.ToLower()))
+                                        {
+                                            re.childDescription = item.fieldDescription;
+                                            // we put the field as keyfield...
+                                            foreach (field fi in item.fields)
+                                            {
+                                                if (fi.Name.ToLower().Equals(re.childField.ToLower()))
+                                                    fi.isForeignKey = true;
+                                            }
+                                        }
 
-                                        if (item.Name.Equals(re.parentTable))
+                                        if (item.Name.ToLower().Equals(re.parentTable.ToLower()))
+                                        {
                                             re.parentDescription = item.fieldDescription;
+                                           
+                                        }
                                     }
 
                                     if (!pr.existsRelation(re.parentTable, re.childTable))
@@ -251,7 +255,7 @@ namespace myWay
                                     foreach (table item in pr.tables)
                                     {
                                         // we put the relation in the child table...
-                                        if (item.Name.Equals(re.parentTable))
+                                        if (item.Name.ToLower().Equals(re.childTable.ToLower()))
                                             item.relations.Add(re);
                                     }
 
@@ -269,18 +273,18 @@ namespace myWay
                                     {
                                         foreach (table tab2 in pr.tables)
                                         {
-                                            if (!tab.Name.Equals(tab2.Name))
+                                            if (!tab.Name.ToLower().Equals(tab2.Name.ToLower()))
                                             {
                                                 foreach (field campo2 in tab2.fields)
                                                 {
-                                                    if (campo.Name.Equals(campo2.Name))
+                                                    if (campo.Name.ToLower().Equals(campo2.Name.ToLower()))
                                                     {
                                                         campo2.isForeignKey = true;
 
                                                         // check if relation exists..
                                                         if (!pr.existsRelation(tab.Name, tab2.Name))
                                                         {
-                                                            
+
                                                             relation rel = new relation();
                                                             rel.name = tab2.Name + "_" + tab.Name;
 
@@ -301,10 +305,10 @@ namespace myWay
                                                                 // found description of fields...
                                                                 foreach (table item in pr.tables)
                                                                 {
-                                                                    if (item.Name.Equals(rel.childTable))
+                                                                    if (item.Name.ToLower().Equals(rel.childTable.ToLower()))
                                                                         rel.childDescription = item.fieldDescription;
 
-                                                                    if (item.Name.Equals(rel.parentTable))
+                                                                    if (item.Name.ToLower().Equals(rel.parentTable.ToLower()))
                                                                         rel.parentDescription = item.fieldDescription;
                                                                 }
 
@@ -341,7 +345,7 @@ namespace myWay
 
                             // lets save it for next load of application...
                             // pr.saveProject(Path.Combine(util.projects_dir, "conf.xml"));
-                          //  AsyncWriteLine("Project saved... \n");
+                            //  AsyncWriteLine("Project saved... \n");
 
 
                             right = true;
@@ -406,7 +410,7 @@ namespace myWay
 
                                 }
 
-                              
+
 
                                 // lets get primary keys and foreign keys for the table...
                                 dbSqlServer.getKeys(connectionString, item);
@@ -415,16 +419,16 @@ namespace myWay
                                 // we order but put first key fields
                                 if (general.orderFields)
                                 {
-                                    item.fields.Sort(new compareFields(compareFields.CompareByOptions.name)); 
-                                    item.fields.Sort(new compareFields(compareFields.CompareByOptions.key));                            
+                                    item.fields.Sort(new compareFields(compareFields.CompareByOptions.name));
+                                    item.fields.Sort(new compareFields(compareFields.CompareByOptions.key));
                                 }
-                               pr.tables.Add(item);
+                                pr.tables.Add(item);
 
 
                             }
 
                             pr.tables.Sort();
-                           
+
                             // now lets get the relations ...
                             pr.relations.Clear();
                             List<relation> listarelation = new List<relation>();
@@ -440,10 +444,10 @@ namespace myWay
                                     // now if the relation has to do with the tables...
                                     foreach (table item in pr.tables)
                                     {
-                                        if (item.Name.Equals(re.childTable))
+                                        if (item.Name.ToLower().Equals(re.childTable.ToLower()))
                                             re.childDescription = item.fieldDescription;
 
-                                        if (item.Name.Equals(re.parentTable))
+                                        if (item.Name.ToLower().Equals(re.parentTable.ToLower()))
                                         {
                                             // le añadimos la descripcion
                                             re.parentDescription = item.fieldDescription;
@@ -471,19 +475,19 @@ namespace myWay
                                     {
                                         foreach (table tab2 in pr.tables)
                                         {
-                                            if (!tab.Name.Equals(tab2.Name))
+                                            if (!tab.Name.ToLower().Equals(tab2.Name.ToLower()))
                                             {
                                                 foreach (field campo2 in tab2.fields)
                                                 {
-                                                    if (campo.Name.Equals(campo2.Name))
-                                                        {
-                                                            campo2.isForeignKey = true;
+                                                    if (campo.Name.ToLower().Equals(campo2.Name.ToLower()))
+                                                    {
+                                                        campo2.isForeignKey = true;
 
                                                         // to know if exists
-                                                            relation rel = new relation();
+                                                        relation rel = new relation();
                                                         rel.name = tab2.Name + "_" + tab.Name;
 
-                                                            bool found = false;
+                                                        bool found = false;
                                                         foreach (relation relax in pr.relations)
                                                         {
                                                             if (relax.name.Equals(rel.name))
@@ -500,10 +504,10 @@ namespace myWay
                                                             // found description of fields...
                                                             foreach (table item in pr.tables)
                                                             {
-                                                                if (item.Name.Equals(rel.childTable))
+                                                                if (item.Name.ToLower().Equals(rel.childTable.ToLower()))
                                                                     rel.childDescription = item.fieldDescription;
 
-                                                                if (item.Name.Equals(rel.parentTable))
+                                                                if (item.Name.ToLower().Equals(rel.parentTable.ToLower()))
                                                                     rel.parentDescription = item.fieldDescription;
                                                             }
 
@@ -625,7 +629,7 @@ namespace myWay
                                     foreach (table item in pr.tables)
                                     {
                                         // we put the relation in the parent table...
-                                        if (item.Name.Equals(re.parentTable))
+                                        if (item.Name.ToLower().Equals(re.parentTable.ToLower()))
                                         {
                                             // le añadimos la descripcion
                                             re.parentDescription = item.fieldDescription;
@@ -654,11 +658,11 @@ namespace myWay
                                     {
                                         foreach (table tab2 in pr.tables)
                                         {
-                                            if (!tab.Name.Equals(tab2.Name))
+                                            if (!tab.Name.ToLower().Equals(tab2.Name.ToLower()))
                                             {
                                                 foreach (field campo2 in tab2.fields)
                                                 {
-                                                    if (campo.Name.Equals(campo2.Name))
+                                                    if (campo.Name.ToLower().Equals(campo2.Name.ToLower()))
                                                     {
                                                         campo2.isForeignKey = true;
                                                         relation rel = new relation();
@@ -674,10 +678,10 @@ namespace myWay
                                                             // found description of fields...
                                                             foreach (table item in pr.tables)
                                                             {
-                                                                if (item.Name.Equals(rel.childTable))
+                                                                if (item.Name.ToLower().Equals(rel.childTable.ToLower()))
                                                                     rel.childDescription = item.fieldDescription;
 
-                                                                if (item.Name.Equals(rel.parentTable))
+                                                                if (item.Name.ToLower().Equals(rel.parentTable.ToLower()))
                                                                     rel.parentDescription = item.fieldDescription;
                                                             }
 
@@ -692,7 +696,7 @@ namespace myWay
                                                                     bool seguir = true;
                                                                     foreach (relation rel2 in tab2.relations)
                                                                     {
-                                                                        if (rel2.name.Equals(rel.name))
+                                                                        if (rel2.name.ToLower().Equals(rel.name.ToLower()))
                                                                             seguir = false;
                                                                     }
                                                                     if (seguir)
@@ -750,8 +754,8 @@ namespace myWay
                                 // now lets get the fields for each table...
                                 List<field> listaField = new List<field>();
                                 listaField = dba2003.getFields(connectionString, item.Name);
-                                                                                      
-                                
+
+
                                 if (listaField != null)
                                 {
                                     foreach (field fi in listaField)
@@ -759,7 +763,7 @@ namespace myWay
                                         item.fields.Add(fi);
                                         AsyncWriteLine("Found field... " + fi.Name + "\n");
 
-                                    }                                   
+                                    }
 
                                 }
 
@@ -783,7 +787,7 @@ namespace myWay
                                 }
                                 if (item.fieldDescription == null)
                                     item.fieldDescription = item.GetKey;
-                              
+
 
                                 // lets sort the fields in the table...
                                 // we order but put first key fields
@@ -813,7 +817,7 @@ namespace myWay
                                     foreach (table item in pr.tables)
                                     {
                                         // we put the relation in the parent table...
-                                        if (item.Name.Equals(re.parentTable))
+                                        if (item.Name.ToLower().Equals(re.parentTable.ToLower()))
                                         {
                                             // le añadimos la descripcion
                                             re.parentDescription = item.fieldDescription;
@@ -842,11 +846,11 @@ namespace myWay
                                     {
                                         foreach (table tab2 in pr.tables)
                                         {
-                                            if (!tab.Name.Equals(tab2.Name))
+                                            if (!tab.Name.ToLower().Equals(tab2.Name.ToLower()))
                                             {
                                                 foreach (field campo2 in tab2.fields)
                                                 {
-                                                    if (campo.Name.Equals(campo2.Name))
+                                                    if (campo.Name.ToLower().Equals(campo2.Name.ToLower()))
                                                     {
                                                         campo2.isForeignKey = true;
                                                         relation rel = new relation();
@@ -862,10 +866,10 @@ namespace myWay
                                                             // found description of fields...
                                                             foreach (table item in pr.tables)
                                                             {
-                                                                if (item.Name.Equals(rel.childTable))
+                                                                if (item.Name.ToLower().Equals(rel.childTable.ToLower()))
                                                                     rel.childDescription = item.fieldDescription;
 
-                                                                if (item.Name.Equals(rel.parentTable))
+                                                                if (item.Name.ToLower().Equals(rel.parentTable.ToLower()))
                                                                     rel.parentDescription = item.fieldDescription;
                                                             }
 
@@ -880,7 +884,7 @@ namespace myWay
                                                                     bool seguir = true;
                                                                     foreach (relation rel2 in tab2.relations)
                                                                     {
-                                                                        if (rel2.name.Equals(rel.name))
+                                                                        if (rel2.name.ToLower().Equals(rel.name.ToLower()))
                                                                             seguir = false;
                                                                     }
                                                                     if (seguir)
@@ -913,14 +917,14 @@ namespace myWay
                         }
                         break;
 
-                        // end of access2003
+                    // end of access2003
 
 
                     case project.databaseType.access2007:
 
 
                         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + pr.database + ";Persist Security Info=False;";
-                       
+
                         dbAccess dba2007 = new dbAccess();
                         errorMessage = dba2007.test(connectionString);
                         if (errorMessage.Equals(""))
@@ -963,7 +967,7 @@ namespace myWay
                                     // the descriptionField its the first string field of table...
                                     foreach (field campito in listaField)
                                     {
-                                        if (campito.type.ToString().Equals("_string") || campito.type.ToString().Equals("_text") )
+                                        if (campito.type.ToString().Equals("_string") || campito.type.ToString().Equals("_text"))
                                         {
                                             item.fieldDescription = campito.Name;
                                             campito.isDescriptiveField = true;
@@ -974,7 +978,7 @@ namespace myWay
                                 }
                                 if (item.fieldDescription == null)
                                     item.fieldDescription = item.GetKey;
-                                
+
 
 
                                 // lets sort the fields in the table...
@@ -1005,7 +1009,7 @@ namespace myWay
                                     foreach (table item in pr.tables)
                                     {
                                         // we put the relation in the parent table...
-                                        if (item.Name.Equals(re.parentTable))
+                                        if (item.Name.ToLower().Equals(re.parentTable.ToLower()))
                                         {
                                             // le añadimos la descripcion
                                             re.parentDescription = item.fieldDescription;
@@ -1034,11 +1038,11 @@ namespace myWay
                                     {
                                         foreach (table tab2 in pr.tables)
                                         {
-                                            if (!tab.Name.Equals(tab2.Name))
+                                            if (!tab.Name.ToLower().Equals(tab2.Name.ToLower()))
                                             {
                                                 foreach (field campo2 in tab2.fields)
                                                 {
-                                                    if (campo.Name.Equals(campo2.Name))
+                                                    if (campo.Name.ToLower().Equals(campo2.Name.ToLower()))
                                                     {
                                                         campo2.isForeignKey = true;
                                                         relation rel = new relation();
@@ -1054,10 +1058,10 @@ namespace myWay
                                                             // found description of fields...
                                                             foreach (table item in pr.tables)
                                                             {
-                                                                if (item.Name.Equals(rel.childTable))
+                                                                if (item.Name.ToLower().Equals(rel.childTable.ToLower()))
                                                                     rel.childDescription = item.fieldDescription;
 
-                                                                if (item.Name.Equals(rel.parentTable))
+                                                                if (item.Name.ToLower().Equals(rel.parentTable.ToLower()))
                                                                     rel.parentDescription = item.fieldDescription;
                                                             }
 
@@ -1072,7 +1076,7 @@ namespace myWay
                                                                     bool seguir = true;
                                                                     foreach (relation rel2 in tab2.relations)
                                                                     {
-                                                                        if (rel2.name.Equals(rel.name))
+                                                                        if (rel2.name.ToLower().Equals(rel.name.ToLower()))
                                                                             seguir = false;
                                                                     }
                                                                     if (seguir)
@@ -1109,7 +1113,7 @@ namespace myWay
 
                 }
 
-               
+
 
                 Cursor.Current = Cursors.Default;
 
@@ -1119,12 +1123,17 @@ namespace myWay
                         AsyncWriteLine("All right. Now you can save the project...");
                         AsyncEnableButton(true);
                         SystemSounds.Exclamation.Play();
+                        AsyncCleanMessage();
+                        AsyncWriteMessage("All right. Now you can save the project...", Color.GreenYellow);
+                        // timer1.Enabled = true;
                         break;
 
                     case false:
                         AsyncWriteLine("Error, review the configuration.");
                         AsyncEnableButton(false);
                         SystemSounds.Asterisk.Play();
+                        AsyncCleanMessage();
+                        AsyncWriteMessage("Error, review the configuration....", Color.Red);
                         break;
 
                 }
@@ -1133,9 +1142,9 @@ namespace myWay
             catch (Exception ex)
             {
                 SystemSounds.Asterisk.Play();
-                AsyncWrite(ex.Message);            
-                
-            }           
+                AsyncWrite(ex.Message);
+
+            }
         }
 
 
@@ -1155,7 +1164,7 @@ namespace myWay
                 //  AsyncWriteLine("Error: " + exx.Message.ToString() + "\n");
             }
 
-        }        
+        }
 
 
         public void AsyncWriteLine(String Text)
@@ -1171,7 +1180,7 @@ namespace myWay
             }
             catch (Exception exx)
             {
-              //  AsyncWriteLine("Error: " + exx.Message.ToString() + "\n");
+                //  AsyncWriteLine("Error: " + exx.Message.ToString() + "\n");
             }
 
         }
@@ -1190,10 +1199,56 @@ namespace myWay
             }
             catch (Exception exx)
             {
-              //  AsyncWriteLine("Error: " + exx.Message.ToString() + "\n");
+                //  AsyncWriteLine("Error: " + exx.Message.ToString() + "\n");
             }
 
         }
+
+
+        public void AsyncWriteMessage(String Text, Color color)
+        {
+            try
+            {
+
+                rtMessage.BeginInvoke(new MethodInvoker(delegate
+                {
+                    rtMessage.AppendText(Text + "\n");
+                    rtMessage.BackColor = color;
+
+                }));
+                timer1.Enabled = true;
+                timer1.Start();
+
+            }
+            catch (Exception exx)
+            {
+                //  AsyncWriteLine("Error: " + exx.Message.ToString() + "\n");
+            }
+
+        }
+
+
+        public void AsyncCleanMessage()
+        {
+            try
+            {
+
+                rtMessage.BeginInvoke(new MethodInvoker(delegate
+                {
+                    rtMessage.Clear();
+                    rtMessage.BackColor = Color.Wheat;
+
+                }));
+
+
+            }
+            catch (Exception exx)
+            {
+                //  AsyncWriteLine("Error: " + exx.Message.ToString() + "\n");
+            }
+
+        }
+
 
         private void rt1_TextChanged(object sender, EventArgs e)
         {
@@ -1288,6 +1343,15 @@ namespace myWay
 
             }
         } // cmbDataType_SelectedIndexChanged
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            // limpiamos el message
+            rtMessage.Text = "";
+            rtMessage.BackColor = Color.WhiteSmoke;
+            timer1.Enabled = false;
+
+        } // timer1_Tick
 
 
     }

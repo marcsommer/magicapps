@@ -272,6 +272,20 @@ namespace myWay.userControls
         {
             if (general.actualProject.targetDirectory != null && general.actualProject.projectTemplatesDirectory != null)
             {
+                AsyncCleanMessage("");
+                // lo primero comprobamos que todas las tablas tienen campo clave...
+                foreach (table tablita in general.actualProject.tables)
+                {
+                    if (tablita.GetKey.Equals(""))
+                    {
+                        AsyncMessage("Please review tables.", Color.SpringGreen);
+                        AsyncMessage("Table " + tablita.Name + " doesnt have a key field", Color.Moccasin);
+                        timer1.Enabled = true;
+                        timer1.Start();
+                    }
+                }
+
+
                 rt1.Text = "";
                 rt1.Focus();
                 // tratarARchivo
@@ -298,6 +312,23 @@ namespace myWay.userControls
 
                     throw;
                 }
+
+
+
+            }
+            else
+            {
+                if (general.actualProject.targetDirectory == null)
+                {
+                    AsyncMessage("Please fill the target directory", Color.Tomato);
+                    timer1.Enabled = true;
+                    timer1.Start();
+
+                    //Thread.Sleep(2000);
+                    //AsyncMessage("Please fill the target directory2", Color.Gainsboro);
+                    //Thread.Sleep(2000);
+                    //AsyncMessage("Please fill the target directory3", Color.White);
+                }
             }
         } // kryptonButton1_Click
 
@@ -310,11 +341,42 @@ namespace myWay.userControls
             Thread.Sleep(500);
             SystemSounds.Asterisk.Play();
             AsyncWriteLine("finish");
+
+            AsyncMessage("Ok. project finished", Color.GreenYellow);
+            Thread.Sleep(500);             
+           
+           //' timer1.Enabled = true;
+           //' timer1.Start();
             foreach (string item in errores)
             {
                 AsyncWriteLine("Error en template: \n ");
                 AsyncWriteLine("file://" + item);
             }
+
+           
+             // hay que cambiar el folder por el de la aplicacion final...
+
+            // now if its an access app we try to copy the database
+            try
+            {
+                if (general.actualProject.dbDataType == project.databaseType.access2003 || general.actualProject.dbDataType == project.databaseType.access2007)
+                {
+                    string originalPath = general.actualProject.database;
+                    string targetDirectory = general.actualProject.projectTemplatesDirectory;
+                    string onlyDirectoryOfTargetDirectory = util.ExtractLastDirectory(targetDirectory);
+                    string finalPath = traverseDirectorySearchingDataFolder(new DirectoryInfo(Path.Combine(general.actualProject.targetDirectory, onlyDirectoryOfTargetDirectory)).FullName);
+                    if (!finalPath.Equals(""))
+                        File.Copy(general.actualProject.database, Path.Combine(finalPath, util.ExtractFilename(general.actualProject.database)));
+                }
+            }
+            catch (Exception)
+            {
+              //  throw;
+            }
+           
+
+
+
         }
 
 
@@ -594,6 +656,44 @@ namespace myWay.userControls
         } // tratarFile
 
 
+
+        public string traverseDirectorySearchingDataFolder(object Folder)
+        {
+            try
+            {
+                //string directorio = "";
+                //string directorioParaInfo = "";
+                //directorio = Folder.ToString();
+                //if (!directorio.Trim().EndsWith(@"\"))
+                //{
+                //    directorio += "\\";
+                //}
+
+                DirectoryInfo dir = new DirectoryInfo(Folder.ToString());
+                DirectoryInfo[] subDirs = dir.GetDirectories();
+                FileInfo[] files = dir.GetFiles();
+
+                             
+                if (subDirs != null)
+                {
+                    foreach (DirectoryInfo sd in subDirs)
+                    {
+                        if (sd.Name.ToLower().IndexOf("data") != -1)
+                            return Folder.ToString() + @"\\" + sd.Name;
+
+                        traverseDirectorySearchingDataFolder(Folder.ToString() + @"\\" + sd.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return "";
+        }
+
+
         public void AsyncWriteLine(String Text)
         {
             try
@@ -630,6 +730,44 @@ namespace myWay.userControls
 
         } // AsyncCleanRt1
 
+
+        public void AsyncCleanMessage(String Text)
+        {
+            try
+            {
+                rtMessage.BeginInvoke(new MethodInvoker(delegate
+                {
+                    rtMessage.Clear();
+                }));
+
+            }
+            catch (Exception exx)
+            {
+                //rt1.AppendText("Error: " + exx.Message.ToString() + "\n");
+            }
+
+        } // AsyncCleanRt1
+
+        public void AsyncMessage(String Text, Color color)
+        {
+            try
+            {
+                rtMessage.BeginInvoke(new MethodInvoker(delegate
+                {
+                    rtMessage.BackColor = color;
+                    rtMessage.AppendText(Text + "\n");
+
+                }));
+
+            }
+            catch (Exception exx)
+            {
+                //rt1.AppendText("Error: " + exx.Message.ToString() + "\n");
+            }
+
+        } // AsyncWriteLine
+
+
         private void lbProjectTemplate_SelectedIndexChanged(object sender, EventArgs e)
         {
             // save the project template from the listbox
@@ -652,6 +790,23 @@ namespace myWay.userControls
         private void groupBox2_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //rtMessage.Text = "";
+            rtMessage.BackColor = Color.White;
+            timer1.Enabled = false;
+            //timer2.Enabled = true;
+
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            rtMessage.ForeColor = Color.Blue;
+            rtMessage.BackColor = Color.NavajoWhite;
+            timer1.Enabled = false;
+            timer2.Enabled = false;
         } // lbProjectTemplate_SelectedIndexChanged
 
 

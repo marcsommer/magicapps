@@ -36,6 +36,8 @@ using System.Text.RegularExpressions;
 // para app.config
 using System.Configuration;
 
+using ICSharpCode.TextEditor;
+using ICSharpCode.TextEditor.Document;
 
 
 namespace myWay.userControls
@@ -389,6 +391,39 @@ namespace myWay.userControls
                 general.actualProject.saveProject(Path.Combine(util.projects_dir, general.actualProject.name) + ".xml");
 
             }
+
+        }
+
+        private void cmbGoToCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string st = "";
+                int numLinea = 0;
+                st = cmbGoToCode.SelectedItem.ToString().Trim();
+
+                for (int lineNumber = 1; lineNumber <= t1.Document.TotalNumberOfLines - 1; lineNumber++)
+                {
+                    LineSegment lineSegment = t1.Document.GetLineSegment(lineNumber);
+                    string pp = t1.Document.GetText(lineSegment);
+                    if (pp.IndexOf(st) >= 0)
+                        numLinea = lineNumber;
+                }
+
+                TextAreaControl txtAreaControl = t1.ActiveTextAreaControl;
+                txtAreaControl.JumpTo(numLinea);
+                txtAreaControl.ScrollTo(numLinea + 8);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+
+
+
 
         }
 
