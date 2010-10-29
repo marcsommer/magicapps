@@ -26,7 +26,7 @@ using System.Web.UI.HtmlControls;
 using System.Collections.Generic;
 
 
-namespace ${project}.${table}_dir
+namespace ${project.name}
 {
     public partial class main_${table} : System.Web.UI.Page
     {
