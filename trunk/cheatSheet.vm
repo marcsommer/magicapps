@@ -39,12 +39,12 @@ project:
 
 
 	${project.dbDataType()}
-	${project.database()}
-	${project.user()}
-	${project.instance()}
-	${project.passwordv
-	${project.hostv
-	${project.port()}
+	${project.database}
+	${project.user}
+	${project.instance}
+	${project.password}
+	${project.host}
+	${project.port}
 
 	// variables used for storing conf..
 	${project.targetDirectory()}
@@ -67,6 +67,7 @@ table:
 
 	${table}
 	${table.Name()}
+	${table.name.substring(0,3)}	// substring with the name of table
 	${table.targetName()}
 	${table.numberOfFields()}
 	
@@ -75,16 +76,18 @@ table:
 	${table.getKeyTypeForVb}		// string with the type of keyfield for vb
 	${table.getKeyField}			// returns the field itself (type field)
 	
-	
-	
 	${table.fieldDescription()}
 
 	${table.getFields}
 	${table.getKeyFields}
 	
-	${table.getTableNameByForeignKey( project , "nameOfField" )}	// returns the name of the foreign table ...
-	${table.getKeyFieldByForeignKey ( project , "nameOfField" )}
-	${table.getDescriptionFieldByForeignKey ( project , "nameOfField" )}
+	${table.getTableNameByForeignKey( $project , "nameOfField" )}	// returns the name of the foreign table ...
+	${table.getKeyFieldByForeignKey ( $project , "nameOfField" )}
+	${table.getDescriptionFieldByForeignKey ( $project , "nameOfField" )}
+	
+	${table.getDescriptionFieldByForeignKey($project,  $relation.parentField )}
+	${table.getDescriptionFieldByForeignKey($project,  $relation.childField )}
+	
 	
 	${table.getForeignTableByForeignKey ( project , "nameOfField" )}	// returns the foreign table
 	${table.getFTByFK ( project , "nameOfField" )}						// returns the foreign table

@@ -323,7 +323,8 @@ class dbMySql
                             {
                                 if (fi.Name.Equals(campo))
                                 {
-                                    fi.isForeignKey = true;
+                                    // its not clear that its a foreign key
+                                    // fi.isForeignKey = true;
                                     table.notKeyFields.Add(fi);
                                 }
 
@@ -461,12 +462,11 @@ class dbMySql
                     //rel.name = sf.cadena(miLector["constraint_name"]) ;
 
                     rel.name = sf.cadena(miLector["table_name"]) + "_" + sf.cadena(miLector["referenced_table_name"]);
-                    rel.parentTable = sf.cadena(miLector["table_name"]);
-                    rel.parentField = sf.cadena(miLector["column_name"]);                
+                    rel.childTable = sf.cadena(miLector["table_name"]);
+                    rel.childField = sf.cadena(miLector["column_name"]);                
 
-                    rel.childTable = sf.cadena(miLector["referenced_table_name"]);
-                    rel.childField = sf.cadena(miLector["referenced_column_name"]);
-                
+                    rel.parentTable = sf.cadena(miLector["referenced_table_name"]);
+                    rel.parentField = sf.cadena(miLector["referenced_column_name"]);                
 
                     lista.Add(rel);
                 }  

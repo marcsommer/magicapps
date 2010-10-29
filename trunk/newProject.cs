@@ -195,10 +195,18 @@ namespace myWay
                                     // found description of fields...
                                     foreach (table item in pr.tables)
                                     {
-                                        if (item.Name.Equals(re.childTable))
+                                        if (item.Name.ToLower().Equals(re.childTable.ToLower()))
+                                        {
                                             re.childDescription = item.fieldDescription;
+                                            // we put the field as keyfield...
+                                            foreach (field fi in item.fields)
+                                            {
+                                                if (fi.Name.ToLower().Equals(re.childField.ToLower()))
+                                                    fi.isForeignKey = true;
+                                            }
+                                        }
 
-                                        if (item.Name.Equals(re.parentTable))
+                                        if (item.Name.ToLower().Equals(re.parentTable.ToLower()))
                                             re.parentDescription = item.fieldDescription;
                                     }
 
@@ -212,7 +220,7 @@ namespace myWay
                                     foreach (table item in pr.tables)
                                     {
                                         // we put the relation in the child table...
-                                        if (item.Name.Equals(re.parentTable))
+                                        if (item.Name.ToLower().Equals(re.childTable.ToLower()))
                                             item.relations.Add(re);
                                     }
 
@@ -230,11 +238,11 @@ namespace myWay
                                     {
                                         foreach (table tab2 in pr.tables)
                                         {
-                                            if (!tab.Name.Equals(tab2.Name))
+                                            if (!tab.Name.ToLower().Equals(tab2.Name.ToLower()))
                                             {
                                                 foreach (field campo2 in tab2.fields)
                                                 {
-                                                    if (campo.Name.Equals(campo2.Name))
+                                                    if (campo.Name.ToLower().Equals(campo2.Name.ToLower()))
                                                     {
                                                         // check if relation exists..
                                                         if (!pr.existsRelation(tab.Name, tab2.Name))
@@ -260,10 +268,10 @@ namespace myWay
                                                                 // found description of fields...
                                                                 foreach (table item in pr.tables)
                                                                 {
-                                                                    if (item.Name.Equals(rel.childTable))
+                                                                    if (item.Name.ToLower().Equals(rel.childTable.ToLower()))
                                                                         rel.childDescription = item.fieldDescription;
 
-                                                                    if (item.Name.Equals(rel.parentTable))
+                                                                    if (item.Name.ToLower().Equals(rel.parentTable.ToLower()))
                                                                         rel.parentDescription = item.fieldDescription;
                                                                 }
 
@@ -394,7 +402,7 @@ namespace myWay
                                     foreach (table item in pr.tables)
                                     {
                                         // we put the relation in the parent table...
-                                        if (item.Name.Equals(re.parentTable))
+                                        if (item.Name.ToLower().Equals(re.parentTable.ToLower()))
                                         {
                                             // le añadimos la descripcion
                                             re.parentDescription = item.fieldDescription;
@@ -423,11 +431,11 @@ namespace myWay
                                     {
                                         foreach (table tab2 in pr.tables)
                                         {
-                                            if (!tab.Name.Equals(tab2.Name))
+                                            if (!tab.Name.ToLower().Equals(tab2.Name.ToLower()))
                                             {
                                                 foreach (field campo2 in tab2.fields)
                                                 {
-                                                    if (campo.Name.Equals(campo2.Name))
+                                                    if (campo.Name.ToLower().Equals(campo2.Name.ToLower()))
                                                     {
                                                         campo2.isForeignKey = true;
                                                         relation rel = new relation();
@@ -443,10 +451,10 @@ namespace myWay
                                                             // found description of fields...
                                                             foreach (table item in pr.tables)
                                                             {
-                                                                if (item.Name.Equals(rel.childTable))
+                                                                if (item.Name.ToLower().Equals(rel.childTable.ToLower()))
                                                                     rel.childDescription = item.fieldDescription;
 
-                                                                if (item.Name.Equals(rel.parentTable))
+                                                                if (item.Name.ToLower().Equals(rel.parentTable.ToLower()))
                                                                     rel.parentDescription = item.fieldDescription;
                                                             }
 
@@ -461,7 +469,7 @@ namespace myWay
                                                                     bool seguir = true;
                                                                     foreach (relation rel2 in tab2.relations)
                                                                     {
-                                                                        if (rel2.name.Equals(rel.name))
+                                                                        if (rel2.name.ToLower().Equals(rel.name.ToLower()))
                                                                             seguir = false;
                                                                     }
                                                                     if (seguir)
@@ -581,7 +589,7 @@ namespace myWay
                                     foreach (table item in pr.tables)
                                     {
                                         // we put the relation in the parent table...
-                                        if (item.Name.Equals(re.parentTable))
+                                        if (item.Name.ToLower().Equals(re.parentTable.ToLower()))
                                         {
                                             // le añadimos la descripcion
                                             re.parentDescription = item.fieldDescription;
@@ -610,11 +618,11 @@ namespace myWay
                                     {
                                         foreach (table tab2 in pr.tables)
                                         {
-                                            if (!tab.Name.Equals(tab2.Name))
+                                            if (!tab.Name.ToLower().Equals(tab2.Name.ToLower()))
                                             {
                                                 foreach (field campo2 in tab2.fields)
                                                 {
-                                                    if (campo.Name.Equals(campo2.Name))
+                                                    if (campo.Name.ToLower().Equals(campo2.Name.ToLower()))
                                                     {
                                                         campo2.isForeignKey = true;
                                                         relation rel = new relation();
@@ -630,10 +638,10 @@ namespace myWay
                                                             // found description of fields...
                                                             foreach (table item in pr.tables)
                                                             {
-                                                                if (item.Name.Equals(rel.childTable))
+                                                                if (item.Name.ToLower().Equals(rel.childTable.ToLower()))
                                                                     rel.childDescription = item.fieldDescription;
 
-                                                                if (item.Name.Equals(rel.parentTable))
+                                                                if (item.Name.ToLower().Equals(rel.parentTable.ToLower()))
                                                                     rel.parentDescription = item.fieldDescription;
                                                             }
 
@@ -648,7 +656,7 @@ namespace myWay
                                                                     bool seguir = true;
                                                                     foreach (relation rel2 in tab2.relations)
                                                                     {
-                                                                        if (rel2.name.Equals(rel.name))
+                                                                        if (rel2.name.ToLower().Equals(rel.name.ToLower()))
                                                                             seguir = false;
                                                                     }
                                                                     if (seguir)
@@ -766,7 +774,7 @@ namespace myWay
                                     foreach (table item in pr.tables)
                                     {
                                         // we put the relation in the parent table...
-                                        if (item.Name.Equals(re.parentTable))
+                                        if (item.Name.ToLower().Equals(re.parentTable.ToLower()))
                                         {
                                             // le añadimos la descripcion
                                             re.parentDescription = item.fieldDescription;
@@ -795,11 +803,11 @@ namespace myWay
                                     {
                                         foreach (table tab2 in pr.tables)
                                         {
-                                            if (!tab.Name.Equals(tab2.Name))
+                                            if (!tab.Name.ToLower().Equals(tab2.Name.ToLower()))
                                             {
                                                 foreach (field campo2 in tab2.fields)
                                                 {
-                                                    if (campo.Name.Equals(campo2.Name))
+                                                    if (campo.Name.ToLower().Equals(campo2.Name.ToLower()))
                                                     {
                                                         campo2.isForeignKey = true;
                                                         relation rel = new relation();
@@ -815,10 +823,10 @@ namespace myWay
                                                             // found description of fields...
                                                             foreach (table item in pr.tables)
                                                             {
-                                                                if (item.Name.Equals(rel.childTable))
+                                                                if (item.Name.ToLower().Equals(rel.childTable.ToLower()))
                                                                     rel.childDescription = item.fieldDescription;
 
-                                                                if (item.Name.Equals(rel.parentTable))
+                                                                if (item.Name.ToLower().Equals(rel.parentTable.ToLower()))
                                                                     rel.parentDescription = item.fieldDescription;
                                                             }
 
@@ -833,7 +841,7 @@ namespace myWay
                                                                     bool seguir = true;
                                                                     foreach (relation rel2 in tab2.relations)
                                                                     {
-                                                                        if (rel2.name.Equals(rel.name))
+                                                                        if (rel2.name.ToLower().Equals(rel.name.ToLower()))
                                                                             seguir = false;
                                                                     }
                                                                     if (seguir)
@@ -950,7 +958,7 @@ namespace myWay
                                     foreach (table item in pr.tables)
                                     {
                                         // we put the relation in the parent table...
-                                        if (item.Name.Equals(re.parentTable))
+                                        if (item.Name.ToLower().Equals(re.parentTable.ToLower()))
                                         {
                                             // le añadimos la descripcion
                                             re.parentDescription = item.fieldDescription;
@@ -979,11 +987,11 @@ namespace myWay
                                     {
                                         foreach (table tab2 in pr.tables)
                                         {
-                                            if (!tab.Name.Equals(tab2.Name))
+                                            if (!tab.Name.ToLower().Equals(tab2.Name.ToLower()))
                                             {
                                                 foreach (field campo2 in tab2.fields)
                                                 {
-                                                    if (campo.Name.Equals(campo2.Name))
+                                                    if (campo.Name.ToLower().Equals(campo2.Name.ToLower()))
                                                     {
                                                         campo2.isForeignKey = true;
                                                         relation rel = new relation();
@@ -999,10 +1007,10 @@ namespace myWay
                                                             // found description of fields...
                                                             foreach (table item in pr.tables)
                                                             {
-                                                                if (item.Name.Equals(rel.childTable))
+                                                                if (item.Name.ToLower().Equals(rel.childTable.ToLower()))
                                                                     rel.childDescription = item.fieldDescription;
 
-                                                                if (item.Name.Equals(rel.parentTable))
+                                                                if (item.Name.ToLower().Equals(rel.parentTable.ToLower()))
                                                                     rel.parentDescription = item.fieldDescription;
                                                             }
 
@@ -1017,7 +1025,7 @@ namespace myWay
                                                                     bool seguir = true;
                                                                     foreach (relation rel2 in tab2.relations)
                                                                     {
-                                                                        if (rel2.name.Equals(rel.name))
+                                                                        if (rel2.name.ToLower().Equals(rel.name.ToLower()))
                                                                             seguir = false;
                                                                     }
                                                                     if (seguir)

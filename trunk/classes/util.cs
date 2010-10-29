@@ -239,6 +239,36 @@ public static class util
     } // extractFileName
 
 
+    public static string ExtractLastDirectory(string filepath)
+    {
+        try
+        {
+            // If path ends with a "\", it's a path only so return String.Empty.
+            if (filepath.Trim().EndsWith(@"\"))
+                filepath = filepath.Remove(filepath.Length - 1);
+
+            // Determine where last backslash is.
+            int position = filepath.LastIndexOf('\\');
+            // If there is no backslash, assume that this is a filename.
+            if (position == -1)
+            {
+                return String.Empty;
+            }
+            else
+            {
+                return filepath.Substring(position + 1, filepath.Length - position - 1);
+
+            }
+        }
+        catch (Exception)
+        {
+            return "";
+            throw;
+        }
+        return "";
+
+    } // extractLastDirectory
+
     public static void playSimpleSound(string path)
     {
         SoundPlayer simpleSound = new SoundPlayer(path);
