@@ -87,6 +87,7 @@
       <DependentUpon>testMaster.aspx</DependentUpon>
     </Compile>
     <Compile Include="clasesbase\JQueryUtils.cs" />
+    <Compile Include="clasesbase\message.cs" />
     <Compile Include="clasesbase\tracker.cs" />
     <Compile Include="clasesbase\ctes.cs" />
     <Compile Include="clasesbase\dbClass.cs" />
@@ -348,12 +349,6 @@
     <Content Include="images_contraste\leyenda.gif" />
     <Content Include="im\screenie-thumb.png" />
     <Content Include="im\screenie.png" />
-    <Content Include="includes\calendar\Button_Back.gif" />
-    <Content Include="includes\calendar\Calendar.aspx" />
-    <Content Include="includes\calendar\icon-calendar.gif" />
-    <Content Include="includes\calendar\script.js" />
-    <Content Include="includes\calendar\styles.css" />
-    <Content Include="includes\calendar\testform.aspx" />
     <Content Include="App_Themes\contraste1\estilos.css" />
     <Content Include="App_Themes\normalmed\estilos.css" />
     <Content Include="App_Themes\normalxl\estilos.css" />

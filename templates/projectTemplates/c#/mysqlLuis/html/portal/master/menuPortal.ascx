@@ -1,5 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="true" Codebehind="menuPortal.ascx.cs"
-    Inherits="juleweb.portal.master.menuPortal" %>
+<%@ Control Language="C#" AutoEventWireup="true" Codebehind="menuPortal.ascx.cs" Inherits="juleweb.portal.master.menuPortal" %>
 <div id="bloqueMenu">
     <span class="mensaje"><strong>Comienza la navegaci&oacute;n principal:</strong></span>
     <h3 class="menuTit">

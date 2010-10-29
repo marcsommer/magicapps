@@ -20,7 +20,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ${project}.admin.login {
+namespace ${project.name}.admin.login {
     
     
     /// <summary>

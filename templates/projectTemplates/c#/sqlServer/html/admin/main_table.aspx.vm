@@ -2,7 +2,7 @@
 <extensionFile>aspx</extensionFile>
  <targetDirectory>${table}_dir</targetDirectory>
 <appliesToAllTables>true</appliesToAllTables> 
-<%@ Page Language="C#" MasterPageFile="~/admin/master/masterAdmin.Master" AutoEventWireup="true"  CodeBehind="main_${table}.aspx.cs" Inherits="${project}.${table}_dir.main_${table}" Title="Página sin título" %>
+<%@ Page Language="C#" MasterPageFile="~/admin/master/masterAdmin.Master" AutoEventWireup="true"  CodeBehind="main_${table}.aspx.cs" Inherits="${project.name}.main_${table}" Title="Página sin título" %>
 <%@ Register Assembly="eWorld.UI" Namespace="eWorld.UI" TagPrefix="ew" %>
 <%@ Register Assembly="FreeTextBox" Namespace="FreeTextBoxControls" TagPrefix="FTB" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -44,7 +44,7 @@
 						</label>
 				</div>		
 				#else
-			    #if ($field != "idportal")	
+			    #if ($field.name != "idportal")	
 				<div class="lineaForm">
                 <label for="${field}">
                         <span class="etiqueta">${field.targetName()}: </span>

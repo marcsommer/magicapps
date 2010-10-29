@@ -19,7 +19,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ${project}.${table}_dir {
+namespace juleweb.${table}_dir {
     
     
     /// <summary>

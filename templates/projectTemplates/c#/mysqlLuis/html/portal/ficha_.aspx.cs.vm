@@ -22,7 +22,7 @@ using System.Web.UI.HtmlControls;
 using System.Collections.Generic;
 
 
-namespace ${project}.portal.main_${table}
+namespace juleweb.portal.main_${table}
 {
     public partial class ficha_${table} : System.Web.UI.Page
     {
@@ -105,7 +105,7 @@ namespace ${project}.portal.main_${table}
 		  
 
 			#foreach( $relation in $table.getRelations() )
-			      lab${relation.childField()}.Text =sf.cadena(${relation.childTable()}.get${relation.childTable()}(${relation.parentTable()}x.${relation.parentField()}));
+			      lab${relation.childField()}.Text =sf.cadena(${relation.parentTable()}.get${relation.parentTable()}(${table}x.${relation.childField()}).${table.getDescriptionFieldByForeignKey($project,  $relation.parentField )} );
 			#end 
 
         }		 

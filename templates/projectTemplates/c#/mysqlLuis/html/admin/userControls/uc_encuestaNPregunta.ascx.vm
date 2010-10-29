@@ -10,7 +10,7 @@
 <targetDirectory>${table}_dir</targetDirectory>
 <appliesToAllTables>true</appliesToAllTables>
 
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="uc_${table}.ascx.cs" Inherits="${project}.${table}_dir.main_${table}" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="uc_${table}.ascx.cs" Inherits="juleweb.${table}_dir.main_${table}" %>
 &nbsp;<asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
 <asp:RadioButtonList ID="rl1" runat="server">
 </asp:RadioButtonList>ssssssssssss

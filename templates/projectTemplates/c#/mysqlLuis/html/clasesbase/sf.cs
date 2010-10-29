@@ -708,20 +708,49 @@ public class sf
     }
 
 
+    public static string cadena(int valor)
+    {
+        try
+        {
+          return valor.ToString();
+        }
+        catch (Exception)
+        {
+            return "";
+        }
+
+    }
 
     public static string cadena(double valor)
     {
-        string a;
-        a   = System.Convert.ToString(valor);
-        a.Replace("'","");
-        return a;
+        try
+        {
+            string a;
+            a   = System.Convert.ToString(valor);
+            a.Replace("'","");
+            return a;
+        }
+        catch (Exception)
+        {
+
+            return "";
+        }
+      
     }
     public static string cadena(object valor)
     {
-        string a;
-        a = System.Convert.ToString(valor);
-        a.Replace("'", "");
-        return a;
+        try
+        {
+            string a;
+            a = System.Convert.ToString(valor);
+            a.Replace("'", "");
+            return a;
+        }
+        catch (Exception)
+        {
+            return "";
+        }
+        
     }
     public static string cadena(string valor)
     {
@@ -996,7 +1025,7 @@ public class sf
         {
             return "NULL";
         }
-        return "'" + date.ToShortDateString() + "'";
+        return "'" + date.Year.ToString() + "-" + date.Month.ToString() + "-" + date.Day.ToString() + "'";
     }
 
     #endregion
@@ -1088,35 +1117,4 @@ public class sf
 
 }
 
-public class message
-{
-    private string _text;
-    public string text
-    {
-        get { return _text; }
-        set { _text = value; }
-    }
-
-
-    public enum typeOfMessage
-    {
-        info = 1,
-        error = 2,
-        success = 3
-    }
-
-    private typeOfMessage _type;
-    public typeOfMessage type
-    {
-        get { return _type; }
-        set { _type = value; }
-    }
-
-
-    public message(string textx, typeOfMessage typex)
-    {
-        this.text = textx;
-        this.type = typex;
-    }
-
-}
+ 

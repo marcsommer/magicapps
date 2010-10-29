@@ -19,7 +19,7 @@
 //     se vuelve a generar el c�digo.
 // </auto-generated>
 //------------------------------------------------------------------------------
-namespace ${project}.portal.main_${table} {
+namespace juleweb.portal.main_${table} {
     
     
     /// <summary>

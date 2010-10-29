@@ -11,7 +11,7 @@
 <targetDirectory></targetDirectory>
 <appliesToAllTables>true</appliesToAllTables>
 
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="menuAdmin.ascx.cs" Inherits="juleweb.admin.master.menuAdmin" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="menuAdmin.ascx.cs" Inherits="${project.name}.admin.master.menuAdmin" %>
 <ul id="menu">
 	#set ($count = 0)
 	#foreach( $name in $project.getTables )

@@ -16,11 +16,9 @@ using System;
 using System.Collections;
 using System.Web;
 using System.Collections.Generic;
-using MySql.Data.MySqlClient;   
-using System.ComponentModel; 
-    
-    
-[System.ComponentModel.DataObject]
+using MySql.Data.MySqlClient; 
+using System.ComponentModel;
+
     public partial class ${table} 
 	{
 	#region["Variables"]
@@ -207,22 +205,25 @@ using System.ComponentModel;
 			#foreach( $field in $table.GetFields ) 
 				#if (!$field.isKey())
 					  #if ($field.type.toString() == "_integer")
-						 sqlt.Append(sf.entero(obj${table}.${field}) + " #if ($table.GetFields.count() -  $count  != 1) , #end") ;
+						 sqlt.Append(sf.entero(obj${table}.${field}) + " #if ($table.countOfFieldsNotKey -  $count  != 1) , #end") ;
 						 #end 
 					  #if ($field.type.toString() == "_double")
-						 sqlt.Append( sf.cadenaMySql(obj${table}.${field}) + " #if ($table.GetFields.count() -  $count  != 1) , #end") ;
+						 sqlt.Append( sf.cadenaMySql(obj${table}.${field}) + " #if ($table.countOfFieldsNotKey -  $count  != 1) , #end") ;
 						 #end 
 					  #if ($field.type.toString() == "_string")
-						 sqlt.Append( sf.cadenaMySql(obj${table}.${field}) + " #if ($table.GetFields.count() -  $count  != 1) , #end") ;
+						 sqlt.Append( sf.cadenaMySql(obj${table}.${field}) + " #if ($table.countOfFieldsNotKey -  $count  != 1) , #end") ;
+						 #end 
+					  #if ($field.type.toString() == "_text")
+						 sqlt.Append( sf.cadenaMySql(obj${table}.${field}) + " #if ($table.countOfFieldsNotKey -  $count  != 1) , #end") ;
 						 #end 
 					  #if ($field.type.toString() == "_date")
-						 sqlt.Append( sf.cadenaMySql(sf.fechaIso(obj${table}.${field})) + " #if ($table.GetFields.count() -  $count  != 1) , #end ")  ;
+						 sqlt.Append( sf.cadenaMySql(sf.fechaIso(obj${table}.${field})) + " #if ($table.countOfFieldsNotKey -  $count  != 1) , #end ")  ;
 						 #end 
 					  #if ($field.type.toString() == "_boolean")
-						 sqlt.Append( sf.entero(obj${table}.${field})  + " #if ($table.GetFields.count() -  $count  != 1) , #end");
+						 sqlt.Append( sf.entero(obj${table}.${field})  + " #if ($table.countOfFieldsNotKey -  $count  != 1) , #end");
 						 #end 
-				#end
-			 #set ($count = $count + 1 )
+					#set ($count = $count + 1 )
+				#end			
 			#end 	 
 			sqlt.Append(" )");
 
@@ -272,6 +273,9 @@ using System.ComponentModel;
 		  #if ($field.type.toString() == "_string")
 		     pp.${field} = sf.cadena(reg["${field}"].ToString());
 		     #end 
+		  #if ($field.type.toString() == "_text")
+		     pp.${field} = sf.cadena(reg["${field}"].ToString());
+		     #end 
 		  #if ($field.type.toString() == "_date")
 		     pp.${field} = sf.fecha(reg["${field}"].ToString());
 		     #end 
@@ -305,31 +309,31 @@ using System.ComponentModel;
 		    List< ${table} > lista${table} = new List< ${table} >();
             MySqlDataReader reg;
             string sqlt;
-			string sqlx="";
-            dbClass db = new dbClass(ctes.conStringAdoGeneral);
+			dbClass db = new dbClass(ctes.conStringAdoGeneral);
             try
             {
             sqlt = "select ${table.getListOfFields(",")} from ${table}";
-            sqlt += " where ${table.getKey()} <> -1 and (";              
+            sqlt += " where 1!=0 and (";              
+            
+			#set ($count = 0 )				
 			#foreach( $field in $table.GetFields ) 
-				  #if ($field.type.toString() == "_integer")	
-					 #end 
-				   #if ($field.type.toString() == "_double")	
-					 #end 
-				  #if ($field.type.toString() == "_string")
-					#if ($count==0)
-						sqlt += "  ${field} like '%" + cadena + "%'"; 	
-						#set ($count = $count + 1 )
-					#else
-						 sqlt += " or ${field} like '%" + cadena + "%'"; 	
-					#end				  
-					#end 
-				  #if ($field.type.toString() == "_date")					 
-					 #end 
-				  #if ($field.type.toString() == "_boolean")					 
-					 #end 
+				#if ($field.type.toString() == "_integer")	
+				#end 
+				#if ($field.type.toString() == "_double")	
+				#end 
+				#if ($field.type.toString() == "_string")
+					sqlt += "#if ($count  != 0) or #end  ${field} like '%" + cadena + "%'"; 
+					#set ($count = $count + 1 )		
+				#end 
+				#if ($field.type.toString() == "_text")
+					sqlt += "#if ($count  != 0) or #end  ${field} like '%" + cadena + "%'"; 
+					#set ($count = $count + 1 )		
+				#end 
+				#if ($field.type.toString() == "_date")	
+				#end 
+				#if ($field.type.toString() == "_boolean")	
+				#end 							
 			#end 
-			sqlt  =  sqlt +sqlx;
 			sqlt += " )";  
 			reg = db.sql(sqlt);
             while (reg.Read())
@@ -340,6 +344,9 @@ using System.ComponentModel;
 		 pp.${field} = sf.entero(reg["${field}"].ToString());
 		 #end 
 	  #if ($field.type.toString() == "_string")
+		 pp.${field} = sf.cadena(reg["${field}"].ToString());
+		 #end 
+	  #if ($field.type.toString() == "_text")
 		 pp.${field} = sf.cadena(reg["${field}"].ToString());
 		 #end 
 	  #if ($field.type.toString() == "_date")
@@ -389,6 +396,9 @@ using System.ComponentModel;
 					  #if ($field.type.toString() == "_string")
 						  sqlt += " and ${field}='" + sf.cadena(${field}) + "'";
 						 #end 
+					  #if ($field.type.toString() == "_text")
+						  sqlt += " and ${field}='" + sf.cadena(${field}) + "'";
+						 #end 
 					  #if ($field.type.toString() == "_date")
 						 sqlt += " and ${field}='" + sf.cadena(${field}) + "'";
 						 #end 
@@ -409,6 +419,9 @@ using System.ComponentModel;
 						 obj${table}.${field} = sf.doble(reg["${field}"].ToString());
 						 #end 
 					#if ($field.type.toString() == "_string")
+						 obj${table}.${field} = sf.cadena(reg["${field}"].ToString());	  					
+						 #end 
+						#if ($field.type.toString() == "_text")
 						 obj${table}.${field} = sf.cadena(reg["${field}"].ToString());	  					
 						 #end 
 					  #if ($field.type.toString() == "_date")
@@ -449,26 +462,26 @@ using System.ComponentModel;
 			#if ($field.isKey())
 			#else
 				#if ($field.type.toString() == "_integer")
-					sqlt.Append(" ${field}=" + sf.cadena(obj${table}.${field})+ ", ") ;
-					#set ($count = $count + 1 )		
+					sqlt.Append(" ${field}=" + sf.cadena(obj${table}.${field})+ "#if ($table.countOfFieldsNotKey -  $count  != 1),#end ") ;
 					#end 
 				#if ($field.type.toString() == "_double")
-					sqlt.Append(" ${field}=" + sf.cadenaMySql(obj${table}.${field})+ ", ");
-					#set ($count = $count + 1 )		
+					sqlt.Append(" ${field}=" + sf.cadenaMySql(obj${table}.${field})+ "#if ($table.countOfFieldsNotKey -  $count  != 1),#end ");
 				#end 
 				  #if ($field.type.toString() == "_string")
-					sqlt.Append(" ${field}='" + sf.cadena(obj${table}.${field})+ "', "); 
-					 #set ($count = $count + 1 )		
+					sqlt.Append(" ${field}='" + sf.cadena(obj${table}.${field})+ "'#if ($table.countOfFieldsNotKey -  $count  != 1),#end "); 
+					 #end 
+				  #if ($field.type.toString() == "_text")
+					sqlt.Append(" ${field}='" + sf.cadena(obj${table}.${field})+ "'#if ($table.countOfFieldsNotKey -  $count  != 1),#end "); 
 					 #end 
 				  #if ($field.type.toString() == "_date")
-					 sqlt.Append(" ${field}='" + sf.fechaIso(obj${table}.${field}) + "', " );
-					 #set ($count = $count + 1 )		
+					 sqlt.Append(" ${field}=" + sf.cadenaMySql(obj${table}.${field}) + " #if ($table.countOfFieldsNotKey -  $count  != 1),#end " );
 					 #end 
 				  #if ($field.type.toString() == "_boolean")
-					 sqlt.Append(" ${field}=" + sf.cadenaMySql(obj${table}.${field}) + ", ");
-					 #set ($count = $count + 1 )		
-					 #end
-			 #end				
+					 sqlt.Append(" ${field}=" + sf.cadenaMySql(obj${table}.${field}) + "#if ($table.countOfFieldsNotKey -  $count  != 1),#end ");
+				#end
+				#set ($count = $count + 1 )		
+			 #end
+					 	
 		#end 
 		
            sqlt.Append(" where 1!=0");          
@@ -481,6 +494,9 @@ using System.ComponentModel;
 					  sqlt.Append( " and ${field}='" + sf.cadena(obj${table}.${field}) + "'");
 					 #end 
 				    #if ($field.type.toString() == "_string")
+					  sqlt.Append( " and ${field}='" + obj${table}.${field} + "'");
+					 #end 
+				   #if ($field.type.toString() == "_text")
 					  sqlt.Append( " and ${field}='" + obj${table}.${field} + "'");
 					 #end 
 				  #if ($field.type.toString() == "_date")
@@ -520,29 +536,27 @@ using System.ComponentModel;
 			#if ($field.isKey())
 			#else 
 				  #if ($field.type.toString() == "_integer")
-					sqlt.Append( " ${field}=" + sf.cadena(this.${field}) + "," ) ;
-					#set ($count = $count + 1 )
+					sqlt.Append( " ${field}=" + sf.cadena(this.${field}) + "#if ($table.countOfFieldsNotKey -  $count  != 1),#end" ) ;
 					 #end 
 				  #if ($field.type.toString() == "_double")
-					  sqlt.Append(" ${field}=" + sf.cadenaMySql(this.${field}) + "," );
-					  #set ($count = $count + 1 )
+					  sqlt.Append(" ${field}=" + sf.cadenaMySql(this.${field}) + "#if ($table.countOfFieldsNotKey -  $count  != 1),#end" );
 					 #end 
 				 #if ($field.type.toString() == "_string")
-					  sqlt.Append(" ${field}='" + sf.cadena(this.${field}) + "'," );
-					  #set ($count = $count + 1 )
+					  sqlt.Append(" ${field}='" + sf.cadena(this.${field}) + "'#if ($table.countOfFieldsNotKey -  $count  != 1),#end" );
+					 #end 
+				 #if ($field.type.toString() == "_text")
+					  sqlt.Append(" ${field}='" + sf.cadena(this.${field}) + "'#if ($table.countOfFieldsNotKey -  $count  != 1),#end" );
 					 #end 
 				  #if ($field.type.toString() == "_date")
-					  sqlt.Append( " ${field}='" + sf.fechaIso(this.${field}) + "',") ;
-					  #set ($count = $count + 1 )
+					  sqlt.Append( " ${field}=" + sf.cadenaMySql(this.${field}) + " #if ($table.countOfFieldsNotKey -  $count  != 1),#end") ;
 					 #end 
 				  #if ($field.type.toString() == "_boolean")
-					sqlt.Append(" ${field}=" + sf.cadenaMySql(this.${field})  + "," );
-					#set ($count = $count + 1 )
-					 #end  
+					sqlt.Append(" ${field}=" + sf.cadenaMySql(this.${field})  + "#if ($table.countOfFieldsNotKey -  $count  != 1),#end" );
+				#end  
+				#set ($count = $count + 1 )
 			#end				
 		#end  
-            sqlt.Remove(sqlt.Length - 1, 1);
-            sqlt.Append(" where 1!=0");          
+           sqlt.Append(" where 1!=0");          
 		#foreach( $field in $table.GetFields )
 			#if ($field.isKey()) 
 				  #if ($field.type.toString() == "_integer")
@@ -552,6 +566,9 @@ using System.ComponentModel;
 					  sqlt.Append( " and ${field}='" + this.${field} + "'");
 					 #end 
 				  #if ($field.type.toString() == "_string")
+					  sqlt.Append( " and ${field}='" + this.${field} + "'");
+					 #end 
+				  #if ($field.type.toString() == "_text")
 					  sqlt.Append( " and ${field}='" + this.${field} + "'");
 					 #end 
 				  #if ($field.type.toString() == "_date")
@@ -604,6 +621,9 @@ using System.ComponentModel;
 					  #if ($field.type.toString() == "_string")
 						  sqlt += " and ${field}='" + sf.cadena(${field}) + "'";
 						 #end 
+					  #if ($field.type.toString() == "_text")
+						  sqlt += " and ${field}='" + sf.cadena(${field}) + "'";
+						 #end 
 					  #if ($field.type.toString() == "_date")
 						 sqlt += " and ${field}='" + sf.cadena(${field}) + "'";
 						 #end 
@@ -653,6 +673,9 @@ using System.ComponentModel;
 						 #if ($field.type.toString() == "_string")
 							  sqlt += " and ${field}='" + ${field} + "'";
 							 #end 
+						 #if ($field.type.toString() == "_text")
+							  sqlt += " and ${field}='" + ${field} + "'";
+							 #end 
 						  #if ($field.type.toString() == "_date")
 							 sqlt += " and ${field}='" + ${field} + "'";
 							 #end 
@@ -672,6 +695,9 @@ using System.ComponentModel;
 						 this.${field} = sf.doble(reg["${field}"]);
 						 #end 
 					 #if ($field.type.toString() == "_string")
+						 this.${field} = sf.cadena(reg["${field}"]);
+						 #end 
+					   #if ($field.type.toString() == "_text")
 						 this.${field} = sf.cadena(reg["${field}"]);
 						 #end 
 					  #if ($field.type.toString() == "_date")
@@ -733,6 +759,9 @@ using System.ComponentModel;
 		 pp.${field} = sf.doble(reg["${field}"].ToString());
 		 #end 
 	  #if ($field.type.toString() == "_string")
+		 pp.${field} = sf.cadena(reg["${field}"].ToString());
+		 #end 
+	  #if ($field.type.toString() == "_text")
 		 pp.${field} = sf.cadena(reg["${field}"].ToString());
 		 #end 
 	  #if ($field.type.toString() == "_date")
