@@ -129,11 +129,11 @@ public partial class masterDetail_${table} : System.Web.UI.Page
 	
 		#foreach( $tablaPadre in $project.getTables() )
 			#if ($relation.parentTable.equals(${tablaPadre.name}))
-				List<${tablaPadre.name}> lista = new List<${tablaPadre.name}>();
-				lista = ${tablaPadre.name}.getList();
+				List<${tablaPadre.name}> lista${tablaPadre.name} = new List<${tablaPadre.name}>();
+				lista${tablaPadre.name} = ${tablaPadre.name}.getList();
      
-				Repeater${tablaPadre.name}.DataSource = lista;
-				Repeater${tablaPadre.name}.DataBind(); 
+				rp${tablaPadre}.DataSource = lista${tablaPadre.name};
+				rp${tablaPadre}.DataBind(); 
 							
 			#end
 		#end
