@@ -15,7 +15,7 @@ using System.Web.UI.HtmlControls;
 
 using System.Collections.Generic;
 
-namespace ${project}.${table}_dir
+namespace juleweb.${table}_dir
 {
 
   

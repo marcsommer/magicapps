@@ -23,7 +23,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ${project}.${table}_dir {
+namespace ${project.name} {
     
     
     /// <summary>

@@ -11,7 +11,7 @@
 <appliesToAllTables>true</appliesToAllTables>
 
 
-<%@ Page Language="C#" MasterPageFile="~/portal/master/masterWeb.Master" AutoEventWireup="true" CodeBehind="listado_${table}.aspx.cs" Inherits="${project}.portal.main_${table}.listado_${table}" Title="Página sin título" %>
+<%@ Page Language="C#" MasterPageFile="~/portal/master/masterWeb.Master" AutoEventWireup="true" CodeBehind="listado_${table}.aspx.cs" Inherits="${project.name}.portal.main_${table}.listado_${table}" Title="Página sin título" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 			 <div class="titulo"><h2>${table}</h2></div>
 			<div class="general">

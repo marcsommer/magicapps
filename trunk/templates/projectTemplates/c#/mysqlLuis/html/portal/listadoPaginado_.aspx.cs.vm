@@ -21,7 +21,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Collections.Generic;
 
-namespace ${project}.portal.main_${table}
+namespace juleweb.portal.main_${table}
 {
     public partial class listadoPaginado_${table} : System.Web.UI.Page
     {
@@ -38,7 +38,7 @@ namespace ${project}.portal.main_${table}
            if (!Page.IsPostBack)
             {
                int numRegistros = 0;
-               numRegistros = ${table}.getCount();
+               numRegistros = ${table}_bll.getCount();
 
                if (numRegistros != 0)
                {
@@ -67,7 +67,7 @@ namespace ${project}.portal.main_${table}
         public void bind(int page, int tamPag)
         {
                 List<${table}> list${table} = new List<${table}>();
-                list${table} = ${table}.getPage(page,tamPag);
+                list${table} = ${table}_bll.getPage(page,tamPag);
                
                 Repeater1.DataSource = list${table};
                 Repeater1.DataBind();

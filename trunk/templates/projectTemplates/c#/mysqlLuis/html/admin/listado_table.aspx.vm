@@ -2,7 +2,7 @@
 <extensionFile>aspx</extensionFile>
 <targetDirectory>${table}_dir</targetDirectory>
 <appliesToAllTables>true</appliesToAllTables>
-<%@ Page Language="C#" MasterPageFile="~/admin/master/masterAdmin.Master" AutoEventWireup="true"  CodeBehind="listado_${table}.aspx.cs" Inherits="${project}.${table}_dir.listado_${table}" Title="Página sin título" %>
+<%@ Page Language="C#" MasterPageFile="~/admin/master/masterAdmin.Master" AutoEventWireup="true"  CodeBehind="listado_${table}.aspx.cs" Inherits="juleweb.${table}_dir.listado_${table}" Title="Página sin título" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!--PARTE DERECHA-->
  				<!--contenido-->

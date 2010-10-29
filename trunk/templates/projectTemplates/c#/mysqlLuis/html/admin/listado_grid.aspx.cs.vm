@@ -23,7 +23,7 @@ using System.Web.UI.HtmlControls;
 using System.Collections.Generic;
 
 
-namespace ${project}.${table}_dir
+namespace juleweb.${table}_dir
 {
     public partial class listado_${table}Grid : System.Web.UI.Page
     {

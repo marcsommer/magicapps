@@ -22,7 +22,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ${project}.portal.main_${table} {
+namespace ${project.name}
+ {
     
     
     /// <summary>
