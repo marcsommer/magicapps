@@ -38,7 +38,7 @@ namespace myWay
             cargarTablas();
 
            
-            System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(Form1));
+         //   System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(Form1));
     
             
 
