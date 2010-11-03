@@ -1,9 +1,8 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectView>ShowAllFiles</ProjectView>
-    <PublishUrlHistory>http://localhost/myWay/</PublishUrlHistory>
-    <InstallUrlHistory>
-    </InstallUrlHistory>
+    <PublishUrlHistory>\\webserver\BACKUP\LUIS\myway\|I:\compilaciones\myWay\|ftp://ftp.micasoft.net/httpdocs/soporte/myway/|http://localhost/myWay/</PublishUrlHistory>
+    <InstallUrlHistory>\\webserver\BACKUP\LUIS\myway\|http://www.micasoft.net/soporte/myway/</InstallUrlHistory>
     <SupportUrlHistory>
     </SupportUrlHistory>
     <UpdateUrlHistory>

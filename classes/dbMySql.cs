@@ -42,12 +42,12 @@ class dbMySql
 
         public List<table> getTables(string cadconexion, string database)
         {
-            MySqlConnection conexion = null;
+            MySql.Data.MySqlClient.MySqlConnection conexion = null;
             try
             {
                 List<table> lista = new List<table>();
 
-                conexion = new MySqlConnection(cadconexion);
+                conexion = new MySql.Data.MySqlClient.MySqlConnection(cadconexion);
                 miComando = new MySqlCommand("");
                 miComando.Connection = conexion;
                 conexion.ConnectionString = cadconexion;
