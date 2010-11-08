@@ -42,26 +42,26 @@
   <ItemGroup>
       <Reference Include="eWorld.UI, Version=2.0.6.2393, Culture=neutral, PublicKeyToken=24d65337282035f2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bindll\eWorld.UI.dll</HintPath>
+      <HintPath>bindlls\eWorld.UI.dll</HintPath>
     </Reference>
     <Reference Include="FreeTextBox, Version=3.1.6.34851, Culture=neutral, PublicKeyToken=5962a4e684a48b87, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bindll\FreeTextBox.dll</HintPath>
+      <HintPath>bindlls\FreeTextBox.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=1.0.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bindll\MySql.Data.dll</HintPath>
+      <HintPath>bindlls\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>bindll\System.Web.Extensions.dll</HintPath>
+      <HintPath>bindlls\System.Web.Extensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Extensions.Design, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>bindll\System.Web.Extensions.Design.dll</HintPath>
+      <HintPath>bindlls\System.Web.Extensions.Design.dll</HintPath>
        <Private>True</Private>
    </Reference>
     <Reference Include="System.Xml" />

@@ -9,10 +9,6 @@
 <description>description</description>
 <targetDirectory>${table}_dir</targetDirectory>
 <appliesToAllTables>true</appliesToAllTables>
-
-
-
-
 using System;
 using System.Data;
 using System.Configuration;
@@ -49,7 +45,7 @@ namespace juleweb.${table}_dir
 						Repeater2.DataBind();	
 						
 						if (sf.entero(Request["idcat"]) != 0) {
-							lista = ${table}.getList${table}By${relation.parentField()}(sf.entero(Request["idcat"]));
+							lista = ${table}.getListBy${relation.parentField()}(sf.entero(Request["idcat"]));
 						}
 					
 					#end			

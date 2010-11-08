@@ -468,6 +468,12 @@ class dbMySql
                     rel.parentTable = sf.cadena(miLector["referenced_table_name"]);
                     rel.parentField = sf.cadena(miLector["referenced_column_name"]);                
 
+                    // if the name of fields its equal...
+                    if (rel.childField.ToLower().Equals(rel.parentField.ToLower()))
+                        rel.relationType = relation.typeOfRelation.hasMany;
+                    else
+                        rel.relationType = relation.typeOfRelation.hasOne;
+                    
                     lista.Add(rel);
                 }  
                 return lista;

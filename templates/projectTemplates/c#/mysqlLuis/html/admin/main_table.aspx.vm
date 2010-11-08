@@ -142,6 +142,136 @@
 	 #end
 #end 			
 			
+#* codigo para relaciones uno a mucho...*#
+#foreach( $relation in $project.getRelations() )
+	#* only if has a relation and its the child table.. *#
+	#if ($relation.parentTable.equals(${table.name}) && $relation.relationType.toString()=="hasMany" )	
+		#foreach( $tablaPadre in $project.getTables() )
+			#if ($relation.childTable.equals(${tablaPadre.name}))
+				<!-- comienzo tabla relacion uno a mucho -->
+				<div class="tabla">	  
+						  <table cellpadding="0"   summary="Tabla de ${tablaPadre.targetName()}" class="activ">
+								<caption>
+								${tablaPadre.targetName()}
+								</caption>  
+						   <thead>    
+								<tr>
+								<th></th>		
+								#set ($count = 0)
+								#foreach( $field in $tablaPadre.getFields )
+									#if (!$field.isKey())
+									  #if ($field.targetType.toString() == "_integer")
+										 <th align="center">${field.targetName}</th>
+										 #end 
+										#if ($field.targetType.toString() == "_double")
+										 <th align="center">${field.targetName}</th>
+										 #end 
+										#if ($field.targetType.toString() == "_string")
+										 <th align="center">${field.targetName}</th>
+										 #end 
+										#if ($field.targetType.toString() == "_text")													 
+										#end 
+										#if ($field.targetType.toString() == "_date")
+										 <th align="center">${field.targetName}</th>
+										 #end 
+										#if ($field.targetType.toString() == "_boolean")
+										 <th align="center">${field.targetName}</th>
+										 #end 
+										#if ($field.targetType.toString() == "_audio")
+										 <th align="center">${field.targetName}</th>
+										#end 
+										#if ($field.targetType.toString() == "_video")
+										 <th align="center">${field.targetName}</th>
+										#end 
+										#if ($field.targetType.toString() == "_document")
+										 <th align="center">${field.targetName}</th>
+										#end 
+										#if ($field.targetType.toString() == "_image")
+										 <th align="center">${field.targetName}</th>
+										#end 
+									#end 
+									#set ($count = $count + 1 )
+								#end  	
+								<th></th>
+								</tr>
+							</thead>
+							  <tbody>
+									<asp:Repeater ID="rp${tablaPadre}" runat="server">
+											  <ItemTemplate >
+												<tr  title="${tablaPadre}" >
+												<td align="center">
+													<a href="./main_${tablaPadre}.aspx?id=<%#Eval("${tablaPadre.getKey()}")%> " class="btn">Editar</a> 
+												</td>
+												 #set ($count = 0)
+											#foreach( $field in $tablaPadre.getFields )
+												#if (!$field.isKey())
+												  #if ($field.targetType.toString() == "_integer")
+														<td  align="center">
+															<%#Eval("${field}")%>
+														</td>
+													 #end 
+													#if ($field.targetType.toString() == "_double")
+														<td  align="center">
+															<%#Eval("${field}")%>
+														</td>
+													 #end 
+													#if ($field.targetType.toString() == "_string")
+														<td  align="center">
+															<%#Eval("${field}")%>
+														</td>
+													 #end 
+													#if ($field.targetType.toString() == "_text")
+													#end 
+													#if ($field.targetType.toString() == "_date")
+														<td  align="center">
+															<%#Eval("${field}")%>
+														</td>
+													 #end 
+													#if ($field.targetType.toString() == "_boolean")
+														<td  align="center">
+															<%#Eval("${field}")%>
+														</td>
+													 #end 
+													#if ($field.targetType.toString() == "_audio")
+														<td  align="center">
+															<%#Eval("${field}")%>
+														</td>
+													 #end 
+													#if ($field.targetType.toString() == "_video")
+														<td  align="center">
+															<%#Eval("${field}")%>
+														</td>
+													 #end 
+													#if ($field.targetType.toString() == "_document")
+														<td  align="center">
+															<%#Eval("${field}")%>
+														</td>
+													 #end 
+													 #if ($field.targetType.toString() == "_image")
+														<td  align="center">
+															<%# ((DataBinder.Eval(Container.DataItem, "image").ToString() == "") ? "" : "<a href=" + DataBinder.Eval(Container.DataItem, "image") + "><img src='" + DataBinder.Eval(Container.DataItem, "image") + "' border='0' width='70px' /></a>")%>
+														</td>
+													 #end 
+												#end
+												#set ($count = $count + 1 )
+											#end  				         
+													<td align="center">
+													  <a href="./main_${tablaPadre}.aspx?idb=<%#Eval("${tablaPadre.getKey()}")%> " class="btn">Borrar</a> 
+				 
+												</td>
+				                			 
+												</tr>
+											</ItemTemplate>
+									</asp:Repeater>
+							 </tbody>
+							</table> 
+					</div>	
+					<!-- fin tabla relacion uno a mucho --> 
+			#end 
+		#end			
+	#end
+#end 
+#* fin codigo para relaciones uno a mucho...*#
 			
 <asp:Panel ID="PanelAviso" visible="false" runat="server">
 	<p><asp:Label ID="lblinfo" Visible="false"  runat="server" Text=""></asp:Label></p>

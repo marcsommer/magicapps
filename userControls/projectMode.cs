@@ -62,6 +62,9 @@ namespace myWay.userControls
             // lets load config files of project templates ...
             ctes.listaProjectConfigFiles.Clear();
             traverseDirectorySearchProjectConfigFiles(util.projectTemplates_dir);
+            if (ctes.listaProjectConfigFiles.Count == 0)
+                AsyncMessage("No hemos encontrado proyectos", Color.Red);
+
             foreach (projectconfigfiles item in ctes.listaProjectConfigFiles)
             {
                 lbProjectTemplate.Items.Add(item.Name);
@@ -104,17 +107,21 @@ namespace myWay.userControls
                 int contadorFinal = 0;
                 if (general.actualProject.projectTemplatesDirectory != null)
                 {
-                    foreach (object item in lbProjectTemplate.Items)
+                    if (lbProjectTemplate.Items.Count >= 1)
                     {
-                        if (item.ToString() == general.actualProject.projectTemplatesDirectorySmall)
+                        foreach (object item in lbProjectTemplate.Items)
                         {
-                            contadorFinal = contador;
+                            if (item.ToString() == general.actualProject.projectTemplatesDirectorySmall)
+                            {
+                                contadorFinal = contador;
+                            }
+                            contador += 1;
                         }
-                        contador += 1;
+                        // lbProjectTemplate.Text = general.actualProject.projectTemplatesDirectorySmall;
                     }
-                    // lbProjectTemplate.Text = general.actualProject.projectTemplatesDirectorySmall;
+                    lbProjectTemplate.SetSelected(contadorFinal, true);
                 }
-                lbProjectTemplate.SetSelected(contadorFinal, true);
+                
                                 
 
             }

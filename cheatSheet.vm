@@ -306,3 +306,16 @@ sample: we got a foreign key and want to know about their parent table
 ${table.getTableNameByForeignKey( project , "name" )}
 ${table.getKeyFieldByForeignKey ( project , "name" )}
 
+
+
+------------------------------------------------------------
+
+para utilizar arrays....
+#set( $functions = ["1","2","3","4","5","6","7","8","9","10"] )
+nos permite definirlo vacio, pero luego no se como rellenarlo... #set( $functions = [] )
+
+para cambiar un valor... 
+$functions.set_Item(0,"abc")
+
+para sacar un item
+$functions.get_Item(0)
