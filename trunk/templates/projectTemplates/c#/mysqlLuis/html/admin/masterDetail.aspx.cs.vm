@@ -47,6 +47,8 @@ public partial class masterDetail_${table} : System.Web.UI.Page
 			#foreach( $relation in $table.getRelations() )
 				lo.comboRellenar(cmb${relation.childField()}, "select ${relation.childField()},${relation.childDescription()} from ${relation.childTable()} ", ctes.conStringAdoGeneral, "Seleccione");
 			#end 
+			
+	#* fin codigo para relaciones uno a mucho...*#
 		// si nos mandan para borrar...
 		if (Request["idb"] != null)
 		{
@@ -55,6 +57,25 @@ public partial class masterDetail_${table} : System.Web.UI.Page
 		}
 		if (Request["id"] != null)
 		{
+			#* codigo para relaciones uno a mucho...*#
+			#foreach( $relation in $project.getRelations() )
+ 				#* only if has a relation and its the child table.. *#
+ 				#if ($relation.parentTable.equals(${table.name}) && $relation.relationType.toString()=="hasMany" )	
+					// code for relation one to many...	
+					#foreach( $tablaPadre in $project.getTables() )
+						#if ($relation.childTable.equals(${tablaPadre.name}))
+							List<${tablaPadre.name}> lista${tablaPadre.name} = new List<${tablaPadre.name}>();
+							lista${tablaPadre.name} = ${tablaPadre.name}.getListBy${relation.childField}(sf.entero(Request["id"]));
+			     
+							rp${tablaPadre}.DataSource = lista${tablaPadre.name};
+							rp${tablaPadre}.DataBind(); 
+										
+						#end
+					#end			
+				#end
+			#end 
+			#* fin codigo para relaciones uno a mucho...*#
+			
 			${table} res = new ${table}(sf.entero(Request["id"]));			
 			
 #set ($count = 0)
@@ -414,56 +435,50 @@ public partial class masterDetail_${table} : System.Web.UI.Page
 	
 	
    
-	
 	// funciones extra para campos extra
-	#set ($count = 0)
+				
+		#set ($count = 0)
 			#foreach( $field in $table.GetArrayOfFields )
 				#if (!$field.isKey())
-					
+						  #if ($field.targetType.toString() == "_image")
+							protected void btnborrarimagen${field}_Click(object sender, EventArgs e)
+							{
+								${table} res = new ${table}(sf.entero(Request["id"]));
+
+								res.${field}="";
+								res.Update();
+								img${field}.Visible = false;
+								btnborrarimagen${field}.Visible = false;
+								//txtTextoAlternativo${field}.Text = "";
 					 
-							  #if ($field.targetType.toString() == "_image")
-								 protected void btnborrarimagen${field}_Click(object sender, EventArgs e)
-								{
-									${table} res = new ${table}(sf.entero(Request["id"]));
- 
-									res.${field}="";
-									res.Update();
-									img${field}.Visible = false;
-									btnborrarimagen${field}.Visible = false;
-									//txtTextoAlternativo${field}.Text = "";
-						 
-									if (System.IO.File.Exists(Server.MapPath(img${field}.ImageUrl.ToString())))
-										System.IO.File.Delete(Server.MapPath(img${field}.ImageUrl.ToString()));
-									FileUploadImagen${field}.Visible = true;
-									 
-									
-								}
-								 
-								 #end 
-							  #if ($field.targetType.toString() == "_document")
-								 protected void btnborrar${field}_Click(object sender, EventArgs e)
-								{
-									${table} res = new ${table}(sf.entero(Request["id"]));
- 
-									res.${field}="";
-									res.Update();
-									lbl${field}.Visible = false;
-									btnborrar${field}.Visible = false;
-									//txtTextoAlternativo${field}.Text = "";
-						 
-									if (System.IO.File.Exists(Server.MapPath(lbl${field}.Text.ToString())))
-										System.IO.File.Delete(Server.MapPath(lbl${field}.Text.ToString()));
-									FileUpload${field}.Visible = true;
-									 
-									
-								}
-								 
-								 #end 									 
-								 
-					  
+								if (System.IO.File.Exists(Server.MapPath(img${field}.ImageUrl.ToString())))
+									System.IO.File.Delete(Server.MapPath(img${field}.ImageUrl.ToString()));
+								FileUploadImagen${field}.Visible = true;								 
+								
+							}
+						#end 
+					  #if ($field.targetType.toString() == "_document")
+						 protected void btnborrar${field}_Click(object sender, EventArgs e)
+						{
+							${table} res = new ${table}(sf.entero(Request["id"]));
+
+							res.${field}="";
+							res.Update();
+							lbl${field}.Visible = false;
+							btnborrar${field}.Visible = false;
+							//txtTextoAlternativo${field}.Text = "";
+				 
+							if (System.IO.File.Exists(Server.MapPath(lbl${field}.Text.ToString())))
+								System.IO.File.Delete(Server.MapPath(lbl${field}.Text.ToString()));
+							FileUpload${field}.Visible = true;									
+						}
+					#end 	
 				#end
 				#set ($count = $count + 1 )
 			#end 
+	
+	
+	
 	
 	
 } 

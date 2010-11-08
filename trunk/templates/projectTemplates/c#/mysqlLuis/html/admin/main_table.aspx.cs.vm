@@ -53,6 +53,26 @@ public partial class main_${table} : System.Web.UI.Page
 		}
 		if (Request["id"] != null)
 		{
+		
+			#* codigo para relaciones uno a mucho...*#
+			#foreach( $relation in $project.getRelations() )
+ 				#* only if has a relation and its the child table.. *#
+ 				#if ($relation.parentTable.equals(${table.name}) && $relation.relationType.toString()=="hasMany" )	
+					// code for relation one to many...	
+					#foreach( $tablaPadre in $project.getTables() )
+						#if ($relation.childTable.equals(${tablaPadre.name}))
+							List<${tablaPadre.name}> lista${tablaPadre.name} = new List<${tablaPadre.name}>();
+							lista${tablaPadre.name} = ${tablaPadre.name}.getListBy${relation.childField}(sf.entero(Request["id"]));
+			     
+							rp${tablaPadre}.DataSource = lista${tablaPadre.name};
+							rp${tablaPadre}.DataBind(); 
+										
+						#end
+					#end			
+				#end
+			#end 
+			#* fin codigo para relaciones uno a mucho...*#
+			
 			${table} res = new ${table}(sf.entero(Request["id"]));			
 			
 #set ($count = 0)
@@ -64,7 +84,6 @@ public partial class main_${table} : System.Web.UI.Page
   txt${field}.Text = sf.cadena(res.${field});
 #end
 #end 
-
  	#if (!$field.isKey())
 		#if ($field.targetType.toString() == "_string") 
 			txt${field}.Text = res.${field}; 
@@ -108,11 +127,9 @@ public partial class main_${table} : System.Web.UI.Page
 			btnborrar${field}.Visible = true;
 			FileUpload${field}.Visible = false;
 		}
-		#end 									 
-
+		#end 	
 #end	
 #end	
-
 #end
 #set ($count = $count + 1 )
 #end 
@@ -132,113 +149,98 @@ public partial class main_${table} : System.Web.UI.Page
 
 	protected void butModificar_Click(object sender, EventArgs e)
 	{
+		messageList = new List<message>();
+		
 		// modificar
 		if (Request["id"] != null)
 		{
-		
-		  messageList = new List<message>();
-		 
-		 
-#foreach( $field in $table.GetFields )
-	#if (!$field.isKey() && !$field.isForeignKey())
-		#if ($field.type.toString() == "_integer")
-			if (sf.entero(txt${field}.Text) == 0 && !txt${field}.Text.Equals("0"))
-		   {
-			    messageList.Add(new message("Revise el campo ${field}",message.typeOfMessage.error));
-		   }
-		#end  
-	#end  
-#end
-
-	 if (messageList.Count > 0)
-         {
-             showMessages();
-             return;
-         }
+			validateData();
+			if (messageList.Count > 0)
+			{
+				 showMessages();
+				 return;
+			}
 
    
 			${table} res = new ${table}(sf.entero(Request["id"]));
  
 			#set ($count = 0)
 			#foreach( $field in $table.GetFields )
-
-			 
 			 #if ($field == "idportal")	
 			 #else
-			 	#if (!$field.isKey())
-				 
-							  #if ($field.targetType.toString() == "_integer")
-								#if (! $field.isForeignKey())
-									res.${field}=sf.entero(txt${field}.Text) ;
-								#else
-									 res.${field}=sf.entero(cmb${field}.SelectedValue) ;
-								 #end                                   
-							 #end 
-							  #if ($field.targetType.toString() == "_string")
-								res.${field}=sf.cadena(txt${field}.Text);			
-							 #end 
-							   #if ($field.targetType.toString() == "_text")
-								res.${field}=sf.cadena(txt${field}.Text);			
-							 #end 
-							 #if ($field.targetType.toString() == "_double")
-								res.${field}=sf.doble(txt${field}.Text);			
-							 #end
-							 #if ($field.targetType.toString() == "_date")
-								//res.${field}=sf.fecha(${field}.SelectedDate) ;
-								res.${field}=sf.fecha(${field}.Text) ;
-							  #end 
-							  #if ($field.targetType.toString() == "_boolean")
-								 res.${field}=sf.boolean(ck${field}.Checked) ;
-							  #end 
-							#if ($field.targetType.toString() == "_image")
-								if (FileUploadImagen${field}.PostedFile == null) { }
-								else
+			 	#if (!$field.isKey())				 
+						  #if ($field.targetType.toString() == "_integer")
+							#if (! $field.isForeignKey())
+								res.${field}=sf.entero(txt${field}.Text) ;
+							#else
+								 res.${field}=sf.entero(cmb${field}.SelectedValue) ;
+							 #end                                   
+						 #end 
+						  #if ($field.targetType.toString() == "_string")
+							res.${field}=sf.cadena(txt${field}.Text);			
+						 #end 
+						   #if ($field.targetType.toString() == "_text")
+							res.${field}=sf.cadena(txt${field}.Text);			
+						 #end 
+						 #if ($field.targetType.toString() == "_double")
+							res.${field}=sf.doble(txt${field}.Text);			
+						 #end
+						 #if ($field.targetType.toString() == "_date")
+							//res.${field}=sf.fecha(${field}.SelectedDate) ;
+							res.${field}=sf.fecha(${field}.Text) ;
+						  #end 
+						  #if ($field.targetType.toString() == "_boolean")
+							 res.${field}=sf.boolean(ck${field}.Checked) ;
+						  #end 
+						#if ($field.targetType.toString() == "_image")
+							if (FileUploadImagen${field}.PostedFile == null) { }
+							else
+							{
+								if (FileUploadImagen${field}.FileName != "")
 								{
-									if (FileUploadImagen${field}.FileName != "")
+									if (!System.IO.File.Exists(Server.MapPath("../../bdimages/") + sf.cadena(HttpContext.Current.Session["admin"]) + FileUploadImagen${field}.FileName))
 									{
-										if (!System.IO.File.Exists(Server.MapPath("../../bdimages/") + sf.cadena(HttpContext.Current.Session["admin"]) + FileUploadImagen${field}.FileName))
-										{
-											res.${field} = "../../bdimages/" + sf.cadena(HttpContext.Current.Session["admin"]) + FileUploadImagen${field}.FileName;
-											FileUploadImagen${field}.SaveAs(Server.MapPath("../../bdimages/") + sf.cadena(HttpContext.Current.Session["admin"]) + FileUploadImagen${field}.FileName);
-											img${field}.ImageUrl = res.${field};
-											//img${field}.AlternateText = " " + res.titulo;
-											img${field}.Visible = true;
-											btnborrarimagen${field}.Visible = true;
-											FileUploadImagen${field}.Visible = false;
+										res.${field} = "../../bdimages/" + sf.cadena(HttpContext.Current.Session["admin"]) + FileUploadImagen${field}.FileName;
+										FileUploadImagen${field}.SaveAs(Server.MapPath("../../bdimages/") + sf.cadena(HttpContext.Current.Session["admin"]) + FileUploadImagen${field}.FileName);
+										img${field}.ImageUrl = res.${field};
+										//img${field}.AlternateText = " " + res.titulo;
+										img${field}.Visible = true;
+										btnborrarimagen${field}.Visible = true;
+										FileUploadImagen${field}.Visible = false;
 
-										}
-										else
-										{//mensaje("El archivo ya existe, elija otro nombre");
-										}
-											
 									}
+									else
+									{//mensaje("El archivo ya existe, elija otro nombre");
+									}
+										
 								}
-							 #end 
-							#if ($field.targetType.toString() == "_document")
-								if (FileUpload${field}.PostedFile == null) { }
-								else
+							}
+						 #end 
+						#if ($field.targetType.toString() == "_document")
+							if (FileUpload${field}.PostedFile == null) { }
+							else
+							{
+								if (FileUpload${field}.FileName != "")
 								{
-									if (FileUpload${field}.FileName != "")
+									if (!System.IO.File.Exists(Server.MapPath("../../bddocumentos/") + sf.cadena(HttpContext.Current.Session["admin"]) + FileUpload${field}.FileName))
 									{
-										if (!System.IO.File.Exists(Server.MapPath("../../bddocumentos/") + sf.cadena(HttpContext.Current.Session["admin"]) + FileUpload${field}.FileName))
-										{
-											res.${field} = "../../bddocumentos/" + sf.cadena(HttpContext.Current.Session["admin"]) + FileUpload${field}.FileName;
-											FileUpload${field}.SaveAs(Server.MapPath("../../bddocumentos/") + sf.cadena(HttpContext.Current.Session["admin"]) + FileUpload${field}.FileName);
-											lbl${field}.Text = res.${field};
-											//img${field}.AlternateText = " " + res.titulo;
-											lbl${field}.Visible = true;
-											btnborrar${field}.Visible = true;
-											FileUpload${field}.Visible = false;
+										res.${field} = "../../bddocumentos/" + sf.cadena(HttpContext.Current.Session["admin"]) + FileUpload${field}.FileName;
+										FileUpload${field}.SaveAs(Server.MapPath("../../bddocumentos/") + sf.cadena(HttpContext.Current.Session["admin"]) + FileUpload${field}.FileName);
+										lbl${field}.Text = res.${field};
+										//img${field}.AlternateText = " " + res.titulo;
+										lbl${field}.Visible = true;
+										btnborrar${field}.Visible = true;
+										FileUpload${field}.Visible = false;
 
-										}
-										else
-										{//mensaje("El archivo ya existe, elija otro nombre");
-										}
-											
 									}
+									else
+									{//mensaje("El archivo ya existe, elija otro nombre");
+									}
+										
 								}
-								#end 	
-								 #end 									 
+							}
+							#end 	
+							 #end 									 
 					 #end 
 				#set ($count = $count + 1 )
 			#end 
@@ -254,11 +256,16 @@ public partial class main_${table} : System.Web.UI.Page
 		else
 		{
 
+			validateData();
+			if (messageList.Count > 0)
+			{
+				 showMessages();
+				 return;
+			}
+        
 			${table} res = new ${table}(); 
 			#set ($count = 0)
 			#foreach( $field in $table.GetFields )
-
-			
 			 #if ($field == "idportal")	
 			 #else
 				#if (!$field.isKey())
@@ -359,6 +366,23 @@ public partial class main_${table} : System.Web.UI.Page
 		}
 	}
 	
+	
+	private bool validateData()
+    {
+        #foreach( $field in $table.GetFields )
+            #if ( $field.isForeignKey())
+	            #if ($field.type.toString() == "_integer")
+		            if (sf.entero(cmb${field}.SelectedIndex) == 0 )
+	               {
+		                messageList.Add(new message("Revise el campo ${field.targetName}",message.typeOfMessage.error));
+	               }
+	            #end  
+            #end  
+        #end
+        return true;
+    }
+        
+	
 	 #foreach( $relation in $table.getRelations() )
 		  protected void ibNew${relation.childField()}_Click(object sender, ImageClickEventArgs e)
 			{
@@ -403,7 +427,6 @@ public partial class main_${table} : System.Web.UI.Page
 	#set ($count = 0)
 			#foreach( $field in $table.GetFields )
 				#if (!$field.isKey())
-					
 					 
 							  #if ($field.targetType.toString() == "_image")
 								 protected void btnborrarimagen${field}_Click(object sender, EventArgs e)

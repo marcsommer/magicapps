@@ -724,17 +724,23 @@ using System.ComponentModel;
        }
 		
 
-#set ($count = 0)	
-#foreach( $relation in $table.getRelations() )
 
-  
-   #set ($count = $count + 1 ) 
- 
-  // devuelve una lista de ${table}
- 
-		public static  List< ${table} > getList${table}By${relation.parentField()}(int ${relation.parentField()})
-        { 
-  
+
+#set ($count = 0)	
+#set( $functions = ["1","2","3","4","5","6","7","8","9","10"] )  
+
+
+#foreach( $relation in $table.getRelations() )	
+
+	#* solo creamos la funcion si no existe ya una con el mismo nombre *#
+	#set ($nombreFuncion = "getListBy${relation.parentField}"  ) 	
+	#if ( !$functions.Contains($nombreFuncion) )
+		#set ($count = $count + 1 ) 	
+		$functions.set_Item( $count ,$nombreFuncion)
+			
+		// devuelve una lista de ${table} 
+		public static  List< ${table} > getListBy${relation.parentField} (int ${relation.parentField()})
+        {   
 		    List< ${table} > lista${table} = new List< ${table} >();
             MySqlDataReader reg;
             string sqlt;
@@ -743,34 +749,31 @@ using System.ComponentModel;
             {
             sqlt = "select * from ${relation.childTable()}";          
             sqlt += " where ${relation.parentField()}=" + sf.cadena(${relation.parentField()});  
-       
- 
- 
-		
-		reg = db.sql(sqlt);
+       		
+			reg = db.sql(sqlt);
             while (reg.Read())
                 {
                 ${table} pp = new ${table}();   
-#foreach( $field in $table.GetFields )  
-	  #if ($field.type.toString() == "_integer")
-		 pp.${field} = sf.entero(reg["${field}"].ToString());
-		 #end 
-	  #if ($field.type.toString() == "_double")
-		 pp.${field} = sf.doble(reg["${field}"].ToString());
-		 #end 
-	  #if ($field.type.toString() == "_string")
-		 pp.${field} = sf.cadena(reg["${field}"].ToString());
-		 #end 
-	  #if ($field.type.toString() == "_text")
-		 pp.${field} = sf.cadena(reg["${field}"].ToString());
-		 #end 
-	  #if ($field.type.toString() == "_date")
-		 pp.${field} = sf.fecha(reg["${field}"].ToString());
-		 #end 
-	  #if ($field.type.toString() == "_boolean")
-		 pp.${field} = sf.boolean(reg["${field}"].ToString());
-		 #end   
-#end 
+				#foreach( $field in $table.GetFields )  
+					  #if ($field.type.toString() == "_integer")
+						 pp.${field} = sf.entero(reg["${field}"].ToString());
+						 #end 
+					  #if ($field.type.toString() == "_double")
+						 pp.${field} = sf.doble(reg["${field}"].ToString());
+						 #end 
+					  #if ($field.type.toString() == "_string")
+						 pp.${field} = sf.cadena(reg["${field}"].ToString());
+						 #end 
+					  #if ($field.type.toString() == "_text")
+						 pp.${field} = sf.cadena(reg["${field}"].ToString());
+						 #end 
+					  #if ($field.type.toString() == "_date")
+						 pp.${field} = sf.fecha(reg["${field}"].ToString());
+						 #end 
+					  #if ($field.type.toString() == "_boolean")
+						 pp.${field} = sf.boolean(reg["${field}"].ToString());
+						 #end   
+				#end 
                lista${table}.Add(pp);
                }
             reg.Close();
@@ -786,26 +789,38 @@ using System.ComponentModel;
             }
             return lista${table};
        }	
+		
+	#else
+		// la funcion ya existe...
+	#end 
  
   
-	
-	 public void delete${relation.parentTable()}By${relation.parentField()} (int ${relation.parentField()}x)
-	 {
-		 dbClass db=new  dbClass(ctes.conStringAdoGeneral);
-		 String  sqlt;
-		 
-		try
-		{
-		  sqlt = " delete from ${table} where ${relation.parentField()}=" + ${relation.parentField()}x ;
-			db.ejecutar(sqlt);
-		}
-		finally
-		{db.Dispose();}
-		  
-
-	}  
-
+	#* solo creamos la funcion si no existe ya una con el mismo nombre *#
+	#set ($nombreFuncion = "delete${relation.parentTable}By${relation.parentField}"  ) 	
+	#if ( !$functions.Contains($nombreFuncion) )
+		#set ($count = $count + 1 ) 
+		$functions.set_Item( $count ,$nombreFuncion)
+		 public void delete${relation.parentTable}By${relation.parentField} (int ${relation.parentField()}x)
+		 {
+			 dbClass db=new  dbClass(ctes.conStringAdoGeneral);
+			 String  sqlt;
+			 
+			try
+			{
+			  sqlt = " delete from ${table} where ${relation.parentField()}=" + ${relation.parentField()}x ;
+				db.ejecutar(sqlt);
+			}
+			finally
+			{db.Dispose();}
+		}  
+	#end
+  
+ 
 #end 
+
+
+
+
 // funciones extra para campos extra
 		#set ($count = 0)
                 #foreach( $field in $table.GetFields )

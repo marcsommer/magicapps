@@ -215,7 +215,6 @@ namespace juleweb.${table}_dir {
 #foreach( $relation in $project.getRelations() )
  	 #* only if has a relation and its the child table.. *#
 	#if ($relation.childTable.equals(${table.name}))	
-	
 		#foreach( $tablaPadre in $project.getTables() )
 			#if ($relation.parentTable.equals(${tablaPadre.name}))
 				/// <summary>
@@ -229,9 +228,22 @@ namespace juleweb.${table}_dir {
 						
 			#end
 		#end
-		
 	#end
+#end 
 
+#* codigo para relaciones uno a mucho...*#
+#foreach( $relation in $project.getRelations() )
+	#* only if has a relation and its the child table.. *#
+	#if ($relation.parentTable.equals(${table.name}) && $relation.relationType.toString()=="hasMany" )	
+		/// <summary>
+		/// Control rp${relation.childTable}.
+		/// </summary>
+		/// <remarks>
+		/// Campo generado automáticamente.
+		/// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Repeater rp${relation.childTable};		
+	#end
 #end 
  
 

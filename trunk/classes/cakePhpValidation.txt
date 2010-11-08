@@ -1,4 +1,9 @@
-﻿<?php
+﻿
+// 
+// 
+// http://book.cakephp.org/es/view/134/Core-Validation-Rules
+
+<?php
 /**
 * Validation Class. Used for validation of model data
 *
