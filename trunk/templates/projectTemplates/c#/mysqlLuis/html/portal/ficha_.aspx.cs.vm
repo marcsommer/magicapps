@@ -94,7 +94,7 @@ namespace juleweb.portal.main_${table}
 					 #if ($field.targetType.toString() == "_document")
 						if (${table}x.${field} != "")
 						{
-							img${field}.ImageUrl = ${table}x.${field};
+							img${field}.ImageUrl = "../../images/pdf.jpg";
 							img${field}.Visible = true;
 							//img${field}.AlternateText = " " + noticiax.titulo;									
 						}

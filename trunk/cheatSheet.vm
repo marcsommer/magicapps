@@ -1,5 +1,44 @@
 ﻿
 
+comentarios posibles:
+-------------------------------------
+#image# - imagen
+#doc#	documento
+#audio#	audio
+#video#	video
+#desc#	este campo será el utilizado en los combos para mostrar texto...
+#money#
+#hide#
+
+- para crear reglas inherentes
+#url# obliga a comprobar si es una url...
+#email# obliga a comprobar si es email...
+#requerido#
+#required#
+#alphaNumeric#
+#creditcard#
+#date#
+#decimal#
+#ip#
+#isUnique#
+#money#
+#numeric#
+#phone#
+#postal#
+
+#between,1,15,message#
+#comparison,>=,18,message# por ejemplo mayor de 18 años
+#extension,jpg,png,message# Esta regla verifica que la extensión de archivo sea como .jpg o .png
+#minLength,10,message#
+#maxLength,10,message#
+#inList,a,b,message#
+#regexp,'/^[a-z0-9]{3,}$/i',message# 
+
+
+
+--------------------------------
+valores posibles en los templates
+
 $table.Name
 $table.TargetName
 $table.numberOfFields
@@ -166,15 +205,6 @@ relation
 	${relation.relationType()}
 
 
-comentarios posibles:
--------------------------------------
-#image# - imagen
-#doc#	documento
-#audio#	audio
-#video#	video
-#desc#	este campo será el utilizado en los combos para mostrar texto...
-#money#
-#hide#
 
 
 

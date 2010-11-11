@@ -22,11 +22,13 @@ public class validationRule
         Extension,
         File,
         IP,
+        IsUnique,
         MaxLength,
         MinLength,
         Money,
         Multiple,
         Numeric,
+        Required,
         Phone,
         Postal,
         SSN,
@@ -44,7 +46,7 @@ public class validationRule
     private string _pattern;
     private string _country;
     private string _deep;
-    private string _type;
+    private typeOfValidation _type;
     private string _errors;
 
     private bool _Required;
@@ -90,7 +92,7 @@ public class validationRule
         get { return _deep; }
         set { _deep = value; }
     }
-    public string type
+    public typeOfValidation type
     {
         get { return _type; }
         set { _type = value; }
@@ -133,6 +135,16 @@ public class validationRule
 
     #endregion
 
+
+    public validationRule( )
+    {
+         
+    }
+
+    public validationRule(typeOfValidation type)
+    {
+        this.type = type;
+    }
 
 }
  

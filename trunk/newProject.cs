@@ -52,49 +52,10 @@ namespace myWay
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Cursor.Current = Cursors.WaitCursor;
-             // search metadata...
-            Thread t = new Thread(new ParameterizedThreadStart(search));
-            // we need to pass data through object
-            //project pro = new project();
-            pr.name = txtName.Text;
-            pr.nameSpace = txtName.Text;
-            pr.host = txtHost.Text;
-            pr.database = txtDatabase.Text;
-            pr.user = txtUser.Text;
-            pr.password = txtPassword.Text;
-            pr.dbDataType = (project.databaseType)cmbDataType.SelectedItem;
-
-            t.Start(pr);
-
-            // use this for debugging
-            //search(pro);
-            
-         
-        }
+       
 
         
-
-        private void butSave_Click(object sender, EventArgs e)
-        {
-            if (pr != null)
-            {
-                // lets select some data from 
-                if (pr.tables.Count > 0)
-                {
-                    pr.tableSelected = pr.tables[0].ToString();
-                    pr.actualTable = (table) pr.tables[0];
-                }
-
-                pr.saveProject(Path.Combine(util.projects_dir, pr.name + ".xml"));
-                AsyncWriteLine("Project saved... \n");
-
-                this.DialogResult = DialogResult.Yes;
-            }
-
-        }
+ 
 
         private void search(object file)
         {
@@ -1058,6 +1019,198 @@ namespace myWay
                         }
                         break;
                         // end of access2007
+                        case project.databaseType.excelOrCsv:
+
+                        if (pr.database.Contains("xls"))
+                            connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + pr.database + ";Extended Properties=\"text;HDR=Yes;FMT=Delimited\"";
+                        else
+                            connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + pr.database + ";Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=1\"";
+
+
+                        dbExcelOrCsv dbaODBC = new dbExcelOrCsv();
+                        errorMessage = dbaODBC.test(connectionString);
+                        if (errorMessage.Equals(""))
+                        {
+                            AsyncWrite("");
+                            AsyncWriteLine("Success connection \n");
+                            //pr = new project();
+                            //pr.name = pro.name;9
+
+                            // lets get the tables...
+                            List<table> lista = new List<table>();
+                            lista = dbaODBC.getTables(connectionString, pr.database);
+                            //lista.Sort();
+                            foreach (table item in lista)
+                            {
+                                AsyncWriteLine("Found table... " + item.Name + "\n");
+
+                                // now lets get the fields for each table...
+                                List<field> listaField = new List<field>();
+                                listaField = dbaODBC.getFields(connectionString, item.Name);
+
+
+                                if (listaField != null)
+                                {
+                                    foreach (field fi in listaField)
+                                    {
+                                        item.fields.Add(fi);
+                                        AsyncWriteLine("Found field... " + fi.Name + "\n");
+
+                                    }
+
+                                }
+
+                                // lets get primary keys and foreign keys for the table...
+                                dbaODBC.getKeys(connectionString, item);
+
+                                // now we search a text field that is not key
+                                if (listaField != null)
+                                {
+                                    // the descriptionField its the first string field of table...
+                                    foreach (field campito in listaField)
+                                    {
+                                        if (campito.type.ToString().Equals("_string") || campito.type.ToString().Equals("_text"))
+                                        {
+                                            item.fieldDescription = campito.Name;
+                                            break;
+                                        }
+
+                                    }
+
+                                }
+                                if (item.fieldDescription == null)
+                                    item.fieldDescription = item.GetKey;
+
+
+                                // lets sort the fields in the table...
+                                // we order but put first key fields
+                                if (general.orderFields)
+                                {
+                                    item.fields.Sort(new compareFields(compareFields.CompareByOptions.name));
+                                    item.fields.Sort(new compareFields(compareFields.CompareByOptions.key));
+                                }
+                                pr.tables.Add(item);
+
+
+                            }
+
+                            pr.tables.Sort();
+                            // now lets get the relations ...
+                            List<relation> listarelation = new List<relation>();
+                            listarelation = dbaODBC.getRelations(connectionString);
+                            if (listarelation != null)
+                            {
+                                foreach (relation re in listarelation)
+                                {
+                                    //  item.fields.Add(re);
+                                    pr.relations.Add(re);
+                                    AsyncWriteLine("Found relation... " + re.name + "\n");
+
+                                    // now if the relation has to do with the tables...
+                                    foreach (table item in pr.tables)
+                                    {
+                                        // we put the relation in the parent table...
+                                        if (item.Name.ToLower().Equals(re.parentTable.ToLower()))
+                                        {
+                                            // le añadimos la descripcion
+                                            re.parentDescription = item.fieldDescription;
+
+                                            foreach (table taby in pr.tables)
+                                            {
+                                                if (taby.Name.Equals(re.childTable))
+                                                    re.childDescription = taby.fieldDescription;
+                                            }
+                                            item.relations.Add(re);
+                                        }
+                                    }
+
+
+                                }
+
+                            }
+
+
+                            // also we can get relations about the field names
+                            foreach (table tab in pr.tables)
+                            {
+                                foreach (field campo in tab.fields)
+                                {
+                                    if (campo.isKey)
+                                    {
+                                        foreach (table tab2 in pr.tables)
+                                        {
+                                            if (!tab.Name.ToLower().Equals(tab2.Name.ToLower()))
+                                            {
+                                                foreach (field campo2 in tab2.fields)
+                                                {
+                                                    if (campo.Name.ToLower().Equals(campo2.Name.ToLower()))
+                                                    {
+                                                        campo2.isForeignKey = true;
+                                                        relation rel = new relation();
+                                                        rel.name = tab.Name + "_" + tab2.Name;
+                                                        if (!pr.relations.Contains(rel.name))
+                                                        {
+                                                            rel.parentTable = tab2.Name;
+                                                            rel.parentField = campo2.Name;
+
+                                                            rel.childTable = tab.Name;
+                                                            rel.childField = campo.Name;
+
+                                                            // found description of fields...
+                                                            foreach (table item in pr.tables)
+                                                            {
+                                                                if (item.Name.ToLower().Equals(rel.childTable.ToLower()))
+                                                                    rel.childDescription = item.fieldDescription;
+
+                                                                if (item.Name.ToLower().Equals(rel.parentTable.ToLower()))
+                                                                    rel.parentDescription = item.fieldDescription;
+                                                            }
+
+                                                            pr.relations.Add(rel);
+
+                                                            // now if the relation has to do with the tables...
+                                                            foreach (table item in pr.tables)
+                                                            {
+                                                                if (item.Name.Equals(tab2.Name))
+                                                                {
+                                                                    // see if the relation exists..
+                                                                    bool seguir = true;
+                                                                    foreach (relation rel2 in tab2.relations)
+                                                                    {
+                                                                        if (rel2.name.ToLower().Equals(rel.name.ToLower()))
+                                                                            seguir = false;
+                                                                    }
+                                                                    if (seguir)
+                                                                        item.relations.Add(rel);
+                                                                }
+
+                                                            }
+                                                        }
+
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                    }
+                                }
+                            }
+
+                            right = true;
+                            pr.host = pr.host;
+                            pr.database = pr.database;
+                            pr.user = pr.user;
+                            pr.password = pr.password;
+                            pr.dbDataType = pr.dbDataType;
+
+                        }
+                        else
+                        {
+                            AsyncWriteLine(errorMessage);
+                        }
+                        break;
+
+                    // end of excelOrCsv
 
                 }
 
@@ -1097,9 +1250,9 @@ namespace myWay
         {
             try
             {
-                butSave.BeginInvoke(new MethodInvoker(delegate
+                butSaveChanges.BeginInvoke(new MethodInvoker(delegate
                 {
-                    butSave.Enabled = enabled;
+                    butSaveChanges.Enabled = enabled;
 
                 }));
 
@@ -1174,18 +1327,36 @@ namespace myWay
             {
                 case project.databaseType.dbf:
                     butAddDirectory.Visible = true;
+                    txtHost.Text = "";
+                    txtHost.Enabled = false;
                     break;
                 case project.databaseType.access2003:
                     butAddDirectory.Visible = true;
+                    txtHost.Text = "";
+                    txtHost.Enabled = false;
                     break;
                 case project.databaseType.access2007:
                     butAddDirectory.Visible = true;
+                    txtHost.Text = "";
+                    txtHost.Enabled = false;
                     break;
                 case project.databaseType.mySql:
                     butAddDirectory.Visible = false;
+                    txtHost.Enabled = true;
                     break;
                 case project.databaseType.SqlServer:
                     butAddDirectory.Visible = false;
+                    txtHost.Enabled = true;
+                    break;
+                case project.databaseType.excelOrCsv:
+                    butAddDirectory.Visible = true;
+                    txtHost.Text = "";
+                    txtHost.Enabled = false;
+                    break;
+                case project.databaseType.dsn:
+                    butAddDirectory.Visible = false;
+                    txtHost.Text = "";
+                    txtHost.Enabled = false;
                     break;
               
             }
@@ -1239,7 +1410,55 @@ namespace myWay
             
 
         
-        } // butAddDirectory_Click
+        }
+
+        private void butTest_Click(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            // search metadata...
+            Thread t = new Thread(new ParameterizedThreadStart(search));
+            // we need to pass data through object
+            //project pro = new project();
+            pr.name = txtName.Text;
+            pr.nameSpace = txtName.Text;
+            pr.host = txtHost.Text;
+            pr.database = txtDatabase.Text;
+            pr.user = txtUser.Text;
+            pr.password = txtPassword.Text;
+            pr.dbDataType = (project.databaseType)cmbDataType.SelectedItem;
+
+            t.Start(pr);
+
+            // use this for debugging
+            //search(pro);
+        }
+
+        private void butCancel2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void butSaveChanges_Click(object sender, EventArgs e)
+        {
+            if (pr != null)
+            {
+                // lets select some data from 
+                if (pr.tables.Count > 0)
+                {
+                    pr.tableSelected = pr.tables[0].ToString();
+                    pr.actualTable = (table)pr.tables[0];
+                }
+
+                pr.saveProject(Path.Combine(util.projects_dir, pr.name + ".xml"));
+                AsyncWriteLine("Project saved... \n");
+
+                this.DialogResult = DialogResult.Yes;
+            }
+        }
+
+         
+
+      
 
 
     }

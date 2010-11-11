@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(newProject));
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtHost = new System.Windows.Forms.TextBox();
@@ -35,18 +36,18 @@
             this.txtUser = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
-            this.butApply = new System.Windows.Forms.Button();
-            this.butCancel = new System.Windows.Forms.Button();
             this.rt1 = new System.Windows.Forms.RichTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbDataType = new System.Windows.Forms.ComboBox();
             this.txtDatabase = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.butSave = new System.Windows.Forms.Button();
             this.butAddDirectory = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.butCancel2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.butTest = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.butSaveChanges = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.SuspendLayout();
             // 
             // label1
@@ -110,26 +111,6 @@
             this.txtPassword.TabIndex = 5;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
-            // butApply
-            // 
-            this.butApply.Location = new System.Drawing.Point(193, 316);
-            this.butApply.Name = "butApply";
-            this.butApply.Size = new System.Drawing.Size(75, 23);
-            this.butApply.TabIndex = 8;
-            this.butApply.Text = "Test";
-            this.butApply.UseVisualStyleBackColor = true;
-            this.butApply.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // butCancel
-            // 
-            this.butCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.butCancel.Location = new System.Drawing.Point(61, 316);
-            this.butCancel.Name = "butCancel";
-            this.butCancel.Size = new System.Drawing.Size(75, 23);
-            this.butCancel.TabIndex = 9;
-            this.butCancel.Text = "Cancel";
-            this.butCancel.UseVisualStyleBackColor = true;
-            // 
             // rt1
             // 
             this.rt1.Location = new System.Drawing.Point(403, 46);
@@ -182,18 +163,6 @@
             this.label6.TabIndex = 13;
             this.label6.Text = "Database";
             // 
-            // butSave
-            // 
-            this.butSave.DialogResult = System.Windows.Forms.DialogResult.Yes;
-            this.butSave.Enabled = false;
-            this.butSave.Location = new System.Drawing.Point(283, 316);
-            this.butSave.Name = "butSave";
-            this.butSave.Size = new System.Drawing.Size(75, 23);
-            this.butSave.TabIndex = 15;
-            this.butSave.Text = "Save";
-            this.butSave.UseVisualStyleBackColor = true;
-            this.butSave.Click += new System.EventHandler(this.butSave_Click);
-            // 
             // butAddDirectory
             // 
             this.butAddDirectory.Location = new System.Drawing.Point(368, 152);
@@ -209,20 +178,50 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // butCancel2
+            // 
+            this.butCancel2.Location = new System.Drawing.Point(51, 290);
+            this.butCancel2.Name = "butCancel2";
+            this.butCancel2.Size = new System.Drawing.Size(109, 49);
+            this.butCancel2.TabIndex = 20;
+            this.butCancel2.Values.Image = global::myWay.Properties.Resources.delete;
+            this.butCancel2.Values.Text = "Cancel";
+            this.butCancel2.Click += new System.EventHandler(this.butCancel2_Click);
+            // 
+            // butTest
+            // 
+            this.butTest.Location = new System.Drawing.Point(178, 290);
+            this.butTest.Name = "butTest";
+            this.butTest.Size = new System.Drawing.Size(109, 49);
+            this.butTest.TabIndex = 21;
+            this.butTest.Values.Image = global::myWay.Properties.Resources.database_refresh;
+            this.butTest.Values.Text = "Test";
+            this.butTest.Click += new System.EventHandler(this.butTest_Click);
+            // 
+            // butSaveChanges
+            // 
+            this.butSaveChanges.Location = new System.Drawing.Point(293, 290);
+            this.butSaveChanges.Name = "butSaveChanges";
+            this.butSaveChanges.Size = new System.Drawing.Size(93, 49);
+            this.butSaveChanges.TabIndex = 22;
+            this.butSaveChanges.Values.Image = global::myWay.Properties.Resources.database_save;
+            this.butSaveChanges.Values.Text = "Save";
+            this.butSaveChanges.Click += new System.EventHandler(this.butSaveChanges_Click);
+            // 
             // newProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(679, 371);
+            this.Controls.Add(this.butSaveChanges);
+            this.Controls.Add(this.butTest);
+            this.Controls.Add(this.butCancel2);
             this.Controls.Add(this.butAddDirectory);
-            this.Controls.Add(this.butSave);
             this.Controls.Add(this.txtDatabase);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cmbDataType);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.rt1);
-            this.Controls.Add(this.butCancel);
-            this.Controls.Add(this.butApply);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtUser);
@@ -231,6 +230,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "newProject";
             this.Text = "newProject";
             this.Load += new System.EventHandler(this.newProject_Load);
@@ -248,17 +248,17 @@
         private System.Windows.Forms.TextBox txtUser;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.Button butApply;
-        private System.Windows.Forms.Button butCancel;
         private System.Windows.Forms.RichTextBox rt1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbDataType;
         private System.Windows.Forms.TextBox txtDatabase;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button butSave;
         private System.Windows.Forms.Button butAddDirectory;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton butCancel2;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton butTest;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton butSaveChanges;
     }
 }
