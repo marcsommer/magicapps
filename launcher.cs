@@ -21,10 +21,7 @@ using MethodInvocationException = NVelocity.Exception.MethodInvocationException;
 using ComponentFactory.Krypton.Toolkit;
 
 using System.Threading;
-using System.Windows.Input;
-
-// ComboBoxItem
-using System.Windows.Controls;
+ 
 
 // sound
 using System.Media;
@@ -258,6 +255,17 @@ namespace myWay
 
 
             }
+        }
+
+        private void kryptonButton2_Click(object sender, EventArgs e)
+        {
+            help hp = new help();
+            hp.ShowDialog();
+        }
+
+        private void kryptonButton3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

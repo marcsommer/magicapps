@@ -34,7 +34,9 @@ public class project : ISerializable
         sqlLite,
         dbf,
         access2003,
-        access2007
+        access2007,
+        excelOrCsv,
+        dsn
 
     }
 

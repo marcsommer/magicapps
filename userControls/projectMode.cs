@@ -20,10 +20,7 @@ using MethodInvocationException = NVelocity.Exception.MethodInvocationException;
 
 using ComponentFactory.Krypton.Toolkit;
 using System.Threading;
-using System.Windows.Input;
-
-// ComboBoxItem
-using System.Windows.Controls;
+ 
 
 // sound
 using System.Media;

@@ -86,22 +86,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bindll\NVelocity.dll</HintPath>
     </Reference>
-    <Reference Include="ObjectListView, Version=2.4.0.13503, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bindll\ObjectListView.dll</HintPath>
-    </Reference>
-    <Reference Include="PresentationCore, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bindll\PresentationCore.dll</HintPath>
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="PresentationFramework, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bindll\PresentationFramework.dll</HintPath>
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
@@ -129,6 +113,7 @@
       <DependentUpon>AboutMyWay.cs</DependentUpon>
     </Compile>
     <Compile Include="classes\compareFields.cs" />
+    <Compile Include="classes\dbExcelOrCsv.cs" />
     <Compile Include="classes\ctes.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -154,6 +139,12 @@
     <Compile Include="classes\util.cs" />
     <Compile Include="classes\validationRule.cs" />
     <Compile Include="classes\variablesTemplate.cs" />
+    <Compile Include="help.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="help.Designer.cs">
+      <DependentUpon>help.cs</DependentUpon>
+    </Compile>
     <Compile Include="launcher.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +156,11 @@
     </Compile>
     <Compile Include="modifyProject.Designer.cs">
       <DependentUpon>modifyProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="showProjectTemplates.cs">
       <SubType>Form</SubType>
@@ -206,18 +202,13 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="showTemplates.resx">
       <DependentUpon>showTemplates.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -402,6 +393,9 @@
     <EmbeddedResource Include="AboutMyWay.resx">
       <DependentUpon>AboutMyWay.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="help.resx">
+      <DependentUpon>help.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="launcher.resx">
       <DependentUpon>launcher.cs</DependentUpon>
     </EmbeddedResource>
@@ -424,6 +418,22 @@
     <Content Include="projects\empty.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\help.png" />
+    <None Include="Resources\salvavidas.png" />
+    <None Include="Resources\pill.png" />
+    <None Include="Resources\application_osx.png" />
+    <None Include="Resources\briefcase.png" />
+    <None Include="Resources\building_edit.png" />
+    <None Include="Resources\refreshData.png" />
+    <None Include="Resources\cog_go.png" />
+    <None Include="Resources\cog_error.png" />
+    <None Include="Resources\coins.png" />
+    <None Include="Resources\compress.png" />
+    <None Include="Resources\contrast.png" />
+    <None Include="Resources\database_save.png" />
+    <None Include="Resources\database_refresh.png" />
+    <None Include="Resources\database_table.png" />
+    <None Include="Resources\delete.png" />
     <Content Include="Resources\script_go.png" />
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqCabDcha.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -431,7 +441,9 @@
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\esqIzq_menuH.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="cheatSheet.vm" />
+    <Content Include="cheatSheet.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="templates\c#\Cs_BllClassOledb.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
