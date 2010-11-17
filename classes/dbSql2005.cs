@@ -508,6 +508,11 @@ class dbSql2005
                      //    delete = True
                      //End If
 
+                     // if the name of fields its equal...
+                     if (rel.childField.ToLower().Equals(rel.parentField.ToLower()))
+                         rel.relationType = relation.typeOfRelation.hasMany;
+                     else
+                         rel.relationType = relation.typeOfRelation.hasOne;
 
                      lista.Add(rel);
 	}  

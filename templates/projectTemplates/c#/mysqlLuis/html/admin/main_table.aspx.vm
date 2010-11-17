@@ -272,10 +272,13 @@
 	#end
 #end 
 #* fin codigo para relaciones uno a mucho...*#
-			
-<asp:Panel ID="PanelAviso" visible="false" runat="server">
-	<p><asp:Label ID="lblinfo" Visible="false"  runat="server" Text=""></asp:Label></p>
-</asp:Panel>
+ <div class="lineaForm">
+ <label for="PanelAviso">			
+	<asp:Panel ID="PanelAviso" visible="false" runat="server">
+		<p><asp:Label ID="lblinfo" Visible="false"  runat="server" Text=""></asp:Label></p>
+	</asp:Panel>
+ </label>
+ </div>
 					
 					</div><!--subsecciones-->
 					
@@ -292,7 +295,11 @@
 					</div>
 					<!--botones formulario-->
 					<br />
-					<asp:HyperLink ID="hListado" runat="server" NavigateUrl="./listado_${table}.aspx">Volver al listado ...</asp:HyperLink><br />
+					 <div class="lineaForm">
+					<label for="hListado">
+						<asp:HyperLink ID="hListado" runat="server" NavigateUrl="./listado_${table}.aspx">Volver al listado ...</asp:HyperLink><br />
+					</label>
+					</div>
 
 				</div> 
 </asp:Content>
