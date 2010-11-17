@@ -197,6 +197,8 @@ class dbAccess
                         break;
                 }
 
+               
+
                 fi.targetType = fi.type;
 
 
@@ -204,6 +206,14 @@ class dbAccess
                 fi.allowNulls = sf.boolean(row["IS_NULLABLE"]);
                 fi.size = sf.entero(row["CHARACTER_MAXIMUM_LENGTH"]);
                 fi.defaultValue = sf.cadena(row["COLUMN_DEFAULT"]);
+
+                // if text is large ...
+                if ( (fi.type == field.fieldType._string && fi.size >= 100)  ||  (fi.type == field.fieldType._string && fi.size == 0) )
+                {
+                    fi.type = field.fieldType._text;
+                    fi.targetType = field.fieldType._text;
+                }
+
 
                 try
                 {
