@@ -1122,13 +1122,13 @@
     </Content>
     <None Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\Thumbs.db" />
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\listado_table.aspx.cs.vm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\listado_table.aspx.vm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\listado_table.designer.vm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\listado_grid.aspx.cs.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1143,13 +1143,13 @@
     <None Include="templates\projectTemplates\c#\mysqlLuis\html\admin\login\login.aspx.designer.cs.ftl" />
     <None Include="templates\projectTemplates\c#\mysqlLuis\html\admin\login\login.aspx.ftl" />
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\main_table.aspx.cs.vm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\main_table.aspx.designer.cs.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\main_table.aspx.vm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\master\masterAdmin.Master">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

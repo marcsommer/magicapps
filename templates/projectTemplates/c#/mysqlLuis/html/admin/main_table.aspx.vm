@@ -56,12 +56,22 @@
 				#end
 
 				#if ($field.targetType.toString() == "_string")
-				<div class="lineaForm">
+					#if ($field.isForeignKey() )
+						<div class="lineaForm">
+								<label for="cmb${field}">				
+									<span class="etiqueta">${field.targetName()}: </span>
+									<asp:DropDownList ID="cmb${field}" CssClass="textoLargo" runat="server">
+									</asp:DropDownList>
+								</label>
+						</div>		
+					#else
+					<div class="lineaForm">
 						   <label for="txt${field}">
 								<span class="etiqueta">${field.targetName()}: </span>
 									<asp:TextBox ID="txt${field}" CssClass="textoLargo" runat="server"></asp:TextBox>
 							</label>
-				</div>
+					</div>
+					#end
 				#end
 				#if ($field.targetType.toString() == "_bigString")
 				<div class="lineaForm">

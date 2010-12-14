@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.butApplyTemplate2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.labNumberOfLinesWritten = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.txtNameSpace = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kLabNameSpace = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kbTemplate = new ComponentFactory.Krypton.Toolkit.KryptonDropButton();
+            this.txtNameSpace = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.butApplyTemplate2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.cmbTablesx = new System.Windows.Forms.ComboBox();
             this.cmbGoToCode = new System.Windows.Forms.ComboBox();
             this.butCopy = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.t1 = new ICSharpCode.TextEditor.TextEditorControl();
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -58,6 +58,40 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Generation";
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.54545F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.45454F));
+            this.tableLayoutPanel1.Controls.Add(this.butApplyTemplate2, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.labNumberOfLinesWritten, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.kLabNameSpace, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.kbTemplate, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.txtNameSpace, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.kryptonLabel2, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.kryptonLabel1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.cmbTablesx, 1, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 19);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.3871F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.6129F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(330, 153);
+            this.tableLayoutPanel1.TabIndex = 44;
+            // 
+            // butApplyTemplate2
+            // 
+            this.butApplyTemplate2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.butApplyTemplate2.Location = new System.Drawing.Point(187, 112);
+            this.butApplyTemplate2.Name = "butApplyTemplate2";
+            this.butApplyTemplate2.Size = new System.Drawing.Size(140, 25);
+            this.butApplyTemplate2.TabIndex = 34;
+            this.butApplyTemplate2.Values.Image = global::myWay.Properties.Resources.application_lightning;
+            this.butApplyTemplate2.Values.Text = "Apply template";
+            this.butApplyTemplate2.Click += new System.EventHandler(this.butApplyTemplate2_Click);
+            // 
             // labNumberOfLinesWritten
             // 
             this.labNumberOfLinesWritten.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.SuperTip;
@@ -66,13 +100,6 @@
             this.labNumberOfLinesWritten.Size = new System.Drawing.Size(21, 25);
             this.labNumberOfLinesWritten.TabIndex = 40;
             this.labNumberOfLinesWritten.Values.Text = "--";
-            // 
-            // txtNameSpace
-            // 
-            this.txtNameSpace.Location = new System.Drawing.Point(83, 3);
-            this.txtNameSpace.Name = "txtNameSpace";
-            this.txtNameSpace.Size = new System.Drawing.Size(244, 22);
-            this.txtNameSpace.TabIndex = 39;
             // 
             // kLabNameSpace
             // 
@@ -91,6 +118,13 @@
             this.kbTemplate.Values.Text = "Select a template";
             this.kbTemplate.Click += new System.EventHandler(this.kbTemplate_Click);
             // 
+            // txtNameSpace
+            // 
+            this.txtNameSpace.Location = new System.Drawing.Point(83, 3);
+            this.txtNameSpace.Name = "txtNameSpace";
+            this.txtNameSpace.Size = new System.Drawing.Size(244, 22);
+            this.txtNameSpace.TabIndex = 39;
+            // 
             // kryptonLabel2
             // 
             this.kryptonLabel2.Location = new System.Drawing.Point(3, 77);
@@ -106,17 +140,6 @@
             this.kryptonLabel1.Size = new System.Drawing.Size(37, 19);
             this.kryptonLabel1.TabIndex = 35;
             this.kryptonLabel1.Values.Text = "Table";
-            // 
-            // butApplyTemplate2
-            // 
-            this.butApplyTemplate2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.butApplyTemplate2.Location = new System.Drawing.Point(187, 112);
-            this.butApplyTemplate2.Name = "butApplyTemplate2";
-            this.butApplyTemplate2.Size = new System.Drawing.Size(140, 25);
-            this.butApplyTemplate2.TabIndex = 34;
-            this.butApplyTemplate2.Values.Image = global::myWay.Properties.Resources.application_lightning;
-            this.butApplyTemplate2.Values.Text = "Apply template";
-            this.butApplyTemplate2.Click += new System.EventHandler(this.butApplyTemplate2_Click);
             // 
             // cmbTablesx
             // 
@@ -151,7 +174,7 @@
             this.t1.IsReadOnly = false;
             this.t1.Location = new System.Drawing.Point(6, 47);
             this.t1.Name = "t1";
-            this.t1.Size = new System.Drawing.Size(422, 285);
+            this.t1.Size = new System.Drawing.Size(422, 304);
             this.t1.TabIndex = 42;
             // 
             // cmbLanguage
@@ -167,29 +190,6 @@
             this.cmbLanguage.Size = new System.Drawing.Size(99, 21);
             this.cmbLanguage.TabIndex = 43;
             this.cmbLanguage.SelectedIndexChanged += new System.EventHandler(this.cmbLanguage_SelectedIndexChanged);
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.54545F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.45454F));
-            this.tableLayoutPanel1.Controls.Add(this.butApplyTemplate2, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.labNumberOfLinesWritten, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.kLabNameSpace, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.kbTemplate, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtNameSpace, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.kryptonLabel2, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.kryptonLabel1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.cmbTablesx, 1, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 19);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.3871F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.6129F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(330, 153);
-            this.tableLayoutPanel1.TabIndex = 44;
             // 
             // groupBox2
             // 

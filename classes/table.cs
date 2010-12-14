@@ -204,6 +204,53 @@ public partial class table : IComparable
         }
     }
 
+    public String getConversionType
+    {
+        get
+        {
+            if (keyFields[0] != null)
+            {
+                field.fieldType tipo = ((field)keyFields[0]).type;
+
+                switch (tipo)
+                {
+                    case field.fieldType._integer:
+                        return ("sf.entero");
+                        break;
+
+                    case field.fieldType._double:
+                        return ("sf.doble");
+                        break;
+
+                    case field.fieldType._tinyInt:
+                        return ("sf.entero");
+                        break;
+
+                    case field.fieldType._boolean:
+                        return ("sf.bool");
+                        break;
+
+                    case field.fieldType._string:
+                        return ("sf.cadena");
+                        break;
+
+                    case field.fieldType._text:
+                        return ("sf.cadena");
+                        break;
+
+
+                    default:
+                        return ("sf.cadena");
+                        break;
+
+                }
+            }
+            else
+                return "";
+
+        }
+    }
+
 
     public String fieldDescription
     {
@@ -229,7 +276,7 @@ public partial class table : IComparable
         {
             foreach (table item in pr.GetTables)
             {
-                if (item.GetKey.Equals(fieldName))
+                if (item.GetKey.ToLower().Equals(fieldName.ToLower()))
                     return item.Name;
             }
         }
@@ -249,7 +296,7 @@ public partial class table : IComparable
     {
         foreach (table item in pr.GetTables)
         {
-            if (item.GetKey.Equals(fieldName))
+            if (item.GetKey.ToLower().Equals(fieldName.ToLower()))
                 return item.GetKey;
         }
         return "";
@@ -260,7 +307,7 @@ public partial class table : IComparable
     {
         foreach (table item in pr.GetTables)
         {
-            if (item.GetKey.Equals(fieldName))
+            if (item.GetKey.ToLower().Equals(fieldName.ToLower()))
                 return item.fieldDescription;
         }
         return "";
@@ -271,7 +318,7 @@ public partial class table : IComparable
     {
         foreach (table item in pr.GetTables)
         {
-            if (item.GetKey.Equals(fieldName))
+            if (item.GetKey.ToLower().Equals(fieldName.ToLower()))
                 return item;
         }
         return null;
@@ -282,7 +329,7 @@ public partial class table : IComparable
     {
         foreach (table item in pr.GetTables)
         {
-            if (item.GetKey.Equals(fieldName))
+            if (item.GetKey.ToLower().Equals(fieldName.ToLower()))
                 return item;
         }
         return null;
@@ -586,7 +633,7 @@ public partial class table : IComparable
     {
         foreach (field item in fields)
         {
-            if (item.Name.Equals(nombre))
+            if (item.Name.ToLower().Equals(nombre.ToLower()))
                 return item.type.ToString();
         }
         return "";

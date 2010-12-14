@@ -5,6 +5,8 @@ using System.Text;
 
 using System.Data.SqlClient;
 
+using System.Text.RegularExpressions;
+
 // http://msdn.microsoft.com/en-us/library/microsoft.web.management.databasemanager.indextype.aspx
     // http://tom-shelton.net/index.php/2009/02/21/exploring-sql-server-schema-information-with-adonet/
 // http://www.dotnetbips.com/articles/bcd9065e-94af-4063-8360-f916571f9872.aspx
@@ -267,25 +269,271 @@ class dbSql2005
 
 
 
-                    // lets get the comment
+                    //// lets get the comment
                     fi.comment = getComments(cadconexion, table, fi.Name);
-                    if (fi.comment.IndexOf("#image#") >= 1)
+
+                    String comentario;
+                    comentario = fi.comment;
+
+                    if (comentario.Contains("#date#"))
+                    {
+                        fi.targetType = field.fieldType._date;
+                    }
+                    if (comentario.Contains("#img#") | comentario.Contains("#image#"))
                     {
                         fi.targetType = field.fieldType._image;
-                        fi.comment=fi.comment.Replace("#image#", "");
                     }
-                    if (fi.comment.IndexOf("#audio#") >= 1)
+                    if (comentario.Contains("#audio#"))
                     {
                         fi.targetType = field.fieldType._audio;
-                        fi.comment = fi.comment.Replace("#image#", "");
                     }
-                    if (fi.comment.IndexOf("#doc#") >= 1)
+                    if (comentario.Contains("#money#"))
+                    {
+                        fi.targetType = field.fieldType._money;
+                    }
+                    if (comentario.Contains("#video#"))
+                    {
+                        fi.targetType = field.fieldType._video;
+                    }
+                    if (comentario.Contains("#doc#") | comentario.Contains("#document#"))
                     {
                         fi.targetType = field.fieldType._document;
-                        fi.comment = fi.comment.Replace("#doc#", "");
                     }
-                    if (!fi.comment.Equals(""))
-                        fi.targetName = fi.comment;
+                    if (comentario.Contains("#hide#"))
+                    {
+                        fi.invisible = true;
+                        fi.targetType = field.fieldType._hidden;
+                    }
+                    if (comentario.Contains("#desc#"))
+                    {
+                        fi.isDescriptionInCombo = true;
+                       // table.fieldDescription = fi.Name;
+                    }
+
+
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#date#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#img#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#image#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#audio#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#money#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#video#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#doc#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#document#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#hide#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#desc#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+
+
+                    // ahora reglas - now validation rules...
+                    if (comentario.Contains("#url#"))
+                        fi.validationRules.Add(new validationRule(validationRule.typeOfValidation.Url));
+                    if (comentario.Contains("#email#"))
+                        fi.validationRules.Add(new validationRule(validationRule.typeOfValidation.Email));
+
+                    if (comentario.Contains("#requerido#"))
+                        fi.validationRules.Add(new validationRule(validationRule.typeOfValidation.Required));
+
+                    if (comentario.Contains("#requerido#"))
+                        fi.validationRules.Add(new validationRule(validationRule.typeOfValidation.Required));
+
+                    if (comentario.Contains("#alphaNumeric#"))
+                        fi.validationRules.Add(new validationRule(validationRule.typeOfValidation.Alphanumeric));
+
+                    if (comentario.Contains("#creditcard#"))
+                        fi.validationRules.Add(new validationRule(validationRule.typeOfValidation.CreditCard));
+
+                    if (comentario.Contains("#date#"))
+                        fi.validationRules.Add(new validationRule(validationRule.typeOfValidation.Date));
+
+                    if (comentario.Contains("#decimal#"))
+                        fi.validationRules.Add(new validationRule(validationRule.typeOfValidation.Decimal));
+
+                    if (comentario.Contains("#ip#"))
+                        fi.validationRules.Add(new validationRule(validationRule.typeOfValidation.IP));
+
+                    if (comentario.Contains("#isUnique#"))
+                        fi.validationRules.Add(new validationRule(validationRule.typeOfValidation.IsUnique));
+
+                    if (comentario.Contains("#money#"))
+                        fi.validationRules.Add(new validationRule(validationRule.typeOfValidation.Money));
+
+                    if (comentario.Contains("#numeric#"))
+                        fi.validationRules.Add(new validationRule(validationRule.typeOfValidation.Numeric));
+
+                    if (comentario.Contains("#phone#"))
+                        fi.validationRules.Add(new validationRule(validationRule.typeOfValidation.Phone));
+
+                    if (comentario.Contains("#postal#"))
+                        fi.validationRules.Add(new validationRule(validationRule.typeOfValidation.Postal));
+
+
+
+                    if (comentario.Contains("#between"))
+                    {
+                        string IPMatchExp = @"#between(?:(?<t>[^#]*))";
+                        Match theMatch = Regex.Match(comentario, IPMatchExp);
+                        string st = "";
+                        if (theMatch.Success)
+                            st = theMatch.Groups[1].Value;
+                        if (st.Equals(""))
+                        {
+
+                            fi.validationRules.Add(new validationRule(validationRule.typeOfValidation.Between));
+
+                        }
+
+
+                    }
+
+                    if (comentario.Contains("#comparison"))
+                    {
+                        string IPMatchExp = @"#comparison(?:(?<t>[^#]*))";
+                        Match theMatch = Regex.Match(comentario, IPMatchExp);
+                        string st = "";
+                        if (theMatch.Success)
+                            st = theMatch.Groups[1].Value;
+                        if (st.Equals(""))
+                        {
+
+                            fi.validationRules.Add(new validationRule(validationRule.typeOfValidation.Between));
+
+                        }
+
+
+                    }
+
+                    if (comentario.Contains("#extension"))
+                    {
+                        string IPMatchExp = @"#extension(?:(?<t>[^#]*))";
+                        Match theMatch = Regex.Match(comentario, IPMatchExp);
+                        string st = "";
+                        if (theMatch.Success)
+                            st = theMatch.Groups[1].Value;
+                        if (st.Equals(""))
+                        {
+
+                            fi.validationRules.Add(new validationRule(validationRule.typeOfValidation.Between));
+
+                        }
+
+
+                    }
+
+                    if (comentario.Contains("#minLength"))
+                    {
+                        string IPMatchExp = @"#minLength(?:(?<t>[^#]*))";
+                        Match theMatch = Regex.Match(comentario, IPMatchExp);
+                        string st = "";
+                        if (theMatch.Success)
+                            st = theMatch.Groups[1].Value;
+                        if (st.Equals(""))
+                        {
+
+                            fi.validationRules.Add(new validationRule(validationRule.typeOfValidation.Between));
+
+                        }
+
+
+                    }
+
+                    if (comentario.Contains("#maxLength"))
+                    {
+                        string IPMatchExp = @"#maxLength(?:(?<t>[^#]*))";
+                        Match theMatch = Regex.Match(comentario, IPMatchExp);
+                        string st = "";
+                        if (theMatch.Success)
+                            st = theMatch.Groups[1].Value;
+                        if (st.Equals(""))
+                        {
+
+                            fi.validationRules.Add(new validationRule(validationRule.typeOfValidation.Between));
+
+                        }
+
+
+                    }
+
+                    if (comentario.Contains("#inList"))
+                    {
+                        string IPMatchExp = @"#inList(?:(?<t>[^#]*))";
+                        Match theMatch = Regex.Match(comentario, IPMatchExp);
+                        string st = "";
+                        if (theMatch.Success)
+                            st = theMatch.Groups[1].Value;
+                        if (st.Equals(""))
+                        {
+
+                            fi.validationRules.Add(new validationRule(validationRule.typeOfValidation.Between));
+
+                        }
+
+
+                    }
+
+                    if (comentario.Contains("#regexp"))
+                    {
+                        string IPMatchExp = @"#regexp(?:(?<t>[^#]*))";
+                        Match theMatch = Regex.Match(comentario, IPMatchExp);
+                        string st = "";
+                        if (theMatch.Success)
+                            st = theMatch.Groups[1].Value;
+                        if (st.Equals(""))
+                        {
+
+                            fi.validationRules.Add(new validationRule(validationRule.typeOfValidation.Between));
+
+                        }
+
+
+                    }
+
+
+                    //  comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#between(?:(?<t>[^#]*))#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#url#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#email#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#requerido#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#required#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#alphaNumeric#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#creditcard#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#date#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#decimal#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#ip#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#isUnique#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#money#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#numeric#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#phone#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#postal#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#comparison(?:(?<t>[^#]*))#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#between(?:(?<t>[^#]*))#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#extension(?:(?<t>[^#]*))#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#minlength(?:(?<t>[^#]*))#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#maxlength(?:(?<t>[^#]*))#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#inList(?:(?<t>[^#]*))#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#regexp(?:(?<t>[^#]*))#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+                    if (comentario != "")
+                        fi.targetName = comentario.Trim();
+
+                    //if (fi.comment.IndexOf("#image#") >= 1 or )
+                    //{
+                    //    fi.targetType = field.fieldType._image;
+                    //    fi.comment=fi.comment.Replace("#image#", "");
+                    //}
+                    //if (fi.comment.IndexOf("#audio#") >= 1)
+                    //{
+                    //    fi.targetType = field.fieldType._audio;
+                    //    fi.comment = fi.comment.Replace("#image#", "");
+                    //}
+                    //if (fi.comment.IndexOf("#doc#") >= 1)
+                    //{
+                    //    fi.targetType = field.fieldType._document;
+                    //    fi.comment = fi.comment.Replace("#doc#", "");
+                    //}
+                    //if (!fi.comment.Equals(""))
+                    //    fi.targetName = fi.comment;
 
                     lista.Add(fi);
 
@@ -389,48 +637,21 @@ class dbSql2005
                             break;
                     }
 
-                    foreach (field fi in table.fields)
-                    {
+                    //foreach (field fi in table.fields)
+                    //{
 
-                        if (fi.Name.Equals(campo))
-                        {
+                    //    if (fi.Name.Equals(campo))
+                    //    {
 
 
-                            fi.comment = comentario;
-                            if (comentario.Contains("#img#"))
-                            {
-                                comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#img#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-                                fi.targetType = field.fieldType._image;
-                            }
-                            if (comentario.Contains("#audio#"))
-                            {
-                                comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#audio#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-                                fi.targetType = field.fieldType._audio;
-                            }
-                            if (comentario.Contains("#money#"))
-                            {
-                                comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#money#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-                                fi.targetType = field.fieldType._money;
-                            }
-                            if (comentario.Contains("#video#"))
-                            {
-                                comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#video#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-                                fi.targetType = field.fieldType._video;
-                            }
-                            if (comentario.Contains("#doc#"))
-                            {
-                                comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#doc#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-                                fi.targetType = field.fieldType._document;
-                            }
-                            if (comentario.Contains("#desc#"))
-                            {
-                                comentario = System.Text.RegularExpressions.Regex.Replace(comentario, @"#desc#", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-                                fi.isDescriptionInCombo = true;
-                                table.fieldDescription = fi.Name;
-                            }
+                    //        fi.comment = comentario;
+                    //         // switch comment....                              
 
-                        }
-                    }
+                    //    }
+
+                    //    if (comentario != "")
+                    //        fi.targetName = comentario.Trim();
+                    //}
                 }
             }
             catch (Exception ep)

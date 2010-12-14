@@ -165,23 +165,34 @@ class dbAccess
 
                 field fi = new field();
                 fi.Name = row[3].ToString();
-                fi.targetName = row[3].ToString();
+                // le cambiamos el nombre para evitar caracteres raros...
+
+                fi.targetName = fi.Name;
 
                 adoTypes at = new adoTypes();
                 at = (adoTypes)sf.entero(row[11].ToString());
                 switch (at)
                 {
+                    case adoTypes.adUnsignedTinyInt:
+                        fi.type = field.fieldType._integer;
+                        break;
+                    case adoTypes.adSingle:
+                        fi.type = field.fieldType._integer;
+                        break;
                     case adoTypes.adInteger:
                         fi.type = field.fieldType._integer;
+                        break;
+                     case adoTypes.adDouble:
+                        fi.type = field.fieldType._double;
+                        break;
+                   case adoTypes.adCurrency:
+                        fi.type = field.fieldType._double;
                         break;
                     case adoTypes.adDBDate:
                         fi.type = field.fieldType._date;
                         break;
                     case adoTypes.adDate:
                         fi.type = field.fieldType._date;
-                        break;
-                    case adoTypes.adDouble:
-                        fi.type = field.fieldType._double;
                         break;
                     case adoTypes.adWChar:
                         fi.type = field.fieldType._string;

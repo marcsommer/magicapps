@@ -145,7 +145,7 @@ public partial class ${table}
         try
         {
             ${table} new${table} = new ${table}();
-            new${table} = ${table}.get${table}(${table.getKey()});
+            new${table} = ${table}.get${table}( ${table.getListOfKeyFields(",")} );
 
             ${table}.Update (new${table});
 
@@ -231,7 +231,7 @@ public static bool UpdateBll(${table} obj${table})
 								 sqlt.Append( sf.mySql(obj${table}.${field}) + " , ")  ;
 								 #end
 							  #if ($field.type.toString() == "_boolean")
-								 sqlt.Append( sf.mySql(obj${table}.${field}))  + " ,";
+								 sqlt.Append( sf.mySql(obj${table}.${field})  + " ,") ;
 								 #end
 							   
 				#end

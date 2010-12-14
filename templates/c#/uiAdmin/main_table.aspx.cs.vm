@@ -39,8 +39,10 @@ namespace ${project.name}
 			if (!Page.IsPostBack)
             {
              #foreach( $relation in $table.getRelations() )
-               lo.comboRellenar(cmb${relation.childField()}, "select ${relation.childField()},nombre from ${relation.parentTable()}", ctes.conStringAdoGeneral, "Seleccione");
-            #end
+				#if (!$table.key == $relation.childField())
+					lo.comboRellenar(cmb${relation.childField()}, "select ${relation.childField()},${relation.childDescription()} from ${relation.childTable()} ", ctes.conStringAdoGeneral, "Seleccione");
+				#end
+			#end
                 
                            
             // si nos mandan para borrar...
@@ -125,7 +127,9 @@ namespace ${project.name}
 		  
 
 			#foreach( $relation in $table.getRelations() )
-			  lo.comboSeleccionarItem(cmb${relation.childField()}, sf.cadena(${table}x.${relation.childField()}), "Id");
+			  #if (!$table.key == $relation.childField())
+					lo.comboSeleccionarItem(cmb${relation.childField()}, sf.cadena(res.${relation.childField()}), "Id");
+				#end
 			#end
 
         }
