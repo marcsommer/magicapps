@@ -45,8 +45,10 @@ public partial class masterDetail_${table} : System.Web.UI.Page
 		if (!Page.IsPostBack)
 		{
 			#foreach( $relation in $table.getRelations() )
-				lo.comboRellenar(cmb${relation.childField()}, "select ${relation.childField()},${relation.childDescription()} from ${relation.childTable()} ", ctes.conStringAdoGeneral, "Seleccione");
-			#end 
+				#if (!$table.key == $relation.childField())
+					lo.comboRellenar(cmb${relation.childField()}, "select ${relation.childField()},${relation.childDescription()} from ${relation.childTable()} ", ctes.conStringAdoGeneral, "Seleccione");
+				#end
+			#end
 			
 	#* fin codigo para relaciones uno a mucho...*#
 		// si nos mandan para borrar...
@@ -139,7 +141,9 @@ public partial class masterDetail_${table} : System.Web.UI.Page
 
 
 #foreach( $relation in $table.getRelations() )
-	lo.comboSeleccionarItem(cmb${relation.childField()}, sf.cadena(res.${relation.childField()}), "Id");
+	#if (!$table.key == $relation.childField())
+		lo.comboSeleccionarItem(cmb${relation.childField()}, sf.cadena(res.${relation.childField()}), "Id");
+	#end
 #end 
 
 

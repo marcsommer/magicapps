@@ -54,7 +54,7 @@ namespace juleweb.portal.main_${table}
 				 #if (!$field.isKey())					 
 					  #if ($field.targetType.toString() == "_integer")
 						 #if (! $field.isForeignKey())
-							lab${field}.Text = sf.cadena(${table}x.${field});
+							//lab${field}.Text = sf.cadena(${table}x.${field});
 						 #end
 					  #end 
 					  #if ($field.targetType.toString() == "_double")
@@ -105,7 +105,7 @@ namespace juleweb.portal.main_${table}
 		  
 
 			#foreach( $relation in $table.getRelations() )
-			      lab${relation.childField()}.Text =sf.cadena(${relation.parentTable()}.get${relation.parentTable()}(${table}x.${relation.childField()}).${table.getDescriptionFieldByForeignKey($project,  $relation.parentField )} );
+			     // lab${relation.childField()}.Text =sf.cadena(${relation.childTable()}.get${relation.childTable()}(${table}x.${relation.childField()}).${table.getDescriptionFieldByForeignKey($project,  $relation.parentField )} );
 			#end 
 
         }		 

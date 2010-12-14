@@ -111,7 +111,7 @@ table:
 	${table.numberOfFields()}
 	
 	${table.getKey}					// string with the name of keyfield
-	${table.getKeyType}				// string with the type of keyfield
+	${table.getKeyType}				// string with the type of keyfield for c sharp
 	${table.getKeyTypeForVb}		// string with the type of keyfield for vb
 	${table.getKeyField}			// returns the field itself (type field)
 	
