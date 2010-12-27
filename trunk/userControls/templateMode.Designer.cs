@@ -43,6 +43,7 @@
             this.t1 = new ICSharpCode.TextEditor.TextEditorControl();
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -203,14 +204,24 @@
             this.groupBox2.TabIndex = 45;
             this.groupBox2.TabStop = false;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(21, 217);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(349, 147);
+            this.flowLayoutPanel1.TabIndex = 46;
+            // 
             // templateMode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "templateMode";
-            this.Size = new System.Drawing.Size(837, 397);
+            this.Size = new System.Drawing.Size(844, 389);
             this.Load += new System.EventHandler(this.templateMode_Load);
             this.VisibleChanged += new System.EventHandler(this.templateMode_VisibleChanged);
             this.groupBox1.ResumeLayout(false);
@@ -238,6 +249,7 @@
         private System.Windows.Forms.ComboBox cmbLanguage;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
 
     }
 }

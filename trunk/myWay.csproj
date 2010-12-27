@@ -263,6 +263,12 @@
     <Compile Include="userControls\userControlEditTable.Designer.cs">
       <DependentUpon>userControlEditTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="userControls\userControlLinktemplate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="userControls\userControlLinktemplate.Designer.cs">
+      <DependentUpon>userControlLinktemplate.cs</DependentUpon>
+    </Compile>
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\master\masterAdmin.Master.cs">
       <DependentUpon>masterAdmin.Master</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1046,6 +1052,9 @@
     <EmbeddedResource Include="userControls\userControlEditTable.resx">
       <DependentUpon>userControlEditTable.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="userControls\userControlLinktemplate.resx">
+      <DependentUpon>userControlLinktemplate.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config">
     </None>

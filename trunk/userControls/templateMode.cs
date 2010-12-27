@@ -58,6 +58,12 @@ namespace myWay.userControls
             t1.SetHighlighting("C#");
             t1.TabIndex = 4;
 
+            // ahora miramos en el directorio basic los templates que tenemos...
+            flowLayoutPanel1.Controls.Clear();
+            Thread t = new Thread(new ParameterizedThreadStart(initTraverse));
+            t.Start(new DirectoryInfo(util.basicTemplates_dir).FullName);
+
+
         }
 
 
@@ -416,13 +422,321 @@ namespace myWay.userControls
 
                 throw;
             }
+        }
 
 
 
+        public void initTraverse(object Folder)
+        {
+            traverseDirectory(Folder);
 
+            //// ended traverse .. lets put errors at last
+            //Thread.Sleep(500);
+            //SystemSounds.Asterisk.Play();
+            //AsyncWriteLine("finish");
+            //foreach (string item in errores)
+            //{
+            //    AsyncWriteLine("Error en template: \n ");
+            //    AsyncWriteLine("file://" + item);
+            //}
+        }
+
+
+        public void traverseDirectory(object Folder)
+        {
+            try
+            {
+
+
+                DirectoryInfo dir = new DirectoryInfo(Folder.ToString());
+                DirectoryInfo[] subDirs = dir.GetDirectories();
+                FileInfo[] files = dir.GetFiles();
+
+                foreach (FileInfo fi in files)
+                {
+                    Console.WriteLine(fi.FullName);
+
+                    // skip project configuration files
+                    if (!fi.Name.EndsWith("pcf"))
+                    {
+                        // tratarARchivo
+                        Thread t = new Thread(new ParameterizedThreadStart(tratarFile));
+                        t.Start(fi.FullName);
+                    }
+
+
+
+                }
+
+                if (subDirs != null)
+                {
+                    foreach (DirectoryInfo sd in subDirs)
+                    {
+                        traverseDirectory(Folder + @"\\" + sd.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
 
         }
 
+
+        private void tratarFile(object file)
+        {
+
+
+
+            // ahora tratamos cada archivo en una nueva tarea...
+            try
+            {
+
+                string archivito = "";
+                archivito = file.ToString();
+
+
+                //   AsyncWriteLine("Procesando " + archivito);
+
+                char tabCaracter = '\u0009';
+                try
+                {
+
+                    String plantilla = util.loadFile(archivito);
+
+                    // sacamos las variables de la plantilla
+                    variablesTemplate var = new variablesTemplate();
+                    var = util.getVariablesFromTemplate(plantilla);
+
+
+                    // vamos a sacar unas variables que luego nos serviran...
+                    string nombreArchivo = "";
+                    nombreArchivo = util.ExtractFilename(archivito);
+
+
+                    // si no tiene variables de configuracion es que no es un template...
+                    if (var.description == null && var.extensionFile == null)
+                    // no es una plantilla...
+                    {
+                        // no es una plantilla... no hacemos nada
+
+                    }
+
+                    else
+                    // es una plantilla...
+                    {
+
+                        userControlLinktemplate uc = new userControlLinktemplate();
+                        uc.pathTemplate = archivito;
+                        uc.nameFile = nombreArchivo;
+                        uc.linkLabel1.Text = var.description;
+                        uc.parent = this;
+                        // panel1.Controls.Add(uc);
+                        AsyncAddControl(uc);
+                        //uc = null;
+
+                    }
+
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    AsyncWriteLine(ex.Message);
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                AsyncWriteLine("Error " + ex.Message);
+                //throw;
+            }
+        }
+
+
+
+        public void AsyncAddControl(userControlLinktemplate uc)
+        {
+            try
+            {
+                flowLayoutPanel1.BeginInvoke(new MethodInvoker(delegate
+                {
+                    flowLayoutPanel1.Controls.Add(uc);
+                    //flowLayoutPanel1.Refresh();
+                }));
+
+            }
+            catch (Exception exx)
+            {
+                //  AsyncWriteLine("Error: " + exx.Message.ToString() + "\n");
+            }
+
+        }
+
+
+        public void applyTemplateFromUserControl(string path)
+        {
+            char tabCaracter = '\u0009';
+            try
+            {
+                AsyncCleanRt1("");
+                String plantilla = util.loadFile(path);
+
+                // clean cmbGotocode
+                cmbGoToCode.Items.Clear();
+
+                table tab = new table();
+                String tableSelected = cmbTablesx.Text;
+
+                if (tableSelected.Equals(""))
+                {
+                    // rt1.Text = "Please, select a table";
+                    t1.Text = "Please, select a table";
+                }
+
+                foreach (table item in general.actualProject.tables)
+                {
+                    if (item.Name.Equals(tableSelected))
+                    {
+                        tab = item;
+                        if (tab.GetKey == null)
+                        {
+                            MessageBox.Show("Alert, review data, table doesnt have a key");
+                            AsyncWriteLine("Alert, review data, table doesnt have a key");
+                        }
+                    }
+                }
+
+                string numerocampos = tab.fields.Count.ToString();
+
+                try
+                {
+                    // si da un error en singleton es que falta la libreria commons o log4net..
+                    Velocity.Init();
+
+                    //VelocityEngine velocityEngine = new VelocityEngine();
+                    //ExtendedProperties props = new ExtendedProperties();
+                    //props.AddProperty("input.encoding", "UTF-8");
+                    //props.AddProperty("output.encoding", "UTF-8");
+                    //velocityEngine.Init(props);
+                }
+                catch (System.Exception exx)
+                {
+                    t1.Text = "Problem initializing Velocity : " + exx;
+                    return;
+                }
+
+                // lets make a Context and put data into it
+                VelocityContext context = new VelocityContext();
+                context.Put("project", general.actualProject);
+                context.Put("table", tab);
+
+                // lets render a template
+                StringWriter writer = new StringWriter();
+                try
+                {
+
+                    //Velocity.MergeTemplate(plantilla, context, writer);
+                    Velocity.Evaluate(context, writer, "prueba", plantilla);
+
+                    // now we got the template , so lets take the variables from the template
+                    variablesTemplate var = new variablesTemplate();
+                    var = util.getVariablesFromTemplate(writer.GetStringBuilder().ToString());
+
+                    // now we delete the variables from the template cause there are no needed...
+                    string finalText = util.deleteVariablesFromTemplate(writer.GetStringBuilder().ToString());
+
+
+                    // le quitamos saltos de linea extra
+                    finalText = finalText.Replace("\r\n\r\n", "\r\n").Replace("\r\n\r\n\r\n", "").Replace("\r\n\r\n\r\n\r\n", "");
+
+                    // le quitamos los tabuladores extra
+                    finalText = finalText.Replace(tabCaracter.ToString(), " ");
+
+
+                    // rt1.Text = finalText; 
+                    AsyncWriteLine(finalText);
+
+
+                    // number of lines written with generator
+                    try
+                    {
+                        long numberOfLinesWrittenBefore = 0;
+                        long numberOfLinesWritten = 0;
+
+                        numberOfLinesWrittenBefore = sf.toLong(System.Configuration.ConfigurationManager.AppSettings["numberOfLinesWritten"]);
+                        numberOfLinesWritten = numberOfLinesWrittenBefore + util.CountLinesInString(finalText);
+
+                        labNumberOfLinesWritten.Values.Text = sf.cadena(numberOfLinesWritten) + " lines written with myWay";
+                        // save data...
+                        System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                        config.AppSettings.Settings["numberOfLinesWritten"].Value = sf.cadena(numberOfLinesWritten);
+                        config.Save(ConfigurationSaveMode.Modified);
+                        ConfigurationManager.RefreshSection("appSettings");
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+
+
+                    // now we got all the functions contained in the code
+                    // and populate a combo with this...
+                    // Instantiating Regex Object
+                    Regex re = new Regex(@"(private|public|protected)\s\w(.)*\((.)*\)", RegexOptions.IgnoreCase);
+                    MatchCollection mc = re.Matches(finalText);
+                    foreach (Match mt in mc)
+                    {
+                        string st = "";
+                        st = mt.ToString();
+                        st = st.Replace("public", "");
+                        st = st.Replace("private", "");
+                        st = st.Replace("static", "");
+                        st = st.Replace("void", "");
+
+                        cmbGoToCode.Items.Add(st.Trim());
+                        // Response.Write(mt.ToString() + "<br />");
+                    }
+
+
+                }
+                catch (System.Exception exx)
+                {
+                    //util.playSimpleSound(Path.Combine(util.sound_dir, "zasentodalaboca.wav"));
+                    SystemSounds.Asterisk.Play();
+
+                    AsyncWriteLine(exx.Message);
+                    t1.Text = exx.Message;
+                    //System.Console.Out.WriteLine("Problem merging template : " + exx);
+                    System.Console.Out.WriteLine("Problem evaluating template : " + exx);
+                }
+
+
+
+                SystemSounds.Exclamation.Play();
+
+                //util.playSimpleSound(Path.Combine(util.sound_dir, "risapetergriffin.wav"));
+
+
+
+            }
+            catch (Exception ex)
+            {
+                // util.playSimpleSound(Path.Combine(util.sound_dir, "zasentodalaboca.wav"));
+                SystemSounds.Asterisk.Play();
+                t1.Text = ex.Message;
+            }
+        }
+
     }
+
 }
+
+ 
+
