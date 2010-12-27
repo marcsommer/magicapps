@@ -219,7 +219,7 @@ class dbAccess
                 fi.defaultValue = sf.cadena(row["COLUMN_DEFAULT"]);
 
                 // if text is large ...
-                if ( (fi.type == field.fieldType._string && fi.size >= 100)  ||  (fi.type == field.fieldType._string && fi.size == 0) )
+                if ( (fi.type == field.fieldType._string && fi.size >= 150)  ||  (fi.type == field.fieldType._string && fi.size == 0) )
                 {
                     fi.type = field.fieldType._text;
                     fi.targetType = field.fieldType._text;

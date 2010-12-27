@@ -39,7 +39,7 @@ namespace ${project.name}
 			if (!Page.IsPostBack)
             {
              #foreach( $relation in $table.getRelations() )
-				#if (!$table.key == $relation.childField())
+				#if ($table.getKey != $relation.childField())
 					lo.comboRellenar(cmb${relation.childField()}, "select ${relation.childField()},${relation.childDescription()} from ${relation.childTable()} ", ctes.conStringAdoGeneral, "Seleccione");
 				#end
 			#end
@@ -127,7 +127,7 @@ namespace ${project.name}
 		  
 
 			#foreach( $relation in $table.getRelations() )
-			  #if (!$table.key == $relation.childField())
+			  #if ($table.getKey != $relation.childField())
 					lo.comboSeleccionarItem(cmb${relation.childField()}, sf.cadena(res.${relation.childField()}), "Id");
 				#end
 			#end

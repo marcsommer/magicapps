@@ -39,6 +39,7 @@ public static class util
     //public static string projectTemplates_dir =  System.Configuration.ConfigurationManager.AppSettings["projectTemplatesPath"].ToString() ;
 
     // volvemos a colocar fijos los directorios de los templates..
+    public static string basicTemplates_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, "templates\\basic").ToString();
     public static string templates_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, "templates").ToString();
     public static string projectTemplates_dir = System.IO.Path.Combine(System.Environment.CurrentDirectory, "templates\\projectTemplates").ToString();
    

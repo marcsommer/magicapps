@@ -79,7 +79,7 @@
 									#foreach( $field in $table.GetFields )
 										#if ($field.isKey())
 										#else
-											#if ($count <2 && $count >=1)
+											#if ($count <=4)
 											 <th align="center">${field}</th>	
 					 
 											#end
@@ -123,7 +123,7 @@
 									#foreach( $field in $table.GetFields )
 										#if ($field.isKey())
 										#else
-											#if ($count <2 && $count >=1)
+											#if ($count <=4)
 											<td  align="center">
 													<%#Eval("${field}")%>
 											</td>
