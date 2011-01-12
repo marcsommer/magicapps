@@ -213,7 +213,7 @@ recorrer los campos de una tabla
 ---------------------------------
 
 #set ($count = 0)
-#foreach( $field in $table.GetArrayOfFields )
+#foreach( $field in $table.GetFields )
 	#if (!$field.isKey())
 		#if ($field.targetType.toString() == "_integer")
 			<th align="center">${field.targetName}</th>

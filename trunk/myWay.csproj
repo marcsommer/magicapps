@@ -1129,6 +1129,12 @@
     <Content Include="templates\basic\cs_listView.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="templates\basic\c#_ListView.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\basic\c#_ListView_Dao.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="templates\projectTemplates\c#\mysqlLuis\html\admin\imagesadmin\Thumbs.db" />
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\admin\listado_table.aspx.cs.vm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1215,6 +1221,9 @@
     </Content>
     <Content Include="templates\vb\Vb_serviceWebJson.vm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\projectTemplates\c#\mysqlLuis\html\clases\c#_ListView_Dao.vm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="templates\Web.config.vm" />
     <Content Include="templates\projectTemplates\c#\mysqlLuis\html\portal\ficha_.aspx.cs.vm">
