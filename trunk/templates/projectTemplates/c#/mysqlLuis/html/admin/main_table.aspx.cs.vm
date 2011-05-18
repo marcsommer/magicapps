@@ -29,28 +29,30 @@ public partial class main_${table} : System.Web.UI.Page
 	{
 		PanelAviso.Visible = false;
 		
-		
-		#set ($count = 0)
+		TextBox[] textBoxes;
+        textBoxes = new TextBox[3];
+		#set ($countDates = 0)
 		#foreach( $field in $table.GetFields )		 
 			#if (!$field.isKey())
 				#if ($field.targetType.toString() == "_date")
-					Util.JQueryUtils.RegisterTextBoxForDatePicker(Page, ${field});
+					textBoxes.SetValue(${field}, $countDates);
 				#end 
 			#end 		
-			#set ($count = $count + 1 )
+			#set ($countDates = $countDates + 1 )
 		#end 
+		Util.JQueryUtils.RegisterTextBoxForDatePicker(Page, textBoxes);
 		
 		if (!Page.IsPostBack)
 		{
 			#foreach( $relation in $table.getRelations() )
 				#if ($table.getKey != $relation.childField())
-					lo.comboRellenar(cmb${relation.childField()}, "select ${relation.childField()},${relation.childDescription()} from ${relation.childTable()} ", ctes.conStringAdoGeneral, "Seleccione");
+					lo.comboRellenar(cmb${relation.childField()}, "select ${relation.parentField()},${relation.parentDescription()} from ${relation.parentTable()} ", ctes.conStringAdoGeneral, "Seleccione");
 				#end
 			#end
 		// si nos mandan para borrar...
 		if (Request["idb"] != null)
 		{
-			${table}.Delete(sf.cadena(Request["idb"]));
+			${table}.Delete(sf.entero(Request["idb"]));
 			Response.Redirect("./listado_${table}.aspx");
 		}
 		if (Request["id"] != null)

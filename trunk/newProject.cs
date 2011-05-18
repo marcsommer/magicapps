@@ -334,6 +334,13 @@ namespace myWay
 
                                 // lets get primary keys and foreign keys for the table...
                                 dbSqlServer.getKeys(connectionString, item);
+                                // lets get not primary keys
+                                foreach (field campito in item.fields)
+                                {
+                                    if (!campito.isKey)
+                                        item.getNotKeyFields.Add(campito);
+                                }
+
 
                                 // lets sort the fields in the table...
                                 // we order but put first key fields
@@ -343,6 +350,20 @@ namespace myWay
                                     item.fields.Sort(new compareFields(compareFields.CompareByOptions.key));
                                 }
                                 pr.tables.Add(item);
+
+
+                                // lets get description of table
+                                string DescriptionOfTable = "";
+                                DescriptionOfTable = dbSqlServer.getCommentsFromTable(connectionString, item.Name);
+                                if (DescriptionOfTable.IndexOf("#exclude#") != -1)
+                                {
+                                    item.excludeFromGeneration = true;
+                                    DescriptionOfTable.Replace("#exclude#", "");
+                                }
+                                if (!DescriptionOfTable.Equals(""))
+                                    item.TargetName = DescriptionOfTable;
+
+                                // end of description for table
 
 
                             }

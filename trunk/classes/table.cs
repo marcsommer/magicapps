@@ -36,6 +36,8 @@ public partial class table : IComparable
     private Boolean _createdNew;
     private Boolean _deleted;
 
+    private Boolean _excludeFromGeneration;
+
 
 
     // This attribute enables the ArrayList to be serialized:
@@ -266,6 +268,7 @@ public partial class table : IComparable
     public int countOfFieldsNotKey
     {
         get { return getNotKeyFields.Count; }
+
     }
 
 
@@ -726,6 +729,12 @@ public partial class table : IComparable
         set { _deleted = value; }
     }
 
+    // if we delete the table in the model editor
+    public Boolean excludeFromGeneration
+    {
+        get { return _excludeFromGeneration; }
+        set { _excludeFromGeneration = value; }
+    }
 
 
     #endregion

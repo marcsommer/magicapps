@@ -2,6 +2,9 @@
 
 comentarios posibles:
 -------------------------------------
+
+#exclude# excluye una tabla de la generacion
+
 #image# - imagen
 #doc#	documento
 #audio#	audio

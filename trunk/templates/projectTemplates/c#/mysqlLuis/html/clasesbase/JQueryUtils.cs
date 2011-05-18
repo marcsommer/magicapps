@@ -24,15 +24,15 @@ namespace Util
 
             if (allTextBoxNull) return;
 
-            page.ClientScript.RegisterClientScriptInclude(page.GetType(), "jquery", "/JQuery/jquery-1.4.2.js");
-            page.ClientScript.RegisterClientScriptInclude(page.GetType(), "jquery.ui.all", "/JQuery/ui/jquery.ui.core.js");
-            page.ClientScript.RegisterClientScriptInclude(page.GetType(), "jquery.ui.widget", "/JQuery/ui/jquery.ui.widget.js");
-            page.ClientScript.RegisterClientScriptInclude(page.GetType(), "jquery.ui.datepicker", "/JQuery/ui/jquery.ui.datepicker.js");
-            page.ClientScript.RegisterClientScriptInclude(page.GetType(), "jquery.ui.datepicker-es", "/JQuery/jquery.ui.datepicker-es.js");
+            page.ClientScript.RegisterClientScriptInclude(page.GetType(), "jquery", "../../JQuery/jquery-1.4.2.js");
+            page.ClientScript.RegisterClientScriptInclude(page.GetType(), "jquery.ui.all", "../../JQuery/ui/jquery.ui.core.js");
+            page.ClientScript.RegisterClientScriptInclude(page.GetType(), "jquery.ui.widget", "../../JQuery/ui/jquery.ui.widget.js");
+            page.ClientScript.RegisterClientScriptInclude(page.GetType(), "jquery.ui.datepicker", "../../JQuery/ui/jquery.ui.datepicker.js");
+            page.ClientScript.RegisterClientScriptInclude(page.GetType(), "jquery.ui.datepicker-es", "../../JQuery/jquery.ui.datepicker-es.js");
           
             // style ..
-            page.ClientScript.RegisterClientScriptBlock(page.GetType(), "datepickerCss", "<link  rel=\"stylesheet\" href=\"/JQuery/themes/start/jquery.ui.all.css\" />");
-            page.ClientScript.RegisterClientScriptBlock(page.GetType(), "datepickerCss", "<link  rel=\"stylesheet\" href=\"/JQuery/themes/start/jquery.ui.datepicker.css\" />");
+            page.ClientScript.RegisterClientScriptBlock(page.GetType(), "datepickerCss", "<link  rel=\"stylesheet\" href=\"../../JQuery/themes/start/jquery.ui.all.css\" />");
+            page.ClientScript.RegisterClientScriptBlock(page.GetType(), "datepickerCss", "<link  rel=\"stylesheet\" href=\"../../JQuery/themes/start/jquery.ui.datepicker.css\" />");
             
             StringBuilder sb = new StringBuilder();
 
