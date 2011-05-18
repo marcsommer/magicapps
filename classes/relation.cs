@@ -108,5 +108,10 @@ public class relation
 
 
     }
+
+    public override string ToString()
+    {
+        return this.name;
+    }
 }
  

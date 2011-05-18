@@ -524,66 +524,75 @@ namespace myWay.userControls
                         {
                             foreach (table item in general.actualProject.tables)
                             {
-                                // tenemos que aplicar esta plantilla una vez por cada tabla...
-                                // es un template que no utiliza las tablas...
-                                // lets make a Context and put data into it
-                                VelocityContext context = new VelocityContext();
-                                context.Put("project", general.actualProject);
-                                context.Put("table", item);
-
-                                // lets render a template
-                                StringWriter writer = new StringWriter();
-                                try
+                                if (item.excludeFromGeneration)
                                 {
 
-                                    //Velocity.MergeTemplate(plantilla, context, writer);
-                                    Velocity.Evaluate(context, writer, "prueba", plantilla);
+                                }
+                                else
+                                {
+                                    // tenemos que aplicar esta plantilla una vez por cada tabla...
+                                    // lets make a Context and put data into it
+                                    VelocityContext context = new VelocityContext();
+                                    context.Put("project", general.actualProject);
+                                    context.Put("table", item);
 
-                                    // sacamos las variables del archivo antes de borrarlas
-                                    variablesTemplate varT = new variablesTemplate();
-                                    varT = util.getVariablesFromTemplate(writer.GetStringBuilder().ToString());
-                                    if (varT.namefile != null)
+                                    // lets render a template
+                                    StringWriter writer = new StringWriter();
+                                    try
                                     {
-                                        if (!Directory.Exists(Path.Combine(rutaArchivoFinal, varT.targetDirectory)))
-                                            Directory.CreateDirectory(Path.Combine(rutaArchivoFinal, varT.targetDirectory));
 
-                                        nombreArchivoFinal = Path.Combine(Path.Combine(rutaArchivoFinal, varT.targetDirectory), varT.namefile + "." + var.extensionFile);
+                                        //Velocity.MergeTemplate(plantilla, context, writer);
+                                        Velocity.Evaluate(context, writer, "prueba", plantilla);
+
+                                        // sacamos las variables del archivo antes de borrarlas
+                                        variablesTemplate varT = new variablesTemplate();
+                                        varT = util.getVariablesFromTemplate(writer.GetStringBuilder().ToString());
+                                        if (varT.namefile != null)
+                                        {
+                                            if (!Directory.Exists(Path.Combine(rutaArchivoFinal, varT.targetDirectory)))
+                                                Directory.CreateDirectory(Path.Combine(rutaArchivoFinal, varT.targetDirectory));
+
+                                            nombreArchivoFinal = Path.Combine(Path.Combine(rutaArchivoFinal, varT.targetDirectory), varT.namefile + "." + var.extensionFile);
+                                        }
+
+
+                                        // now we delete the variables from the template cause there are no needed...
+                                        string finalText = util.deleteVariablesFromTemplate(writer.GetStringBuilder().ToString());
+                                        // todo...
+
+                                        // le quitamos saltos de linea extra
+                                        finalText = finalText.Replace("\r\n\r\n", "\r\n").Replace("\r\n\r\n\r\n", "").Replace("\r\n\r\n\r\n\r\n", "");
+
+                                        // le quitamos los tabuladores extra
+                                        finalText = finalText.Replace(tabCaracter.ToString(), " ");
+
+
+
+                                        // grabamos segun el 
+                                        util.saveTextToFile(nombreArchivoFinal, finalText);
+
+                                    }
+                                    catch (System.Exception exx)
+                                    {
+                                        // file
+                                        AsyncCleanRt1("");
+                                        AsyncWriteLine("Problem with the template : " + file.ToString());
+                                        AsyncWriteLine("Error : " + exx.Message);
+                                        AsyncWriteLine("file://" + file.ToString());
+
+                                        errores.Add(file.ToString());
+
+                                        //AsyncAddControl(file.ToString());
+
+                                        //rt1.Text = exx.Message;
+                                        //System.Console.Out.WriteLine("Problem merging template : " + exx);
+                                        System.Console.Out.WriteLine("Problem evaluating template : " + exx);
                                     }
 
 
-                                    // now we delete the variables from the template cause there are no needed...
-                                    string finalText = util.deleteVariablesFromTemplate(writer.GetStringBuilder().ToString());
-                                    // todo...
+                                }// end de else excludeFromGeneration
 
-                                    // le quitamos saltos de linea extra
-                                    finalText = finalText.Replace("\r\n\r\n", "\r\n").Replace("\r\n\r\n\r\n", "").Replace("\r\n\r\n\r\n\r\n", "");
-
-                                    // le quitamos los tabuladores extra
-                                    finalText = finalText.Replace(tabCaracter.ToString(), " ");
-
-
-
-                                    // grabamos segun el 
-                                    util.saveTextToFile(nombreArchivoFinal, finalText);
-
-                                }
-                                catch (System.Exception exx)
-                                {
-                                    // file
-                                    AsyncCleanRt1("");
-                                    AsyncWriteLine("Problem with the template : " + file.ToString());
-                                    AsyncWriteLine("Error : " + exx.Message);
-                                    AsyncWriteLine("file://" + file.ToString());
-
-                                    errores.Add(file.ToString());
-
-                                    //AsyncAddControl(file.ToString());
-
-                                    //rt1.Text = exx.Message;
-                                    //System.Console.Out.WriteLine("Problem merging template : " + exx);
-                                    System.Console.Out.WriteLine("Problem evaluating template : " + exx);
-                                }
-                            }
+                            } // end de for each
                         }
 
                         else
