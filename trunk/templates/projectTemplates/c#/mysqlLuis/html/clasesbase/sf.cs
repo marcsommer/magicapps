@@ -853,13 +853,13 @@ public class sf
 
     public static bool boolean(string valor)
     {
-
-        bool reto = false;
-
-        bool.TryParse(valor, out reto);
-
-        return reto;
-
+        if (valor.Equals("1"))
+            return true;
+        else
+            return false;
+        //bool reto = false;
+        //bool.TryParse(valor, out reto);
+        //return reto;
     }
 
     public static bool boolean(int valor)

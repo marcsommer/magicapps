@@ -1034,7 +1034,8 @@ public class lo
             Smtpx.UseDefaultCredentials = false;
             Smtpx.Credentials = basicAuthenticationInfo;
             Smtpx.Send(correo);
-
+			// to release the file ...
+			correo.Attachments.Dispose();
         }
 
         catch (Exception ex)
