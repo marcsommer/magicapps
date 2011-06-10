@@ -17,7 +17,8 @@
 			<div class="general">
  					<p>Consultar el listado de ${table} </p>
 					<ul class="list${table}">
-					  <asp:Repeater ID="Repeater1" runat="server">
+					   <li><asp:Label runat="server" ID="labEmptyInfo" Visible="false">Lo sentimos, no hay ${table}.</asp:Label></li>
+						<asp:Repeater ID="Repeater1" runat="server">
                          <ItemTemplate>
                           <li>  <a  class="asoc" href="ficha_${table}.aspx?id=<%#Eval("${table.getKey()}")%>"><%#Eval("${table.fieldDescription()}")%></a></li>
                         #set ($count = 0)

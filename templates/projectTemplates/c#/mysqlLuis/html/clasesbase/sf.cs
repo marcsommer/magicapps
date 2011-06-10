@@ -925,6 +925,30 @@ public class sf
         }
 
     }
+	
+	 // funciones para sacar valores legibles de un bool
+    public static string booleanToTextoLegigle(bool valor)
+    {
+        if (valor)
+            return "S&iacute;";
+        else
+            return "No";
+
+    }
+
+    public static string booleanToTextoLegigle(string valor)
+    {
+        if (valor.Equals("True") || valor.Equals("1"))
+            return "S&iacute;";
+        else
+            return "No";
+
+    }
+
+    public static string booleanToTextoLegigle(System.DBNull valor)
+    {
+       return "No";
+    }
 
     #endregion
 

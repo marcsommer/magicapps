@@ -33,6 +33,9 @@ namespace juleweb.portal.main_${table}
 
                 List<${table}> list${table} = new List<${table}>();
                 list${table} = ${table}.getList();
+				
+				 if (list${table}.Count <= 0)
+					labEmptyInfo.Visible = true;
                
                 Repeater1.DataSource = list${table};
                 Repeater1.DataBind();
