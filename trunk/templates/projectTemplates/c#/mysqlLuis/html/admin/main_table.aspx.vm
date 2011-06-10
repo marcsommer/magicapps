@@ -54,7 +54,6 @@
 						#end
 					#end
 				#end
-
 				#if ($field.targetType.toString() == "_string")
 					#if ($field.isForeignKey() )
 						<div class="lineaForm">
@@ -147,7 +146,6 @@
 								<asp:Label ID="lblinfo${field}" CssClass="camporojo" runat="server" Text=""></asp:Label>
 						</div>
 					#end
-	      
 		#set ($count = $count + 1 )
 	 #end
 #end 			
@@ -290,7 +288,8 @@
  </label>
  </div>
 					
-					</div><!--subsecciones-->
+					</div>
+					<!-- end of subseccion 1 -->
 					
 					
 			 
