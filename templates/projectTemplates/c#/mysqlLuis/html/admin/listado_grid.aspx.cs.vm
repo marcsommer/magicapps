@@ -32,19 +32,25 @@ namespace juleweb.${table}_dir
              
             if (!Page.IsPostBack)
             {
-                List<${table}> lista = new List<${table}>();
-                lista = ${table}.getList();
-                g${table}.DataSource = lista;
-                g${table}.DataBind();
-            }
-			 
+			fillData();
+           }			 
         }
+		
+		 protected void fillData()
+        {
+            List<empleosofertas> lista = new List<empleosofertas>();
+            if (txtBusqueda.Text.Equals(""))
+                lista = empleosofertas.getList();
+            else
+                lista = empleosofertas.getListByBusquedaGeneral(txtBusqueda.Text);
+
+            gempleosofertas.DataSource = lista;
+            gempleosofertas.DataBind();
+        }
+		
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            List<${table}> lista = new List<${table}>();
-            lista = ${table}.getListByBusquedaGeneral(txtBusqueda.Text);
-            g${table}.DataSource = lista;
-            g${table}.DataBind();
+            fillData();
         }
 		
 		protected void g${table}_RowCommand(Object sender, GridViewCommandEventArgs e)
@@ -56,6 +62,7 @@ namespace juleweb.${table}_dir
             {
                 case "Delete":
                     ${table}.Delete(sf.entero(id));
+					fillData();
                     break;
                 case "Edit":
                     Response.Redirect("./main_${table}.aspx?id=" + sf.cadena(id));
@@ -73,7 +80,7 @@ namespace juleweb.${table}_dir
                 // Display the company name in italics.
                 // e.Row.Cells[1].Text = "<i>" + e.Row.Cells[1].Text + "</i>";
                 LinkButton but = (LinkButton)e.Row.FindControl("lbDelete");
-                but.Attributes.Add("onclick", "javascript:if(confirm('�Estas seguro de querer borrar ..? Esta acci�n ser� registrada en el log.')== false) return false;");
+                but.Attributes.Add("onclick", "javascript:if(confirm('&iquest;Estas seguro de querer borrar ..? Esta acci&oacute;n ser&aacute; registrada en el log.')== false) return false;");
            
             }
 
@@ -85,6 +92,12 @@ namespace juleweb.${table}_dir
         } // g${table}_RowEditing
 		
 		
+        protected void gempleosofertas_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        } // gempleosofertas_RowDeleting
+  
+  
 
     }
 }
