@@ -208,3 +208,25 @@ li.logospie{ background:none!important;}
 .msgError{ border:1px solid #e8e1b5; padding:5px 5px 5px 25px; background:#fdfaee url(../../admin/imagesadmin/denegar.gif) no-repeat;} 
 .msgSuccess{ border:1px solid #e8e1b5; padding:5px 5px 5px 25px; background:#fdfaee url(../../admin/imagesadmin/aceptar.gif) no-repeat;} 
 .msgInfo{ border:1px solid #e8e1b5; padding:5px 5px 5px 25px; background:#fdfaee url(../../admin/imagesadmin/denegar.gif) no-repeat;} 
+
+/*-- grid --*/
+.grid
+{
+	border: 1px solid #D1DEEF;
+}
+.grid td
+{
+	border-bottom: 1px dotted #ccc;
+	border-right: 1px dotted #F3F3F3;
+	margin: 0px 0px 0px 0px;
+	font-family: Verdana;
+	font-size: 1.1em;
+	padding: 2px 2px 2px 2px;
+	text-align: left;
+	border-style: solid;
+	border-width: 1px;
+	
+}
+.gridItemStyle{background:none!important; border-style:none !important;border-width:0px !important;}
+.gridAlternatingItemStyle{ background:#f4f6f9 !important; border-style:none !important;border-width:0px !important; }
+
