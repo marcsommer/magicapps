@@ -271,7 +271,7 @@ namespace ${project.name}
                                    
                     #end
                     #set ($count = $count + 1 ) 
-                #end
+                
                 
                 ${table}.Insert(${table}x);
                 ${table}x = null;

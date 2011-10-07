@@ -1233,6 +1233,13 @@ public class lo
         }
     }
 
+	public static string cleanField(string cadena)
+    {
+        cadena = cadena.Replace("\"", "");
+        cadena = cadena.Replace("'", "");
+        return cadena;
+    }
+
 
 }
 
