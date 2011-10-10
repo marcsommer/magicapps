@@ -38,14 +38,14 @@ namespace juleweb.${table}_dir
 		
 		 protected void fillData()
         {
-            List<empleosofertas> lista = new List<empleosofertas>();
+            List<${table}> lista = new List<${table}>();
             if (txtBusqueda.Text.Equals(""))
-                lista = empleosofertas.getList();
+                lista = ${table}.getList();
             else
-                lista = empleosofertas.getListByBusquedaGeneral(txtBusqueda.Text);
+                lista = ${table}.getListByBusquedaGeneral(txtBusqueda.Text);
 
-            gempleosofertas.DataSource = lista;
-            gempleosofertas.DataBind();
+            g${table}.DataSource = lista;
+            g${table}.DataBind();
         }
 		
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -92,10 +92,10 @@ namespace juleweb.${table}_dir
         } // g${table}_RowEditing
 		
 		
-        protected void gempleosofertas_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void g${table}_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
 
-        } // gempleosofertas_RowDeleting
+        } // g${table}_RowDeleting
   
   
 
