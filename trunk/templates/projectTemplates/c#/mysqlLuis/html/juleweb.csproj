@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="clasesbase\JQueryUtils.cs" />
     <Compile Include="clasesbase\message.cs" />
+    <Compile Include="clasesbase\redimensionarImagen.cs" />
     <Compile Include="clasesbase\tracker.cs" />
     <Compile Include="clasesbase\ctes.cs" />
     <Compile Include="clasesbase\dbClass.cs" />
@@ -167,11 +168,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Themes\admcontrastemed\admin_contraste.css" />
-    <Content Include="App_Themes\admcontrastexl\admin_contraste.css" />
-    <Content Include="App_Themes\admcontraste\admin_contraste.css" />
     <Content Include="App_Themes\adminxl\admin.css" />
-    <Content Include="App_Themes\adminmed\admin.css" />
     <Content Include="App_Themes\admin\admin.css" />
     <Content Include="App_Themes\contrastemed\altocontraste.css" />
     <Content Include="App_Themes\contrastexl\altocontraste.css" />
@@ -718,7 +715,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1679</DevelopmentServerPort>
+          <DevelopmentServerPort>1694</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://pablo/udpW3C/html</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
